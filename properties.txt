@@ -1,0 +1,13 @@
+#db.driver=org.sqlite.JDBC
+#db.url=jdbc:sqlite:db.sqlite
+#db.schema=
+#db.user=
+#db.password=
+
+#####################
+
+db.driver=org.postgresql.Driver
+db.url=jdbc:postgresql://127.0.0.1:5432/postgres
+db.schema=typography
+db.user=postgres
+db.password=postgres

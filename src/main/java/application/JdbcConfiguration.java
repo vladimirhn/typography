@@ -1,5 +1,6 @@
 package application;
 
+import kpersistence.KRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +16,9 @@ public class JdbcConfiguration {
 
     @Bean
     public DataSource getDataSource() {
+
+        KRepository.setConnectionUrl(appProperties.getDbUrl());
+
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(appProperties.getDbDriver());
         dataSource.setUrl(appProperties.getDbUrl());

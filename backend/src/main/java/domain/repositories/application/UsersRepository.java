@@ -1,13 +1,13 @@
 package domain.repositories.application;
 
 import domain.models.application.User;
-import kpersistence.KRepository;
+import domain.repositories.abstracts.TypoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UsersRepository extends KRepository<User> {
+public class UsersRepository extends TypoRepository<User> {
 
     public UsersRepository() {
-        super(User.class, id -> id.getId().toString());
+        super(User.class);
     }
 }

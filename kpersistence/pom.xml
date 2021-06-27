@@ -8,6 +8,14 @@
     <groupId>karsanov</groupId>
     <artifactId>kpersistence</artifactId>
     <version>0.1</version>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>5.2.5.RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
     <name>kpersistence</name>
     <description>Custom persistence provider</description>
 

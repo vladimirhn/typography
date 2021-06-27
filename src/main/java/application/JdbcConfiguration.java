@@ -1,23 +1,23 @@
 package application;
 
-import kpersistence.KRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration;
+import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.sql.DataSource;
 
 @Configuration
-public class JdbcConfiguration {
+@EnableJdbcRepositories
+public class JdbcConfiguration extends AbstractJdbcConfiguration {
 
     @Autowired
     AppProperties appProperties;
 
     @Bean
     public DataSource getDataSource() {
-
-        KRepository.setConnectionUrl(appProperties.getDbUrl());
 
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(appProperties.getDbDriver());
@@ -28,4 +28,11 @@ public class JdbcConfiguration {
 
         return dataSource;
     }
+
+// Скорее всего не нужен, вроде загружается автоматически
+//    @Bean
+//    NamedParameterJdbcOperations namedParameterJdbcOperations(DataSource dataSource) {
+//        return new NamedParameterJdbcTemplate(dataSource);
+//    }
+
 }

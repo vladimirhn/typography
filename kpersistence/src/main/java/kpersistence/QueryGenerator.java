@@ -186,7 +186,7 @@ public class QueryGenerator {
     }
 
     private static boolean isProperDbEntityName(String name) {
-        return name != null && Pattern.matches("[a-zA-Z0-9_]{1,}", name);
+        return name != null && Pattern.matches("[a-zA-Z0-9_]+", name);
     }
 
 //    public static void main(String[] args) throws Exception {

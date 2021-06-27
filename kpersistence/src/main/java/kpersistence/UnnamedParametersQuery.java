@@ -23,8 +23,8 @@ public class UnnamedParametersQuery {
         this.query = query;
     }
 
-    public List<Object> getParams() {
-        return params;
+    public Object[] getParams() {
+        return params.toArray(new Object[0]);
     }
 
     public void setParams(List<Object> params) {

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.stream.Stream;
 
 public class TypoService<T extends TypoTable> {
@@ -32,16 +31,8 @@ public class TypoService<T extends TypoTable> {
         return getRepository().findAll();
     }
 
-    public List<T> findAll(Function<? super T, ? extends Comparable> compareBy) {
-        return getRepository().findAll(compareBy);
-    }
-
     public Stream<T> streamAll() {
         return getRepository().streamAll();
-    }
-
-    public Stream<T> streamAll(Function<? super T, ? extends Comparable> compareBy) {
-        return getRepository().streamAll(compareBy);
     }
 
     public List<T> findWithQuery(String sql) {

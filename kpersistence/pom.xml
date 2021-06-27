@@ -8,6 +8,10 @@
     <groupId>karsanov</groupId>
     <artifactId>kpersistence</artifactId>
     <version>0.1</version>
+    <name>kpersistence</name>
+    <description>Custom persistence provider</description>
+
+
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -16,7 +20,5 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
-    <name>kpersistence</name>
-    <description>Custom persistence provider</description>
 
 </project>

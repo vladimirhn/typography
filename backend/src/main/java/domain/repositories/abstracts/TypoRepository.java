@@ -8,4 +8,8 @@ public abstract class TypoRepository<T extends TypoTable> extends KRepository<T>
     public TypoRepository(Class<T> clazz) {
         super(clazz, table -> table.getId().toString());
     }
+
+    public TypoRepository(Class<T> clazz, boolean useCache) {
+        super(clazz, table -> table.getId().toString(), useCache);
+    }
 }

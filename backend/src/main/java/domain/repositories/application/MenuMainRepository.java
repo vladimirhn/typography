@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 public class MenuMainRepository extends TypoRepository<MenuMain> {
 
     public MenuMainRepository() {
-        super(MenuMain.class);
+        super(MenuMain.class, true);
     }
 }

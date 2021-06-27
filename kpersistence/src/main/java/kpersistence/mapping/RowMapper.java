@@ -14,10 +14,6 @@ import java.util.logging.Logger;
 import kpersistence.exceptions.IncorrectTypeException;
 import kpersistence.mapping.annotations.Column;
 
-/**
- *
- * @author vladimir
- */
 public class RowMapper {
 
     public static <T> T mapRowToObject(ResultSet rs, Class<T> type) throws IncorrectTypeException {

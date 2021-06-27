@@ -189,32 +189,32 @@ public class QueryGenerator {
         return name != null && Pattern.matches("[a-zA-Z0-9_]{1,}", name);
     }
 
-    public static void main(String[] args) throws Exception {
-
-        Texts t = new Texts();
-        t.id = 100;
-        t.rus = "zzz";
-        t.text = "yyy";
-        t.transcription = "xxx";
-
-        System.out.println(generateFindOneQuery(1, Texts.class));
-    }
+//    public static void main(String[] args) throws Exception {
+//
+//        Texts t = new Texts();
+//        t.id = 100;
+//        t.rus = "zzz";
+//        t.text = "yyy";
+//        t.transcription = "xxx";
+//
+//        System.out.println(generateFindOneQuery(1, Texts.class));
+//    }
 }
 
-@Entity
-@Table(name = "texts")
-class Texts {
-
-    @Id
-    @Column(name = "id")
-    Integer id;
-    @Column(name = "text")
-    String text;
-    @Column(name = "transcription")
-    String transcription;
-    @Column(name = "rus")
-    String rus;
-
-    public Texts() {
-    }
-}
+//@Entity
+//@Table(name = "texts")
+//class Texts {
+//
+//    @Id
+//    @Column(name = "id")
+//    Integer id;
+//    @Column(name = "text")
+//    String text;
+//    @Column(name = "transcription")
+//    String transcription;
+//    @Column(name = "rus")
+//    String rus;
+//
+//    public Texts() {
+//    }
+//}

@@ -31,16 +31,23 @@ public abstract class KRepository<T> {
     private final Class<T> type;
     private final Function<T, String> idStringGetter;
 
+    protected boolean useCache = false;
     protected List<T> cache;
-    protected Map<String, T> idStringToItem;
 
     protected final List<KChangeListener> listeners = new ArrayList<>();
 
     public KRepository(Class<T> type, Function<T, String> idStringGetter) {
         this.type = type;
         this.idStringGetter = idStringGetter;
+    }
 
-        refreshCache();
+    public KRepository(Class<T> type, Function<T, String> idStringGetter, boolean useCache) {
+        this(type, idStringGetter);
+        this.useCache = useCache;
+
+        if (useCache) {
+            refreshCache();
+        }
     }
 
     public void registerListener(KChangeListener listener) {
@@ -87,21 +94,33 @@ public abstract class KRepository<T> {
     }
 
     public List<T> findAll() {
-        return cache;
+        if (useCache) {
+            return cache;
+        } else {
+            return retrieveAll();
+        }
     }
 
     public List<T> findAll(Function<? super T, ? extends Comparable> compareBy) {
-        List<T> res = new ArrayList<>(cache.size());
-        res.addAll(cache);
+        List<T> res = new ArrayList<>();
+        if (useCache) {
+            res.addAll(cache);
+        } else {
+            res.addAll(retrieveAll());
+        }
         res.sort(Comparator.comparing(compareBy));
         return res;
     }
 
     public Stream<T> streamAll() {
-        return cache.stream();
+        if (useCache) {
+            return cache.stream();
+        } else {
+            return retrieveAll().stream();
+        }
     }
 
-     public Stream<T> streamAll(Function<? super T, ? extends Comparable> compareBy) {
+    public Stream<T> streamAll(Function<? super T, ? extends Comparable> compareBy) {
         return findAll(compareBy).stream();
     }
 
@@ -311,24 +330,19 @@ public abstract class KRepository<T> {
     }
 
     private void processChanges() {
-        refreshCache();
-        announce(cache);
+        if (useCache) {
+            refreshCache();
+            announce(cache);
+        } else {
+            announce(retrieveAll());
+        }
     }
 
     private void refreshCache() {
         cache = retrieveAll();
-
-        idStringToItem = new TreeMap<>();
-        cache.forEach(entry -> {
-            idStringToItem.put(idStringGetter.apply(entry), entry);
-        });
     }
 
     protected void announce(List<T> entries) {
         listeners.forEach((KChangeListener listener) -> listener.updateState(entries));
-    }
-
-    public Map<String, T> getMap() {
-        return idStringToItem;
     }
 }

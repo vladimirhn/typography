@@ -13,9 +13,9 @@
     <property name="TIMESTAMP" value="TIMESTAMP" dbms="postgresql"/>
     <property name="TIMESTAMP" value="DATETIME2" dbms="mssql"/>
     <property name="TIMESTAMP" value="TIMESTAMP" dbms="oracle"/>
-<!--    <property name="AUTOINCREMENT" value="INTEGER" dbms="sqlite"/>-->
 
-    <property dbms="db2,derby,mysql,h2,mssql,sqlite"    name="AUTOINCREMENT"    value="BIGINT"/>
+    <property dbms="sqlite"                             name="AUTOINCREMENT"    value="INTEGER"/>
+    <property dbms="db2,derby,mysql,h2,mssql"           name="AUTOINCREMENT"    value="BIGINT"/>
     <property dbms="oracle"                             name="AUTOINCREMENT"    value="BIGINT" />
     <property dbms="postgresql"                         name="AUTOINCREMENT"    value="SERIAL"/>
 

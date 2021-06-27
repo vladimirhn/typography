@@ -1,0 +1,65 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd" logicalFilePath="true">
+
+    <changeSet id="create-table-menu-inner" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="MENU_INNER"/>
+            </not>
+        </preConditions>
+        <createTable tableName="MENU_INNER" remarks="Дочерние элементы главного меню приложения">
+            <column name="ID" type="${AUTOINCREMENT}" autoIncrement="true" remarks="id">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-parent-code-in-menu-inner" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="MENU_INNER" columnName="PARENT_CODE"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="MENU_INNER">
+            <column name="PARENT_CODE" remarks="CODE родительского меню" type="VARCHAR2(20)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="create-entry-code-in-menu-inner" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="MENU_INNER" columnName="ENTRY_CODE"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="MENU_INNER">
+            <column name="ENTRY_CODE" remarks="Ко пункта меню" type="VARCHAR2(20)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="create-entry-in-menu-inner" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="MENU_INNER" columnName="ENTRY"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="MENU_INNER">
+            <column name="ENTRY" remarks="Пункт меню" type="VARCHAR2(20)"/>
+        </addColumn>
+    </changeSet>
+
+    <!-- ////////// DML ////////// -->
+
+    <changeSet id="menu-inner-insert-nomenclature-manage" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">select count(*) from MENU_INNER where PARENT_CODE = 'NOMENCLATURE' AND ENTRY_CODE = 'MANAGE'</sqlCheck>
+        </preConditions>
+        <insert tableName="MENU_INNER">
+            <column name="PARENT_CODE">NOMENCLATURE</column>
+            <column name="ENTRY_CODE">MANAGE</column>
+            <column name="ENTRY">Обзор</column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

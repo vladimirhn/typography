@@ -24,7 +24,6 @@ public class ApplicationConfiguration {
             try {
                 desktop.browse(new URI(url));
             } catch (IOException | URISyntaxException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }else{
@@ -32,7 +31,6 @@ public class ApplicationConfiguration {
             try {
                 runtime.exec("xdg-open " + url);
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }

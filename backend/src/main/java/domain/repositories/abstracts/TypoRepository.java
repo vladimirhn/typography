@@ -24,10 +24,10 @@ public abstract class TypoRepository<T extends TypoTable> {
     }
 
     @Autowired
-    private JdbcOperations jdbcOperations;
+    protected JdbcOperations jdbcOperations;
 
     @Autowired
-    private NamedParameterJdbcOperations namedParameterJdbcOperations;
+    protected NamedParameterJdbcOperations namedParameterJdbcOperations;
 
 
     public Optional<T> findOne(long id) {

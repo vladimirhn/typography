@@ -14,6 +14,11 @@ public class ApplicationConfiguration {
 
     @EventListener
     public void onApplicationReadyEvent(ApplicationReadyEvent event) throws URISyntaxException, IOException {
+
+//        startBrowser();
+    }
+
+    private void startBrowser() {
 //        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
 //            Desktop.getDesktop().browse(new URI("http://localhost"));
 //        }

@@ -18,7 +18,7 @@ public class NomenclatureGroupsService extends TypoService<NomenclatureGroups> {
     @Autowired
     NomenclatureItemsService nomenclatureItemsService;
     
-    public List<NomenclatureGroups> getMenusWithSubmenus() {
+    public List<NomenclatureGroups> getWholeNomenclature() {
         List<NomenclatureGroups> nomenclatureGroups = repository.findAll();
 
         nomenclatureGroups.forEach(group -> {

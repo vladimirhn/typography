@@ -6,9 +6,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>karsanov</groupId>
-    <artifactId>kpersistence</artifactId>
+    <artifactId>basis</artifactId>
     <version>0.1</version>
-    <name>kpersistence</name>
+    <name>basis</name>
     <description>Custom persistence provider</description>
 
 

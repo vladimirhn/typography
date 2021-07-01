@@ -23,7 +23,7 @@
     <dependencies>
         <dependency>
             <groupId>karsanov</groupId>
-            <artifactId>kpersistence</artifactId>
+            <artifactId>basis</artifactId>
             <version>0.1</version>
             <scope>compile</scope>
         </dependency>

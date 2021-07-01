@@ -1,0 +1,63 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd" logicalFilePath="true">
+
+    <changeSet id="create-table-nomenclature-groups" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="NOMENCLATURE_GROUPS"/>
+            </not>
+        </preConditions>
+        <createTable tableName="NOMENCLATURE_GROUPS" remarks="Группировка видов расходных материалов">
+            <column name="ID" type="${AUTOINCREMENT}" autoIncrement="true" remarks="id">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-code-in-nomenclature-groups" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="NOMENCLATURE_GROUPS" columnName="CODE"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="NOMENCLATURE_GROUPS">
+            <column name="CODE" remarks="Код группы" type="VARCHAR2(50)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="create-group-in-nomenclature-groups" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="NOMENCLATURE_GROUPS" columnName="NAME"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="NOMENCLATURE_GROUPS">
+            <column name="NAME" remarks="Название группы" type="VARCHAR2(50)"/>
+        </addColumn>
+    </changeSet>
+
+    <!-- ////////// DML ////////// -->
+
+    <changeSet id="menu-main-insert-paper" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">select count(*) from NOMENCLATURE_GROUPS where CODE = 'PAPER'</sqlCheck>
+        </preConditions>
+        <insert tableName="MENU_MAIN">
+            <column name="CODE">PAPER</column>
+            <column name="NAME">Бумага</column>
+        </insert>
+    </changeSet>
+
+    <changeSet id="menu-main-insert-cartridges" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">select count(*) from NOMENCLATURE_GROUPS where CODE = 'CARTRIDGES'</sqlCheck>
+        </preConditions>
+        <insert tableName="MENU_MAIN">
+            <column name="CODE">CARTRIDGES</column>
+            <column name="NAME">Картриджи</column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

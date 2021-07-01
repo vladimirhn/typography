@@ -41,21 +41,21 @@
 
     <!-- ////////// DML ////////// -->
 
-    <changeSet id="menu-main-insert-paper" author="typography" runOnChange="true">
+    <changeSet id="nomenclature-groups-insert-paper" author="typography" runOnChange="true">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">select count(*) from NOMENCLATURE_GROUPS where CODE = 'PAPER'</sqlCheck>
         </preConditions>
-        <insert tableName="MENU_MAIN">
+        <insert tableName="NOMENCLATURE_GROUPS">
             <column name="CODE">PAPER</column>
             <column name="NAME">Бумага</column>
         </insert>
     </changeSet>
 
-    <changeSet id="menu-main-insert-cartridges" author="typography" runOnChange="true">
+    <changeSet id="nomenclature-groups-insert-cartridges" author="typography" runOnChange="true">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">select count(*) from NOMENCLATURE_GROUPS where CODE = 'CARTRIDGES'</sqlCheck>
         </preConditions>
-        <insert tableName="MENU_MAIN">
+        <insert tableName="NOMENCLATURE_GROUPS">
             <column name="CODE">CARTRIDGES</column>
             <column name="NAME">Картриджи</column>
         </insert>

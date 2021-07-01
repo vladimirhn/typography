@@ -1,6 +1,6 @@
-package domain.repositories.application;
+package domain.repositories.nomenclature;
 
-import domain.models.application.MenuMain;
+import domain.models.nomenclature.NomenclatureGroups;
 import domain.repositories.abstracts.TypoRepository;
 import kpersistence.QueryGenerator;
 import kpersistence.UnnamedParametersQuery;
@@ -11,10 +11,10 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MenuMainRepository extends TypoRepository<MenuMain> {
+public class NomenclatureGroupsRepository extends TypoRepository<NomenclatureGroups> {
 
-    public MenuMainRepository() {
-        super(MenuMain.class);
+    public NomenclatureGroupsRepository() {
+        super(NomenclatureGroups.class);
     }
 
     @Autowired
@@ -25,9 +25,7 @@ public class MenuMainRepository extends TypoRepository<MenuMain> {
 
     public void test() {
         try {
-            MenuMain mm = new MenuMain();
-            mm.setEntryCode("NEWONE");
-            mm.setEntry("Новый");
+            NomenclatureGroups mm = new NomenclatureGroups();
 
             UnnamedParametersQuery qry = QueryGenerator.generateInsertQuery(mm);
             jdbcOperations.update(qry.getQuery(), qry.getParams());

@@ -1,0 +1,65 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd" logicalFilePath="true">
+
+    <changeSet id="create-table-nomenclature-items" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="NOMENCLATURE_ITEMS"/>
+            </not>
+        </preConditions>
+        <createTable tableName="NOMENCLATURE_ITEMS" remarks="Виды расходных материалов">
+            <column name="ID" type="${AUTOINCREMENT}" autoIncrement="true" remarks="id">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-group-code-in-nomenclature-items" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="NOMENCLATURE_ITEMS" columnName="GROUP_CODE"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="NOMENCLATURE_ITEMS">
+            <column name="GROUP_CODE" remarks="CODE группы" type="VARCHAR2(50)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="create-code-in-nomenclature-items" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="NOMENCLATURE_ITEMS" columnName="CODE"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="NOMENCLATURE_ITEMS">
+            <column name="CODE" remarks="Код вида расходных материалов" type="VARCHAR2(50)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="create-name-in-nomenclature-items" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="NOMENCLATURE_ITEMS" columnName="NAME"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="NOMENCLATURE_ITEMS">
+            <column name="NAME" remarks="Наименование вида расходных материалов" type="VARCHAR2(100)"/>
+        </addColumn>
+    </changeSet>
+
+    <!-- ////////// DML ////////// -->
+
+    <changeSet id="nomenclature-items-insert-standard-paper" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">select count(*) from NOMENCLATURE_ITEMS where GROUP_CODE = 'PAPER' AND CODE = 'STANDARD_A4_PAPER'</sqlCheck>
+        </preConditions>
+        <insert tableName="NOMENCLATURE_ITEMS">
+            <column name="GROUP_CODE">PAPER</column>
+            <column name="CODE">STANDARD_A4_PAPER</column>
+            <column name="NAME">Стандартная бумага A4, 80 г/м2</column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

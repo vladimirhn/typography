@@ -23,7 +23,7 @@ public class NomenclatureGroupsService extends TypoService<NomenclatureGroups> {
 
         nomenclatureGroups.forEach(group -> {
             List<NomenclatureItems> items = nomenclatureItemsService.findByParentCode(group.getCode());
-            group.setItems(items);
+            group.setSubTableData(items);
         });
 
         return nomenclatureGroups;

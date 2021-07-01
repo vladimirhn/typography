@@ -1,5 +1,6 @@
 package domain.models.nomenclature;
 
+import domain.models.abstracts.SubTable;
 import domain.models.abstracts.TypoTable;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
@@ -7,7 +8,7 @@ import kpersistence.mapping.annotations.Table;
 
 @Entity
 @Table(name = "NOMENCLATURE_ITEMS")
-public class NomenclatureItems extends TypoTable {
+public class NomenclatureItems extends TypoTable implements SubTable {
 
     @Column(name = "GROUP_CODE")
     private String groupCode;

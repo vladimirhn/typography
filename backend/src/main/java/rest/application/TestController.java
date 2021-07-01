@@ -1,9 +1,8 @@
-package rest;
+package rest.application;
 
-import domain.models.nomenclature.NomenclatureItems;
 import domain.models.nomenclature.NomenclatureGroups;
-import domain.repositories.nomenclature.NomenclatureGroupsRepository;
 import domain.repositories.application.UsersRepository;
+import domain.repositories.nomenclature.NomenclatureGroupsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

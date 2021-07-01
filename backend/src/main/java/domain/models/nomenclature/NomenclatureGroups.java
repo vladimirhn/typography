@@ -1,16 +1,16 @@
 package domain.models.nomenclature;
 
+import domain.models.abstracts.MainTable;
 import domain.models.abstracts.TypoTable;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
 import kpersistence.mapping.annotations.Table;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "NOMENCLATURE_GROUPS")
-public class NomenclatureGroups extends TypoTable {
+public class NomenclatureGroups extends TypoTable implements MainTable {
 
     @Column(name = "CODE")
     private String code;
@@ -18,7 +18,7 @@ public class NomenclatureGroups extends TypoTable {
     @Column(name = "NAME")
     private String name;
 
-    private List<NomenclatureItems> items;
+    private List<NomenclatureItems> subTableData;
 
     public String getCode() {
         return code;
@@ -36,12 +36,12 @@ public class NomenclatureGroups extends TypoTable {
         this.name = name;
     }
 
-    public List<NomenclatureItems> getItems() {
-        if (items == null) return new ArrayList<>();
-        return items;
+    @Override
+    public List<NomenclatureItems> getSubTableData() {
+        return subTableData;
     }
 
-    public void setItems(List<NomenclatureItems> items) {
-        this.items = items;
+    public void setSubTableData(List<NomenclatureItems> subTableData) {
+        this.subTableData = subTableData;
     }
 }

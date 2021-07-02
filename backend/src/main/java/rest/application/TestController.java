@@ -1,31 +1,26 @@
 package rest.application;
 
-import domain.models.nomenclature.NomenclatureGroups;
-import domain.repositories.application.UsersRepository;
-import domain.repositories.nomenclature.NomenclatureGroupsRepository;
+import domain.models.nomenclature.NomenclatureItems;
+import domain.services.nomenclature.NomenclatureItemsService;
+import domain.services.response.KResponse;
+import domain.services.response.KResponseComposer;
+import domain.services.response.SimpleTableResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController()
 public class TestController {
 
     @Autowired
-    UsersRepository usersRepository;
+    NomenclatureItemsService nomenclatureItemsService;
 
     @Autowired
-    NomenclatureGroupsRepository nomenclatureGroupsRepository;
+    KResponseComposer responseComposer;
 
     @GetMapping("/test")
-    public List<NomenclatureGroups> greeting() {
+    public SimpleTableResponse get() {
 
-        nomenclatureGroupsRepository.test();
-
-        List<NomenclatureGroups> res = new ArrayList<>();
-
-        return res;
+        return responseComposer.createFrom(nomenclatureItemsService.findAll(), NomenclatureItems.class);
     }
 }

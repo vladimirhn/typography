@@ -12,7 +12,7 @@ import java.util.List;
 @Table(name = "NOMENCLATURE_GROUPS")
 public class NomenclatureGroups extends TypoTable implements MainTable {
 
-    @Column(name = "CODE")
+    @Column(name = "CODE", isAncillary = true)
     private String code;
 
     @Column(name = "NAME")

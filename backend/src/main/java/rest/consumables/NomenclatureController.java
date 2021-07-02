@@ -19,4 +19,5 @@ public class NomenclatureController {
 
         return nomenclatureGroupsService.getWholeNomenclature();
     }
+
 }

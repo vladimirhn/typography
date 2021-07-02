@@ -1,19 +1,21 @@
 package domain.models.nomenclature;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import domain.models.abstracts.SubTable;
 import domain.models.abstracts.TypoTable;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
 import kpersistence.mapping.annotations.Table;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
 @Table(name = "NOMENCLATURE_ITEMS")
 public class NomenclatureItems extends TypoTable implements SubTable {
 
-    @Column(name = "GROUP_CODE")
+    @Column(name = "GROUP_CODE", isAncillary = true)
     private String groupCode;
 
-    @Column(name = "CODE")
+    @Column(name = "CODE", rus = "Код")
     private String code;
 
     @Column(name = "NAME")

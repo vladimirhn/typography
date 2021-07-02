@@ -2,14 +2,12 @@ package kpersistence.mapping.annotations;
 
 import java.lang.annotation.*;
 
-/**
- *
- * @author vladimir
- */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface Column {
 
-    public String name();
+    String name();
+    String rus() default "";
+    boolean isAncillary() default false;
 
 }

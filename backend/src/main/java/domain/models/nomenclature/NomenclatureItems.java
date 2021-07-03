@@ -12,7 +12,7 @@ import kpersistence.mapping.annotations.Table;
 @Table(name = "NOMENCLATURE_ITEMS")
 public class NomenclatureItems extends TypoTable implements SubTable {
 
-    @Column(name = "GROUP_CODE", isAncillary = true)
+    @Column(name = "GROUP_CODE")
     private String groupCode;
 
     @Column(name = "CODE", rus = "Код")

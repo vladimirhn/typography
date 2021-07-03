@@ -34,7 +34,7 @@ public class KRowMapper<T> implements RowMapper<T> {
                     Object data = rs.getObject(colName);
 
                     Class<?> fieldType = field.getType();
-                    Class<?> dataType = data.getClass();
+                    Class<?> dataType = data != null ? data.getClass() : Object.class;
 
                     if (fieldType.equals(Long.class) && dataType.equals(Integer.class)) {
                         field.set(obj, (long) (int) data);

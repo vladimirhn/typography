@@ -18,7 +18,7 @@ public class NomenclatureGroups extends TypoTable implements MainTable {
     @Column(name = "NAME")
     private String name;
 
-    private List<NomenclatureItems> subTableData;
+    private List<NomenclatureItem> subTableData;
 
     public String getCode() {
         return code;
@@ -37,11 +37,11 @@ public class NomenclatureGroups extends TypoTable implements MainTable {
     }
 
     @Override
-    public List<NomenclatureItems> getSubTableData() {
+    public List<NomenclatureItem> getSubTableData() {
         return subTableData;
     }
 
-    public void setSubTableData(List<NomenclatureItems> subTableData) {
+    public void setSubTableData(List<NomenclatureItem> subTableData) {
         this.subTableData = subTableData;
     }
 }

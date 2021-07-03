@@ -1,6 +1,6 @@
 package domain.services.nomenclature;
 
-import domain.models.nomenclature.NomenclatureItems;
+import domain.models.nomenclature.NomenclatureItem;
 import domain.models.nomenclature.NomenclatureGroups;
 import domain.repositories.nomenclature.NomenclatureGroupsRepository;
 import domain.services.abstracts.TypoService;
@@ -22,7 +22,7 @@ public class NomenclatureGroupsService extends TypoService<NomenclatureGroups> {
         List<NomenclatureGroups> nomenclatureGroups = repository.findAll();
 
         nomenclatureGroups.forEach(group -> {
-            List<NomenclatureItems> items = nomenclatureItemsService.findByParentCode(group.getCode());
+            List<NomenclatureItem> items = nomenclatureItemsService.findByParentCode(group.getCode());
             group.setSubTableData(items);
         });
 

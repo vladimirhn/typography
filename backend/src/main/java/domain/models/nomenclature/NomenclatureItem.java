@@ -10,7 +10,7 @@ import kpersistence.mapping.annotations.Table;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
 @Table(name = "NOMENCLATURE_ITEMS")
-public class NomenclatureItems extends TypoTable implements SubTable {
+public class NomenclatureItem extends TypoTable implements SubTable {
 
     @Column(name = "GROUP_CODE")
     private String groupCode;

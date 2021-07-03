@@ -14,10 +14,10 @@ public class NomenclatureController {
     @Autowired
     NomenclatureGroupsService nomenclatureGroupsService;
 
-    @GetMapping("/nomenclature/get")
-    public List<NomenclatureGroups> get() {
-
-        return nomenclatureGroupsService.getWholeNomenclature();
-    }
+//    @GetMapping("/nomenclature/get")
+//    public List<NomenclatureGroups> get() {
+//
+//        return nomenclatureGroupsService.getWholeNomenclature();
+//    }
 
 }

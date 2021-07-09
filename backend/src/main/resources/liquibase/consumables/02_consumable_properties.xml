@@ -1,0 +1,88 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd" logicalFilePath="true">
+
+    <changeSet id="consumable-properties-create-table" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="CONSUMABLE_PROPERTIES"/>
+            </not>
+        </preConditions>
+        <createTable tableName="CONSUMABLE_PROPERTIES" remarks="Свойства расходных материалов">
+            <column name="ID" type="${ID}" remarks="id">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="consumable-properties-add-type-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="CONSUMABLE_PROPERTIES" columnName="TYPE_ID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="CONSUMABLE_PROPERTIES">
+            <column name="TYPE_ID" remarks="id типа расходника" type="${ID}"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="consumable-properties-add-property-name" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="CONSUMABLE_PROPERTIES" columnName="PROPERTY_NAME"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="CONSUMABLE_PROPERTIES">
+            <column name="PROPERTY_NAME" remarks="Название свойства" type="VARCHAR2(50)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="consumable-properties-add-property-measure" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="CONSUMABLE_PROPERTIES" columnName="PROPERTY_MEASURE"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="CONSUMABLE_PROPERTIES">
+            <column name="PROPERTY_MEASURE" remarks="Единица измерения свойства (опционально)" type="VARCHAR2(50)">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <!-- ////////// DML ////////// -->
+
+    <changeSet id="consumable-properties-insert-paper-format" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*)
+                from CONSUMABLE_PROPERTIES
+                where TYPE_ID = 1 and PROPERTY_NAME = 'формат'
+            </sqlCheck>
+        </preConditions>
+        <insert tableName="CONSUMABLE_PROPERTIES">
+            <column name="ID" valueNumeric="1"/>
+            <column name="TYPE_ID" valueNumeric="1"/>
+            <column name="PROPERTY_NAME">формат</column>
+        </insert>
+    </changeSet>
+
+    <changeSet id="consumable-properties-insert-paper-density" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*)
+                from CONSUMABLE_PROPERTIES
+                where TYPE_ID = 1 and PROPERTY_NAME = 'плотность'
+            </sqlCheck>
+        </preConditions>
+        <insert tableName="CONSUMABLE_PROPERTIES">
+            <column name="ID" valueNumeric="2"/>
+            <column name="TYPE_ID" valueNumeric="1"/>
+            <column name="PROPERTY_NAME">плотность</column>
+            <column name="PROPERTY_MEASURE">г/м2</column>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

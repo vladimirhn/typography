@@ -1,0 +1,63 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd" logicalFilePath="true">
+
+    <changeSet id="consumable-types-create-table" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="CONSUMABLE_TYPES"/>
+            </not>
+        </preConditions>
+        <createTable tableName="CONSUMABLE_TYPES" remarks="Виды расходных материалов">
+            <column name="ID" type="${ID}" remarks="id">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="consumable-types-add-type" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="CONSUMABLE_TYPES" columnName="TYPE"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="CONSUMABLE_TYPES">
+            <column name="TYPE" remarks="Название типа" type="VARCHAR2(50)"/>
+        </addColumn>
+    </changeSet>
+
+    <!-- ////////// DML ////////// -->
+
+    <changeSet id="consumable-types-insert-paper" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">select count(*) from CONSUMABLE_TYPES where TYPE = 'Бумага'</sqlCheck>
+        </preConditions>
+        <insert tableName="CONSUMABLE_TYPES">
+            <column name="ID" valueNumeric="1"/>
+            <column name="TYPE">Бумага</column>
+        </insert>
+    </changeSet>
+
+    <changeSet id="consumable-types-insert-lamination" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">select count(*) from CONSUMABLE_TYPES where TYPE = 'Ламинация'</sqlCheck>
+        </preConditions>
+        <insert tableName="CONSUMABLE_TYPES">
+            <column name="ID" valueNumeric="2"/>
+            <column name="NAME">Ламинация</column>
+        </insert>
+    </changeSet>
+
+    <changeSet id="consumable-types-insert-stamp" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">select count(*) from CONSUMABLE_TYPES where TYPE = 'Штемпельная продукция'</sqlCheck>
+        </preConditions>
+        <insert tableName="CONSUMABLE_TYPES">
+            <column name="ID" valueNumeric="3"/>
+            <column name="NAME">Штемпельная продукция</column>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

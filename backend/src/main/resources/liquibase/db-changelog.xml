@@ -14,10 +14,10 @@
     <property name="TIMESTAMP" value="DATETIME2" dbms="mssql"/>
     <property name="TIMESTAMP" value="TIMESTAMP" dbms="oracle"/>
 
-    <property dbms="sqlite"                             name="AUTOINCREMENT"    value="INTEGER"/>
-    <property dbms="db2,derby,mysql,h2,mssql"           name="AUTOINCREMENT"    value="BIGINT"/>
-    <property dbms="oracle"                             name="AUTOINCREMENT"    value="BIGINT" />
-    <property dbms="postgresql"                         name="AUTOINCREMENT"    value="SERIAL"/>
+    <property dbms="sqlite"                             name="ID"    value="INTEGER"/>
+    <property dbms="postgresql"                         name="ID"    value="BIGINT"/>
+    <property dbms="oracle"                             name="ID"    value="BIGINT" />
+    <property dbms="db2,derby,mysql,h2,mssql"           name="ID"    value="BIGINT"/>
 
 
     <includeAll path="application" relativeToChangelogFile="true" errorIfMissingOrEmpty="false"/>

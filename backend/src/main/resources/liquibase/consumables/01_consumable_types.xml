@@ -46,7 +46,7 @@
         </preConditions>
         <insert tableName="CONSUMABLE_TYPES">
             <column name="ID" valueNumeric="2"/>
-            <column name="NAME">Ламинация</column>
+            <column name="TYPE">Ламинация</column>
         </insert>
     </changeSet>
 
@@ -56,7 +56,7 @@
         </preConditions>
         <insert tableName="CONSUMABLE_TYPES">
             <column name="ID" valueNumeric="3"/>
-            <column name="NAME">Штемпельная продукция</column>
+            <column name="TYPE">Штемпельная продукция</column>
         </insert>
     </changeSet>
 

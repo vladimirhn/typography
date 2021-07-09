@@ -42,13 +42,13 @@
     <!-- ////////// DML ////////// -->
 
     <changeSet id="consumable-items-insert-paper-a4-80" author="typography" runOnChange="true">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                select count(*)
-                from CONSUMABLE_ITEMS
-                where GROUP_CODE = 'PAPER' AND CODE = 'STANDARD_A4_PAPER'
-            </sqlCheck>
-        </preConditions>
+<!--        <preConditions onFail="MARK_RAN">-->
+<!--            <sqlCheck expectedResult="0">-->
+<!--                select count(*)-->
+<!--                from CONSUMABLE_ITEMS-->
+<!--                where GROUP_CODE = 'PAPER' AND CODE = 'STANDARD_A4_PAPER'-->
+<!--            </sqlCheck>-->
+<!--        </preConditions>-->
         <insert tableName="CONSUMABLE_ITEMS">
             <column name="ID" valueNumeric="1"/>
             <column name="TYPE_ID" valueNumeric="1"/>

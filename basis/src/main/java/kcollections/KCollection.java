@@ -4,10 +4,10 @@ import kcollections.functional.catchmethods.CatchMethod;
 import kcollections.functional.consumermethods.*;
 import kcollections.functional.getters.DoubleSupplier;
 import kcollections.functional.getters.IntegerSupplier;
-import ro.kalite.entity.AbstractTb;
-import ro.kalite.entity.Table;
-import ro.kalite.logger.KaliteroLogger;
-import ro.kalite.logger.KaliteroLoggerFactory;
+//import ro.kalite.entity.AbstractTb;
+//import ro.kalite.entity.Table;
+//import ro.kalite.logger.KaliteroLogger;
+//import ro.kalite.logger.KaliteroLoggerFactory;
 
 import java.util.*;
 import java.util.function.BiConsumer;
@@ -19,7 +19,7 @@ import java.util.stream.Stream;
 
 public abstract class KCollection<K extends kcollections.KCollection<K, X, T>, X extends Collection<T>, T> extends StandartCollectionWrapper<T> {
 
-    private static final KaliteroLogger logger = KaliteroLoggerFactory.getLogger(kcollections.KCollection.class);
+//    private static final KaliteroLogger logger = KaliteroLoggerFactory.getLogger(kcollections.KCollection.class);
 
     protected abstract X getJCollection();
 
@@ -44,11 +44,11 @@ public abstract class KCollection<K extends kcollections.KCollection<K, X, T>, X
     public String getItemsName() {
         if (getCurrentKCollection() != null && !getCurrentKCollection().isEmpty() && getCurrentKCollection().iterator().hasNext()) {
             T item = getCurrentKCollection().iterator().next();
-            if (item instanceof AbstractTb) {
-                this.itemsName = item.getClass().getAnnotation(Table.class).name();
-            } else {
+//            if (item instanceof AbstractTb) {
+//                this.itemsName = item.getClass().getAnnotation(Table.class).name();
+//            } else {
                 this.itemsName = item.getClass().getSimpleName().toUpperCase();
-            }
+//            }
         }
         return this.itemsName;
     }
@@ -587,7 +587,7 @@ public abstract class KCollection<K extends kcollections.KCollection<K, X, T>, X
 
     public <EX extends Exception> K useEachBy(ConsumerMethodWithEx<? super T, EX> meth) throws EX {
 
-        logger.debug(String.format("%s is going to process %d %s", meth.getMethodName(), getCurrentKCollection().size(), getCurrentKCollection().itemsName));
+//        logger.debug(String.format("%s is going to process %d %s", meth.getMethodName(), getCurrentKCollection().size(), getCurrentKCollection().itemsName));
 
         for (T element : getJCollection()) {
             meth.apply(element);
@@ -597,7 +597,7 @@ public abstract class KCollection<K extends kcollections.KCollection<K, X, T>, X
 
     public <A, EX extends Exception> K useEachBy(TwoArgsConsumerMethodWithEx<? super T, A, EX> meth, A arg1) throws EX {
 
-        logger.debug(String.format("%s is going to process %d %s", meth.getMethodName(), getCurrentKCollection().size(), getCurrentKCollection().itemsName));
+//        logger.debug(String.format("%s is going to process %d %s", meth.getMethodName(), getCurrentKCollection().size(), getCurrentKCollection().itemsName));
 
         for (T element : getJCollection()) {
             meth.apply(element, arg1);
@@ -607,7 +607,7 @@ public abstract class KCollection<K extends kcollections.KCollection<K, X, T>, X
 
     public <A, B, EX extends Exception> K useEachBy(ThreeArgsConsumerMethodWithEx<? super T, A, B, EX> meth, A arg1, B arg2) throws EX {
 
-        logger.debug(String.format("%s is going to process %d %s", meth.getMethodName(), getCurrentKCollection().size(), getCurrentKCollection().itemsName));
+//        logger.debug(String.format("%s is going to process %d %s", meth.getMethodName(), getCurrentKCollection().size(), getCurrentKCollection().itemsName));
 
         for (T element : getJCollection()) {
             meth.apply(element, arg1, arg2);
@@ -617,7 +617,7 @@ public abstract class KCollection<K extends kcollections.KCollection<K, X, T>, X
 
     public <A, B, C, EX extends Exception> K useEachBy(FourArgsConsumerMethodWithEx<? super T, A, B, C, EX> meth, A arg1, B arg2, C arg3) throws EX {
 
-        logger.debug(String.format("%s is going to process %d %s", meth.getMethodName(), getCurrentKCollection().size(), getCurrentKCollection().itemsName));
+//        logger.debug(String.format("%s is going to process %d %s", meth.getMethodName(), getCurrentKCollection().size(), getCurrentKCollection().itemsName));
 
         for (T element : getJCollection()) {
             meth.apply(element, arg1, arg2, arg3);
@@ -627,7 +627,7 @@ public abstract class KCollection<K extends kcollections.KCollection<K, X, T>, X
 
     public <A, B, C, D, EX extends Exception> K useEachBy(FiveArgsConsumerMethodWithEx<? super T, A, B, C, D, EX> meth, A arg1, B arg2, C arg3, D arg4) throws EX {
 
-        logger.debug(String.format("%s is going to process %d %s", meth.getMethodName(), getCurrentKCollection().size(), getCurrentKCollection().itemsName));
+//        logger.debug(String.format("%s is going to process %d %s", meth.getMethodName(), getCurrentKCollection().size(), getCurrentKCollection().itemsName));
 
         for (T element : getJCollection()) {
             meth.apply(element, arg1, arg2, arg3, arg4);
@@ -637,7 +637,7 @@ public abstract class KCollection<K extends kcollections.KCollection<K, X, T>, X
 
     public <A, B, C, D, E, EX extends Exception> K useEachBy(SixArgsConsumerMethodWithEx<? super T, A, B, C, D, E, EX> meth, A arg1, B arg2, C arg3, D arg4, E arg5) throws EX {
 
-        logger.debug(String.format("%s is going to process %d %s", meth.getMethodName(), getCurrentKCollection().size(), getCurrentKCollection().itemsName));
+//        logger.debug(String.format("%s is going to process %d %s", meth.getMethodName(), getCurrentKCollection().size(), getCurrentKCollection().itemsName));
 
         for (T element : getJCollection()) {
             meth.apply(element, arg1, arg2, arg3, arg4, arg5);
@@ -653,7 +653,7 @@ public abstract class KCollection<K extends kcollections.KCollection<K, X, T>, X
 
     public <EX extends Exception> K tryUseEachBy(ConsumerMethodWithEx<? super T, EX> meth) {
 
-        logger.debug(String.format("%s is going to process %d %s", meth.getMethodName(), getCurrentKCollection().size(), getCurrentKCollection().itemsName));
+//        logger.debug(String.format("%s is going to process %d %s", meth.getMethodName(), getCurrentKCollection().size(), getCurrentKCollection().itemsName));
 
         getJCollection().forEach(element -> {
             try {
@@ -668,7 +668,7 @@ public abstract class KCollection<K extends kcollections.KCollection<K, X, T>, X
 
     public <A, EX extends Exception> K tryUseEachBy(TwoArgsConsumerMethodWithEx<? super T, A, EX> meth, A arg1) {
 
-        logger.debug(String.format("%s is going to process %d %s", meth.getMethodName(), getCurrentKCollection().size(), getCurrentKCollection().itemsName));
+//        logger.debug(String.format("%s is going to process %d %s", meth.getMethodName(), getCurrentKCollection().size(), getCurrentKCollection().itemsName));
 
         getJCollection().forEach(element -> {
             try {
@@ -683,7 +683,7 @@ public abstract class KCollection<K extends kcollections.KCollection<K, X, T>, X
 
     public <A, B, EX extends Exception> K tryUseEachBy(ThreeArgsConsumerMethodWithEx<? super T, A, B, EX> meth, A arg1, B arg2) {
 
-        logger.debug(String.format("%s is going to process %d %s", meth.getMethodName(), getCurrentKCollection().size(), getCurrentKCollection().itemsName));
+//        logger.debug(String.format("%s is going to process %d %s", meth.getMethodName(), getCurrentKCollection().size(), getCurrentKCollection().itemsName));
 
         getJCollection().forEach(element -> {
             try {
@@ -698,7 +698,7 @@ public abstract class KCollection<K extends kcollections.KCollection<K, X, T>, X
 
     public <A, B, C, EX extends Exception> K tryUseEachBy(FourArgsConsumerMethodWithEx<? super T, A, B, C, EX> meth, A arg1, B arg2, C arg3) {
 
-        logger.debug(String.format("%s is going to process %d %s", meth.getMethodName(), getCurrentKCollection().size(), getCurrentKCollection().itemsName));
+//        logger.debug(String.format("%s is going to process %d %s", meth.getMethodName(), getCurrentKCollection().size(), getCurrentKCollection().itemsName));
 
         getJCollection().forEach(element -> {
             try {
@@ -713,7 +713,7 @@ public abstract class KCollection<K extends kcollections.KCollection<K, X, T>, X
 
     public <A, B, C, D, EX extends Exception> K tryUseEachBy(FiveArgsConsumerMethodWithEx<? super T, A, B, C, D, EX> meth, A arg1, B arg2, C arg3, D arg4) {
 
-        logger.debug(String.format("%s is going to process %d %s", meth.getMethodName(), getCurrentKCollection().size(), getCurrentKCollection().itemsName));
+//        logger.debug(String.format("%s is going to process %d %s", meth.getMethodName(), getCurrentKCollection().size(), getCurrentKCollection().itemsName));
 
         getJCollection().forEach(element -> {
             try {
@@ -728,7 +728,7 @@ public abstract class KCollection<K extends kcollections.KCollection<K, X, T>, X
 
     public <A, B, C, D, E, EX extends Exception> K tryUseEachBy(SixArgsConsumerMethodWithEx<? super T, A, B, C, D, E, EX> meth, A arg1, B arg2, C arg3, D arg4, E arg5) {
 
-        logger.debug(String.format("%s is going to process %d %s", meth.getMethodName(), getCurrentKCollection().size(), getCurrentKCollection().itemsName));
+//        logger.debug(String.format("%s is going to process %d %s", meth.getMethodName(), getCurrentKCollection().size(), getCurrentKCollection().itemsName));
 
         getJCollection().forEach(element -> {
             try {

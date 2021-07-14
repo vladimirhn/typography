@@ -18,8 +18,8 @@ public class ConsumablesViewLine extends TypoView {
     @Column(name = "ITEM_ID")
     private Long itemId;
 
-    @Column(name = "ITEM_DESCRIPTION")
-    private String itemDescription;
+    @Column(name = "ITEM_NAME")
+    private String itemName;
 
     @Column(name = "PROPERTY_ID")
     private Long propertyId;
@@ -34,7 +34,7 @@ public class ConsumablesViewLine extends TypoView {
     private Long valueId;
 
     @Column(name = "VALUE_VALUE")
-    private Long valueValue;
+    private String valueValue;
 
     public Long getTypeId() {
         return typeId;
@@ -60,12 +60,12 @@ public class ConsumablesViewLine extends TypoView {
         this.itemId = itemId;
     }
 
-    public String getItemDescription() {
-        return itemDescription;
+    public String getItemName() {
+        return itemName;
     }
 
-    public void setItemDescription(String itemDescription) {
-        this.itemDescription = itemDescription;
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
     public Long getPropertyId() {
@@ -100,11 +100,11 @@ public class ConsumablesViewLine extends TypoView {
         this.valueId = valueId;
     }
 
-    public Long getValueValue() {
+    public String getValueValue() {
         return valueValue;
     }
 
-    public void setValueValue(Long valueValue) {
+    public void setValueValue(String valueValue) {
         this.valueValue = valueValue;
     }
 }

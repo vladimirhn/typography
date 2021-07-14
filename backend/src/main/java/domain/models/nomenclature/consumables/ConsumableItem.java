@@ -15,8 +15,8 @@ public class ConsumableItem extends TypoTable {
     @Column(name = "TYPE_ID")
     private Long typeId;
 
-    @Column(name = "DESCRIPTION")
-    private String description;
+    @Column(name = "ITEM")
+    private String item;
 
     private List<ConsumablePropertyValue> propValues = new ArrayList<>();
 
@@ -28,12 +28,12 @@ public class ConsumableItem extends TypoTable {
         this.typeId = typeId;
     }
 
-    public String getDescription() {
-        return description;
+    public String getItem() {
+        return item;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setItem(String item) {
+        this.item = item;
     }
 
     public List<ConsumablePropertyValue> getPropValues() {

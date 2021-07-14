@@ -11,12 +11,11 @@ import kpersistence.exceptions.AnnotationException;
 import kpersistence.exceptions.TableAnnotationException;
 import kpersistence.mapping.annotations.Table;
 import kpersistence.mapping.annotations.Column;
-import kpersistence.mapping.annotations.Entity;
 import kpersistence.mapping.annotations.Id;
 
 public class QueryGenerator {
 
-    public static String generateFindOneQuery(long id, Class<?> type) throws AnnotationException {
+    public static String generateSelectOneQuery(long id, Class<?> type) throws AnnotationException {
         String tableName = extractTableName(type);
         String idColumn = extractIdColumnName(type);
 
@@ -29,6 +28,60 @@ public class QueryGenerator {
 
         return "SELECT * FROM " + tableName;
 
+    }
+
+    public static UnnamedParametersQuery generateSelectSimilarQuery(Object obj) throws AnnotationException {
+
+        Map<String, Object> columnsToValues = getColumnToValues(obj);
+
+        String sql = generateSelectSimilarQuerySql(extractTableName(obj.getClass()), columnsToValues);
+        List<Object> values = new ArrayList<>(columnsToValues.size());
+
+        columnsToValues.keySet().forEach(col -> {
+            values.add(columnsToValues.get(col));
+        });
+
+        return new UnnamedParametersQuery(sql, values);
+    }
+
+    private static String generateSelectSimilarQuerySql(String tableName, Map<String, Object> columnsToValues) {
+
+        String mainPart = "SELECT * FROM " + tableName +
+                    " WHERE 1 = 1";
+
+        String tail = "";
+        for (String column : columnsToValues.keySet()) {
+            tail += " AND " + column + " = ?";
+        }
+
+        return mainPart + tail;
+    }
+
+    public static UnnamedParametersQuery generateSelectCountSimilarQuery(Object obj) throws AnnotationException {
+
+        Map<String, Object> columnsToValues = getColumnToValues(obj);
+
+        String sql = generateSelectCountSimilarQuerySql(extractTableName(obj.getClass()), columnsToValues);
+        List<Object> values = new ArrayList<>(columnsToValues.size());
+
+        columnsToValues.keySet().forEach(col -> {
+            values.add(columnsToValues.get(col));
+        });
+
+        return new UnnamedParametersQuery(sql, values);
+    }
+
+    private static String generateSelectCountSimilarQuerySql(String tableName, Map<String, Object> columnsToValues) {
+
+        String mainPart = "SELECT COUNT(*) FROM " + tableName +
+                         " WHERE 1 = 1";
+
+        String tail = "";
+        for (String column : columnsToValues.keySet()) {
+            tail += " AND " + column + " = ?";
+        }
+
+        return mainPart + tail;
     }
 
     public static UnnamedParametersQuery generateInsertQuery(Object obj) throws AnnotationException {
@@ -193,15 +246,14 @@ public class QueryGenerator {
 //
 //        Texts t = new Texts();
 //        t.id = 100;
-//        t.rus = "zzz";
-//        t.text = "yyy";
-//        t.transcription = "xxx";
+//        t.text = "text";
+//        t.rus = "rus";
+//        t.transcription = "trans";
 //
-//        System.out.println(generateFindOneQuery(1, Texts.class));
+//        System.out.println(generateSelectCountSimilarQuery(t));
 //    }
 }
 
-//@Entity
 //@Table(name = "texts")
 //class Texts {
 //

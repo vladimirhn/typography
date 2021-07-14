@@ -8,18 +8,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-public class TypoService<T extends TypoTable> {
+public abstract class TypoService<T extends TypoTable> {
 
-    @Autowired
-    private TypoRepository<T> repository;
-
-    public TypoRepository<T> getRepository() {
-        return repository;
-    }
-
-    protected void setRepository(TypoRepository<T> repository) {
-        this.repository = repository;
-    }
+    protected abstract TypoRepository<T> getRepository();
 
     //Main functionality
     //SELECT

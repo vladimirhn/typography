@@ -483,6 +483,14 @@ public class KList<T> extends StandartListWrapper<T> {
     }
 
     //Извлечение данных
+    public T getAny() {
+        if (getCurrentKList().isEmpty()) {
+            return null;
+        } else {
+            return getCurrentKList().get(0);
+        }
+    }
+
     public Optional<T> getFirst() {
         if (getCurrentKList().isEmpty()) {
             return Optional.empty();

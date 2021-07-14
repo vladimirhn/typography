@@ -1,0 +1,29 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd" logicalFilePath="true">
+
+    <changeSet id="all-consumables-view-create-view" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not><viewExists viewName="ALL_CONSUMABLES_VIEW"/></not>
+        </preConditions>
+        <createView viewName="ALL_CONSUMABLES_VIEW" replaceIfExists="true">
+            SELECT CT.ID         TYPE_ID,
+            TYPE                 TYPE_NAME,
+            CI.ID                ITEM_ID,
+            DESCRIPTION          ITEM_DESCRIPTION,
+            CP.ID                PROPERTY_ID,
+            PROPERTY_NAME        PROPERTY_NAME,
+            PROPERTY_MEASURE     PROPERTY_MEASURE,
+            CPV.ID               VALUE_ID,
+            CPV.PROPERTY_VALUE   VALUE_VALUE
+            FROM CONSUMABLE_TYPES CT
+            LEFT JOIN CONSUMABLE_ITEMS CI on CT.ID = CI.TYPE_ID
+            LEFT JOIN CONSUMABLE_PROPERTIES CP on CI.TYPE_ID = CP.TYPE_ID
+            LEFT JOIN CONSUMABLE_PROPERTIES_VALUES CPV on CP.ID = CPV.PROPERTY_ID
+            ORDER BY CT.ID, CI.ID, CPV.ID
+        </createView>
+    </changeSet>
+
+</databaseChangeLog>

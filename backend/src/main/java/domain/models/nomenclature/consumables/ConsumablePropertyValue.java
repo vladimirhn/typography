@@ -10,7 +10,7 @@ import kpersistence.mapping.annotations.Table;
 public class ConsumablePropertyValue extends TypoTable {
 
     @Column(name = "ITEM_ID")
-    private Long typeId;
+    private Long itemId;
 
     @Column(name = "PROPERTY_ID")
     private Long propertyId;
@@ -18,12 +18,12 @@ public class ConsumablePropertyValue extends TypoTable {
     @Column(name = "PROPERTY_VALUE")
     private String propertyValue;
 
-    public Long getTypeId() {
-        return typeId;
+    public Long getItemId() {
+        return itemId;
     }
 
-    public void setTypeId(Long typeId) {
-        this.typeId = typeId;
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
     }
 
     public Long getPropertyId() {

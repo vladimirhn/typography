@@ -753,6 +753,23 @@ public abstract class KCollection<K extends kcollections.KCollection<K, X, T>, X
 
         return result;
     }
+    public <V> Map<V, KList<T>> groupByWithNulls(Function<T, V> getter) {
+        Map<V, KList<T>> result = new HashMap<>();
+
+        getCurrentKCollection().forEach(element -> {
+
+            V key = getter.apply(element);
+            if (key == null) return;
+
+            if (!result.containsKey(key)) {
+                result.put(key, new KList<>(new LinkedList<>()));
+            }
+
+            result.get(key).add(element);
+        });
+
+        return result;
+    }
 
     //Преобразование к простому множеству (HashSet)
     public Set<T> toSet() {

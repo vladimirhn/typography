@@ -4,9 +4,19 @@ import java.util.Map;
 
 public class JsonConsumableItem {
 
+    Long id;
+
     String item;
 
     Map<Long, Map<Long, String>> values;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getItem() {
         return item;

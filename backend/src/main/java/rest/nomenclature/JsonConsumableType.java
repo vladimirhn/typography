@@ -6,11 +6,21 @@ import java.util.Map;
 
 public class JsonConsumableType {
 
+    Long id;
+
     String type;
 
     Map<Long, String> properties;
 
-    Map<Long, KList<JsonConsumableItem>> data;
+    KList<JsonConsumableItem> data;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getType() {
         return type;
@@ -28,11 +38,11 @@ public class JsonConsumableType {
         this.properties = properties;
     }
 
-    public Map<Long, KList<JsonConsumableItem>> getData() {
+    public KList<JsonConsumableItem> getData() {
         return data;
     }
 
-    public void setData(Map<Long, KList<JsonConsumableItem>> data) {
+    public void setData(KList<JsonConsumableItem> data) {
         this.data = data;
     }
 }

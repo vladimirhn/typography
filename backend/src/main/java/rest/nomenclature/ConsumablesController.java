@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-import java.util.Map;
+import java.util.List;
 
 @RestController
 @RequestMapping("/consumables")
@@ -21,7 +21,7 @@ public class ConsumablesController {
     ConsumablesDefaultsService defaultsService;
 
     @GetMapping("/get_all")
-    public Map<Long, JsonConsumableType> getAll() {
+    public List<JsonConsumableType> getAll() {
         return consumablesService.createConsumableTypesResponse();
     }
 

@@ -11,9 +11,7 @@ import org.springframework.stereotype.Service;
 import rest.nomenclature.JsonConsumableItem;
 import rest.nomenclature.JsonConsumableType;
 
-import java.util.Collections;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 @Service("consumablesService")
 public class ConsumablesService extends TypoViewService<ConsumablesViewLine> {
@@ -26,16 +24,16 @@ public class ConsumablesService extends TypoViewService<ConsumablesViewLine> {
         return repository;
     }
 
-    public Map<Long, JsonConsumableType> createConsumableTypesResponse() {
+    public List<JsonConsumableType> createConsumableTypesResponse() {
 
         Map<Long, KList<ConsumablesViewLine>> groupByTypeId = findAll().groupBy(ConsumablesViewLine::getTypeId);
 
         return createResult(groupByTypeId);
     }
 
-    private Map<Long, JsonConsumableType> createResult(Map<Long, KList<ConsumablesViewLine>> groupByTypeId) {
+    private List<JsonConsumableType> createResult(Map<Long, KList<ConsumablesViewLine>> groupByTypeId) {
 
-        Map<Long, JsonConsumableType> result = new TreeMap<>();
+        List<JsonConsumableType> result = new LinkedList<>();
 
         groupByTypeId.forEach((Long typeId, KList<ConsumablesViewLine> typeLines) ->
                 processEachType(result, typeId, typeLines));
@@ -43,20 +41,22 @@ public class ConsumablesService extends TypoViewService<ConsumablesViewLine> {
         return result;
     }
 
-    private void processEachType(Map<Long, JsonConsumableType> result, Long typeId, KList<ConsumablesViewLine> typeLines) {
+    private void processEachType(List<JsonConsumableType> result, Long typeId, KList<ConsumablesViewLine> typeLines) {
 
         JsonConsumableType typeEntry = new JsonConsumableType();
+        typeEntry.setId(typeId);
         typeEntry.setType(typeLines.getAny().getTypeName());
         typeEntry.setProperties(new TreeMap<>());
-        typeEntry.setData(new TreeMap<>());
+//        typeEntry.setData(CollectionFactory.makeLinkedList());
 
         Map<Long, KList<ConsumablesViewLine>> groupByPropertyId = typeLines.groupByWithNulls(ConsumablesViewLine::getPropertyId);
         groupByPropertyId.forEach((propId, propLines) -> typeEntry.getProperties().put(propId, propLines.getAny().getPropertyName()));
 
-        Map<Long, KList<JsonConsumableItem>> data = new TreeMap<>();
+        KList<JsonConsumableItem> data = CollectionFactory.makeLinkedList();
         Map<Long, KList<ConsumablesViewLine>> groupByItemId = typeLines.groupByWithNulls(ConsumablesViewLine::getItemId);
         groupByItemId.forEach((itemId, itemLines) -> {
             JsonConsumableItem itemEntry = new JsonConsumableItem();
+            itemEntry.setId(itemId);
             itemEntry.setItem(itemLines.getAny().getItemName());
             itemEntry.setValues(new TreeMap<>());
 
@@ -66,12 +66,10 @@ public class ConsumablesService extends TypoViewService<ConsumablesViewLine> {
                 }
             });
 
-            if (!data.containsKey(itemId)) data.put(itemId, CollectionFactory.makeLinkedList());
-
-            data.get(itemId).add(itemEntry);
+            data.add(itemEntry);
         });
 
         typeEntry.setData(data);
-        result.put(typeId, typeEntry);
+        result.add(typeEntry);
     }
 }

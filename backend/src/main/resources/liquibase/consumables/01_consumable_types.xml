@@ -28,36 +28,4 @@
         </addColumn>
     </changeSet>
 
-    <!-- ////////// DML ////////// -->
-
-    <changeSet id="consumable-types-insert-paper" author="typography" runOnChange="true">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">select count(*) from CONSUMABLE_TYPES where TYPE = 'Бумага'</sqlCheck>
-        </preConditions>
-        <insert tableName="CONSUMABLE_TYPES">
-            <column name="ID" valueNumeric="1"/>
-            <column name="TYPE">Бумага</column>
-        </insert>
-    </changeSet>
-
-    <changeSet id="consumable-types-insert-lamination" author="typography" runOnChange="true">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">select count(*) from CONSUMABLE_TYPES where TYPE = 'Ламинация'</sqlCheck>
-        </preConditions>
-        <insert tableName="CONSUMABLE_TYPES">
-            <column name="ID" valueNumeric="2"/>
-            <column name="TYPE">Ламинация</column>
-        </insert>
-    </changeSet>
-
-    <changeSet id="consumable-types-insert-stamp" author="typography" runOnChange="true">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">select count(*) from CONSUMABLE_TYPES where TYPE = 'Штемпельная продукция'</sqlCheck>
-        </preConditions>
-        <insert tableName="CONSUMABLE_TYPES">
-            <column name="ID" valueNumeric="3"/>
-            <column name="TYPE">Штемпельная продукция</column>
-        </insert>
-    </changeSet>
-
 </databaseChangeLog>

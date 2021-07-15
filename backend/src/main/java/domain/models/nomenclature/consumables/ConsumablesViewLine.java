@@ -27,9 +27,6 @@ public class ConsumablesViewLine extends TypoView {
     @Column(name = "PROPERTY_NAME")
     private String propertyName;
 
-    @Column(name = "PROPERTY_MEASURE")
-    private String propertyMeasure;
-
     @Column(name = "VALUE_ID")
     private Long valueId;
 
@@ -82,14 +79,6 @@ public class ConsumablesViewLine extends TypoView {
 
     public void setPropertyName(String propertyName) {
         this.propertyName = propertyName;
-    }
-
-    public String getPropertyMeasure() {
-        return propertyMeasure;
-    }
-
-    public void setPropertyMeasure(String propertyMeasure) {
-        this.propertyMeasure = propertyMeasure;
     }
 
     public Long getValueId() {

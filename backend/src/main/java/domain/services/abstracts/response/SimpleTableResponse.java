@@ -1,4 +1,4 @@
-package domain.services.response;
+package domain.services.abstracts.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import kpersistence.mapping.annotations.Column;

@@ -20,6 +20,12 @@ public class ConsumableItem extends TypoTable {
 
     private List<ConsumablePropertyValue> propValues = new ArrayList<>();
 
+    public ConsumableItem() {}
+
+    public ConsumableItem(String item) {
+        this.item = item;
+    }
+
     public Long getTypeId() {
         return typeId;
     }

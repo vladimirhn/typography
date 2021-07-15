@@ -19,6 +19,12 @@ public class ConsumableType extends TypoTable {
 
     private List<ConsumableItem> consumableItems = new ArrayList<>();
 
+    public ConsumableType() {}
+
+    public ConsumableType(String type) {
+        this.type = type;
+    }
+
     public String getType() {
         return type;
     }
@@ -27,4 +33,19 @@ public class ConsumableType extends TypoTable {
         this.type = type;
     }
 
+    public List<ConsumableProperty> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(List<ConsumableProperty> properties) {
+        this.properties = properties;
+    }
+
+    public List<ConsumableItem> getConsumableItems() {
+        return consumableItems;
+    }
+
+    public void setConsumableItems(List<ConsumableItem> consumableItems) {
+        this.consumableItems = consumableItems;
+    }
 }

@@ -18,6 +18,12 @@ public class ConsumablePropertyValue extends TypoTable {
     @Column(name = "PROPERTY_VALUE")
     private String propertyValue;
 
+    public ConsumablePropertyValue() {}
+
+    public ConsumablePropertyValue(String propertyValue) {
+        this.propertyValue = propertyValue;
+    }
+
     public Long getItemId() {
         return itemId;
     }

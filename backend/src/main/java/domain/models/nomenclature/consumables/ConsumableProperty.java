@@ -15,8 +15,11 @@ public class ConsumableProperty extends TypoTable {
     @Column(name = "PROPERTY_NAME")
     private String propertyName;
 
-    @Column(name = "PROPERTY_MEASURE")
-    private String propertyMeasure;
+    public ConsumableProperty() {}
+
+    public ConsumableProperty(String propertyName) {
+        this.propertyName = propertyName;
+    }
 
     public Long getTypeId() {
         return typeId;
@@ -32,13 +35,5 @@ public class ConsumableProperty extends TypoTable {
 
     public void setPropertyName(String propertyName) {
         this.propertyName = propertyName;
-    }
-
-    public String getPropertyMeasure() {
-        return propertyMeasure;
-    }
-
-    public void setPropertyMeasure(String propertyMeasure) {
-        this.propertyMeasure = propertyMeasure;
     }
 }

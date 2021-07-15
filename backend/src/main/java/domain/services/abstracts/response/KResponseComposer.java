@@ -1,4 +1,4 @@
-package domain.services.response;
+package domain.services.abstracts.response;
 
 import domain.models.abstracts.MainTable;
 import domain.models.abstracts.TypoTable;

@@ -12,14 +12,13 @@
             ITEM                 ITEM_NAME,
             CP.ID                PROPERTY_ID,
             PROPERTY_NAME        PROPERTY_NAME,
-            PROPERTY_MEASURE     PROPERTY_MEASURE,
             CPV.ID               VALUE_ID,
             CPV.PROPERTY_VALUE   VALUE_VALUE
             FROM CONSUMABLE_TYPES CT
             LEFT JOIN CONSUMABLE_ITEMS CI on CT.ID = CI.TYPE_ID
             LEFT JOIN CONSUMABLE_PROPERTIES CP on CI.TYPE_ID = CP.TYPE_ID
             LEFT JOIN CONSUMABLE_PROPERTIES_VALUES CPV on CP.ID = CPV.PROPERTY_ID and CPV.ITEM_ID = CI.ID
-            ORDER BY CT.ID, CI.ID, CPV.ID
+            ORDER BY CT.TYPE, CI.ITEM, CPV.PROPERTY_VALUE
 
         </createView>
     </changeSet>

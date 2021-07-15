@@ -2,7 +2,7 @@ package domain.services.abstracts;
 
 import domain.models.abstracts.TypoTable;
 import domain.repositories.abstracts.TypoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import koptional.KOptional;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,13 +13,18 @@ public abstract class TypoService<T extends TypoTable> {
     protected abstract TypoRepository<T> getRepository();
 
     //Main functionality
+    //CHECKS
+    public KOptional<T> selectFirst(T obj) {
+        return getRepository().selectFirst(obj);
+    }
+
     //SELECT
     public Optional<T> findOne(long id) {
         return getRepository().findOne(id);
     }
 
     public List<T> findAll() {
-        return getRepository().findAll();
+        return getRepository().selectAll();
     }
 
     public Stream<T> streamAll() {
@@ -33,6 +38,10 @@ public abstract class TypoService<T extends TypoTable> {
     //INSERT
     public void insert(T obj) {
         getRepository().insert(obj);
+    }
+
+    public long insertIfNew(T obj) {
+        return getRepository().insertIfNew(obj);
     }
 
     //UPDATE

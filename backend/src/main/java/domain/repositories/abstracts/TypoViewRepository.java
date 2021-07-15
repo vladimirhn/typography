@@ -32,7 +32,7 @@ public abstract class TypoViewRepository<T extends TypoView> {
 
 
     public Optional<T> findOne(long id) {
-        String sql = QueryGenerator.generateFindOneQuery(id, modelClass);
+        String sql = QueryGenerator.generateSelectOneQuery(id, modelClass);
         List<T> result = jdbcOperations.query(sql, new Object[]{id}, rowMapper);
         if (result == null || result.size() == 0) {
             return Optional.empty();

@@ -1,4 +1,4 @@
-package domain.services.response;
+package domain.services.abstracts.response;
 
 import org.springframework.stereotype.Service;
 

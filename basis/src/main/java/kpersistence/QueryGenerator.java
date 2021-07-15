@@ -12,6 +12,7 @@ import kpersistence.exceptions.TableAnnotationException;
 import kpersistence.mapping.annotations.Table;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Id;
+import kutils.ClassUtils;
 
 public class QueryGenerator {
 
@@ -172,46 +173,33 @@ public class QueryGenerator {
         Class<?> type = obj.getClass();
         Map<String, Object> columnToValues = new TreeMap<>();
 
-        for (Field field : type.getDeclaredFields()) {
+        ClassUtils.getFieldsUpToObject(type).forEach(field -> {
+                    field.setAccessible(true);
+                    Object value = null;
+                    try {
+                        value = field.get(obj);
+                    } catch (IllegalAccessException ex) {}
 
-            field.setAccessible(true);
-            Object value = null;
-                try {
-                    value = field.get(obj);
-                } catch (IllegalAccessException ex) {}
+                    if (field.isAnnotationPresent(Column.class) && value != null) {
 
-            if (field.isAnnotationPresent(Column.class) && value != null) {
-
-                columnToValues.put(field.getAnnotation(Column.class).name(), value);
-            }
-
-        }
+                        columnToValues.put(field.getAnnotation(Column.class).name(), value);
+                    }
+                });
         return columnToValues;
     }
 
     private static String extractIdColumnName(Object obj) {
 
-        String idColumn = null;
-
-        Class<?> type = obj.getClass();
-
-        for (Field field : type.getDeclaredFields()) {
-
-            field.setAccessible(true);
-
-            if (field.isAnnotationPresent(Column.class) && field.isAnnotationPresent(Id.class)) {
-                idColumn = field.getAnnotation(Column.class).name();
-            }
-
-        }
-        return idColumn;
+        return extractIdColumnName(obj.getClass());
     }
 
     private static String extractIdColumnName(Class<?> type) {
 
         String idColumn = null;
 
-        for (Field field : type.getDeclaredFields()) {
+        List<Field> allFields = ClassUtils.getFieldsUpToObject(type);
+
+        for (Field field : allFields) {
 
             field.setAccessible(true);
 

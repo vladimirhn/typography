@@ -3,6 +3,7 @@ package kcollections;
 import kcollections.functional.catchmethods.CollectionCatchMethod;
 import kcollections.functional.consumermethods.*;
 import kcollections.functional.functions.*;
+import koptional.KOptional;
 
 import java.util.*;
 import java.util.function.Function;
@@ -491,11 +492,11 @@ public class KList<T> extends StandartListWrapper<T> {
         }
     }
 
-    public Optional<T> getFirst() {
+    public KOptional<T> getFirst() {
         if (getCurrentKList().isEmpty()) {
-            return Optional.empty();
+            return KOptional.empty();
         } else {
-            return Optional.ofNullable(getCurrentKList().get(0));
+            return KOptional.of(getCurrentKList().get(0));
         }
     }
 

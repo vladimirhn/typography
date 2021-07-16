@@ -42,10 +42,9 @@ public class CollectionFactory<T, A, B, C, D, E> {
     @SafeVarargs
     public static <T> KList<T> makeLinkedList(T... elements) {
         List<T> list = new LinkedList<>(Arrays.asList(elements));
-        KList<T> klist = new KList<>(list);
-//        logger.debug(String.format("CollectionFactory created a KList of %d %s", klist.size(), klist.getItemsName()));
+        //        logger.debug(String.format("CollectionFactory created a KList of %d %s", klist.size(), klist.getItemsName()));
 
-        return klist;
+        return new KList<>(list);
     }
 
     //Make list from collection in one method

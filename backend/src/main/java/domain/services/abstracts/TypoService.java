@@ -2,10 +2,11 @@ package domain.services.abstracts;
 
 import domain.models.abstracts.TypoTable;
 import domain.repositories.abstracts.TypoRepository;
+import kcollections.KList;
 import koptional.KOptional;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.function.BiConsumer;
 import java.util.stream.Stream;
 
 public abstract class TypoService<T extends TypoTable> {
@@ -23,7 +24,7 @@ public abstract class TypoService<T extends TypoTable> {
         return getRepository().findOne(id);
     }
 
-    public List<T> findAll() {
+    public KList<T> selectAll() {
         return getRepository().selectAll();
     }
 
@@ -31,8 +32,12 @@ public abstract class TypoService<T extends TypoTable> {
         return getRepository().streamAll();
     }
 
-    public List<T> findWithQuery(String sql) {
-        return getRepository().findWithQuery(sql);
+    public KList<T> findWithQuery(String sql) {
+        return getRepository().selectWithQuery(sql);
+    }
+
+    public <V> KList<T> selectByParentId(BiConsumer<T, V> parentIdSetter, V parentId) {
+        return getRepository().selectByParentId(parentIdSetter, parentId);
     }
 
     //INSERT

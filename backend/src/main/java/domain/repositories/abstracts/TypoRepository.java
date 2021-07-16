@@ -13,8 +13,10 @@ import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.BiConsumer;
 import java.util.stream.Stream;
 
 public abstract class TypoRepository<T extends TypoTable> {
@@ -52,17 +54,35 @@ public abstract class TypoRepository<T extends TypoTable> {
         }
     }
 
-    public List<T> selectAll() {
+    public KList<T> selectAll() {
         String sql = QueryGenerator.generateSelectAllQuery(modelClass);
-        return jdbcOperations.query(sql, rowMapper);
+        return CollectionFactory.makeListFrom(jdbcOperations::query, sql, rowMapper);
     }
 
     public Stream<T> streamAll() {
         return selectAll().stream();
     }
 
-    public List<T> findWithQuery(String sql) {
-        return jdbcOperations.query(sql, rowMapper);
+    public KList<T> selectSimilar(T obj) {
+        UnnamedParametersQuery selectQuery = QueryGenerator.generateSelectSimilarQuery(obj);
+        return CollectionFactory.makeListFrom(jdbcOperations::query, selectQuery.getQuery(), selectQuery.getParams(), rowMapper);
+    }
+
+    public KList<T> selectWithQuery(String sql) {
+        return CollectionFactory.makeListFrom(jdbcOperations::query, sql, rowMapper);
+    }
+
+    public <V> KList<T> selectByParentId(BiConsumer<T, V> parentIdSetter, V parentId) {
+        try {
+            T instance = modelClass.getDeclaredConstructor().newInstance();
+            parentIdSetter.accept(instance, parentId);
+
+            return selectSimilar(instance);
+
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            e.printStackTrace();
+            return CollectionFactory.makeLinkedList();
+        }
     }
 
 

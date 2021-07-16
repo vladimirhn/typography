@@ -22,7 +22,7 @@ public class TestController {
     @GetMapping("/test")
     public SimpleTableResponse get() {
 
-        List<ConsumableItem> items = consumableItemsService.findAll();
+        List<ConsumableItem> items = consumableItemsService.selectAll();
         items.sort(Comparator.comparing(ConsumableItem::getItem));
         return responseComposer.createFrom(items, ConsumableItem.class);
     }

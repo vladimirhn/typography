@@ -1,6 +1,7 @@
 package domain.models.nomenclature.equipment;
 
 import domain.models.abstracts.TypoTable;
+import kcollections.KList;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
 import kpersistence.mapping.annotations.Table;
@@ -11,6 +12,9 @@ public class EquipmentType extends TypoTable {
 
     @Column(name = "TYPE")
     private String type;
+
+    private KList<EquipmentItem> equipmentItems;
+    private KList<ComponentItem> componentItems;
 
     public EquipmentType() {}
 
@@ -24,5 +28,21 @@ public class EquipmentType extends TypoTable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public KList<EquipmentItem> getEquipmentItems() {
+        return equipmentItems;
+    }
+
+    public void setEquipmentItems(KList<EquipmentItem> equipmentItems) {
+        this.equipmentItems = equipmentItems;
+    }
+
+    public KList<ComponentItem> getComponentItems() {
+        return componentItems;
+    }
+
+    public void setComponentItems(KList<ComponentItem> componentItems) {
+        this.componentItems = componentItems;
     }
 }

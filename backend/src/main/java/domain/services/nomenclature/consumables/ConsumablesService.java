@@ -56,7 +56,7 @@ public class ConsumablesService extends TypoViewService<ConsumablesViewLine> {
         Map<Long, KList<ConsumablesViewLine>> groupByItemId = typeLines.groupByWithNulls(ConsumablesViewLine::getItemId);
         groupByItemId.forEach((itemId, itemLines) -> {
             JsonConsumableItem itemEntry = new JsonConsumableItem();
-            itemEntry.setId(itemId);
+            itemEntry.setItemId(itemId);
             itemEntry.setItem(itemLines.getAny().getItemName());
             itemEntry.setValues(new TreeMap<>());
 

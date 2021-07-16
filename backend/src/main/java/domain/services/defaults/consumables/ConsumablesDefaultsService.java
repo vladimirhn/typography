@@ -1,4 +1,4 @@
-package domain.services.defaults;
+package domain.services.defaults.consumables;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,7 +11,6 @@ import domain.services.nomenclature.consumables.ConsumableItemsService;
 import domain.services.nomenclature.consumables.ConsumablePropertiesService;
 import domain.services.nomenclature.consumables.ConsumablePropertiesValuesService;
 import domain.services.nomenclature.consumables.ConsumableTypesService;
-import koptional.KOptional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;

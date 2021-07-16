@@ -39,4 +39,15 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="equipment-items-add-model" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="EQUIPMENT_ITEMS" columnName="MODEL"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="EQUIPMENT_ITEMS">
+            <column name="MODEL" remarks="модель оборудования" type="VARCHAR2(50)"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

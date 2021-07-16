@@ -1,0 +1,30 @@
+[
+  {
+    "type" : "Резаки",
+    "items" :
+    [
+      {"item" : "Резак", "model" : "IDEAL 390"}
+    ],
+    "components" :
+    [
+      {"item" : "Нож", "model" : null},
+      {"item" : "Марзан", "model" : null}
+    ]
+  },
+  {
+    "type" : "Принтеры",
+    "items" :
+    [
+      {"item" : "Цветной принтер", "model" : "OKI 9655"}
+    ],
+    "components" :
+    [
+      {"item" : "Драм Юнит K", "model" : null},
+      {"item" : "Драм Юнит Y", "model" : null},
+      {"item" : "Драм Юнит M", "model" : null},
+      {"item" : "Драм Юнит C", "model" : null},
+      {"item" : "Лента переноса", "model" : null},
+      {"item" : "Печка", "model" : null}
+    ]
+  }
+]

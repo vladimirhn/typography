@@ -1,6 +1,6 @@
 package rest.nomenclature;
 
-import domain.services.defaults.ConsumablesDefaultsService;
+import domain.services.defaults.consumables.ConsumablesDefaultsService;
 import domain.services.nomenclature.consumables.ConsumablesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -12,6 +12,12 @@ public class EquipmentType extends TypoTable {
     @Column(name = "TYPE")
     private String type;
 
+    public EquipmentType() {}
+
+    public EquipmentType(String type) {
+        this.type = type;
+    }
+
     public String getType() {
         return type;
     }

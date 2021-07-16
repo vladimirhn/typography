@@ -1,4 +1,4 @@
-package domain.services.defaults;
+package domain.services.defaults.consumables;
 
 import java.util.List;
 

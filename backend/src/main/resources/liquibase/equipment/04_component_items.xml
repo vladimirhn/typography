@@ -28,6 +28,17 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="component-items-add-equipment-type-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="COMPONENT_ITEMS" columnName="EQUIPMENT_TYPE_ID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="COMPONENT_ITEMS">
+            <column name="EQUIPMENT_TYPE_ID" remarks="id типа оборудования этого комплектующего" type="${ID}"/>
+        </addColumn>
+    </changeSet>
+
     <changeSet id="component-items-add-item" author="typography" runOnChange="true">
         <preConditions onFail="MARK_RAN">
             <not>
@@ -36,6 +47,17 @@
         </preConditions>
         <addColumn tableName="COMPONENT_ITEMS">
             <column name="ITEM" remarks="Название комплектующего" type="VARCHAR2(50)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="component-items-add-model" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="COMPONENT_ITEMS" columnName="MODEL"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="COMPONENT_ITEMS">
+            <column name="MODEL" remarks="модель комплектующего" type="VARCHAR2(50)"/>
         </addColumn>
     </changeSet>
 

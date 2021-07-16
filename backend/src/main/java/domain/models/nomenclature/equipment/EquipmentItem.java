@@ -15,6 +15,17 @@ public class EquipmentItem extends TypoTable {
     @Column(name = "ITEM")
     private String item;
 
+    @Column(name = "MODEL")
+    private String model;
+
+    public EquipmentItem() {}
+
+    public EquipmentItem(Long typeId, String item, String model) {
+        this.typeId = typeId;
+        this.item = item;
+        this.model = model;
+    }
+
     public Long getTypeId() {
         return typeId;
     }
@@ -29,5 +40,13 @@ public class EquipmentItem extends TypoTable {
 
     public void setItem(String item) {
         this.item = item;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
     }
 }

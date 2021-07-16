@@ -1,0 +1,31 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd" logicalFilePath="true">
+
+    <changeSet id="component-types-create-table" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="COMPONENT_TYPES"/>
+            </not>
+        </preConditions>
+        <createTable tableName="COMPONENT_TYPES" remarks="Виды комплектующих">
+            <column name="ID" type="${ID}" remarks="id">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="component-types-add-type" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="COMPONENT_TYPES" columnName="TYPE"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="COMPONENT_TYPES">
+            <column name="TYPE" remarks="Название вида" type="VARCHAR2(50)"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

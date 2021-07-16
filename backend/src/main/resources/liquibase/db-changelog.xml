@@ -22,5 +22,6 @@
 
     <includeAll path="application" relativeToChangelogFile="true" errorIfMissingOrEmpty="false"/>
     <includeAll path="consumables" relativeToChangelogFile="true" errorIfMissingOrEmpty="false"/>
+    <includeAll path="equipment" relativeToChangelogFile="true" errorIfMissingOrEmpty="false"/>
 
 </databaseChangeLog>

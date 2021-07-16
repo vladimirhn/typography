@@ -1,0 +1,31 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd" logicalFilePath="true">
+
+    <changeSet id="equipment-types-create-table" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="EQUIPMENT_TYPES"/>
+            </not>
+        </preConditions>
+        <createTable tableName="EQUIPMENT_TYPES" remarks="Виды оборудования">
+            <column name="ID" type="${ID}" remarks="id">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="equipment-types-add-type" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="EQUIPMENT_TYPES" columnName="TYPE"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="EQUIPMENT_TYPES">
+            <column name="TYPE" remarks="Название вида" type="VARCHAR2(50)"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

@@ -4,38 +4,38 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd" logicalFilePath="true">
 
-    <changeSet id="consumable-items-create-table" author="typography" runOnChange="true">
+    <changeSet id="equipment-items-create-table" author="typography" runOnChange="true">
         <preConditions onFail="MARK_RAN">
             <not>
-                <tableExists tableName="CONSUMABLE_ITEMS"/>
+                <tableExists tableName="EQUIPMENT_ITEMS"/>
             </not>
         </preConditions>
-        <createTable tableName="CONSUMABLE_ITEMS" remarks="Расходные материалы">
+        <createTable tableName="EQUIPMENT_ITEMS" remarks="Оборудование">
             <column name="ID" type="${ID}" remarks="id">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
         </createTable>
     </changeSet>
 
-    <changeSet id="consumable-items-add-type-id" author="typography" runOnChange="true">
+    <changeSet id="equipment-items-add-type-id" author="typography" runOnChange="true">
         <preConditions onFail="MARK_RAN">
             <not>
-                <columnExists tableName="CONSUMABLE_ITEMS" columnName="TYPE_ID"/>
+                <columnExists tableName="EQUIPMENT_ITEMS" columnName="TYPE_ID"/>
             </not>
         </preConditions>
-        <addColumn tableName="CONSUMABLE_ITEMS">
-            <column name="TYPE_ID" remarks="id типа расходника" type="${ID}"/>
+        <addColumn tableName="EQUIPMENT_ITEMS">
+            <column name="TYPE_ID" remarks="id типа оборудования" type="${ID}"/>
         </addColumn>
     </changeSet>
 
-    <changeSet id="consumable-items-add-item" author="typography" runOnChange="true">
+    <changeSet id="equipment-items-add-item" author="typography" runOnChange="true">
         <preConditions onFail="MARK_RAN">
             <not>
-                <columnExists tableName="CONSUMABLE_ITEMS" columnName="ITEM"/>
+                <columnExists tableName="EQUIPMENT_ITEMS" columnName="ITEM"/>
             </not>
         </preConditions>
-        <addColumn tableName="CONSUMABLE_ITEMS">
-            <column name="ITEM" remarks="Описание расходника" type="VARCHAR2(1000)"/>
+        <addColumn tableName="EQUIPMENT_ITEMS">
+            <column name="ITEM" remarks="Название оборудования" type="VARCHAR2(50)"/>
         </addColumn>
     </changeSet>
 

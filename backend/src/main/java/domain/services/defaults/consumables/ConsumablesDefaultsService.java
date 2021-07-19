@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,7 +45,7 @@ public class ConsumablesDefaultsService {
     public void setDefaults() throws IOException {
 
         File data = consumablesFile.getFile();
-        String content = new Scanner(data).useDelimiter("\\Z").next();
+        String content = new Scanner(data, StandardCharsets.UTF_8).useDelimiter("\\Z").next();
 
         ObjectMapper objectMapper = new ObjectMapper();
         List<ConsumablesTypeDefaultJson> types = objectMapper.readValue(content, new TypeReference<List<ConsumablesTypeDefaultJson>>(){});

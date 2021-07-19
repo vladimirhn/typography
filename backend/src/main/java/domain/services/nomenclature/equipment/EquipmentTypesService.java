@@ -33,10 +33,10 @@ public class EquipmentTypesService extends TypoService<EquipmentType> {
     }
 
     private void setEquipmentItems(EquipmentType equipmentType) {
-        equipmentType.setEquipmentItems(equipmentItemsService.selectByParentId(EquipmentItem::setTypeId, equipmentType.getId()));
+        equipmentType.setEquipmentItems(equipmentItemsService.selectByField(EquipmentItem::setTypeId, equipmentType.getId()));
     }
 
     private void setComponentItems(EquipmentType equipmentType) {
-        equipmentType.setComponentItems(componentItemsService.selectByParentId(ComponentItem::setEquipmentTypeId, equipmentType.getId()));
+        equipmentType.setComponentItems(componentItemsService.selectByField(ComponentItem::setEquipmentTypeId, equipmentType.getId()));
     }
 }

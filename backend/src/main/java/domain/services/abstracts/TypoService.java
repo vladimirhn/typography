@@ -36,8 +36,8 @@ public abstract class TypoService<T extends TypoTable> {
         return getRepository().selectWithQuery(sql);
     }
 
-    public <V> KList<T> selectByParentId(BiConsumer<T, V> parentIdSetter, V parentId) {
-        return getRepository().selectByParentId(parentIdSetter, parentId);
+    public <V> KList<T> selectByField(BiConsumer<T, V> fieldSetter, V fieldValue) {
+        return getRepository().selectByField(fieldSetter, fieldValue);
     }
 
     //INSERT

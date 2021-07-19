@@ -72,10 +72,10 @@ public abstract class TypoRepository<T extends TypoTable> {
         return CollectionFactory.makeListFrom(jdbcOperations::query, sql, rowMapper);
     }
 
-    public <V> KList<T> selectByParentId(BiConsumer<T, V> parentIdSetter, V parentId) {
+    public <V> KList<T> selectByField(BiConsumer<T, V> fieldSetter, V fieldValue) {
         try {
             T instance = modelClass.getDeclaredConstructor().newInstance();
-            parentIdSetter.accept(instance, parentId);
+            fieldSetter.accept(instance, fieldValue);
 
             return selectSimilar(instance);
 

@@ -55,7 +55,7 @@ public abstract class TypoService<T extends TypoTable> {
     }
 
     //DELETE
-    public void delete(T obj) {
-        getRepository().delete(obj);
+    public void delete(Long id) {
+        getRepository().delete(id);
     }
 }

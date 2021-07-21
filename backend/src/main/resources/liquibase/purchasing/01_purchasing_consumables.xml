@@ -1,0 +1,64 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd" logicalFilePath="true">
+
+    <changeSet id="purchasing-consumables-create-table" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="PURCHASING_CONSUMABLES"/>
+            </not>
+        </preConditions>
+        <createTable tableName="PURCHASING_CONSUMABLES" remarks="Закупка расходников">
+            <column name="ID" type="${ID}" remarks="id">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="purchasing-consumables-add-purchasing-date" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="PURCHASING_CONSUMABLES" columnName="PURCHASING_DATE"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="PURCHASING_CONSUMABLES">
+            <column name="PURCHASING_DATE" remarks="Дата закупки" type="${TIMESTAMP}"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="purchasing-consumables-add-consumable-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="PURCHASING_CONSUMABLES" columnName="CONSUMABLE_ID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="PURCHASING_CONSUMABLES">
+            <column name="CONSUMABLE_ID" remarks="id расходника" type="${ID}"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="purchasing-consumables-add-amount" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="PURCHASING_CONSUMABLES" columnName="AMOUNT"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="PURCHASING_CONSUMABLES">
+            <column name="AMOUNT" remarks="Количество" type="${DECIMAL_11_2}"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="purchasing-consumables-add-price" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="PURCHASING_CONSUMABLES" columnName="PRICE"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="PURCHASING_CONSUMABLES">
+            <column name="PRICE" remarks="Цена" type="${DECIMAL_11_2}"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

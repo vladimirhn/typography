@@ -21,6 +21,11 @@ public class ConsumableProperty extends TypoTable {
         this.propertyName = propertyName;
     }
 
+    public ConsumableProperty(String propertyName, Long typeId) {
+        this.typeId = typeId;
+        this.propertyName = propertyName;
+    }
+
     public Long getTypeId() {
         return typeId;
     }

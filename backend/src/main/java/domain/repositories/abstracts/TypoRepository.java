@@ -65,7 +65,12 @@ public abstract class TypoRepository<T extends TypoTable> {
 
     public KList<T> selectSimilar(T obj) {
         UnnamedParametersQuery selectQuery = QueryGenerator.generateSelectSimilarQuery(obj);
-        return CollectionFactory.makeListFrom(jdbcOperations::query, selectQuery.getQuery(), selectQuery.getParams(), rowMapper);
+
+        System.out.println(selectQuery.getQuery());
+
+        KList<T> res = CollectionFactory.makeListFrom(jdbcOperations::query, selectQuery.getQuery(), selectQuery.getParams(), rowMapper);
+
+        return res;
     }
 
     public KList<T> selectWithQuery(String sql) {
@@ -115,8 +120,16 @@ public abstract class TypoRepository<T extends TypoTable> {
         jdbcOperations.update(qry.getQuery(), qry.getParams());
     }
 
-    public void delete(T obj) {
-        UnnamedParametersQuery qry = QueryGenerator.generateDeleteQuery(obj);
-        jdbcOperations.update(qry.getQuery(), qry.getParams());
+    public void delete(Long id) {
+        try {
+            T instance = modelClass.getDeclaredConstructor().newInstance();
+            instance.setId(id);
+
+            UnnamedParametersQuery qry = QueryGenerator.generateDeleteQuery(instance);
+            jdbcOperations.update(qry.getQuery(), qry.getParams());
+
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            e.printStackTrace();
+        }
     }
 }

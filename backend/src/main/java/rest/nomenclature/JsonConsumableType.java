@@ -1,11 +1,14 @@
 package rest.nomenclature;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import kcollections.KList;
 
 import java.util.Map;
 
 public class JsonConsumableType {
 
+    @JsonSerialize(using = ToStringSerializer.class)
     Long id;
 
     String type;

@@ -33,11 +33,12 @@ public class ConsumablesService extends TypoViewService<ConsumablesViewLine> {
 
     private List<JsonConsumableType> createResult(Map<Long, KList<ConsumablesViewLine>> groupByTypeId) {
 
-        List<JsonConsumableType> result = new LinkedList<>();
+        KList<JsonConsumableType> result = CollectionFactory.makeLinkedList();
 
         groupByTypeId.forEach((Long typeId, KList<ConsumablesViewLine> typeLines) ->
                 processEachType(result, typeId, typeLines));
 
+        result.sortAsc(JsonConsumableType::getType);
         return result;
     }
 
@@ -47,7 +48,6 @@ public class ConsumablesService extends TypoViewService<ConsumablesViewLine> {
         typeEntry.setId(typeId);
         typeEntry.setType(typeLines.getAny().getTypeName());
         typeEntry.setProperties(new TreeMap<>());
-//        typeEntry.setData(CollectionFactory.makeLinkedList());
 
         Map<Long, KList<ConsumablesViewLine>> groupByPropertyId = typeLines.groupByWithNulls(ConsumablesViewLine::getPropertyId);
         groupByPropertyId.forEach((propId, propLines) -> typeEntry.getProperties().put(propId, propLines.getAny().getPropertyName()));

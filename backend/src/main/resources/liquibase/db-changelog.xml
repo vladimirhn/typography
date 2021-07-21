@@ -19,9 +19,24 @@
     <property dbms="oracle"                             name="ID"    value="BIGINT" />
     <property dbms="db2,derby,mysql,h2,mssql"           name="ID"    value="BIGINT"/>
 
+    <property dbms="sqlite"                             name="STRING_50"    value="VARCHAR(50)"/>
+    <property dbms="postgresql"                         name="STRING_50"    value="VARCHAR2(50)"/>
+    <property dbms="oracle"                             name="STRING_50"    value="VARCHAR2(50 CHAR)" />
+    <property dbms="db2,derby,mysql,h2,mssql"           name="STRING_50"    value="VARCHAR2(50)"/>
+
+    <property dbms="sqlite"                             name="DECIMAL_11_2"    value="DECIMAL(11,2)"/>
+    <property dbms="postgresql"                         name="DECIMAL_11_2"    value="NUMERIC(11,2)"/>
+    <property dbms="oracle"                             name="DECIMAL_11_2"    value="NUMERIC(11,2)" />
+    <property dbms="db2,derby,mysql,h2,mssql"           name="DECIMAL_11_2"    value="NUMERIC(11,2)"/>
+
+    <property dbms="sqlite"                             name="TIMESTAMP"    value="INTEGER"/>
+    <property dbms="postgresql"                         name="TIMESTAMP"    value="TIMESTAMP"/>
+    <property dbms="oracle"                             name="TIMESTAMP"    value="TIMESTAMP" />
+    <property dbms="db2,derby,mysql,h2,mssql"           name="TIMESTAMP"    value="DATETIME2"/>
 
     <includeAll path="application" relativeToChangelogFile="true" errorIfMissingOrEmpty="false"/>
     <includeAll path="consumables" relativeToChangelogFile="true" errorIfMissingOrEmpty="false"/>
     <includeAll path="equipment" relativeToChangelogFile="true" errorIfMissingOrEmpty="false"/>
+    <includeAll path="purchasing" relativeToChangelogFile="true" errorIfMissingOrEmpty="false"/>
 
 </databaseChangeLog>

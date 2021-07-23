@@ -1,7 +1,5 @@
 package domain.repositories.abstracts;
 
-import domain.models.abstracts.TypoTable;
-import domain.services.application.IdService;
 import kcollections.CollectionFactory;
 import kcollections.KList;
 import koptional.KOptional;
@@ -19,18 +17,15 @@ import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.stream.Stream;
 
-public abstract class TypoRepository<T extends TypoTable> {
+public abstract class AbstractRepository<T> {
 
-    Class<T> modelClass;
+    protected Class<T> modelClass;
     protected RowMapper<T> rowMapper;
 
-    public TypoRepository(Class<T> clazz) {
+    public AbstractRepository(Class<T> clazz) {
         modelClass = clazz;
         rowMapper = new KRowMapper<>(clazz);
     }
-
-    @Autowired
-    protected IdService idService;
 
     @Autowired
     protected JdbcOperations jdbcOperations;
@@ -87,49 +82,6 @@ public abstract class TypoRepository<T extends TypoTable> {
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             e.printStackTrace();
             return CollectionFactory.makeLinkedList();
-        }
-    }
-
-
-    public void insert(T obj) {
-        if (obj.getId() == null) obj.setId(idService.next());
-        UnnamedParametersQuery qry = QueryGenerator.generateInsertQuery(obj);
-        jdbcOperations.update(qry.getQuery(), qry.getParams());
-    }
-
-    public Long insertIfNew(T obj) {
-
-        UnnamedParametersQuery countQuery = QueryGenerator.generateSelectCountSimilarQuery(obj);
-        Long amount = jdbcOperations.queryForObject(countQuery.getQuery(), countQuery.getParams(), Long.class);
-
-        if (amount == 0L) {
-            Long id = idService.next();
-            obj.setId(id);
-            UnnamedParametersQuery insertQuery = QueryGenerator.generateInsertQuery(obj);
-            jdbcOperations.update(insertQuery.getQuery(), insertQuery.getParams());
-
-            return id;
-        }
-
-        UnnamedParametersQuery selectQuery = QueryGenerator.generateSelectSimilarQuery(obj);
-        return jdbcOperations.query(selectQuery.getQuery(), selectQuery.getParams(), rowMapper).get(0).getId();
-    }
-
-    public void update(T obj) {
-        UnnamedParametersQuery qry = QueryGenerator.generateUpdateQuery(obj);
-        jdbcOperations.update(qry.getQuery(), qry.getParams());
-    }
-
-    public void delete(Long id) {
-        try {
-            T instance = modelClass.getDeclaredConstructor().newInstance();
-            instance.setId(id);
-
-            UnnamedParametersQuery qry = QueryGenerator.generateDeleteQuery(instance);
-            jdbcOperations.update(qry.getQuery(), qry.getParams());
-
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-            e.printStackTrace();
         }
     }
 }

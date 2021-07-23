@@ -26,6 +26,17 @@ public class ConsumableItem extends TypoTable {
         this.item = item;
     }
 
+    public ConsumableItem(Long typeId, String item) {
+        this.typeId = typeId;
+        this.item = item;
+    }
+
+    public ConsumableItem(Long newItemId, Long typeId, String item) {
+        setId(newItemId);
+        this.typeId = typeId;
+        this.item = item;
+    }
+
     public Long getTypeId() {
         return typeId;
     }

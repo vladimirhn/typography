@@ -12,12 +12,16 @@ import java.util.stream.Stream;
 
 public class KList<T> extends StandartListWrapper<T> {
 
-    private List<T> jList;
-    CollectionCatchMethod<kcollections.KList<T>> catchMethod = null;
+    private final List<T> jList;
+    CollectionCatchMethod<KList<T>> catchMethod = null;
 
     //Тип списка и его содержимое задаются на фабрике
     KList(List<T> jList) {
         this.jList = jList;
+    }
+
+    public KList() {
+        this(new ArrayList<>());
     }
 
     @Override
@@ -26,47 +30,47 @@ public class KList<T> extends StandartListWrapper<T> {
     }
 
     @Override
-    protected kcollections.KList<T> getCurrentKList() {
+    protected KList<T> getCurrentKList() {
         return this;
     }
 
     @Override
-    protected kcollections.KList<T> getKListDublicate() {
+    protected KList<T> getKListDublicate() {
 
         List<T> dublicate = makeSameTypeList();
 
         dublicate.addAll(jList);
 
-        return new kcollections.KList<>(dublicate);
+        return new KList<>(dublicate);
     }
 
     @Override
-    protected kcollections.KList<T> getKListDublicate(int motherCollectionSize) {
+    protected KList<T> getKListDublicate(int motherCollectionSize) {
 
         List<T> dublicate = getKListDublicate();
         dublicate.addAll(jList);
 
-        kcollections.KList<T> kList = new kcollections.KList<>(dublicate);
+        KList<T> kList = new KList<>(dublicate);
         kList.motherCollectionSize = motherCollectionSize;
         return kList;
     }
 
     @Override
-    protected kcollections.KList<T> getNewKList() {
-        return new kcollections.KList<>(makeSameTypeList());
+    protected KList<T> getNewKList() {
+        return new KList<>(makeSameTypeList());
     }
 
     @Override
-    protected <N> kcollections.KList<N> getNewKList(Collection data) {
+    protected <N> KList<N> getNewKList(Collection data) {
         List<N> list = makeSameTypeList();
         list.addAll(data);
-        return new kcollections.KList<>(list);
+        return new KList<>(list);
     }
 
     @Override
-    protected kcollections.KList<T> streamToNewKCollectionWithMotherSize(Stream<T> stream) {
+    protected KList<T> streamToNewKCollectionWithMotherSize(Stream<T> stream) {
 
-        kcollections.KList<T> kList = new kcollections.KList<>(stream.collect(Collectors.toList()));
+        KList<T> kList = new KList<>(stream.collect(Collectors.toList()));
         kList.motherCollectionSize = jList.size();
         return kList;
     }
@@ -90,12 +94,12 @@ public class KList<T> extends StandartListWrapper<T> {
 
     //Сортировка
 
-    public <U extends Comparable<? super U>> kcollections.KList<T> sortAsc(Function<? super T, ? extends U> getter) {
+    public <U extends Comparable<? super U>> KList<T> sortAsc(Function<? super T, ? extends U> getter) {
         getJList().sort(Comparator.comparing(getter));
         return this;
     }
 
-    public <U extends Comparable<? super U>> kcollections.KList<T> sortDesc(Function<? super T, ? extends U> getter) {
+    public <U extends Comparable<? super U>> KList<T> sortDesc(Function<? super T, ? extends U> getter) {
         getJList().sort(Comparator.comparing(getter));
         Collections.reverse(getJList());
         return this;
@@ -105,7 +109,7 @@ public class KList<T> extends StandartListWrapper<T> {
 
     //Отображение в коллекцию данных нового типа
 
-    public <N, A, EX extends Exception> kcollections.KList<N> mapEachBy(OneArgFunctionWithEx<A, N, EX> meth, Function<T,A> getter) throws EX {
+    public <N, A, EX extends Exception> KList<N> mapEachBy(OneArgFunctionWithEx<A, N, EX> meth, Function<T,A> getter) throws EX {
 
         List<N> result = new ArrayList<>(getJList().size());
         for (T element : getJList()) {
@@ -115,7 +119,7 @@ public class KList<T> extends StandartListWrapper<T> {
         return getNewKList(result);
     }
 
-    public <N, EX extends Exception> kcollections.KList<N> mapEachBy(OneArgFunctionWithEx<T, N, EX> meth) throws EX {
+    public <N, EX extends Exception> KList<N> mapEachBy(OneArgFunctionWithEx<T, N, EX> meth) throws EX {
 
         List<N> result = new ArrayList<>(getJList().size());
         for (T element : getJList()) {
@@ -124,7 +128,7 @@ public class KList<T> extends StandartListWrapper<T> {
         return getNewKList(result);
     }
 
-    public <N, A, EX extends Exception> kcollections.KList<N> mapEachBy(TwoArgsFunctionWithEx<? super T,N, A, EX> meth, A arg1) throws EX {
+    public <N, A, EX extends Exception> KList<N> mapEachBy(TwoArgsFunctionWithEx<? super T,N, A, EX> meth, A arg1) throws EX {
 
         List<N> result = new ArrayList<>(getJList().size());
         for (T element : getJList()) {
@@ -133,7 +137,7 @@ public class KList<T> extends StandartListWrapper<T> {
         return getNewKList(result);
     }
 
-    public <N, A,B, EX extends Exception> kcollections.KList<N> mapEachBy(ThreeArgsFunctionWithEx<? super T,N, A,B, EX> meth, A arg1, B arg2) throws EX {
+    public <N, A,B, EX extends Exception> KList<N> mapEachBy(ThreeArgsFunctionWithEx<? super T,N, A,B, EX> meth, A arg1, B arg2) throws EX {
 
         List<N> result = new ArrayList<>(getJList().size());
         for (T element : getJList()) {
@@ -142,7 +146,7 @@ public class KList<T> extends StandartListWrapper<T> {
         return getNewKList(result);
     }
 
-    public <N, A,B,C, EX extends Exception> kcollections.KList<N> mapEachBy(FourArgsFunctionWithEx<? super T,N, A,B,C, EX> meth, A arg1, B arg2, C arg3) throws EX {
+    public <N, A,B,C, EX extends Exception> KList<N> mapEachBy(FourArgsFunctionWithEx<? super T,N, A,B,C, EX> meth, A arg1, B arg2, C arg3) throws EX {
 
         List<N> result = new ArrayList<>(getJList().size());
         for (T element : getJList()) {
@@ -151,7 +155,7 @@ public class KList<T> extends StandartListWrapper<T> {
         return getNewKList(result);
     }
 
-    public <N, A,B,C,D, EX extends Exception> kcollections.KList<N> mapEachBy(FiveArgsFunctionWithEx<? super T,N, A,B,C,D, EX> meth, A arg1, B arg2, C arg3, D arg4) throws EX {
+    public <N, A,B,C,D, EX extends Exception> KList<N> mapEachBy(FiveArgsFunctionWithEx<? super T,N, A,B,C,D, EX> meth, A arg1, B arg2, C arg3, D arg4) throws EX {
 
         List<N> result = new ArrayList<>(getJList().size());
         for (T element : getJList()) {
@@ -160,7 +164,7 @@ public class KList<T> extends StandartListWrapper<T> {
         return getNewKList(result);
     }
 
-    public <N, A,B,C,D,E, EX extends Exception> kcollections.KList<N> mapEachBy(SixArgsFunctionWithEx<? super T,N, A,B,C,D,E, EX> meth, A arg1, B arg2, C arg3, D arg4, E arg5) throws EX {
+    public <N, A,B,C,D,E, EX extends Exception> KList<N> mapEachBy(SixArgsFunctionWithEx<? super T,N, A,B,C,D,E, EX> meth, A arg1, B arg2, C arg3, D arg4, E arg5) throws EX {
 
         List<N> result = new ArrayList<>(getJList().size());
         for (T element : getJList()) {
@@ -170,7 +174,7 @@ public class KList<T> extends StandartListWrapper<T> {
     }
 
     //Отображение в коллекцию данных нового типа в try/catch
-    public <N, EX extends Exception> kcollections.KList<N> tryMapEachBy(OneArgFunctionWithEx<T, N, EX> meth) {
+    public <N, EX extends Exception> KList<N> tryMapEachBy(OneArgFunctionWithEx<T, N, EX> meth) {
 
         List<N> result = new ArrayList<>(getJList().size());
 
@@ -184,7 +188,7 @@ public class KList<T> extends StandartListWrapper<T> {
         return getNewKList(result);
     }
 
-    public <N, A, EX extends Exception> kcollections.KList<N> tryMapEachBy(TwoArgsFunctionWithEx<? super T,N, A, EX> meth, A arg1) {
+    public <N, A, EX extends Exception> KList<N> tryMapEachBy(TwoArgsFunctionWithEx<? super T,N, A, EX> meth, A arg1) {
 
         List<N> result = new ArrayList<>(getJList().size());
 
@@ -198,7 +202,7 @@ public class KList<T> extends StandartListWrapper<T> {
         return getNewKList(result);
     }
 
-    public <N, A,B, EX extends Exception> kcollections.KList<N> tryMapEachBy(ThreeArgsFunctionWithEx<? super T,N, A,B, EX> meth, A arg1, B arg2) {
+    public <N, A,B, EX extends Exception> KList<N> tryMapEachBy(ThreeArgsFunctionWithEx<? super T,N, A,B, EX> meth, A arg1, B arg2) {
 
         List<N> result = new ArrayList<>(getJList().size());
 
@@ -212,7 +216,7 @@ public class KList<T> extends StandartListWrapper<T> {
         return getNewKList(result);
     }
 
-    public <N, A,B,C, EX extends Exception> kcollections.KList<N> tryMapEachBy(FourArgsFunctionWithEx<? super T,N, A,B,C, EX> meth, A arg1, B arg2, C arg3) {
+    public <N, A,B,C, EX extends Exception> KList<N> tryMapEachBy(FourArgsFunctionWithEx<? super T,N, A,B,C, EX> meth, A arg1, B arg2, C arg3) {
 
         List<N> result = new ArrayList<>(getJList().size());
 
@@ -226,7 +230,7 @@ public class KList<T> extends StandartListWrapper<T> {
         return getNewKList(result);
     }
 
-    public <N, A,B,C,D, EX extends Exception> kcollections.KList<N> tryMapEachBy(FiveArgsFunctionWithEx<? super T,N, A,B,C,D, EX> meth, A arg1, B arg2, C arg3, D arg4) {
+    public <N, A,B,C,D, EX extends Exception> KList<N> tryMapEachBy(FiveArgsFunctionWithEx<? super T,N, A,B,C,D, EX> meth, A arg1, B arg2, C arg3, D arg4) {
 
         List<N> result = new ArrayList<>(getJList().size());
 
@@ -240,7 +244,7 @@ public class KList<T> extends StandartListWrapper<T> {
         return getNewKList(result);
     }
 
-    public <N, A,B,C,D,E, EX extends Exception> kcollections.KList<N> tryMapEachBy(SixArgsFunctionWithEx<? super T,N, A,B,C,D,E, EX> meth, A arg1, B arg2, C arg3, D arg4, E arg5) {
+    public <N, A,B,C,D,E, EX extends Exception> KList<N> tryMapEachBy(SixArgsFunctionWithEx<? super T,N, A,B,C,D,E, EX> meth, A arg1, B arg2, C arg3, D arg4, E arg5) {
 
         List<N> result = new ArrayList<>(getJList().size());
 
@@ -255,54 +259,54 @@ public class KList<T> extends StandartListWrapper<T> {
     }
 
     //Отображение непустых полей в коллекцию данных нового типа
-    public <N, EX extends Exception> kcollections.KList<N> mapToNonNullsBy(OneArgFunctionWithEx<T, N, EX> meth) throws EX {
+    public <N, EX extends Exception> KList<N> mapToNonNullsBy(OneArgFunctionWithEx<T, N, EX> meth) throws EX {
 
-        kcollections.KList<N> result = new kcollections.KList<>(new ArrayList<>(getJList().size()));
+        KList<N> result = new KList<>(new ArrayList<>(getJList().size()));
         for (T element : getJList()) {
             result.add(meth.apply(element));
         }
         return result.filterNonNulls(i->i);
     }
 
-    public <N, A, EX extends Exception> kcollections.KList<N> mapToNonNullsBy(TwoArgsFunctionWithEx<? super T,N, A, EX> meth, A arg1) throws EX {
+    public <N, A, EX extends Exception> KList<N> mapToNonNullsBy(TwoArgsFunctionWithEx<? super T,N, A, EX> meth, A arg1) throws EX {
 
-        kcollections.KList<N> result = new kcollections.KList<>(new ArrayList<>(getJList().size()));
+        KList<N> result = new KList<>(new ArrayList<>(getJList().size()));
         for (T element : getJList()) {
             result.add(meth.apply(element, arg1));
         }
         return result.filterNonNulls(i->i);
     }
 
-    public <N, A,B, EX extends Exception> kcollections.KList<N> mapToNonNullsBy(ThreeArgsFunctionWithEx<? super T,N, A,B, EX> meth, A arg1, B arg2) throws EX {
+    public <N, A,B, EX extends Exception> KList<N> mapToNonNullsBy(ThreeArgsFunctionWithEx<? super T,N, A,B, EX> meth, A arg1, B arg2) throws EX {
 
-        kcollections.KList<N> result = new kcollections.KList<>(new ArrayList<>(getJList().size()));
+        KList<N> result = new KList<>(new ArrayList<>(getJList().size()));
         for (T element : getJList()) {
             result.add(meth.apply(element, arg1, arg2));
         }
         return result.filterNonNulls(i->i);
     }
 
-    public <N, A,B,C, EX extends Exception> kcollections.KList<N> mapToNonNullsBy(FourArgsFunctionWithEx<? super T,N, A,B,C, EX> meth, A arg1, B arg2, C arg3) throws EX {
+    public <N, A,B,C, EX extends Exception> KList<N> mapToNonNullsBy(FourArgsFunctionWithEx<? super T,N, A,B,C, EX> meth, A arg1, B arg2, C arg3) throws EX {
 
-        kcollections.KList<N> result = new kcollections.KList<>(new ArrayList<>(getJList().size()));
+        KList<N> result = new KList<>(new ArrayList<>(getJList().size()));
         for (T element : getJList()) {
             result.add(meth.apply(element, arg1, arg2, arg3));
         }
         return result.filterNonNulls(i->i);
     }
 
-    public <N, A,B,C,D, EX extends Exception> kcollections.KList<N> mapToNonNullsBy(FiveArgsFunctionWithEx<? super T,N, A,B,C,D, EX> meth, A arg1, B arg2, C arg3, D arg4) throws EX {
+    public <N, A,B,C,D, EX extends Exception> KList<N> mapToNonNullsBy(FiveArgsFunctionWithEx<? super T,N, A,B,C,D, EX> meth, A arg1, B arg2, C arg3, D arg4) throws EX {
 
-        kcollections.KList<N> result = new kcollections.KList<>(new ArrayList<>(getJList().size()));
+        KList<N> result = new KList<>(new ArrayList<>(getJList().size()));
         for (T element : getJList()) {
             result.add(meth.apply(element, arg1, arg2, arg3, arg4));
         }
         return result.filterNonNulls(i->i);
     }
 
-    public <N, A,B,C,D,E, EX extends Exception> kcollections.KList<N> mapToNonNullsBy(SixArgsFunctionWithEx<? super T,N, A,B,C,D,E, EX> meth, A arg1, B arg2, C arg3, D arg4, E arg5) throws EX {
+    public <N, A,B,C,D,E, EX extends Exception> KList<N> mapToNonNullsBy(SixArgsFunctionWithEx<? super T,N, A,B,C,D,E, EX> meth, A arg1, B arg2, C arg3, D arg4, E arg5) throws EX {
 
-        kcollections.KList<N> result = new kcollections.KList<>(new ArrayList<>(getJList().size()));
+        KList<N> result = new KList<>(new ArrayList<>(getJList().size()));
         for (T element : getJList()) {
             result.add(meth.apply(element, arg1, arg2, arg3, arg4, arg5));
         }
@@ -312,43 +316,43 @@ public class KList<T> extends StandartListWrapper<T> {
     //Обработка списка целиком (не умеет в проверяемые исключения)
 
     //Передача списка в метод, не возвращающий значения
-    public kcollections.KList<T> withCollectionCatchMethod(CollectionCatchMethod<kcollections.KList<T>> catchMethod) {
+    public KList<T> withCollectionCatchMethod(CollectionCatchMethod<KList<T>> catchMethod) {
         this.catchMethod = catchMethod;
         return getCurrentKList();
     }
 
-    public <EX extends Exception> kcollections.KList<T> useWholeBy(ConsumerMethodWithEx<kcollections.KList<T>, EX> meth) throws EX {
+    public <EX extends Exception> KList<T> useWholeBy(ConsumerMethodWithEx<KList<T>, EX> meth) throws EX {
         meth.apply(getCurrentKList());
         return getCurrentKList();
     }
 
-    public <A, EX extends Exception> kcollections.KList<T> useWholeBy(TwoArgsConsumerMethodWithEx<kcollections.KList<T>, A, EX> meth, A arg1) throws EX {
+    public <A, EX extends Exception> KList<T> useWholeBy(TwoArgsConsumerMethodWithEx<KList<T>, A, EX> meth, A arg1) throws EX {
         meth.apply(getCurrentKList(), arg1);
         return getCurrentKList();
     }
 
-    public <A,B, EX extends Exception> kcollections.KList<T> useWholeBy(ThreeArgsConsumerMethodWithEx<kcollections.KList<T>, A,B, EX> meth, A arg1, B arg2) throws EX {
+    public <A,B, EX extends Exception> KList<T> useWholeBy(ThreeArgsConsumerMethodWithEx<KList<T>, A,B, EX> meth, A arg1, B arg2) throws EX {
         meth.apply(getCurrentKList(), arg1, arg2);
         return getCurrentKList();
     }
 
-    public <A,B,C, EX extends Exception> kcollections.KList<T> useWholeBy(FourArgsConsumerMethodWithEx<kcollections.KList<T>, A,B,C, EX> meth, A arg1, B arg2, C arg3) throws EX {
+    public <A,B,C, EX extends Exception> KList<T> useWholeBy(FourArgsConsumerMethodWithEx<KList<T>, A,B,C, EX> meth, A arg1, B arg2, C arg3) throws EX {
         meth.apply(getCurrentKList(), arg1, arg2, arg3);
         return getCurrentKList();
     }
 
-    public <A,B,C,D, EX extends Exception> kcollections.KList<T> useWholeBy(FiveArgsConsumerMethodWithEx<kcollections.KList<T>, A,B,C,D, EX> meth, A arg1, B arg2, C arg3, D arg4) throws EX {
+    public <A,B,C,D, EX extends Exception> KList<T> useWholeBy(FiveArgsConsumerMethodWithEx<KList<T>, A,B,C,D, EX> meth, A arg1, B arg2, C arg3, D arg4) throws EX {
         meth.apply(getCurrentKList(), arg1, arg2, arg3, arg4);
         return getCurrentKList();
     }
 
-    public <A,B,C,D,E, EX extends Exception> kcollections.KList<T> useWholeBy(SixArgsConsumerMethodWithEx<kcollections.KList<T>, A,B,C,D,E, EX> meth, A arg1, B arg2, C arg3, D arg4, E arg5) throws EX {
+    public <A,B,C,D,E, EX extends Exception> KList<T> useWholeBy(SixArgsConsumerMethodWithEx<KList<T>, A,B,C,D,E, EX> meth, A arg1, B arg2, C arg3, D arg4, E arg5) throws EX {
         meth.apply(getCurrentKList(), arg1, arg2, arg3, arg4, arg5);
         return getCurrentKList();
     }
 
     //Передача списка в метод, не возвращающий значения + try/catch
-    public <EX extends Exception> kcollections.KList<T> tryUseWholeBy(ConsumerMethodWithEx<kcollections.KList<T>, EX> meth) {
+    public <EX extends Exception> KList<T> tryUseWholeBy(ConsumerMethodWithEx<KList<T>, EX> meth) {
         try {
             meth.apply(getCurrentKList());
         } catch (Exception e) {
@@ -357,7 +361,7 @@ public class KList<T> extends StandartListWrapper<T> {
         return getCurrentKList();
     }
 
-    public <A, EX extends Exception> kcollections.KList<T> tryUseWholeBy(TwoArgsConsumerMethodWithEx<kcollections.KList<T>, A, EX> meth, A arg1) {
+    public <A, EX extends Exception> KList<T> tryUseWholeBy(TwoArgsConsumerMethodWithEx<KList<T>, A, EX> meth, A arg1) {
         try {
             meth.apply(getCurrentKList(), arg1);
         } catch (Exception e) {
@@ -366,7 +370,7 @@ public class KList<T> extends StandartListWrapper<T> {
         return getCurrentKList();
     }
 
-    public <A,B, EX extends Exception> kcollections.KList<T> tryUseWholeBy(ThreeArgsConsumerMethodWithEx<kcollections.KList<T>, A,B, EX> meth, A arg1, B arg2) {
+    public <A,B, EX extends Exception> KList<T> tryUseWholeBy(ThreeArgsConsumerMethodWithEx<KList<T>, A,B, EX> meth, A arg1, B arg2) {
         try {
             meth.apply(getCurrentKList(), arg1, arg2);
         } catch (Exception e) {
@@ -375,7 +379,7 @@ public class KList<T> extends StandartListWrapper<T> {
         return getCurrentKList();
     }
 
-    public <A,B,C, EX extends Exception> kcollections.KList<T> tryUseWholeBy(FourArgsConsumerMethodWithEx<kcollections.KList<T>, A,B,C, EX> meth, A arg1, B arg2, C arg3) {
+    public <A,B,C, EX extends Exception> KList<T> tryUseWholeBy(FourArgsConsumerMethodWithEx<KList<T>, A,B,C, EX> meth, A arg1, B arg2, C arg3) {
         try {
             meth.apply(getCurrentKList(), arg1, arg2, arg3);
         } catch (Exception e) {
@@ -384,7 +388,7 @@ public class KList<T> extends StandartListWrapper<T> {
         return getCurrentKList();
     }
 
-    public <A,B,C,D, EX extends Exception> kcollections.KList<T> tryUseWholeBy(FiveArgsConsumerMethodWithEx<kcollections.KList<T>, A,B,C,D, EX> meth, A arg1, B arg2, C arg3, D arg4) {
+    public <A,B,C,D, EX extends Exception> KList<T> tryUseWholeBy(FiveArgsConsumerMethodWithEx<KList<T>, A,B,C,D, EX> meth, A arg1, B arg2, C arg3, D arg4) {
         try {
             meth.apply(getCurrentKList(), arg1, arg2, arg3, arg4);
         } catch (Exception e) {
@@ -393,7 +397,7 @@ public class KList<T> extends StandartListWrapper<T> {
         return getCurrentKList();
     }
 
-    public <A,B,C,D,E, EX extends Exception> kcollections.KList<T> tryUseWholeBy(SixArgsConsumerMethodWithEx<kcollections.KList<T>, A,B,C,D,E, EX> meth, A arg1, B arg2, C arg3, D arg4, E arg5) {
+    public <A,B,C,D,E, EX extends Exception> KList<T> tryUseWholeBy(SixArgsConsumerMethodWithEx<KList<T>, A,B,C,D,E, EX> meth, A arg1, B arg2, C arg3, D arg4, E arg5) {
         try {
             meth.apply(getCurrentKList(), arg1, arg2, arg3, arg4, arg5);
         } catch (Exception e) {
@@ -403,33 +407,33 @@ public class KList<T> extends StandartListWrapper<T> {
     }
 
     //Отображение всего списка во что-угодно
-    public <N, EX extends Exception> N mapWholeBy(OneArgFunctionWithEx<kcollections.KList<T>,N, EX> meth) throws EX {
+    public <N, EX extends Exception> N mapWholeBy(OneArgFunctionWithEx<KList<T>,N, EX> meth) throws EX {
         return meth.apply(getCurrentKList());
     }
 
-    public <N, A, EX extends Exception> N mapWholeBy(TwoArgsFunctionWithEx<kcollections.KList<T>,N, A, EX> meth, A arg1) throws EX {
+    public <N, A, EX extends Exception> N mapWholeBy(TwoArgsFunctionWithEx<KList<T>,N, A, EX> meth, A arg1) throws EX {
         return meth.apply(getCurrentKList(), arg1);
     }
 
-    public <N, A,B, EX extends Exception> N mapWholeBy(ThreeArgsFunctionWithEx<kcollections.KList<T>,N, A,B, EX> meth, A arg1, B arg2) throws EX {
+    public <N, A,B, EX extends Exception> N mapWholeBy(ThreeArgsFunctionWithEx<KList<T>,N, A,B, EX> meth, A arg1, B arg2) throws EX {
         return meth.apply(getCurrentKList(), arg1, arg2);
     }
 
-    public <N, A,B,C, EX extends Exception> N mapWholeBy(FourArgsFunctionWithEx<kcollections.KList<T>,N, A,B,C, EX> meth, A arg1, B arg2, C arg3) throws EX {
+    public <N, A,B,C, EX extends Exception> N mapWholeBy(FourArgsFunctionWithEx<KList<T>,N, A,B,C, EX> meth, A arg1, B arg2, C arg3) throws EX {
         return meth.apply(getCurrentKList(), arg1, arg2, arg3);
     }
 
-    public <N, A,B,C,D, EX extends Exception> N mapWholeBy(FiveArgsFunctionWithEx<kcollections.KList<T>,N, A,B,C,D, EX> meth, A arg1, B arg2, C arg3, D arg4) throws EX {
+    public <N, A,B,C,D, EX extends Exception> N mapWholeBy(FiveArgsFunctionWithEx<KList<T>,N, A,B,C,D, EX> meth, A arg1, B arg2, C arg3, D arg4) throws EX {
         return meth.apply(getCurrentKList(), arg1, arg2, arg3, arg4);
     }
 
-    public <N, A,B,C,D,E, EX extends Exception> N mapWholeBy(SixArgsFunctionWithEx<kcollections.KList<T>,N, A,B,C,D,E, EX> meth, A arg1, B arg2, C arg3, D arg4, E arg5) throws EX {
+    public <N, A,B,C,D,E, EX extends Exception> N mapWholeBy(SixArgsFunctionWithEx<KList<T>,N, A,B,C,D,E, EX> meth, A arg1, B arg2, C arg3, D arg4, E arg5) throws EX {
         return meth.apply(getCurrentKList(), arg1, arg2, arg3, arg4, arg5);
     }
 
 
     //Отображение всего списка во что-угодно + try/catch
-    public <N, EX extends Exception> N tryMapWholeBy(OneArgFunctionWithEx<kcollections.KList<T>,N, EX> meth) {
+    public <N, EX extends Exception> N tryMapWholeBy(OneArgFunctionWithEx<KList<T>,N, EX> meth) {
         try {
             return meth.apply(getCurrentKList());
         } catch (Exception e) {
@@ -438,7 +442,7 @@ public class KList<T> extends StandartListWrapper<T> {
         return null;
     }
 
-    public <N, A, EX extends Exception> N tryMapWholeBy(TwoArgsFunctionWithEx<kcollections.KList<T>,N, A, EX> meth, A arg1) {
+    public <N, A, EX extends Exception> N tryMapWholeBy(TwoArgsFunctionWithEx<KList<T>,N, A, EX> meth, A arg1) {
             try {
                 return meth.apply(getCurrentKList(), arg1);
             } catch (Exception e) {
@@ -447,7 +451,7 @@ public class KList<T> extends StandartListWrapper<T> {
         return null;
     }
 
-    public <N, A,B, EX extends Exception> N tryMapWholeBy(ThreeArgsFunctionWithEx<kcollections.KList<T>,N, A,B, EX> meth, A arg1, B arg2) {
+    public <N, A,B, EX extends Exception> N tryMapWholeBy(ThreeArgsFunctionWithEx<KList<T>,N, A,B, EX> meth, A arg1, B arg2) {
         try {
             return meth.apply(getCurrentKList(), arg1, arg2);
         } catch (Exception e) {
@@ -456,7 +460,7 @@ public class KList<T> extends StandartListWrapper<T> {
         return null;
     }
 
-    public <N, A,B,C, EX extends Exception> N tryMapWholeBy(FourArgsFunctionWithEx<kcollections.KList<T>,N, A,B,C, EX> meth, A arg1, B arg2, C arg3) {
+    public <N, A,B,C, EX extends Exception> N tryMapWholeBy(FourArgsFunctionWithEx<KList<T>,N, A,B,C, EX> meth, A arg1, B arg2, C arg3) {
         try {
             return meth.apply(getCurrentKList(), arg1, arg2, arg3);
         } catch (Exception e) {
@@ -465,7 +469,7 @@ public class KList<T> extends StandartListWrapper<T> {
         return null;
     }
 
-    public <N, A,B,C,D, EX extends Exception> N tryMapWholeBy(FiveArgsFunctionWithEx<kcollections.KList<T>,N, A,B,C,D, EX> meth, A arg1, B arg2, C arg3, D arg4) {
+    public <N, A,B,C,D, EX extends Exception> N tryMapWholeBy(FiveArgsFunctionWithEx<KList<T>,N, A,B,C,D, EX> meth, A arg1, B arg2, C arg3, D arg4) {
         try {
             return meth.apply(getCurrentKList(), arg1, arg2, arg3, arg4);
         } catch (Exception e) {
@@ -474,7 +478,7 @@ public class KList<T> extends StandartListWrapper<T> {
         return null;
     }
 
-    public <N, A,B,C,D,E, EX extends Exception> N tryMapWholeBy(SixArgsFunctionWithEx<kcollections.KList<T>,N, A,B,C,D,E, EX> meth, A arg1, B arg2, C arg3, D arg4, E arg5) {
+    public <N, A,B,C,D,E, EX extends Exception> N tryMapWholeBy(SixArgsFunctionWithEx<KList<T>,N, A,B,C,D,E, EX> meth, A arg1, B arg2, C arg3, D arg4, E arg5) {
         try {
             return meth.apply(getCurrentKList(), arg1, arg2, arg3, arg4, arg5);
         } catch (Exception e) {

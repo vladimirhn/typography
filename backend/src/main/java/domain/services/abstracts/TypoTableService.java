@@ -1,7 +1,7 @@
 package domain.services.abstracts;
 
 import domain.models.abstracts.TypoTable;
-import domain.repositories.abstracts.TypoRepository;
+import domain.repositories.abstracts.TypoTableRepository;
 import kcollections.KList;
 import koptional.KOptional;
 
@@ -9,9 +9,9 @@ import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.stream.Stream;
 
-public abstract class TypoService<T extends TypoTable> {
+public abstract class TypoTableService<T extends TypoTable> {
 
-    protected abstract TypoRepository<T> getRepository();
+    protected abstract TypoTableRepository<T> getRepository();
 
     //Main functionality
     //CHECKS

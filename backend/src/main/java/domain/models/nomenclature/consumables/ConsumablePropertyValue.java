@@ -20,6 +20,13 @@ public class ConsumablePropertyValue extends TypoTable {
 
     public ConsumablePropertyValue() {}
 
+    public ConsumablePropertyValue(Long newId, Long itemId, Long propertyId, String propertyValue) {
+        setId(newId);
+        this.itemId = itemId;
+        this.propertyId = propertyId;
+        this.propertyValue = propertyValue;
+    }
+
     public ConsumablePropertyValue(String propertyValue) {
         this.propertyValue = propertyValue;
     }

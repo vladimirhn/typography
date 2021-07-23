@@ -5,11 +5,11 @@ import java.util.function.Consumer;
 
 public class KOptional<T> extends StandardOptionalWrapper<T>{
 
-    private Optional<T> value;
+    private final Optional<T> value;
 
     @Override
     protected Optional<T> getValue() {
-        return Optional.empty();
+        return this.value;
     }
 
     private KOptional(T value) {

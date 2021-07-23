@@ -3,9 +3,11 @@ package domain.services.abstracts;
 import domain.models.abstracts.TypoView;
 import domain.repositories.abstracts.TypoViewRepository;
 import kcollections.KList;
+import koptional.KOptional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.BiConsumer;
 import java.util.stream.Stream;
 
 public abstract class TypoViewService<T extends TypoView> {
@@ -13,20 +15,29 @@ public abstract class TypoViewService<T extends TypoView> {
     protected abstract TypoViewRepository<T> getRepository();
 
     //Main functionality
-    //SELECT ONLY
+    //CHECKS
+    public KOptional<T> selectFirst(T obj) {
+        return getRepository().selectFirst(obj);
+    }
+
+    //SELECT
     public Optional<T> findOne(long id) {
         return getRepository().findOne(id);
     }
 
-    public KList<T> findAll() {
-        return getRepository().findAll();
+    public KList<T> selectAll() {
+        return getRepository().selectAll();
     }
 
     public Stream<T> streamAll() {
         return getRepository().streamAll();
     }
 
-    public List<T> findWithQuery(String sql) {
-        return getRepository().findWithQuery(sql);
+    public KList<T> findWithQuery(String sql) {
+        return getRepository().selectWithQuery(sql);
+    }
+
+    public <V> KList<T> selectByField(BiConsumer<T, V> fieldSetter, V fieldValue) {
+        return getRepository().selectByField(fieldSetter, fieldValue);
     }
 }

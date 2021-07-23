@@ -26,12 +26,23 @@ public class ConsumablesService extends TypoViewService<ConsumablesViewLine> {
 
     public List<JsonConsumableType> createConsumableTypesResponse() {
 
-        Map<Long, KList<ConsumablesViewLine>> groupByTypeId = findAll().groupBy(ConsumablesViewLine::getTypeId);
+        Map<Long, KList<ConsumablesViewLine>> groupByTypeId = selectAll().groupBy(ConsumablesViewLine::getTypeId);
 
         return createResult(groupByTypeId);
     }
 
-    private List<JsonConsumableType> createResult(Map<Long, KList<ConsumablesViewLine>> groupByTypeId) {
+    public JsonConsumableType createConsumableTypesResponse(Long id) {
+
+        Map<Long, KList<ConsumablesViewLine>> groupByTypeId =
+                selectByField(ConsumablesViewLine::setTypeId, id)
+                .groupBy(ConsumablesViewLine::getTypeId);
+
+        KList<JsonConsumableType> result = createResult(groupByTypeId);
+
+        return result.getFirst().orElse(null);
+    }
+
+    private KList<JsonConsumableType> createResult(Map<Long, KList<ConsumablesViewLine>> groupByTypeId) {
 
         KList<JsonConsumableType> result = CollectionFactory.makeLinkedList();
 

@@ -75,4 +75,24 @@ public abstract class TypoTableRepository<T extends TypoTable> extends AbstractR
             e.printStackTrace();
         }
     }
+
+    public void deleteSimilar(T obj) {
+        UnnamedParametersQuery deleteQuery = QueryGenerator.generateDeleteSimilarQuery(obj);
+
+        System.out.println(deleteQuery.getQuery());
+
+        jdbcOperations.update(deleteQuery.getQuery(), deleteQuery.getParams());
+    }
+
+    public <V> void deleteByField(BiConsumer<T, V> fieldSetter, V fieldValue) {
+        try {
+            T instance = modelClass.getDeclaredConstructor().newInstance();
+            fieldSetter.accept(instance, fieldValue);
+
+            deleteSimilar(instance);
+
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+    }
 }

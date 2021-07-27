@@ -168,6 +168,40 @@ public class QueryGenerator {
         return "DELETE FROM " + tableName + " WHERE " + idColumn + " = ?";
     }
 
+    public static UnnamedParametersQuery generateDeleteSimilarQuery(Object obj) throws AnnotationException {
+
+        Map<String, Object> columnsToValues = getColumnToValues(obj);
+
+        if (columnsToValues.isEmpty()) {
+            throw new IllegalArgumentException(
+                    "Model is empty. " +
+                    "Probably some fields are supposed to be set, but are not. " +
+                    "Check it in advance.");
+        }
+
+        String sql = generateDeleteSimilarQuerySql(extractTableName(obj.getClass()), columnsToValues);
+        List<Object> values = new ArrayList<>(columnsToValues.size());
+
+        columnsToValues.keySet().forEach(col -> {
+            values.add(columnsToValues.get(col));
+        });
+
+        return new UnnamedParametersQuery(sql, values);
+    }
+
+    private static String generateDeleteSimilarQuerySql(String tableName, Map<String, Object> columnsToValues) {
+
+        String mainPart = "DELETE FROM " + tableName +
+                " WHERE 1 = 1";
+
+        String tail = "";
+        for (String column : columnsToValues.keySet()) {
+            tail += " AND " + column + " = ?";
+        }
+
+        return mainPart + tail;
+    }
+
     private static Map<String, Object> getColumnToValues(Object obj) {
 
         Class<?> type = obj.getClass();

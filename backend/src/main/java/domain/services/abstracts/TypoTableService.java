@@ -4,6 +4,8 @@ import domain.models.abstracts.TypoTable;
 import domain.repositories.abstracts.TypoTableRepository;
 import kcollections.KList;
 import koptional.KOptional;
+import kpersistence.QueryGenerator;
+import kpersistence.UnnamedParametersQuery;
 
 import java.util.Optional;
 import java.util.function.BiConsumer;
@@ -57,5 +59,13 @@ public abstract class TypoTableService<T extends TypoTable> {
     //DELETE
     public void delete(Long id) {
         getRepository().delete(id);
+    }
+
+    public void deleteSimilar(T obj) {
+        getRepository().deleteSimilar(obj);
+    }
+
+    public <V> void deleteByField(BiConsumer<T, V> fieldSetter, V fieldValue) {
+        getRepository().deleteByField(fieldSetter, fieldValue);
     }
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import kcollections.KList;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class JsonConsumableType {
@@ -16,6 +17,17 @@ public class JsonConsumableType {
     Map<Long, String> properties;
 
     KList<JsonConsumableItem> data;
+
+    public JsonConsumableType() {
+        properties = new HashMap<>();
+        data = new KList<>();
+    }
+
+    public JsonConsumableType(Long id, String type) {
+        this();
+        this.id = id;
+        this.type = type;
+    }
 
     public Long getId() {
         return id;

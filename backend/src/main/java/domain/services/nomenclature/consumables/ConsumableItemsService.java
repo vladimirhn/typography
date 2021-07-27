@@ -22,8 +22,6 @@ public class ConsumableItemsService extends TypoTableService<ConsumableItem> {
     IdService idService;
 
     @Autowired
-    ConsumableItemsService consumableItemsService;
-    @Autowired
     ConsumablePropertiesValuesService consumablePropertiesValuesService;
 
     @Override
@@ -38,7 +36,7 @@ public class ConsumableItemsService extends TypoTableService<ConsumableItem> {
 
             Long newItemId = idService.next();
 
-            consumableItemsService.insert(new ConsumableItem(newItemId, typeId, entry.getItem()));
+            insert(new ConsumableItem(newItemId, typeId, entry.getItem()));
 
             entry.getValues().forEach((propId, newValueMap) -> {
                 String newValue = newValueMap.values().iterator().next();
@@ -47,5 +45,10 @@ public class ConsumableItemsService extends TypoTableService<ConsumableItem> {
                         new ConsumablePropertyValue(idService.next(), newItemId, propId, newValue));
             });
         });
+    }
+
+    public void cascadeDelete(Long id) {
+        consumablePropertiesValuesService.deleteByField(ConsumablePropertyValue::setItemId, id);
+        delete(id);
     }
 }

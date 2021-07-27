@@ -46,7 +46,7 @@
             </not>
         </preConditions>
         <addColumn tableName="PURCHASING_CONSUMABLES">
-            <column name="AMOUNT" remarks="Количество" type="${DECIMAL_11_2}"/>
+            <column name="AMOUNT" remarks="Количество" type="${DECIMAL_13_4}"/>
         </addColumn>
     </changeSet>
 

@@ -1,6 +1,5 @@
 package rest.nomenclature;
 
-import domain.models.nomenclature.consumables.ConsumableType;
 import domain.services.defaults.consumables.ConsumablesDefaultsService;
 import domain.services.defaults.consumables.ConsumablesTypeDefaultJson;
 import domain.services.nomenclature.consumables.ConsumableItemsService;
@@ -31,14 +30,15 @@ public class ConsumablesController {
     public List<JsonConsumableType> getAll() {
         return consumablesService.createConsumableTypesResponse();
     }
+
     @GetMapping("/get_type_cascade/{id}")
     public JsonConsumableType getAll(@PathVariable(value = "id") Long id) {
         return consumablesService.createConsumableTypesResponse(id);
     }
 
-    @GetMapping("/get_types")
-    public List<ConsumableType> getAllTypes() {
-        return consumableTypesService.selectAll().sortAsc(ConsumableType::getType);
+    @GetMapping("/get_types_with_props")
+    public List<JsonConsumableType> getTypesWithProps() {
+        return consumablesService.selectTypesWithProps();
     }
 
     @GetMapping("/set_defaults")
@@ -46,9 +46,9 @@ public class ConsumablesController {
         defaultsService.setDefaults();
     }
 
-    @PostMapping("/add_type")
-    public void addType(@RequestBody ConsumablesTypeDefaultJson data) {
-        consumableTypesService.add(data);
+    @PostMapping("/add_type_with_props")
+    public void addTypeWithProps(@RequestBody ConsumablesTypeDefaultJson data) {
+        consumableTypesService.addTypeWithProps(data);
     }
 
     @PostMapping("/add_item")
@@ -56,8 +56,13 @@ public class ConsumablesController {
         consumableItemsService.add(data);
     }
 
-    @GetMapping("/delete/{id}")
-    public void delete(@PathVariable(value = "id") Long id) {
+    @GetMapping("/delete_type/{id}")
+    public void delete_type(@PathVariable(value = "id") Long id) {
         consumableTypesService.cascadeDelete(id);
+    }
+
+    @GetMapping("/delete_item/{id}")
+    public void delete_item(@PathVariable(value = "id") Long id) {
+        consumableItemsService.cascadeDelete(id);
     }
 }

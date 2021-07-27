@@ -8,8 +8,13 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class KRowMapper<T> implements RowMapper<T> {
 
@@ -36,6 +41,15 @@ public class KRowMapper<T> implements RowMapper<T> {
 
                     Class<?> fieldType = field.getType();
                     Class<?> dataType = data != null ? data.getClass() : Object.class;
+
+                    if (fieldType.equals(LocalDate.class) && dataType.equals(String.class)) {
+                        //new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                        field.set(obj, LocalDate.parse(data.toString()));
+                    }
+
+                    if (fieldType.equals(LocalDateTime.class) && dataType.equals(String.class)) {
+                        field.set(obj, LocalDateTime.parse(data.toString()));
+                    }
 
                     if (fieldType.equals(Long.class) && dataType.equals(Integer.class)) {
                         field.set(obj, (long) (int) data);

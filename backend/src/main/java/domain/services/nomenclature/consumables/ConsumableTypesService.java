@@ -33,7 +33,7 @@ public class ConsumableTypesService extends TypoTableService<ConsumableType> {
     @Autowired
     ConsumablePropertiesValuesService consumablePropertiesValuesService;
 
-    public void add(ConsumablesTypeDefaultJson data) {
+    public void addTypeWithProps(ConsumablesTypeDefaultJson data) {
 
         long typeId = idService.next();
 

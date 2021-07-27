@@ -1,28 +1,18 @@
 package rest.purchasing;
 
-import domain.models.nomenclature.equipment.EquipmentType;
 import domain.models.purchasing.PurchasingConsumables;
-import domain.services.defaults.equipment.EquipmentDefaultsService;
-import domain.services.nomenclature.equipment.EquipmentTypesService;
-import domain.services.purchasing.PurchasingConsumablesService;
-import kcollections.KList;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import domain.services.ServiceUser;
+import domain.services.abstracts.TypoTableService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.io.IOException;
+import rest.abstracts.TableController;
 
 @RestController
 @RequestMapping("/purchasing_consumables")
-public class PurchasingConsumablesController {
+public class PurchasingConsumablesController extends TableController<PurchasingConsumables> implements ServiceUser {
 
-    @Autowired
-    PurchasingConsumablesService purchasingConsumablesService;
-
-
-    @GetMapping("/get_all")
-    public KList<PurchasingConsumables> getAll() {
-        return purchasingConsumablesService.selectAll();
+    @Override
+    protected TypoTableService<PurchasingConsumables> getService() {
+        return purchasingConsumablesService;
     }
 }

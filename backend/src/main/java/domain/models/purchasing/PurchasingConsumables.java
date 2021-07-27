@@ -24,7 +24,9 @@ public class PurchasingConsumables extends TypoTable {
     @Column(name = "PRICE")
     private BigDecimal price;
 
-    public PurchasingConsumables() {}
+    public PurchasingConsumables() {
+        purchasingDate = LocalDateTime.now();
+    }
 
     public LocalDateTime getPurchasingDate() {
         return purchasingDate;

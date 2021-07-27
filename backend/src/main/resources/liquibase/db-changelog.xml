@@ -29,7 +29,12 @@
     <property dbms="oracle"                             name="DECIMAL_11_2"    value="NUMERIC(11,2)" />
     <property dbms="db2,derby,mysql,h2,mssql"           name="DECIMAL_11_2"    value="NUMERIC(11,2)"/>
 
-    <property dbms="sqlite"                             name="TIMESTAMP"    value="INTEGER"/>
+    <property dbms="sqlite"                             name="DECIMAL_13_4"    value="DECIMAL(13,4)"/>
+    <property dbms="postgresql"                         name="DECIMAL_13_4"    value="NUMERIC(13,4)"/>
+    <property dbms="oracle"                             name="DECIMAL_13_4"    value="NUMERIC(13,4)" />
+    <property dbms="db2,derby,mysql,h2,mssql"           name="DECIMAL_13_4"    value="NUMERIC(13,4)"/>
+
+    <property dbms="sqlite"                             name="TIMESTAMP"    value="TIMESTAMP"/>
     <property dbms="postgresql"                         name="TIMESTAMP"    value="TIMESTAMP"/>
     <property dbms="oracle"                             name="TIMESTAMP"    value="TIMESTAMP" />
     <property dbms="db2,derby,mysql,h2,mssql"           name="TIMESTAMP"    value="DATETIME2"/>

@@ -4,8 +4,6 @@ import domain.models.nomenclature.consumables.ConsumableItem;
 import domain.services.abstracts.response.KResponseComposer;
 import domain.services.abstracts.response.SimpleTableResponse;
 import domain.services.nomenclature.consumables.ConsumableItemsService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,15 +18,9 @@ public class TestController {
 
     @Autowired
     KResponseComposer responseComposer;
-
-    Logger logger = LogManager.getLogger(TestController.class);
-
     @GetMapping("/test")
     public SimpleTableResponse get() {
 
-
-
-        logger.debug("hello there!");
         System.out.println("Hello from System.out");
 
         if (true) throw new NullPointerException();

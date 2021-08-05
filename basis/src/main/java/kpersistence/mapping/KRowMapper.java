@@ -6,15 +6,12 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class KRowMapper<T> implements RowMapper<T> {
 
@@ -43,7 +40,6 @@ public class KRowMapper<T> implements RowMapper<T> {
                     Class<?> dataType = data != null ? data.getClass() : Object.class;
 
                     if (fieldType.equals(LocalDate.class) && dataType.equals(String.class)) {
-                        //new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
                         field.set(obj, LocalDate.parse(data.toString()));
                     }
 
@@ -53,6 +49,10 @@ public class KRowMapper<T> implements RowMapper<T> {
 
                     if (fieldType.equals(Long.class) && dataType.equals(Integer.class)) {
                         field.set(obj, (long) (int) data);
+                    }
+
+                    if (fieldType.equals(BigDecimal.class)) {
+                        field.set(obj, new BigDecimal(String.valueOf(data)));
                     }
 
                     if (fieldType.isAssignableFrom(dataType)) {

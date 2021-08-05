@@ -3,6 +3,7 @@ package domain.models.nomenclature.consumables;
 import domain.models.abstracts.TypoTable;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
+import kpersistence.mapping.annotations.Label;
 import kpersistence.mapping.annotations.Table;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class ConsumableItem extends TypoTable {
     private Long typeId;
 
     @Column(name = "ITEM")
+    @Label
     private String item;
 
     private List<ConsumablePropertyValue> propValues = new ArrayList<>();

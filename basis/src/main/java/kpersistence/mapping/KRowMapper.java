@@ -1,6 +1,9 @@
 package kpersistence.mapping;
 
 import kpersistence.mapping.annotations.Column;
+import kpersistence.mapping.annotations.Foreign;
+import kpersistence.mapping.annotations.Label;
+import kpersistence.mapping.annotations.Table;
 import kutils.ClassUtils;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -31,9 +34,25 @@ public class KRowMapper<T> implements RowMapper<T> {
 
                 field.setAccessible(true);
 
-                if (field.isAnnotationPresent(Column.class)) {
+                if (field.isAnnotationPresent(Column.class) || field.isAnnotationPresent(Foreign.class)) {
 
-                    String colName = field.getAnnotation(Column.class).name();
+                    String colName = null;
+
+                    if (field.isAnnotationPresent(Column.class)) {
+
+                        colName = field.getAnnotation(Column.class).name();
+
+                    } else if (field.isAnnotationPresent(Foreign.class)) {
+
+                        Class<?> foreignTableClass = field.getAnnotation(Foreign.class).table();
+                        String foreignTableName = foreignTableClass.getAnnotation(Table.class).name();
+                        String foreignColumnName = ClassUtils
+                                .getFieldsByAnnotation(foreignTableClass, Label.class).get(0)
+                                .getAnnotation(Column.class).name();
+
+                        colName = foreignTableName + "_" + foreignColumnName;
+                    }
+
                     Object data = rs.getObject(colName);
 
                     Class<?> fieldType = field.getType();

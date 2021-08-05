@@ -4,6 +4,8 @@ import java.lang.annotation.*;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface Id {
+public @interface Foreign {
 
+    Class<?> table();
+    String foreignId();
 }

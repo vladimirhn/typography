@@ -9,9 +9,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import kpersistence.exceptions.AnnotationException;
 import kpersistence.exceptions.TableAnnotationException;
-import kpersistence.mapping.annotations.Table;
-import kpersistence.mapping.annotations.Column;
-import kpersistence.mapping.annotations.Id;
+import kpersistence.mapping.annotations.*;
 import kutils.ClassUtils;
 
 public class QueryGenerator {
@@ -27,8 +25,44 @@ public class QueryGenerator {
 
         String tableName = extractTableName(type);
 
-        return "SELECT * FROM " + tableName;
+        String sql = "SELECT * FROM " + tableName;
 
+        if (ClassUtils.getFieldsByAnnotation(type, Foreign.class).isEmpty()) {
+            return sql;
+        } else {
+            return generateSelectAllQueryWithForeigns(type, tableName);
+        }
+    }
+
+    public static <T> String generateSelectAllQueryWithForeigns(Class<T> type, String tableName) throws AnnotationException {
+
+        String select = "SELECT " + tableName + ".*";
+        String from = " FROM " + tableName;
+
+        for (Field foreign : ClassUtils.getFieldsByAnnotation(type, Foreign.class)) {
+            String foreignId = foreign.getAnnotation(Foreign.class).foreignId();
+            String linkColumnName = ClassUtils.getFieldByName(type, foreignId).getAnnotation(Column.class).name();
+
+            Class<?> foreignTableClass = foreign.getAnnotation(Foreign.class).table();
+            String foreignTableName = extractTableName(foreignTableClass);
+            String foreignColumnName = ClassUtils
+                    .getFieldsByAnnotation(foreignTableClass, Label.class).get(0)
+                    .getAnnotation(Column.class).name();
+
+            String addSelect = ", " + foreignTableName + "." + foreignColumnName + " " + foreignTableName + "_" + foreignColumnName;
+
+            select += addSelect;
+
+            String leftJoin = " LEFT JOIN " + foreignTableName +
+                    " ON " + tableName+"."+linkColumnName +
+                    " = " + foreignTableName+".ID";
+
+            from += leftJoin;
+        }
+
+        String sql = select + from;
+
+        return sql;
     }
 
     public static UnnamedParametersQuery generateSelectSimilarQuery(Object obj) throws AnnotationException {

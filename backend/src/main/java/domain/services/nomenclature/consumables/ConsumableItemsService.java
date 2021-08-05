@@ -10,7 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rest.nomenclature.JsonConsumableType;
 
-import java.util.Map;
+import java.util.LinkedList;
+import java.util.List;
 
 @Service("consumableItemsService")
 public class ConsumableItemsService extends TypoTableService<ConsumableItem> {
@@ -29,14 +30,17 @@ public class ConsumableItemsService extends TypoTableService<ConsumableItem> {
         return repository;
     }
 
-    public void add(JsonConsumableType data) {
+    public List<String> add(JsonConsumableType data) {
+
+        List<String> addedItemsIds = new LinkedList<>();
+
         Long typeId = data.getId();
 
         data.getData().forEach(entry -> {
 
             Long newItemId = idService.next();
-
             insert(new ConsumableItem(newItemId, typeId, entry.getItem()));
+            addedItemsIds.add(newItemId.toString());
 
             entry.getValues().forEach((propId, newValueMap) -> {
                 String newValue = newValueMap.values().iterator().next();
@@ -45,6 +49,8 @@ public class ConsumableItemsService extends TypoTableService<ConsumableItem> {
                         new ConsumablePropertyValue(idService.next(), newItemId, propId, newValue));
             });
         });
+
+        return addedItemsIds;
     }
 
     public void cascadeDelete(Long id) {

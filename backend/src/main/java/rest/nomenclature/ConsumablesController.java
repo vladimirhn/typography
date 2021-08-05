@@ -52,8 +52,8 @@ public class ConsumablesController {
     }
 
     @PostMapping("/add_item")
-    public void addItem(@RequestBody JsonConsumableType data) {
-        consumableItemsService.add(data);
+    public List<String> addItem(@RequestBody JsonConsumableType data) {
+        return consumableItemsService.add(data);
     }
 
     @GetMapping("/delete_type/{id}")

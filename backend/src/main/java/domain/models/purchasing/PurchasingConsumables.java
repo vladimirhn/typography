@@ -39,7 +39,6 @@ public class PurchasingConsumables extends TypoTable {
         purchasingDate = LocalDate.now();
     }
 
-    @JsonIgnore
     public Long getConsumableId() {
         return consumableId;
     }

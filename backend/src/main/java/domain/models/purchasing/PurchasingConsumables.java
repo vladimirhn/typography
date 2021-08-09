@@ -1,18 +1,15 @@
 package domain.models.purchasing;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import domain.models.abstracts.TypoTable;
 import domain.models.nomenclature.consumables.ConsumableItem;
-import kpersistence.mapping.annotations.Column;
-import kpersistence.mapping.annotations.Entity;
-import kpersistence.mapping.annotations.Foreign;
-import kpersistence.mapping.annotations.Table;
+import kpersistence.mapping.annotations.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "PURCHASING_CONSUMABLES")
@@ -33,10 +30,12 @@ public class PurchasingConsumables extends TypoTable {
     private BigDecimal price;
 
     @Column(name = "PURCHASING_DATE")
-    private LocalDate purchasingDate;
+    @OrderBy(direction = Direction.DESC)
+    @JsonFormat(pattern = "dd.MM.yyyy")
+    private LocalDateTime purchasingDate;
 
     public PurchasingConsumables() {
-        purchasingDate = LocalDate.now();
+        purchasingDate = LocalDateTime.now();
     }
 
     public Long getConsumableId() {
@@ -71,11 +70,11 @@ public class PurchasingConsumables extends TypoTable {
         this.price = price;
     }
 
-    public LocalDate getPurchasingDate() {
+    public LocalDateTime getPurchasingDate() {
         return purchasingDate;
     }
 
-    public void setPurchasingDate(LocalDate purchasingDate) {
+    public void setPurchasingDate(LocalDateTime purchasingDate) {
         this.purchasingDate = purchasingDate;
     }
 }

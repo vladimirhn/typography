@@ -25,13 +25,23 @@ public class QueryGenerator {
 
         String tableName = extractTableName(type);
 
-        String sql = "SELECT * FROM " + tableName;
+        String sql;
 
         if (ClassUtils.getFieldsByAnnotation(type, Foreign.class).isEmpty()) {
-            return sql;
+            sql = "SELECT * FROM " + tableName;
         } else {
-            return generateSelectAllQueryWithForeigns(type, tableName);
+            sql = generateSelectAllQueryWithForeigns(type, tableName);
         }
+
+        List<Field> orders = ClassUtils.getFieldsByAnnotation(type, OrderBy.class);
+        if (orders.size() == 1) {
+            sql += " ORDER BY "
+                    + orders.get(0).getAnnotation(Column.class).name()
+                    + " "
+                    + orders.get(0).getAnnotation(OrderBy.class).direction().name();
+        }
+
+        return sql;
     }
 
     public static <T> String generateSelectAllQueryWithForeigns(Class<T> type, String tableName) throws AnnotationException {

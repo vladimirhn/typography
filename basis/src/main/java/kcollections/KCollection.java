@@ -91,7 +91,7 @@ public abstract class KCollection<K extends kcollections.KCollection<K, X, T>, X
     }
 
     //Фильтрация по нулл/не нулл полям
-    public K filterNulls(Function<T, ?> getter) {
+    public K filterNulls(Function<? super T, ?> getter) {
         return streamToNewKCollectionWithMotherSize(
                 getJCollection().stream().filter(item -> getter.apply(item) == null || getter.apply(item).equals(""))
         );

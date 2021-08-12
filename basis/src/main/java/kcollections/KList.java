@@ -94,9 +94,22 @@ public class KList<T> extends StandartListWrapper<T> {
 
     //Сортировка
 
+    private void updateJList(List<T> newList) {
+        jList.clear();
+        jList.addAll(newList);
+    }
+
     public <U extends Comparable<? super U>> KList<T> sortAsc(Function<? super T, ? extends U> getter) {
-        getJList().sort(Comparator.comparing(getter));
-        return this;
+
+        KList<T> nulls = getCurrentKList().filterNulls(getter);
+        KList<T> nonNulls = getCurrentKList().minus(nulls);
+
+        nonNulls.sort(Comparator.comparing(getter));
+        nonNulls.addAll(nulls);
+
+        updateJList(nonNulls);
+
+        return nonNulls;
     }
 
     public <U extends Comparable<? super U>> KList<T> sortDesc(Function<? super T, ? extends U> getter) {

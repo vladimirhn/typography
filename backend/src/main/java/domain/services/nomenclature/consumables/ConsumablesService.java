@@ -116,7 +116,7 @@ public class ConsumablesService extends TypoViewService<ConsumablesViewLine> {
             data.add(itemEntry);
         });
 
-        data.sort(Comparator.comparing(JsonConsumableItem::getItem));
+        data.sortAsc(JsonConsumableItem::getItem);
 
         mapEntry.getKey().setData(data);
     }

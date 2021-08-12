@@ -23,6 +23,9 @@ public class ComponentItem extends TypoTable {
 
     public ComponentItem() {}
 
+    @Override
+    public void setDefaults() {}
+
     public ComponentItem(Long equipmentTypeId, String item, String model) {
         this.equipmentTypeId = equipmentTypeId;
         this.item = item;

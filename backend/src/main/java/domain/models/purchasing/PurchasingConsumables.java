@@ -23,19 +23,23 @@ public class PurchasingConsumables extends TypoTable {
     @Foreign(table = ConsumableItem.class, foreignId = "consumableId")
     private String consumableName;
 
-    @Column(name = "AMOUNT")
-    private BigDecimal amount;
-
     @Column(name = "PRICE")
     private BigDecimal price;
+
+    @Column(name = "AMOUNT")
+    private BigDecimal amount;
 
     @Column(name = "PURCHASING_DATE")
     @OrderBy(direction = Direction.DESC)
     @JsonFormat(pattern = "dd.MM.yyyy")
     private LocalDateTime purchasingDate;
 
-    public PurchasingConsumables() {
-        purchasingDate = LocalDateTime.now();
+    public PurchasingConsumables() {}
+
+    @Override
+    public void setDefaults() {
+        if (purchasingDate == null)
+            purchasingDate = LocalDateTime.now();
     }
 
     public Long getConsumableId() {

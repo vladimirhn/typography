@@ -13,6 +13,9 @@ public class User extends TypoTable {
     @Column(name = "NAME")
     private String name;
 
+    @Override
+    public void setDefaults() {}
+
     public String getName() {
         return name;
     }

@@ -2,10 +2,11 @@ package domain.services.nomenclature.consumables;
 
 import domain.models.nomenclature.consumables.ConsumableItem;
 import domain.models.nomenclature.consumables.ConsumablePropertyValue;
+import domain.models.purchasing.PurchasingConsumables;
 import domain.repositories.abstracts.TypoTableRepository;
 import domain.repositories.nomenclature.consumables.ConsumableItemsRepository;
+import domain.services.ServiceUser;
 import domain.services.abstracts.TypoTableService;
-import domain.services.application.IdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rest.nomenclature.JsonConsumableType;
@@ -14,16 +15,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Service("consumableItemsService")
-public class ConsumableItemsService extends TypoTableService<ConsumableItem> {
+public class ConsumableItemsService extends TypoTableService<ConsumableItem> implements ServiceUser {
 
     @Autowired
     ConsumableItemsRepository repository;
-
-    @Autowired
-    IdService idService;
-
-    @Autowired
-    ConsumablePropertiesValuesService consumablePropertiesValuesService;
 
     @Override
     protected TypoTableRepository<ConsumableItem> getRepository() {
@@ -55,6 +50,7 @@ public class ConsumableItemsService extends TypoTableService<ConsumableItem> {
 
     public void cascadeDelete(Long id) {
         consumablePropertiesValuesService.deleteByField(ConsumablePropertyValue::setItemId, id);
+        purchasingConsumablesService.deleteByField(PurchasingConsumables::setConsumableId, id);
         delete(id);
     }
 }

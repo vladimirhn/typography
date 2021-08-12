@@ -12,6 +12,9 @@ public class ComponentType extends TypoTable {
     @Column(name = "TYPE")
     private String type;
 
+    @Override
+    public void setDefaults() {}
+
     public String getType() {
         return type;
     }

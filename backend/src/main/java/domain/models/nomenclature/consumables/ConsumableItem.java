@@ -24,6 +24,9 @@ public class ConsumableItem extends TypoTable {
 
     public ConsumableItem() {}
 
+    @Override
+    public void setDefaults() {}
+
     public ConsumableItem(String item) {
         this.item = item;
     }

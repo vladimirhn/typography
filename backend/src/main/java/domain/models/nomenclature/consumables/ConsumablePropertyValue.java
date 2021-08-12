@@ -20,6 +20,9 @@ public class ConsumablePropertyValue extends TypoTable {
 
     public ConsumablePropertyValue() {}
 
+    @Override
+    public void setDefaults() {}
+
     public ConsumablePropertyValue(Long newId, Long itemId, Long propertyId, String propertyValue) {
         setId(newId);
         this.itemId = itemId;

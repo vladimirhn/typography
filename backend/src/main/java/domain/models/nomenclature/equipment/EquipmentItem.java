@@ -20,6 +20,9 @@ public class EquipmentItem extends TypoTable {
 
     public EquipmentItem() {}
 
+    @Override
+    public void setDefaults() {}
+
     public EquipmentItem(Long typeId, String item, String model) {
         this.typeId = typeId;
         this.item = item;

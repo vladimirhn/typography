@@ -1,6 +1,5 @@
 package domain.models.abstracts;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import kpersistence.mapping.annotations.Column;
@@ -10,9 +9,10 @@ public abstract class TypoTable {
 
     @Id
     @JsonSerialize(using = ToStringSerializer.class)
-//    @JsonFormat(shape = JsonFormat.Shape.STRING)
     @Column(name = "ID")
     private Long id;
+
+    public abstract void setDefaults();
 
     public Long getId() {
         return id;

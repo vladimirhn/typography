@@ -21,6 +21,9 @@ public class ConsumableType extends TypoTable {
 
     public ConsumableType() {}
 
+    @Override
+    public void setDefaults() {}
+
     public ConsumableType(String type) {
         this.type = type;
     }

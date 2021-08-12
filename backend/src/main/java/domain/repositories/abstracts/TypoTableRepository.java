@@ -36,6 +36,7 @@ public abstract class TypoTableRepository<T extends TypoTable> extends AbstractR
 
     public void insert(T obj) {
         if (obj.getId() == null) obj.setId(idService.next());
+        obj.setDefaults();
         UnnamedParametersQuery qry = QueryGenerator.generateInsertQuery(obj);
         jdbcOperations.update(qry.getQuery(), qry.getParams());
     }
@@ -48,6 +49,7 @@ public abstract class TypoTableRepository<T extends TypoTable> extends AbstractR
         if (amount == 0L) {
             Long id = idService.next();
             obj.setId(id);
+            obj.setDefaults();
             UnnamedParametersQuery insertQuery = QueryGenerator.generateInsertQuery(obj);
             jdbcOperations.update(insertQuery.getQuery(), insertQuery.getParams());
 

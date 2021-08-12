@@ -18,6 +18,9 @@ public class EquipmentType extends TypoTable {
 
     public EquipmentType() {}
 
+    @Override
+    public void setDefaults() {}
+
     public EquipmentType(String type) {
         this.type = type;
     }

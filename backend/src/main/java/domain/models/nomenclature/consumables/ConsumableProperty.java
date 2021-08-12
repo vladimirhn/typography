@@ -17,6 +17,9 @@ public class ConsumableProperty extends TypoTable {
 
     public ConsumableProperty() {}
 
+    @Override
+    public void setDefaults() {}
+
     public ConsumableProperty(String propertyName) {
         this.propertyName = propertyName;
     }

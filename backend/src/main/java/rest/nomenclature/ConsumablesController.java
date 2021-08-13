@@ -1,5 +1,6 @@
 package rest.nomenclature;
 
+import domain.services.ServiceUser;
 import domain.services.defaults.consumables.ConsumablesDefaultsService;
 import domain.services.defaults.consumables.ConsumablesTypeDefaultJson;
 import domain.services.nomenclature.consumables.ConsumableItemsService;
@@ -13,18 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/consumables")
-public class ConsumablesController {
-
-    @Autowired
-    ConsumablesService consumablesService;
-
-    @Autowired
-    ConsumablesDefaultsService defaultsService;
-
-    @Autowired
-    ConsumableTypesService consumableTypesService;
-    @Autowired
-    ConsumableItemsService consumableItemsService;
+public class ConsumablesController implements ServiceUser {
 
     @GetMapping("/get_all")
     public List<JsonConsumableType> getAll() {

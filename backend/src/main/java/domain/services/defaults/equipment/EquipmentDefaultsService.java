@@ -45,7 +45,7 @@ public class EquipmentDefaultsService {
 
         types.forEach(type -> {
             EquipmentType equipmentType = new EquipmentType(type.type);
-            long typeId = equipmentTypesService.insertIfNew(equipmentType);
+            String typeId = equipmentTypesService.insertIfNew(equipmentType);
 
             type.items.forEach(item -> {
                 EquipmentItem equipmentItem = new EquipmentItem(typeId, item.item, item.model);

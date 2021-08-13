@@ -41,13 +41,13 @@ public abstract class TypoTableRepository<T extends TypoTable> extends AbstractR
         jdbcOperations.update(qry.getQuery(), qry.getParams());
     }
 
-    public Long insertIfNew(T obj) {
+    public String insertIfNew(T obj) {
 
         UnnamedParametersQuery countQuery = QueryGenerator.generateSelectCountSimilarQuery(obj);
         Long amount = jdbcOperations.queryForObject(countQuery.getQuery(), countQuery.getParams(), Long.class);
 
         if (amount == 0L) {
-            Long id = idService.next();
+            String id = idService.next();
             obj.setId(id);
             obj.setDefaults();
             UnnamedParametersQuery insertQuery = QueryGenerator.generateInsertQuery(obj);
@@ -65,7 +65,7 @@ public abstract class TypoTableRepository<T extends TypoTable> extends AbstractR
         jdbcOperations.update(qry.getQuery(), qry.getParams());
     }
 
-    public void delete(Long id) {
+    public void delete(String id) {
         try {
             T instance = modelClass.getDeclaredConstructor().newInstance();
             instance.setId(id);

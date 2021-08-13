@@ -35,7 +35,7 @@ public class ConsumableTypesService extends TypoTableService<ConsumableType> {
 
     public void addTypeWithProps(ConsumablesTypeDefaultJson data) {
 
-        long typeId = idService.next();
+        String typeId = idService.next();
 
         ConsumableType consumableType = new ConsumableType();
         consumableType.setId(typeId);
@@ -48,9 +48,9 @@ public class ConsumableTypesService extends TypoTableService<ConsumableType> {
         consumableType.getProperties().forEach(consumablePropertiesService::insert);
     }
 
-    public void cascadeDelete(Long id) {
+    public void cascadeDelete(String id) {
 
-        if (id == null) id = 0L;
+        if (id == null || id.equals("")) id = "0";
 
         KList<ConsumableItem> items = consumableItemsService.selectByField(ConsumableItem::setTypeId, id);
         KList<ConsumableProperty> properties = consumablePropertiesService.selectByField(ConsumableProperty::setTypeId, id);

@@ -10,10 +10,10 @@ import kpersistence.mapping.annotations.Table;
 public class ComponentItem extends TypoTable {
 
     @Column(name = "TYPE_ID")
-    private Long typeId;
+    private String typeId;
 
     @Column(name = "EQUIPMENT_TYPE_ID")
-    private Long equipmentTypeId;
+    private String equipmentTypeId;
 
     @Column(name = "ITEM")
     private String item;
@@ -26,25 +26,25 @@ public class ComponentItem extends TypoTable {
     @Override
     public void setDefaults() {}
 
-    public ComponentItem(Long equipmentTypeId, String item, String model) {
+    public ComponentItem(String equipmentTypeId, String item, String model) {
         this.equipmentTypeId = equipmentTypeId;
         this.item = item;
         this.model = model;
     }
 
-    public Long getTypeId() {
+    public String getTypeId() {
         return typeId;
     }
 
-    public void setTypeId(Long typeId) {
+    public void setTypeId(String typeId) {
         this.typeId = typeId;
     }
 
-    public Long getEquipmentTypeId() {
+    public String getEquipmentTypeId() {
         return equipmentTypeId;
     }
 
-    public void setEquipmentTypeId(Long equipmentTypeId) {
+    public void setEquipmentTypeId(String equipmentTypeId) {
         this.equipmentTypeId = equipmentTypeId;
     }
 

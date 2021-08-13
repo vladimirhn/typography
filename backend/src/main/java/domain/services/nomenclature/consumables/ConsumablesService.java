@@ -28,14 +28,14 @@ public class ConsumablesService extends TypoViewService<ConsumablesViewLine> {
 
     public List<JsonConsumableType> createConsumableTypesResponse() {
 
-        Map<Long, KList<ConsumablesViewLine>> groupByTypeId = selectAll().groupBy(ConsumablesViewLine::getTypeId);
+        Map<String, KList<ConsumablesViewLine>> groupByTypeId = selectAll().groupBy(ConsumablesViewLine::getTypeId);
 
         return createFullFilledResult(groupByTypeId);
     }
 
-    public JsonConsumableType createConsumableTypesResponse(Long id) {
+    public JsonConsumableType createConsumableTypesResponse(String id) {
 
-        Map<Long, KList<ConsumablesViewLine>> groupByTypeId =
+        Map<String, KList<ConsumablesViewLine>> groupByTypeId =
                 selectByField(ConsumablesViewLine::setTypeId, id)
                 .groupBy(ConsumablesViewLine::getTypeId);
 
@@ -46,11 +46,11 @@ public class ConsumablesService extends TypoViewService<ConsumablesViewLine> {
 
     public List<JsonConsumableType> selectTypesWithProps() {
 
-        Map<Long, KList<ConsumablesViewLine>> groupByTypeId = selectAll().groupBy(ConsumablesViewLine::getTypeId);
+        Map<String, KList<ConsumablesViewLine>> groupByTypeId = selectAll().groupBy(ConsumablesViewLine::getTypeId);
         return createResultWithProperties(groupByTypeId);
     }
 
-    private KList<JsonConsumableType> createFullFilledResult(Map<Long, KList<ConsumablesViewLine>> groupByTypeId) {
+    private KList<JsonConsumableType> createFullFilledResult(Map<String, KList<ConsumablesViewLine>> groupByTypeId) {
 
         KList<Map.Entry<JsonConsumableType, KList<ConsumablesViewLine>>> entries = groupByTypeIdToEntriesList(groupByTypeId);
 
@@ -61,7 +61,7 @@ public class ConsumablesService extends TypoViewService<ConsumablesViewLine> {
                 .sortAsc(JsonConsumableType::getType);
     }
 
-    private KList<JsonConsumableType> createResultWithProperties(Map<Long, KList<ConsumablesViewLine>> groupByTypeId) {
+    private KList<JsonConsumableType> createResultWithProperties(Map<String, KList<ConsumablesViewLine>> groupByTypeId) {
         KList<Map.Entry<JsonConsumableType, KList<ConsumablesViewLine>>> entries = groupByTypeIdToEntriesList(groupByTypeId);
 
         return entries
@@ -70,7 +70,7 @@ public class ConsumablesService extends TypoViewService<ConsumablesViewLine> {
                 .sortAsc(JsonConsumableType::getType);
     }
 
-    private KList<Map.Entry<JsonConsumableType, KList<ConsumablesViewLine>>> groupByTypeIdToEntriesList(Map<Long, KList<ConsumablesViewLine>> groupByTypeId) {
+    private KList<Map.Entry<JsonConsumableType, KList<ConsumablesViewLine>>> groupByTypeIdToEntriesList(Map<String, KList<ConsumablesViewLine>> groupByTypeId) {
 
         return CollectionFactory.makeList(
 
@@ -80,9 +80,9 @@ public class ConsumablesService extends TypoViewService<ConsumablesViewLine> {
         );
     }
 
-    private Map.Entry<JsonConsumableType, KList<ConsumablesViewLine>> idToJsonObject(Map.Entry<Long, KList<ConsumablesViewLine>> mapEntries) {
+    private Map.Entry<JsonConsumableType, KList<ConsumablesViewLine>> idToJsonObject(Map.Entry<String, KList<ConsumablesViewLine>> mapEntries) {
 
-        Long typeId = mapEntries.getKey();
+        String typeId = mapEntries.getKey();
         KList<ConsumablesViewLine> typeLines = mapEntries.getValue();
 
         JsonConsumableType typeEntry = new JsonConsumableType(typeId, typeLines.getAny().getTypeName());
@@ -92,7 +92,7 @@ public class ConsumablesService extends TypoViewService<ConsumablesViewLine> {
 
     private void setProperties(Map.Entry<JsonConsumableType, KList<ConsumablesViewLine>> mapEntry) {
 
-        Map<Long, KList<ConsumablesViewLine>> groupByPropertyId = mapEntry.getValue().groupByWithNulls(ConsumablesViewLine::getPropertyId);
+        Map<String, KList<ConsumablesViewLine>> groupByPropertyId = mapEntry.getValue().groupByWithNulls(ConsumablesViewLine::getPropertyId);
         groupByPropertyId.forEach((propId, propLines) -> mapEntry.getKey().getProperties().put(propId, propLines.getAny().getPropertyName()));
         MapUtils.sortByValue(mapEntry.getKey().getProperties());
     }
@@ -100,7 +100,7 @@ public class ConsumablesService extends TypoViewService<ConsumablesViewLine> {
     private void setData(Map.Entry<JsonConsumableType, KList<ConsumablesViewLine>> mapEntry) {
 
         KList<JsonConsumableItem> data = CollectionFactory.makeLinkedList();
-        Map<Long, KList<ConsumablesViewLine>> groupByItemId = mapEntry.getValue().groupByWithNulls(ConsumablesViewLine::getItemId);
+        Map<String, KList<ConsumablesViewLine>> groupByItemId = mapEntry.getValue().groupByWithNulls(ConsumablesViewLine::getItemId);
         groupByItemId.forEach((itemId, itemLines) -> {
             JsonConsumableItem itemEntry = new JsonConsumableItem();
             itemEntry.setItemId(itemId);

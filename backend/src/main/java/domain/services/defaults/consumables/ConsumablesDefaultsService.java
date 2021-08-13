@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 public class ConsumablesDefaultsService {
@@ -52,14 +53,14 @@ public class ConsumablesDefaultsService {
 
         types.forEach(type -> {
             ConsumableType consumableType = new ConsumableType(type.type);
-            long typeId = consumableTypesService.insertIfNew(consumableType);
+            String typeId = consumableTypesService.insertIfNew(consumableType);
 
-            Map<Integer, Long> orderToPropId = new HashMap<>();
+            Map<Integer, String> orderToPropId = new HashMap<>();
 
             for (int i = 0; i < type.properties.size(); i++) {
                 String property = type.properties.get(i);
 
-                AtomicLong propertyId = new AtomicLong();
+                AtomicReference<String> propertyId = new AtomicReference<>();
                 ConsumableProperty consumableProperty = new ConsumableProperty(property);
                 consumableProperty.setTypeId(typeId);
 
@@ -77,7 +78,7 @@ public class ConsumablesDefaultsService {
             }
 
             type.data.forEach(item -> {
-                AtomicLong itemId = new AtomicLong();
+                AtomicReference<String> itemId = new AtomicReference<>();
                 ConsumableItem consumableItem = new ConsumableItem(item.item);
                 consumableItem.setTypeId(typeId);
 

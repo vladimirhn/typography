@@ -29,11 +29,11 @@ public class ConsumableItemsService extends TypoTableService<ConsumableItem> imp
 
         List<String> addedItemsIds = new LinkedList<>();
 
-        Long typeId = data.getId();
+        String typeId = data.getId();
 
         data.getData().forEach(entry -> {
 
-            Long newItemId = idService.next();
+            String newItemId = idService.next();
             insert(new ConsumableItem(newItemId, typeId, entry.getItem()));
             addedItemsIds.add(newItemId.toString());
 
@@ -48,7 +48,7 @@ public class ConsumableItemsService extends TypoTableService<ConsumableItem> imp
         return addedItemsIds;
     }
 
-    public void cascadeDelete(Long id) {
+    public void cascadeDelete(String id) {
         consumablePropertiesValuesService.deleteByField(ConsumablePropertyValue::setItemId, id);
         purchasingConsumablesService.deleteByField(PurchasingConsumables::setConsumableId, id);
         delete(id);

@@ -9,12 +9,11 @@ import java.util.Map;
 
 public class JsonConsumableType {
 
-    @JsonSerialize(using = ToStringSerializer.class)
-    Long id;
+    String id;
 
     String type;
 
-    Map<Long, String> properties;
+    Map<String, String> properties;
 
     KList<JsonConsumableItem> data;
 
@@ -23,17 +22,17 @@ public class JsonConsumableType {
         data = new KList<>();
     }
 
-    public JsonConsumableType(Long id, String type) {
+    public JsonConsumableType(String id, String type) {
         this();
         this.id = id;
         this.type = type;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -45,11 +44,11 @@ public class JsonConsumableType {
         this.type = type;
     }
 
-    public Map<Long, String> getProperties() {
+    public Map<String, String> getProperties() {
         return properties;
     }
 
-    public void setProperties(Map<Long, String> properties) {
+    public void setProperties(Map<String, String> properties) {
         this.properties = properties;
     }
 

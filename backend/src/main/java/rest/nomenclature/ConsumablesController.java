@@ -32,7 +32,7 @@ public class ConsumablesController {
     }
 
     @GetMapping("/get_type_cascade/{id}")
-    public JsonConsumableType getAll(@PathVariable(value = "id") Long id) {
+    public JsonConsumableType getAll(@PathVariable(value = "id") String id) {
         return consumablesService.createConsumableTypesResponse(id);
     }
 
@@ -57,12 +57,12 @@ public class ConsumablesController {
     }
 
     @GetMapping("/delete_type/{id}")
-    public void delete_type(@PathVariable(value = "id") Long id) {
+    public void delete_type(@PathVariable(value = "id") String id) {
         consumableTypesService.cascadeDelete(id);
     }
 
     @GetMapping("/delete_item/{id}")
-    public void delete_item(@PathVariable(value = "id") Long id) {
+    public void delete_item(@PathVariable(value = "id") String id) {
         consumableItemsService.cascadeDelete(id);
     }
 }

@@ -47,7 +47,7 @@ public abstract class TypoTableService<T extends TypoTable> {
         getRepository().insert(obj);
     }
 
-    public long insertIfNew(T obj) {
+    public String insertIfNew(T obj) {
         return getRepository().insertIfNew(obj);
     }
 
@@ -57,7 +57,7 @@ public abstract class TypoTableService<T extends TypoTable> {
     }
 
     //DELETE
-    public void delete(Long id) {
+    public void delete(String id) {
         getRepository().delete(id);
     }
 

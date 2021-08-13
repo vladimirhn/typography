@@ -15,10 +15,9 @@ import java.time.LocalDateTime;
 @Table(name = "PURCHASING_CONSUMABLES")
 public class PurchasingConsumables extends TypoTable {
 
-    @JsonSerialize(using = ToStringSerializer.class)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "CONSUMABLE_ID")
-    private Long consumableId;
+    private String consumableId;
 
     @Foreign(table = ConsumableItem.class, foreignId = "consumableId")
     private String consumableName;
@@ -42,11 +41,11 @@ public class PurchasingConsumables extends TypoTable {
             purchasingDate = LocalDateTime.now();
     }
 
-    public Long getConsumableId() {
+    public String getConsumableId() {
         return consumableId;
     }
 
-    public void setConsumableId(Long consumableId) {
+    public void setConsumableId(String consumableId) {
         this.consumableId = consumableId;
     }
 

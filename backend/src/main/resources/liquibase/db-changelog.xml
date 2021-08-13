@@ -14,10 +14,10 @@
     <property name="TIMESTAMP" value="DATETIME2" dbms="mssql"/>
     <property name="TIMESTAMP" value="TIMESTAMP" dbms="oracle"/>
 
-    <property dbms="sqlite"                             name="ID"    value="INTEGER"/>
-    <property dbms="postgresql"                         name="ID"    value="BIGINT"/>
-    <property dbms="oracle"                             name="ID"    value="BIGINT" />
-    <property dbms="db2,derby,mysql,h2,mssql"           name="ID"    value="BIGINT"/>
+    <property dbms="sqlite"                             name="ID"    value="VARCHAR(12)"/>
+    <property dbms="postgresql"                         name="ID"    value="VARCHAR2(12)"/>
+    <property dbms="oracle"                             name="ID"    value="VARCHAR2(12 CHAR)" />
+    <property dbms="db2,derby,mysql,h2,mssql"           name="ID"    value="VARCHAR2(12)"/>
 
     <property dbms="sqlite"                             name="STRING_50"    value="VARCHAR(50)"/>
     <property dbms="postgresql"                         name="STRING_50"    value="VARCHAR2(50)"/>

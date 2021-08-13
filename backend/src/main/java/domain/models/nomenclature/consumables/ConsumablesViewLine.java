@@ -10,34 +10,34 @@ import kpersistence.mapping.annotations.Table;
 public class ConsumablesViewLine extends TypoView {
 
     @Column(name = "TYPE_ID")
-    private Long typeId;
+    private String typeId;
 
     @Column(name = "TYPE_NAME")
     private String typeName;
 
     @Column(name = "ITEM_ID")
-    private Long itemId;
+    private String itemId;
 
     @Column(name = "ITEM_NAME")
     private String itemName;
 
     @Column(name = "PROPERTY_ID")
-    private Long propertyId;
+    private String propertyId;
 
     @Column(name = "PROPERTY_NAME")
     private String propertyName;
 
     @Column(name = "VALUE_ID")
-    private Long valueId;
+    private String valueId;
 
     @Column(name = "VALUE_VALUE")
     private String valueValue;
 
-    public Long getTypeId() {
+    public String getTypeId() {
         return typeId;
     }
 
-    public void setTypeId(Long typeId) {
+    public void setTypeId(String typeId) {
         this.typeId = typeId;
     }
 
@@ -49,11 +49,11 @@ public class ConsumablesViewLine extends TypoView {
         this.typeName = typeName;
     }
 
-    public Long getItemId() {
+    public String getItemId() {
         return itemId;
     }
 
-    public void setItemId(Long itemId) {
+    public void setItemId(String itemId) {
         this.itemId = itemId;
     }
 
@@ -65,11 +65,11 @@ public class ConsumablesViewLine extends TypoView {
         this.itemName = itemName;
     }
 
-    public Long getPropertyId() {
+    public String getPropertyId() {
         return propertyId;
     }
 
-    public void setPropertyId(Long propertyId) {
+    public void setPropertyId(String propertyId) {
         this.propertyId = propertyId;
     }
 
@@ -81,11 +81,11 @@ public class ConsumablesViewLine extends TypoView {
         this.propertyName = propertyName;
     }
 
-    public Long getValueId() {
+    public String getValueId() {
         return valueId;
     }
 
-    public void setValueId(Long valueId) {
+    public void setValueId(String valueId) {
         this.valueId = valueId;
     }
 

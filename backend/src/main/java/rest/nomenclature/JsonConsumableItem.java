@@ -7,18 +7,17 @@ import java.util.Map;
 
 public class JsonConsumableItem {
 
-    @JsonSerialize(using = ToStringSerializer.class)
-    Long itemId;
+    String itemId;
 
     String item;
 
-    Map<Long, Map<Long, String>> values;
+    Map<String, Map<String, String>> values;
 
-    public Long getItemId() {
+    public String getItemId() {
         return itemId;
     }
 
-    public void setItemId(Long itemId) {
+    public void setItemId(String itemId) {
         this.itemId = itemId;
     }
 
@@ -30,11 +29,11 @@ public class JsonConsumableItem {
         this.item = item;
     }
 
-    public Map<Long, Map<Long, String>> getValues() {
+    public Map<String, Map<String, String>> getValues() {
         return values;
     }
 
-    public void setValues(Map<Long, Map<Long, String>> values) {
+    public void setValues(Map<String, Map<String, String>> values) {
         this.values = values;
     }
 }

@@ -23,7 +23,7 @@ public abstract class TableController<T extends TypoTable> {
     }
 
     @GetMapping("/delete/{id}")
-    public void delete(@PathVariable(value = "id") Long id) {
+    public void delete(@PathVariable(value = "id") String id) {
         getService().delete(id);
     }
 }

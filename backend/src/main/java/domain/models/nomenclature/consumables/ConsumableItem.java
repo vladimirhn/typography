@@ -14,7 +14,7 @@ import java.util.List;
 public class ConsumableItem extends TypoTable {
 
     @Column(name = "TYPE_ID")
-    private Long typeId;
+    private String typeId;
 
     @Column(name = "ITEM")
     @Label
@@ -31,22 +31,22 @@ public class ConsumableItem extends TypoTable {
         this.item = item;
     }
 
-    public ConsumableItem(Long typeId, String item) {
+    public ConsumableItem(String typeId, String item) {
         this.typeId = typeId;
         this.item = item;
     }
 
-    public ConsumableItem(Long newItemId, Long typeId, String item) {
+    public ConsumableItem(String newItemId, String typeId, String item) {
         setId(newItemId);
         this.typeId = typeId;
         this.item = item;
     }
 
-    public Long getTypeId() {
+    public String getTypeId() {
         return typeId;
     }
 
-    public void setTypeId(Long typeId) {
+    public void setTypeId(String typeId) {
         this.typeId = typeId;
     }
 

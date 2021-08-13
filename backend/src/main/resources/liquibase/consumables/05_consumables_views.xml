@@ -5,7 +5,7 @@
     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd" logicalFilePath="true">
 
     <changeSet id="all-consumables-view-create-view" author="typography" runOnChange="true">
-        <createView viewName="ALL_CONSUMABLES_VIEW" replaceIfExists="true">
+        <createView viewName="ALL_CONSUMABLES_VIEW">
             SELECT CT.ID         TYPE_ID,
             TYPE                 TYPE_NAME,
             CI.ID                ITEM_ID,

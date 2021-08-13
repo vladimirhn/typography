@@ -1,0 +1,54 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd" logicalFilePath="true">
+
+    <changeSet id="stocks-create-table" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="STOCKS"/>
+            </not>
+        </preConditions>
+        <createTable tableName="STOCKS" remarks="Склады">
+            <column name="ID" type="${ID}" remarks="id">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="stocks-add-name" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="STOCKS" columnName="NAME"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="STOCKS">
+            <column name="NAME" remarks="Наименование склада" type="${STRING_50}"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="stocks-add-address" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="STOCKS" columnName="ADDRESS"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="STOCKS">
+            <column name="ADDRESS" remarks="Адрес склада" type="${STRING_1000}"/>
+        </addColumn>
+    </changeSet>
+
+    <!--DML-->
+    <changeSet id="stocks-add-default-stock" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">select count(*) from STOCKS where ID = '-1'</sqlCheck>
+        </preConditions>
+        <insert tableName="STOCKS">
+            <column name="ID">-1</column>
+            <column name="NAME">По умолчанию</column>
+        </insert>
+    </changeSet>
+
+
+</databaseChangeLog>

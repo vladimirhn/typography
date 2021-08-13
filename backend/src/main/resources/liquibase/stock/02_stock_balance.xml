@@ -1,0 +1,53 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd" logicalFilePath="true">
+
+    <changeSet id="stock-balance-create-table" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="STOCK_BALANCE"/>
+            </not>
+        </preConditions>
+        <createTable tableName="STOCK_BALANCE" remarks="Остатки на складах">
+            <column name="ID" type="${ID}" remarks="id">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="stock-balance-add-stock-d" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="STOCK_BALANCE" columnName="STOCK_ID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="STOCK_BALANCE">
+            <column name="STOCK_ID" remarks="id склада" type="${ID}"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="stock-balance-add-consumable-item-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="STOCK_BALANCE" columnName="CONSUMABLE_ITEM_ID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="STOCK_BALANCE">
+            <column name="CONSUMABLE_ITEM_ID" remarks="id расходника" type="${ID}"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="stock-balance-add-amount" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="STOCK_BALANCE" columnName="AMOUNT"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="STOCK_BALANCE">
+            <column name="AMOUNT" remarks="Количество" type="${DECIMAL_13_4}"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

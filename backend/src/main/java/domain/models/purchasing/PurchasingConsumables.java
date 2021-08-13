@@ -2,8 +2,6 @@ package domain.models.purchasing;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import domain.models.abstracts.TypoTable;
 import domain.models.nomenclature.consumables.ConsumableItem;
 import kpersistence.mapping.annotations.*;

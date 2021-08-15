@@ -1,10 +1,7 @@
 package kpersistence;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import kpersistence.exceptions.AnnotationException;
@@ -14,11 +11,13 @@ import kutils.ClassUtils;
 
 public class QueryGenerator {
 
-    public static String generateSelectOneQuery(long id, Class<?> type) throws AnnotationException {
+    public static UnnamedParametersQuery generateSelectOneQuery(String id, Class<?> type) throws AnnotationException {
         String tableName = extractTableName(type);
         String idColumn = extractIdColumnName(type);
 
-        return "SELECT * FROM " + tableName + " WHERE " + idColumn + " = " + id;
+        String sql = "SELECT * FROM " + tableName + " WHERE " + idColumn + " = ?";
+
+        return new UnnamedParametersQuery(sql, Collections.singletonList(id));
     }
 
     public static <T> String generateSelectAllQuery(Class<T> type) throws AnnotationException {

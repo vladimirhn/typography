@@ -23,7 +23,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Service
@@ -65,10 +64,10 @@ public class ConsumablesDefaultsService {
                 consumableProperty.setTypeId(typeId);
 
                 consumablePropertiesService.selectFirst(consumableProperty)
-                        .ifHasSomething(existedCP -> {
+                        .ifSomething(existedCP -> {
                             propertyId.set(existedCP.getId());
                         })
-                        .ifHasNothing(() -> {
+                        .ifNothing(() -> {
                             propertyId.set(idService.next());
                             consumableProperty.setId(propertyId.get());
                             consumablePropertiesService.insert(consumableProperty);
@@ -83,10 +82,10 @@ public class ConsumablesDefaultsService {
                 consumableItem.setTypeId(typeId);
 
                 consumableItemsService.selectFirst(consumableItem)
-                        .ifHasSomething(existedCI -> {
+                        .ifSomething(existedCI -> {
                             itemId.set(existedCI.getId());
                         })
-                        .ifHasNothing(() -> {
+                        .ifNothing(() -> {
                             itemId.set(idService.next());
                             consumableItem.setTypeId(typeId);
                             consumableItem.setId(itemId.get());
@@ -101,7 +100,7 @@ public class ConsumablesDefaultsService {
                     propertyValue.setPropertyId(orderToPropId.get(i));
 
                     consumablePropertiesValuesService.selectFirst(propertyValue)
-                            .ifHasNothing(() -> consumablePropertiesValuesService.insert(propertyValue));
+                            .ifNothing(() -> consumablePropertiesValuesService.insert(propertyValue));
                 }
             });
         });

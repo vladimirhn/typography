@@ -18,7 +18,7 @@ public abstract class TableController<T extends TypoTable> {
     }
 
     @PostMapping("/add")
-    public void addType(@RequestBody T data) {
+    public void add(@RequestBody T data) {
         getService().insert(data);
     }
 

@@ -13,7 +13,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.stream.Stream;
 
@@ -39,14 +38,10 @@ public abstract class AbstractRepository<T> {
         return res.getFirst();
     }
 
-    public Optional<T> findOne(long id) {
-        String sql = QueryGenerator.generateSelectOneQuery(id, modelClass);
-        List<T> result = jdbcOperations.query(sql, new Object[]{id}, rowMapper);
-        if (result == null || result.size() == 0) {
-            return Optional.empty();
-        } else {
-            return Optional.ofNullable(result.get(0));
-        }
+    public KOptional<T> findOne(String id) {
+        UnnamedParametersQuery selectQuery = QueryGenerator.generateSelectOneQuery(id, modelClass);
+        KList<T> res = CollectionFactory.makeListFrom(jdbcOperations::query, selectQuery.getQuery(), selectQuery.getParams(), rowMapper);
+        return res.getFirst();
     }
 
     public KList<T> selectAll() {

@@ -21,7 +21,7 @@ public abstract class TypoViewService<T extends TypoView> {
     }
 
     //SELECT
-    public Optional<T> findOne(long id) {
+    public KOptional<T> findOne(String id) {
         return getRepository().findOne(id);
     }
 

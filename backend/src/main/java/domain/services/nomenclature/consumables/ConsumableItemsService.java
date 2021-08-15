@@ -34,8 +34,8 @@ public class ConsumableItemsService extends TypoTableService<ConsumableItem> imp
         data.getData().forEach(entry -> {
 
             String newItemId = idService.next();
-            insert(new ConsumableItem(newItemId, typeId, entry.getItem()));
-            addedItemsIds.add(newItemId.toString());
+            insert(new ConsumableItem(newItemId, typeId, entry.getItem(), entry.getPackageCapacity()));
+            addedItemsIds.add(newItemId);
 
             entry.getValues().forEach((propId, newValueMap) -> {
                 String newValue = newValueMap.values().iterator().next();

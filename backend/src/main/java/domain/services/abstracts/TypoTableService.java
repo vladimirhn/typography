@@ -4,11 +4,9 @@ import domain.models.abstracts.TypoTable;
 import domain.repositories.abstracts.TypoTableRepository;
 import kcollections.KList;
 import koptional.KOptional;
-import kpersistence.QueryGenerator;
-import kpersistence.UnnamedParametersQuery;
 
-import java.util.Optional;
 import java.util.function.BiConsumer;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 public abstract class TypoTableService<T extends TypoTable> {
@@ -22,8 +20,13 @@ public abstract class TypoTableService<T extends TypoTable> {
     }
 
     //SELECT
-    public Optional<T> findOne(long id) {
+    public KOptional<T> findOne(String id) {
         return getRepository().findOne(id);
+    }
+
+    public <U> KOptional<U> findFieldValue(String id, Function<T, U> getter) {
+        T entry = findOne(id).get();
+        return entry == null ? KOptional.empty() : KOptional.of(getter.apply(entry));
     }
 
     public KList<T> selectAll() {

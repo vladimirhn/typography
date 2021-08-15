@@ -7,7 +7,7 @@ import domain.services.abstracts.TypoTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("stockService")
+@Service("stocBalancekService")
 public class StockBalanceService extends TypoTableService<StockBalance> {
 
     @Autowired

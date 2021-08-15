@@ -51,13 +51,13 @@ public class EquipmentDefaultsService {
                 EquipmentItem equipmentItem = new EquipmentItem(typeId, item.item, item.model);
 
                 equipmentItemsService.selectFirst(equipmentItem)
-                        .ifHasNothing(()-> equipmentItemsService.insert(equipmentItem));
+                        .ifNothing(()-> equipmentItemsService.insert(equipmentItem));
             });
 
             type.components.forEach(component -> {
                 ComponentItem componentItem = new ComponentItem(typeId, component.item, component.model);
                 componentItemsService.selectFirst(componentItem)
-                        .ifHasNothing(() -> componentItemsService.insert(componentItem));
+                        .ifNothing(() -> componentItemsService.insert(componentItem));
             });
         });
     }

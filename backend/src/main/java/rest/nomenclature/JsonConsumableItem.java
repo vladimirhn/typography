@@ -3,6 +3,7 @@ package rest.nomenclature;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 public class JsonConsumableItem {
@@ -10,6 +11,8 @@ public class JsonConsumableItem {
     String itemId;
 
     String item;
+
+    BigDecimal packageCapacity;
 
     Map<String, Map<String, String>> values;
 
@@ -27,6 +30,14 @@ public class JsonConsumableItem {
 
     public void setItem(String item) {
         this.item = item;
+    }
+
+    public BigDecimal getPackageCapacity() {
+        return packageCapacity;
+    }
+
+    public void setPackageCapacity(BigDecimal packageCapacity) {
+        this.packageCapacity = packageCapacity;
     }
 
     public Map<String, Map<String, String>> getValues() {

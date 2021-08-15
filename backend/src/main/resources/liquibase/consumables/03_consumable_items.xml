@@ -39,4 +39,15 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="consumable-items-add-package-capacity" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="CONSUMABLE_ITEMS" columnName="PACKAGE_CAPACITY"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="CONSUMABLE_ITEMS">
+            <column name="PACKAGE_CAPACITY" remarks="Штук в пачке" type="${INTEGER}"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

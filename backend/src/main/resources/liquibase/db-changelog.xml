@@ -29,6 +29,11 @@
     <property dbms="oracle"                             name="STRING_1000"    value="VARCHAR2(1000 CHAR)" />
     <property dbms="db2,derby,mysql,h2,mssql"           name="STRING_1000"    value="VARCHAR2(1000)"/>
 
+    <property dbms="sqlite"                             name="INTEGER"    value="BIGINT"/>
+    <property dbms="postgresql"                         name="INTEGER"    value="BIGINT"/>
+    <property dbms="oracle"                             name="INTEGER"    value="PLS_INTEGER" />
+    <property dbms="db2,derby,mysql,h2,mssql"           name="INTEGER"    value="BIGINT"/>
+
     <property dbms="sqlite"                             name="DECIMAL_11_2"    value="DECIMAL(11,2)"/>
     <property dbms="postgresql"                         name="DECIMAL_11_2"    value="NUMERIC(11,2)"/>
     <property dbms="oracle"                             name="DECIMAL_11_2"    value="NUMERIC(11,2)" />

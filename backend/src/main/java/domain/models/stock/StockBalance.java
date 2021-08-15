@@ -22,8 +22,15 @@ public class StockBalance extends TypoTable {
 
     public StockBalance() {}
 
+    public StockBalance(String consumableItemId, BigDecimal amount) {
+        this.consumableItemId = consumableItemId;
+        this.amount = amount;
+    }
+
     @Override
-    public void setDefaults() {}
+    public void setDefaults() {
+        stockId = "-1";
+    }
 
     public String getStockId() {
         return stockId;

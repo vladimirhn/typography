@@ -6,6 +6,7 @@ import kpersistence.mapping.annotations.Entity;
 import kpersistence.mapping.annotations.Label;
 import kpersistence.mapping.annotations.Table;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,9 @@ public class ConsumableItem extends TypoTable {
     @Column(name = "ITEM")
     @Label
     private String item;
+
+    @Column(name = "PACKAGE_CAPACITY")
+    private BigDecimal packageCapacity;
 
     private List<ConsumablePropertyValue> propValues = new ArrayList<>();
 
@@ -42,6 +46,11 @@ public class ConsumableItem extends TypoTable {
         this.item = item;
     }
 
+    public ConsumableItem(String newItemId, String typeId, String item, BigDecimal packageCapacity) {
+        this(newItemId, typeId, item);
+        this.packageCapacity = packageCapacity;
+    }
+
     public String getTypeId() {
         return typeId;
     }
@@ -56,6 +65,14 @@ public class ConsumableItem extends TypoTable {
 
     public void setItem(String item) {
         this.item = item;
+    }
+
+    public BigDecimal getPackageCapacity() {
+        return packageCapacity;
+    }
+
+    public void setPackageCapacity(BigDecimal packageCapacity) {
+        this.packageCapacity = packageCapacity;
     }
 
     public List<ConsumablePropertyValue> getPropValues() {

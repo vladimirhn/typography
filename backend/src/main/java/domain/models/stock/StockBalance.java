@@ -1,8 +1,11 @@
 package domain.models.stock;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import domain.models.abstracts.TypoTable;
+import domain.models.nomenclature.consumables.ConsumableItem;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
+import kpersistence.mapping.annotations.Foreign;
 import kpersistence.mapping.annotations.Table;
 
 import java.math.BigDecimal;
@@ -11,11 +14,16 @@ import java.math.BigDecimal;
 @Table(name = "STOCK_BALANCE")
 public class StockBalance extends TypoTable {
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "STOCK_ID")
     String stockId;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "CONSUMABLE_ITEM_ID")
     String consumableItemId;
+
+    @Foreign(table = ConsumableItem.class, foreignId = "consumableItemId")
+    private String consumableItemName;
 
     @Column(name = "AMOUNT")
     BigDecimal amount;
@@ -46,6 +54,14 @@ public class StockBalance extends TypoTable {
 
     public void setConsumableItemId(String consumableItemId) {
         this.consumableItemId = consumableItemId;
+    }
+
+    public String getConsumableItemName() {
+        return consumableItemName;
+    }
+
+    public void setConsumableItemName(String consumableItemName) {
+        this.consumableItemName = consumableItemName;
     }
 
     public BigDecimal getAmount() {

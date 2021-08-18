@@ -12,7 +12,11 @@ public class DictionaryService implements DictionaryDataProvider {
 
     public String russian(String orig) {
         String rus = getEnRusDict().get(orig.toLowerCase());
-        if (rus == null) return orig;
+        if (rus == null) {
+            if (orig.endsWith("Name")) return "наименование";
+            if (orig.endsWith("Date")) return "дата";
+            return orig;
+        }
         return rus;
     }
 
@@ -24,9 +28,9 @@ public class DictionaryService implements DictionaryDataProvider {
     private void createEnRusDict() {
         enRus = new HashMap<>();
 
-        enRus.put("amount", "Количество");
-        enRus.put("consumableItemName", "Наименование");
-        enRus.put("name", "Наименование");
+        enRus.put("amount", "количество");
+        enRus.put("name", "наименование");
+        enRus.put("price", "цена");
 
     }
 }

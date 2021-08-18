@@ -24,6 +24,8 @@ public class DictionaryService implements DictionaryDataProvider {
     private void createEnRusDict() {
         enRus = new HashMap<>();
 
+        enRus.put("amount", "Количество");
+        enRus.put("consumableItemName", "Наименование");
         enRus.put("name", "Наименование");
 
     }

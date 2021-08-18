@@ -1,5 +1,6 @@
 package domain.services;
 
+import domain.services.abstracts.response.DictionaryService;
 import domain.services.application.IdService;
 import domain.services.defaults.consumables.ConsumablesDefaultsService;
 import domain.services.nomenclature.consumables.ConsumableItemsService;
@@ -23,6 +24,9 @@ public interface ServiceUser {
     ConsumablesService consumablesService = getBean(ConsumablesService.class);
     ConsumableItemsService consumableItemsService = getBean(ConsumableItemsService.class);
     ConsumableTypesService consumableTypesService = getBean(ConsumableTypesService.class);
+
+    //D
+    DictionaryService dictionaryService = getBean(DictionaryService.class);
 
     //I
     IdService idService = getBean(IdService.class);

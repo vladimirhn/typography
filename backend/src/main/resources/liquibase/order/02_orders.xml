@@ -1,0 +1,97 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd" logicalFilePath="true">
+
+    <changeSet id="orders-create-table" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="ORDERS"/>
+            </not>
+        </preConditions>
+        <createTable tableName="ORDERS" remarks="Заказы">
+            <column name="ID" type="${ID}" remarks="id">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="orders-add-order-subjects-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ORDERS" columnName="ORDER_SUBJECTS_ID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ORDERS">
+            <column name="ORDER_SUBJECTS_ID" remarks="id предмета заказа" type="${ID}"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="orders-add-amount" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ORDERS" columnName="AMOUNT"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ORDERS">
+            <column name="AMOUNT" remarks="Тираж" type="${INTEGER}"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="orders-add-size-x" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ORDERS" columnName="SIZE_X"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ORDERS">
+            <column name="SIZE_X" remarks="Размер по оси x" type="${DECIMAL_11_2}"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="orders-add-size-y" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ORDERS" columnName="SIZE_Y"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ORDERS">
+            <column name="SIZE_Y" remarks="Размер по оси y" type="${DECIMAL_11_2}"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="orders-add-orders-date" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ORDERS" columnName="ORDERS_DATE"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ORDERS">
+            <column name="ORDERS_DATE" remarks="Дата заказа" type="${TIMESTAMP}"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="orders-add-orders-deadline" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ORDERS" columnName="ORDERS_DEADLINE"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ORDERS">
+            <column name="ORDERS_DEADLINE" remarks="Дата заказа" type="${TIMESTAMP}"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="orders-add-status" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ORDERS" columnName="STATUS"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ORDERS">
+            <column name="STATUS" remarks="Статус" type="${STRING_50}"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

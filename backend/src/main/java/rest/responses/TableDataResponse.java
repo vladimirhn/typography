@@ -20,10 +20,10 @@ public class TableDataResponse<T> implements ServiceUser {
         if (data == null) data = new LinkedList<>();
         this.data = data.stream().filter(Objects::nonNull).collect(Collectors.toList());
 
-        defineProperties();
+        definePropertiesAndTranslations();
     }
 
-    private void defineProperties() {
+    private void definePropertiesAndTranslations() {
         if (!data.isEmpty() && data.stream().anyMatch(Objects::nonNull)) {
             Class<?> type = data.get(0).getClass();
             for (Field field : ClassUtils.getFieldsUpToObject(type)) {

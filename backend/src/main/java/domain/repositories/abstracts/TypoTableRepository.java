@@ -34,11 +34,14 @@ public abstract class TypoTableRepository<T extends TypoTable> extends AbstractR
     @Autowired
     protected NamedParameterJdbcOperations namedParameterJdbcOperations;
 
-    public void insert(T obj) {
-        if (obj.getId() == null) obj.setId(idService.next());
+    public String insert(T obj) {
+        String id = idService.next();
+        if (obj.getId() == null) obj.setId(id);
         obj.setDefaults();
         UnnamedParametersQuery qry = QueryGenerator.generateInsertQuery(obj);
         jdbcOperations.update(qry.getQuery(), qry.getParams());
+
+        return id;
     }
 
     public String insertIfNew(T obj) {

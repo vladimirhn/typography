@@ -24,6 +24,11 @@
     <property dbms="oracle"                             name="STRING_50"    value="VARCHAR2(50 CHAR)" />
     <property dbms="db2,derby,mysql,h2,mssql"           name="STRING_50"    value="VARCHAR2(50)"/>
 
+    <property dbms="sqlite"                             name="STRING_300"    value="VARCHAR(300)"/>
+    <property dbms="postgresql"                         name="STRING_300"    value="VARCHAR2(300)"/>
+    <property dbms="oracle"                             name="STRING_300"    value="VARCHAR2(300 CHAR)" />
+    <property dbms="db2,derby,mysql,h2,mssql"           name="STRING_300"    value="VARCHAR2(300)"/>
+
     <property dbms="sqlite"                             name="STRING_1000"    value="VARCHAR(1000)"/>
     <property dbms="postgresql"                         name="STRING_1000"    value="VARCHAR2(1000)"/>
     <property dbms="oracle"                             name="STRING_1000"    value="VARCHAR2(1000 CHAR)" />
@@ -54,5 +59,6 @@
     <includeAll path="equipment" relativeToChangelogFile="true" errorIfMissingOrEmpty="false"/>
     <includeAll path="purchasing" relativeToChangelogFile="true" errorIfMissingOrEmpty="false"/>
     <includeAll path="stock" relativeToChangelogFile="true" errorIfMissingOrEmpty="false"/>
+    <includeAll path="order" relativeToChangelogFile="true" errorIfMissingOrEmpty="false"/>
 
 </databaseChangeLog>

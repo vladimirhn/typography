@@ -46,8 +46,8 @@ public abstract class TypoTableService<T extends TypoTable> {
     }
 
     //INSERT
-    public void insert(T obj) {
-        getRepository().insert(obj);
+    public String insert(T obj) {
+        return getRepository().insert(obj);
     }
 
     public String insertIfNew(T obj) {

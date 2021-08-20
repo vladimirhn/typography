@@ -8,6 +8,8 @@ import domain.services.nomenclature.consumables.ConsumablePropertiesValuesServic
 import domain.services.nomenclature.consumables.ConsumableTypesService;
 import domain.services.nomenclature.consumables.ConsumablesService;
 import domain.services.nomenclature.equipment.EquipmentTypesService;
+import domain.services.orders.OrderService;
+import domain.services.orders.OrderSubjectService;
 import domain.services.purchasing.PurchasingConsumablesService;
 import domain.services.stock.StockBalanceService;
 import domain.services.stock.StockService;
@@ -33,6 +35,10 @@ public interface ServiceUser {
 
     //E
     EquipmentTypesService equipmentTypesService = getBean(EquipmentTypesService.class);
+
+    //O
+    OrderService orderService = getBean(OrderService.class);
+    OrderSubjectService orderSubjectService = getBean(OrderSubjectService.class);
 
     //P
     PurchasingConsumablesService purchasingConsumablesService = getBean(PurchasingConsumablesService.class);

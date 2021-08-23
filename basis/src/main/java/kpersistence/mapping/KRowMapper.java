@@ -9,6 +9,8 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -71,7 +73,25 @@ public class KRowMapper<T> implements RowMapper<T> {
                     }
 
                     if (fieldType.equals(BigDecimal.class)) {
-                        field.set(obj, new BigDecimal(String.valueOf(data)));
+                        if (data != null) {
+                            field.set(obj, new BigDecimal(String.valueOf(data)));
+                        }
+                    }
+
+                    if (fieldType.equals(Enum.class)) {
+                        if (data != null) {
+                            Enum enumObject = (Enum)field.get(obj);
+                            Class<Enum> enumType = (Class<Enum>)enumObject.getClass();
+
+
+                            System.out.println();
+
+                            Enum x = Enum.valueOf(enumType, data.toString());
+
+                            System.out.println();
+
+                            field.set(obj, x);
+                        }
                     }
 
                     if (fieldType.isAssignableFrom(dataType)) {

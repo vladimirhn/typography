@@ -17,6 +17,7 @@ import java.time.LocalDate;
 public class Order extends TypoTable {
 
     public enum Status {
+        UNDEFINED,
         CREATED,
         IN_PROCESS,
         COMPLETED
@@ -49,7 +50,7 @@ public class Order extends TypoTable {
     LocalDate orderDeadline;
 
     @Column(name = "STATUS")
-    Enum<Status> status;
+    Enum<Status> status = Status.UNDEFINED;
 
     public Order() {}
 

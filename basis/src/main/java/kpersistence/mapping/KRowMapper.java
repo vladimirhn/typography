@@ -80,17 +80,10 @@ public class KRowMapper<T> implements RowMapper<T> {
 
                     if (fieldType.equals(Enum.class)) {
                         if (data != null) {
-                            Enum enumObject = (Enum)field.get(obj);
-                            Class<Enum> enumType = (Class<Enum>)enumObject.getClass();
-
-
-                            System.out.println();
-
-                            Enum x = Enum.valueOf(enumType, data.toString());
-
-                            System.out.println();
-
-                            field.set(obj, x);
+                            Enum<?> enumObject = (Enum<?>)field.get(obj);
+                            Class<? extends Enum> enumType = enumObject.getClass();
+                            Enum<?> value = Enum.valueOf(enumType, data.toString());
+                            field.set(obj, value);
                         }
                     }
 

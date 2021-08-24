@@ -21,6 +21,10 @@ public abstract class TableController<T extends TypoTable> {
     public void add(@RequestBody T data) {
         getService().insert(data);
     }
+    @PostMapping("/update")
+    public void update(@RequestBody T data) {
+        getService().update(data);
+    }
 
     @GetMapping("/delete/{id}")
     public void delete(@PathVariable(value = "id") String id) {

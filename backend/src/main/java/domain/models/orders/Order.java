@@ -23,7 +23,6 @@ public class Order extends TypoTable {
         COMPLETED
     }
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "ORDER_SUBJECTS_ID")
     String orderSubjectsId;
 

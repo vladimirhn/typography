@@ -10,6 +10,7 @@
             TYPE                 TYPE_NAME,
             CI.ID                ITEM_ID,
             ITEM                 ITEM_NAME,
+            CI.PACKAGE_CAPACITY  PACKAGE_CAPACITY,
             CP.ID                PROPERTY_ID,
             PROPERTY_NAME        PROPERTY_NAME,
             CPV.ID               VALUE_ID,

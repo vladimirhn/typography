@@ -9,6 +9,7 @@ import domain.services.ServiceUser;
 import domain.services.abstracts.TypoTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import rest.nomenclature.JsonConsumableItem;
 import rest.nomenclature.JsonConsumableType;
 
 import java.util.LinkedList;

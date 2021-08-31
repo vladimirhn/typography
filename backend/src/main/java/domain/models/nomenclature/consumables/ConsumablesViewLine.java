@@ -5,6 +5,8 @@ import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
 import kpersistence.mapping.annotations.Table;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "ALL_CONSUMABLES_VIEW")
 public class ConsumablesViewLine extends TypoView {
@@ -20,6 +22,9 @@ public class ConsumablesViewLine extends TypoView {
 
     @Column(name = "ITEM_NAME")
     private String itemName;
+
+    @Column(name = "PACKAGE_CAPACITY")
+    private BigDecimal packageCapacity;
 
     @Column(name = "PROPERTY_ID")
     private String propertyId;
@@ -63,6 +68,14 @@ public class ConsumablesViewLine extends TypoView {
 
     public void setItemName(String itemName) {
         this.itemName = itemName;
+    }
+
+    public BigDecimal getPackageCapacity() {
+        return packageCapacity;
+    }
+
+    public void setPackageCapacity(BigDecimal packageCapacity) {
+        this.packageCapacity = packageCapacity;
     }
 
     public String getPropertyId() {

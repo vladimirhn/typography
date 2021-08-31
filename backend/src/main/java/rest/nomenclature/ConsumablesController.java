@@ -1,12 +1,9 @@
 package rest.nomenclature;
 
+import domain.models.nomenclature.consumables.ConsumableItem;
+import domain.models.nomenclature.consumables.ConsumablePropertyValue;
 import domain.services.ServiceUser;
-import domain.services.defaults.consumables.ConsumablesDefaultsService;
 import domain.services.defaults.consumables.ConsumablesTypeDefaultJson;
-import domain.services.nomenclature.consumables.ConsumableItemsService;
-import domain.services.nomenclature.consumables.ConsumableTypesService;
-import domain.services.nomenclature.consumables.ConsumablesService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -54,5 +51,20 @@ public class ConsumablesController implements ServiceUser {
     @GetMapping("/delete_item/{id}")
     public void delete_item(@PathVariable(value = "id") String id) {
         consumableItemsService.cascadeDelete(id);
+    }
+
+    @PostMapping("/update_item")
+    public void updateItem(@RequestBody JsonConsumableItem data) {
+
+        consumableItemsService.update(new ConsumableItem(data.getItemId(), null, data.getItem(), data.getPackageCapacity()));
+
+        data.getValues().entrySet().forEach(entry -> {
+            entry.getValue().entrySet().forEach(subEntry -> {
+                consumablePropertiesValuesService.update(new ConsumablePropertyValue(
+                        subEntry.getKey(), null, null, subEntry.getValue()
+                ));
+            });
+        });
+
     }
 }

@@ -3,10 +3,7 @@ package domain.models.orders;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import domain.models.abstracts.TypoTable;
-import kpersistence.mapping.annotations.Column;
-import kpersistence.mapping.annotations.Entity;
-import kpersistence.mapping.annotations.Foreign;
-import kpersistence.mapping.annotations.Table;
+import kpersistence.mapping.annotations.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
@@ -40,6 +37,7 @@ public class Order extends TypoTable {
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @OrderBy(direction = Direction.DESC)
     @Column(name = "ORDERS_DATE")
     LocalDate orderDate;
 

@@ -105,6 +105,7 @@ public class ConsumablesService extends TypoViewService<ConsumablesViewLine> {
             JsonConsumableItem itemEntry = new JsonConsumableItem();
             itemEntry.setItemId(itemId);
             itemEntry.setItem(itemLines.getAny().getItemName());
+            itemEntry.setPackageCapacity(itemLines.getAny().getPackageCapacity());
             itemEntry.setValues(new TreeMap<>());
 
             itemLines.forEach(itemLine -> {

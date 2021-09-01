@@ -87,6 +87,17 @@ public class KRowMapper<T> implements RowMapper<T> {
                         }
                     }
 
+                    //Sqlite boolean processing
+                    if (fieldType.equals(Boolean.class)) {
+                        if ("1".equals(String.valueOf(data))) {
+                            field.set(obj, true);
+                        }
+                        if ("0".equals(String.valueOf(data))) {
+                            field.set(obj, false);
+                        }
+                    }
+
+                    //default
                     if (fieldType.isAssignableFrom(dataType)) {
                         field.set(obj, data);
                     }

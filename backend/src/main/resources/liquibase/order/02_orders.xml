@@ -94,4 +94,15 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="orders-add-confirmed" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ORDERS" columnName="CONFIRMED"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ORDERS">
+            <column name="CONFIRMED" remarks="Флаг согласования" type="BOOLEAN"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

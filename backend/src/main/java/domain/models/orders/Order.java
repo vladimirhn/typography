@@ -1,7 +1,6 @@
 package domain.models.orders;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import domain.models.abstracts.TypoTable;
 import kpersistence.mapping.annotations.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -13,12 +12,6 @@ import java.time.LocalDate;
 @Table(name = "ORDERS")
 public class Order extends TypoTable {
 
-    public enum Status {
-        UNDEFINED,
-        CREATED,
-        IN_PROCESS,
-        COMPLETED
-    }
 
     @Column(name = "ORDER_SUBJECTS_ID")
     String orderSubjectsId;
@@ -47,7 +40,10 @@ public class Order extends TypoTable {
     LocalDate orderDeadline;
 
     @Column(name = "STATUS")
-    Enum<Status> status = Status.UNDEFINED;
+    String status = "UNDEFINED";
+
+    @Column(name = "CONFIRMED")
+    Boolean confirmed;
 
     public Order() {}
 
@@ -110,11 +106,19 @@ public class Order extends TypoTable {
         this.orderDeadline = orderDeadline;
     }
 
-    public Enum<Status> getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Enum<Status> status) {
+    public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Boolean getConfirmed() {
+        return confirmed;
+    }
+
+    public void setConfirmed(Boolean confirmed) {
+        this.confirmed = confirmed;
     }
 }

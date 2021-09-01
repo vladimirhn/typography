@@ -31,7 +31,7 @@ public class OrdersController extends TableController<Order> implements ServiceU
                 .ifNothing(() -> data.setOrderSubjectsId(orderSubjectService.insert(new OrderSubject(orderSubjectName))))
                 .ifSomething(orderSubject -> data.setOrderSubjectsId(orderSubject.getId()));
 
-        data.setStatus(Order.Status.CREATED);
+        data.setStatus("CREATED");
 
         orderService.insert(data);
     }

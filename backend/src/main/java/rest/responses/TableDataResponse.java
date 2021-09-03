@@ -2,6 +2,7 @@ package rest.responses;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import domain.services.ServiceUser;
+import kpersistence.mapping.annotations.Column;
 import kutils.ClassUtils;
 
 import java.lang.reflect.Field;
@@ -33,7 +34,18 @@ public class TableDataResponse<T> implements ServiceUser {
 
                 if (!isWriteOnly) {
                     properties.add(field.getName());
-                    String translation = dictionaryService.russian(field.getName());
+
+                    String translation = null;
+
+                    if (field.isAnnotationPresent(Column.class)) {
+                        Column columnData = field.getAnnotation(Column.class);
+                        translation = columnData.rus();
+                        if (translation.equals("")) {
+                            translation = dictionaryService.russian(field.getName());
+                        }
+                    } else {
+                        translation = dictionaryService.russian(field.getName());
+                    }
                     trans.add(translation == null ? field.getName() : translation);
                 }
             }

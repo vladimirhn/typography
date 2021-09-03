@@ -1,18 +1,22 @@
 package domain.models.orders;
 
 import domain.models.abstracts.TypoTable;
-import kpersistence.mapping.annotations.Column;
-import kpersistence.mapping.annotations.Entity;
-import kpersistence.mapping.annotations.Label;
-import kpersistence.mapping.annotations.Table;
+import kpersistence.mapping.annotations.*;
 
 @Entity
 @Table(name = "ORDER_SUBJECTS")
 public class OrderSubject extends TypoTable {
 
-    @Column(name = "NAME")
+    @Column(name = "NAME", rus = "продукция")
     @Label
+    @OrderBy(direction = Direction.ASC)
     String name;
+
+    @Column(name = "ORDER_SUBJECT_TYPE_ID")
+    String orderSubjectTypeId;
+
+    @Foreign(table = OrderSubjectType.class, foreignId = "orderSubjectTypeId")
+    String orderSubjectTypeName;
 
     public OrderSubject() {}
 
@@ -29,5 +33,21 @@ public class OrderSubject extends TypoTable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getOrderSubjectTypeId() {
+        return orderSubjectTypeId;
+    }
+
+    public void setOrderSubjectTypeId(String orderSubjectTypeId) {
+        this.orderSubjectTypeId = orderSubjectTypeId;
+    }
+
+    public String getOrderSubjectTypeName() {
+        return orderSubjectTypeName;
+    }
+
+    public void setOrderSubjectTypeName(String orderSubjectTypeName) {
+        this.orderSubjectTypeName = orderSubjectTypeName;
     }
 }

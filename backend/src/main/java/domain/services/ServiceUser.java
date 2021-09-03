@@ -10,6 +10,7 @@ import domain.services.nomenclature.consumables.ConsumablesService;
 import domain.services.nomenclature.equipment.EquipmentTypesService;
 import domain.services.orders.OrderService;
 import domain.services.orders.OrderSubjectService;
+import domain.services.orders.OrderSubjectTypeService;
 import domain.services.purchasing.PurchasingConsumablesService;
 import domain.services.stock.StockBalanceService;
 import domain.services.stock.StockService;
@@ -39,6 +40,7 @@ public interface ServiceUser {
     //O
     OrderService orderService = getBean(OrderService.class);
     OrderSubjectService orderSubjectService = getBean(OrderSubjectService.class);
+    OrderSubjectTypeService orderSubjectTypeService = getBean(OrderSubjectTypeService.class);
 
     //P
     PurchasingConsumablesService purchasingConsumablesService = getBean(PurchasingConsumablesService.class);

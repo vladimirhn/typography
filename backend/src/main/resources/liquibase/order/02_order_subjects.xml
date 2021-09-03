@@ -1,0 +1,42 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd" logicalFilePath="true">
+
+    <changeSet id="order-subjects-create-table" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="ORDER_SUBJECTS"/>
+            </not>
+        </preConditions>
+        <createTable tableName="ORDER_SUBJECTS" remarks="Предмет заказа">
+            <column name="ID" type="${ID}" remarks="id">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="order-subjects-add-type" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ORDER_SUBJECTS" columnName="TYPE"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ORDER_SUBJECTS">
+            <column name="ORDER_SUBJECT_TYPE_ID" remarks="Вид продукта/услуги" type="${ID}"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="order-subjects-add-name" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ORDER_SUBJECTS" columnName="NAME"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ORDER_SUBJECTS">
+            <column name="NAME" remarks="Наименование" type="${STRING_300}"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

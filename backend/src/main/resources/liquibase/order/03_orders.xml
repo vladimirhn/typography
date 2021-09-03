@@ -105,4 +105,15 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="orders-add-supplied" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ORDERS" columnName="SUPPLIED"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ORDERS">
+            <column name="SUPPLIED" remarks="Флаг отгрузки" type="BOOLEAN"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

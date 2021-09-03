@@ -40,10 +40,13 @@ public class Order extends TypoTable {
     LocalDate orderDeadline;
 
     @Column(name = "STATUS")
-    String status = "UNDEFINED";
+    String status;
 
-    @Column(name = "CONFIRMED")
+    @Column(name = "CONFIRMED", rus = "согласовано")
     Boolean confirmed;
+
+    @Column(name = "SUPPLIED", rus = "отгружено")
+    Boolean supplied;
 
     public Order() {}
 
@@ -120,5 +123,13 @@ public class Order extends TypoTable {
 
     public void setConfirmed(Boolean confirmed) {
         this.confirmed = confirmed;
+    }
+
+    public Boolean getSupplied() {
+        return supplied;
+    }
+
+    public void setSupplied(Boolean supplied) {
+        this.supplied = supplied;
     }
 }

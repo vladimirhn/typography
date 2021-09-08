@@ -50,40 +50,4 @@
         </addColumn>
     </changeSet>
 
-
-
-    <!-- ////////// DML ////////// -->
-
-    <changeSet id="consumable-properties-values-insert-paper-format-a4" author="typography" runOnChange="true">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                select count(*)
-                from CONSUMABLE_PROPERTIES_VALUES
-                where ITEM_ID = 1 and PROPERTY_ID = 1 and PROPERTY_VALUE = 'А4'
-            </sqlCheck>
-        </preConditions>
-        <insert tableName="CONSUMABLE_PROPERTIES_VALUES">
-            <column name="ID" valueNumeric="1"/>
-            <column name="ITEM_ID" valueNumeric="1"/>
-            <column name="PROPERTY_ID" valueNumeric="1"/>
-            <column name="PROPERTY_VALUE">А4</column>
-        </insert>
-    </changeSet>
-
-    <changeSet id="consumable-properties-values-insert-paper-density-80" author="typography" runOnChange="true">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                select count(*)
-                from CONSUMABLE_PROPERTIES_VALUES
-                where ITEM_ID = 1 and PROPERTY_ID = 2 and PROPERTY_VALUE = '80'
-            </sqlCheck>
-        </preConditions>
-        <insert tableName="CONSUMABLE_PROPERTIES_VALUES">
-            <column name="ID" valueNumeric="2"/>
-            <column name="ITEM_ID" valueNumeric="1"/>
-            <column name="PROPERTY_ID" valueNumeric="2"/>
-            <column name="PROPERTY_VALUE">80</column>
-        </insert>
-    </changeSet>
-
 </databaseChangeLog>

@@ -9,7 +9,7 @@ import rest.abstracts.TableController;
 
 @RestController
 @RequestMapping("/order_subject_types")
-public class OrderSubjectsTypesController extends TableController<OrderSubjectType> implements ServiceUser {
+public class OrderSubjectTypesController extends TableController<OrderSubjectType> implements ServiceUser {
 
     @Override
     protected TypoTableService<OrderSubjectType> getService() {

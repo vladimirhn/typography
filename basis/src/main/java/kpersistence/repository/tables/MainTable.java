@@ -1,4 +1,4 @@
-package domain.models.abstracts;
+package kpersistence.repository.tables;
 
 import java.util.ArrayList;
 import java.util.List;

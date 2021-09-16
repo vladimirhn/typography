@@ -1,4 +1,4 @@
-package domain.models.abstracts;
+package kpersistence.repository.tables;
 
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Id;

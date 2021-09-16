@@ -1,23 +1,15 @@
-package domain.repositories.abstracts;
+package kpersistence.repository;
 
-import domain.models.abstracts.TypoTable;
-import domain.services.application.IdService;
-import kcollections.CollectionFactory;
-import kcollections.KList;
-import koptional.KOptional;
+import kpersistence.RandomId;
 import kpersistence.QueryGenerator;
 import kpersistence.UnnamedParametersQuery;
-import kpersistence.mapping.KRowMapper;
+import kpersistence.repository.tables.TypoTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcOperations;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.List;
-import java.util.Optional;
 import java.util.function.BiConsumer;
-import java.util.stream.Stream;
 
 public abstract class TypoTableRepository<T extends TypoTable> extends AbstractRepository<T> {
 
@@ -26,7 +18,7 @@ public abstract class TypoTableRepository<T extends TypoTable> extends AbstractR
     }
 
     @Autowired
-    protected IdService idService;
+    protected RandomId randomId;
 
     @Autowired
     protected JdbcOperations jdbcOperations;
@@ -35,7 +27,7 @@ public abstract class TypoTableRepository<T extends TypoTable> extends AbstractR
     protected NamedParameterJdbcOperations namedParameterJdbcOperations;
 
     public String insert(T obj) {
-        String id = idService.next();
+        String id = randomId.next();
         if (obj.getId() == null) obj.setId(id);
         obj.setDefaults();
         UnnamedParametersQuery qry = QueryGenerator.generateInsertQuery(obj);
@@ -50,7 +42,7 @@ public abstract class TypoTableRepository<T extends TypoTable> extends AbstractR
         Long amount = jdbcOperations.queryForObject(countQuery.getQuery(), countQuery.getParams(), Long.class);
 
         if (amount == 0L) {
-            String id = idService.next();
+            String id = randomId.next();
             obj.setId(id);
             obj.setDefaults();
             UnnamedParametersQuery insertQuery = QueryGenerator.generateInsertQuery(obj);

@@ -524,4 +524,34 @@ public class KList<T> extends StandartListWrapper<T> {
             return getCurrentKList().get(0);
         }
     }
+
+    //Нарезка списка
+    public KList<KList<T>> split(int subListSize) {
+
+        KList<KList<T>> result = new KList<>();
+
+        if (subListSize >= this.size()) {
+            result.add(this);
+            return result;
+        }
+
+        int fullSubListAmount = this.size() / subListSize;
+        int lastSubListAmount = this.size() % subListSize;
+
+        for (int i = 0; i < fullSubListAmount; i++) {
+            KList<T> subList = new KList<>(this.subList(i * subListSize, (i * subListSize + subListSize)));
+            result.add(subList);
+        }
+
+        if (lastSubListAmount != 0) {
+            result.add(new KList<>(this.subList(this.size() - lastSubListAmount, this.size())));
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        KList<Integer> test = CollectionFactory.makeArrayList(1,2,3,4,5,6,7,8,10,11);
+        System.out.println(test.split(4));
+    }
 }

@@ -4,9 +4,9 @@ import domain.models.nomenclature.consumables.ConsumableItem;
 import domain.models.nomenclature.consumables.ConsumableProperty;
 import domain.models.nomenclature.consumables.ConsumablePropertyValue;
 import domain.models.nomenclature.consumables.ConsumableType;
-import repository.TypoTableRepository;
+import repository.AbstractTableRepository;
 import domain.repositories.nomenclature.consumables.ConsumableTypesRepository;
-import domain.services.abstracts.TypoTableService;
+import service.TypoTableService;
 import kpersistence.RandomId;
 import domain.services.defaults.consumables.ConsumablesTypeDefaultJson;
 import kcollections.CollectionFactory;
@@ -20,7 +20,7 @@ public class ConsumableTypesService extends TypoTableService<ConsumableType> {
     @Autowired
     ConsumableTypesRepository repository;
     @Override
-    protected TypoTableRepository<ConsumableType> getRepository() {
+    protected AbstractTableRepository<ConsumableType> getRepository() {
         return repository;
     }
 

@@ -1,9 +1,9 @@
 package domain.services.nomenclature.consumables;
 
 import domain.models.nomenclature.consumables.ConsumablesView;
-import repository.TypoViewRepository;
+import repository.AbstractViewRepository;
 import domain.repositories.nomenclature.consumables.AllConsumablesViewRepository;
-import domain.services.abstracts.TypoViewService;
+import service.TypoViewService;
 import kcollections.CollectionFactory;
 import kcollections.KList;
 import kutils.MapUtils;
@@ -22,7 +22,7 @@ public class ConsumablesService extends TypoViewService<ConsumablesView> {
     AllConsumablesViewRepository repository;
 
     @Override
-    protected TypoViewRepository<ConsumablesView> getRepository() {
+    protected AbstractViewRepository<ConsumablesView> getRepository() {
         return repository;
     }
 

@@ -2,7 +2,7 @@ package rest.orders;
 
 import domain.models.orders.OrderSubjectTypesConsumables;
 import domain.services.ServiceUser;
-import domain.services.abstracts.TypoTableService;
+import service.TypoTableService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import rest.abstracts.TableController;

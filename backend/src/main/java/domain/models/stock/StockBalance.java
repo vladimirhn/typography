@@ -1,7 +1,7 @@
 package domain.models.stock;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import repository.tables.TypoTable;
+import repository.tables.StringIdTable;
 import domain.models.nomenclature.consumables.ConsumableItem;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "STOCK_BALANCE")
-public class StockBalance extends TypoTable {
+public class StockBalance extends StringIdTable {
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "STOCK_ID")

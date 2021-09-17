@@ -3,12 +3,12 @@ package domain.models.orders;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
 import kpersistence.mapping.annotations.Table;
-import repository.tables.TypoView;
+import repository.tables.AbstractView;
 import rest.nomenclature.JsonConsumableItem;
 
 @Entity
 @Table(name = "ORDER_SUBJECT_TYPE_WITH_CONSUMABLE_ITEMS_VIEW")
-public class OrderSubjectTypeWithConsumableItemsView extends TypoView {
+public class OrderSubjectTypeWithConsumableItemsView extends AbstractView {
 
     @Column(name = "ORDER_SUBJECT_TYPES_ID")
     private String orderSubjectTypeId;

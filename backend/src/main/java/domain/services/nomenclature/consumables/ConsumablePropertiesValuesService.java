@@ -1,9 +1,9 @@
 package domain.services.nomenclature.consumables;
 
 import domain.models.nomenclature.consumables.ConsumablePropertyValue;
-import repository.TypoTableRepository;
+import repository.AbstractTableRepository;
 import domain.repositories.nomenclature.consumables.ConsumablePropertiesValuesRepository;
-import domain.services.abstracts.TypoTableService;
+import service.TypoTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ public class ConsumablePropertiesValuesService extends TypoTableService<Consumab
     ConsumablePropertiesValuesRepository repository;
 
     @Override
-    protected TypoTableRepository<ConsumablePropertyValue> getRepository() {
+    protected AbstractTableRepository<ConsumablePropertyValue> getRepository() {
         return repository;
     }
 }

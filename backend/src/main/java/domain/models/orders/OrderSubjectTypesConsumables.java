@@ -1,13 +1,13 @@
 package domain.models.orders;
 
-import repository.tables.TypoTable;
+import repository.tables.StringIdTable;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
 import kpersistence.mapping.annotations.Table;
 
 @Entity
 @Table(name = "ORDER_SUBJECT_TYPES_CONSUMABLES")
-public class OrderSubjectTypesConsumables extends TypoTable {
+public class OrderSubjectTypesConsumables extends StringIdTable {
 
     @Column(name = "ORDER_SUBJECT_TYPE_ID")
     String orderSubjectTypeId;

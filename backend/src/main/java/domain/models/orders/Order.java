@@ -1,7 +1,7 @@
 package domain.models.orders;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import repository.tables.TypoTable;
+import repository.tables.StringIdTable;
 import kpersistence.mapping.annotations.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "ORDERS")
-public class Order extends TypoTable {
+public class Order extends StringIdTable {
 
 
     @Column(name = "ORDER_SUBJECTS_ID")

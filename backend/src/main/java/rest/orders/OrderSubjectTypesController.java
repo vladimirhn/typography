@@ -2,7 +2,7 @@ package rest.orders;
 
 import domain.models.orders.OrderSubjectType;
 import domain.services.ServiceUser;
-import domain.services.abstracts.TypoTableService;
+import service.TypoTableService;
 import org.springframework.web.bind.annotation.*;
 import rest.abstracts.TableController;
 import rest.responses.TableDataResponse;

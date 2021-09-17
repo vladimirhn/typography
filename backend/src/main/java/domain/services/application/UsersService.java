@@ -1,9 +1,9 @@
 package domain.services.application;
 
 import domain.models.application.User;
-import repository.TypoTableRepository;
+import repository.AbstractTableRepository;
 import domain.repositories.application.UsersRepository;
-import domain.services.abstracts.TypoTableService;
+import service.TypoTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ public class UsersService extends TypoTableService<User> {
     UsersRepository repository;
 
     @Override
-    protected TypoTableRepository<User> getRepository() {
+    protected AbstractTableRepository<User> getRepository() {
         return repository;
     }
 }

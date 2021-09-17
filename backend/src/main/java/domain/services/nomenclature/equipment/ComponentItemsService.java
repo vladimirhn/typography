@@ -1,9 +1,9 @@
 package domain.services.nomenclature.equipment;
 
 import domain.models.nomenclature.equipment.ComponentItem;
-import repository.TypoTableRepository;
+import repository.AbstractTableRepository;
 import domain.repositories.nomenclature.equipment.ComponentItemsRepository;
-import domain.services.abstracts.TypoTableService;
+import service.TypoTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ public class ComponentItemsService extends TypoTableService<ComponentItem> {
     ComponentItemsRepository repository;
 
     @Override
-    protected TypoTableRepository<ComponentItem> getRepository() {
+    protected AbstractTableRepository<ComponentItem> getRepository() {
         return repository;
     }
 }

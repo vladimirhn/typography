@@ -1,13 +1,13 @@
 package domain.models.stock;
 
-import repository.tables.TypoTable;
+import repository.tables.StringIdTable;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
 import kpersistence.mapping.annotations.Table;
 
 @Entity
 @Table(name = "STOCKS")
-public class Stock extends TypoTable {
+public class Stock extends StringIdTable {
 
     @Column(name = "NAME")
     String name;

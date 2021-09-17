@@ -3,7 +3,7 @@ package rest.orders;
 import domain.models.orders.Order;
 import domain.models.orders.OrderSubject;
 import domain.services.ServiceUser;
-import domain.services.abstracts.TypoTableService;
+import service.TypoTableService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,13 +1,13 @@
 package domain.models.application;
 
-import repository.tables.TypoTable;
+import repository.tables.StringIdTable;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
 import kpersistence.mapping.annotations.Table;
 
 @Entity
 @Table(name = "USERS")
-public class User extends TypoTable {
+public class User extends StringIdTable {
 
     @Column(name = "NAME")
     private String name;

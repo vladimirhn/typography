@@ -41,10 +41,10 @@ public class TableDataResponse<T> implements ServiceUser {
                         Column columnData = field.getAnnotation(Column.class);
                         translation = columnData.rus();
                         if (translation.equals("")) {
-                            translation = dictionaryService.russian(field.getName());
+                            translation = typoDictionaryService.russian(field.getName());
                         }
                     } else {
-                        translation = dictionaryService.russian(field.getName());
+                        translation = typoDictionaryService.russian(field.getName());
                     }
                     trans.add(translation == null ? field.getName() : translation);
                 }

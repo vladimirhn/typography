@@ -1,8 +1,8 @@
 package rest.application;
 
 import domain.models.nomenclature.consumables.ConsumableItem;
-import domain.services.abstracts.response.KResponseComposer;
-import domain.services.abstracts.response.SimpleTableResponse;
+import rest.KResponseComposer;
+import rest.SimpleTableResponse;
 import domain.services.nomenclature.consumables.ConsumableItemsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

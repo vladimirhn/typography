@@ -1,7 +1,6 @@
 package domain.services;
 
-import domain.services.abstracts.response.DictionaryService;
-import kpersistence.RandomId;
+import domain.services.abstracts.response.TypoDictionaryService;
 import domain.services.defaults.consumables.ConsumablesDefaultsService;
 import domain.services.nomenclature.consumables.ConsumableItemsService;
 import domain.services.nomenclature.consumables.ConsumablePropertiesValuesService;
@@ -30,7 +29,7 @@ public interface ServiceUser {
     ConsumableTypesService consumableTypesService = getBean(ConsumableTypesService.class);
 
     //D
-    DictionaryService dictionaryService = getBean(DictionaryService.class);
+    TypoDictionaryService typoDictionaryService = getBean(TypoDictionaryService.class);
 
     //I
 

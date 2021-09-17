@@ -2,11 +2,9 @@ package rest.stock;
 
 import domain.models.stock.StockBalance;
 import domain.services.ServiceUser;
-import domain.services.abstracts.TypoTableService;
-import kcollections.KList;
+import service.TypoTableService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import rest.abstracts.TableController;
 import rest.responses.TableDataResponse;

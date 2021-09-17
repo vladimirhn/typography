@@ -1,14 +1,14 @@
 package domain.repositories.purchasing;
 
 import domain.models.purchasing.PurchasingConsumables;
-import repository.TypoTableRepository;
+import repository.AbstractTableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class PurchasingConsumablesRepository extends TypoTableRepository<PurchasingConsumables> {
+public class PurchasingConsumablesRepository extends AbstractTableRepository<PurchasingConsumables> {
 
     public PurchasingConsumablesRepository() {
         super(PurchasingConsumables.class);

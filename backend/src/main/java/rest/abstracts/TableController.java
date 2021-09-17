@@ -1,14 +1,14 @@
 package rest.abstracts;
 
-import repository.tables.TypoTable;
-import domain.services.abstracts.TypoTableService;
+import repository.tables.StringIdTable;
+import service.TypoTableService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import rest.responses.TableDataResponse;
 
-public abstract class TableController<T extends TypoTable> {
+public abstract class TableController<T extends StringIdTable> {
 
     protected abstract TypoTableService<T> getService();
 

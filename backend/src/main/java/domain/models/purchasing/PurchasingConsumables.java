@@ -2,7 +2,7 @@ package domain.models.purchasing;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import repository.tables.TypoTable;
+import repository.tables.StringIdTable;
 import domain.models.nomenclature.consumables.ConsumableItem;
 import kpersistence.mapping.annotations.*;
 
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "PURCHASING_CONSUMABLES")
-public class PurchasingConsumables extends TypoTable {
+public class PurchasingConsumables extends StringIdTable {
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "CONSUMABLE_ID")

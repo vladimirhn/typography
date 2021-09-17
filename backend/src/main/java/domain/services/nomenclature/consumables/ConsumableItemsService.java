@@ -4,10 +4,10 @@ import domain.models.nomenclature.consumables.ConsumableItem;
 import domain.models.nomenclature.consumables.ConsumablePropertyValue;
 import domain.models.purchasing.PurchasingConsumables;
 import kpersistence.RandomId;
-import repository.TypoTableRepository;
+import repository.AbstractTableRepository;
 import domain.repositories.nomenclature.consumables.ConsumableItemsRepository;
 import domain.services.ServiceUser;
-import domain.services.abstracts.TypoTableService;
+import service.TypoTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rest.nomenclature.JsonConsumableType;
@@ -22,7 +22,7 @@ public class ConsumableItemsService extends TypoTableService<ConsumableItem> imp
     ConsumableItemsRepository repository;
 
     @Override
-    protected TypoTableRepository<ConsumableItem> getRepository() {
+    protected AbstractTableRepository<ConsumableItem> getRepository() {
         return repository;
     }
 

@@ -2,8 +2,8 @@ package domain.services.orders;
 
 import domain.models.orders.OrderSubjectTypeWithConsumableItemsView;
 import domain.repositories.orders.OrderSubjectTypeWithConsumableItemsViewRepository;
-import domain.services.abstracts.TypoViewService;
-import repository.TypoViewRepository;
+import service.TypoViewService;
+import repository.AbstractViewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ public class OrderSubjectTypeWithConsumableItemsViewService extends TypoViewServ
     OrderSubjectTypeWithConsumableItemsViewRepository repository;
 
     @Override
-    protected TypoViewRepository<OrderSubjectTypeWithConsumableItemsView> getRepository() {
+    protected AbstractViewRepository<OrderSubjectTypeWithConsumableItemsView> getRepository() {
         return repository;
     }
 }

@@ -1,6 +1,6 @@
 package domain.models.nomenclature.consumables;
 
-import repository.tables.TypoTable;
+import repository.tables.StringIdTable;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
 import kpersistence.mapping.annotations.Label;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "CONSUMABLE_ITEMS")
-public class ConsumableItem extends TypoTable {
+public class ConsumableItem extends StringIdTable {
 
     @Column(name = "TYPE_ID")
     private String typeId;

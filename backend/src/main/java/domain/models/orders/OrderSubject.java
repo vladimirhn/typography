@@ -1,11 +1,11 @@
 package domain.models.orders;
 
-import repository.tables.TypoTable;
+import repository.tables.StringIdTable;
 import kpersistence.mapping.annotations.*;
 
 @Entity
 @Table(name = "ORDER_SUBJECTS")
-public class OrderSubject extends TypoTable {
+public class OrderSubject extends StringIdTable {
 
     @Column(name = "NAME", rus = "продукция")
     @Label

@@ -1,13 +1,13 @@
 package domain.models.nomenclature.consumables;
 
-import repository.tables.TypoTable;
+import repository.tables.StringIdTable;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
 import kpersistence.mapping.annotations.Table;
 
 @Entity
 @Table(name = "CONSUMABLE_PROPERTIES")
-public class ConsumableProperty extends TypoTable {
+public class ConsumableProperty extends StringIdTable {
 
     @Column(name = "TYPE_ID")
     private String typeId;

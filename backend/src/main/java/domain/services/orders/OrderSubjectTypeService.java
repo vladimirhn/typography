@@ -4,10 +4,10 @@ import domain.models.orders.OrderSubjectType;
 import domain.models.orders.OrderSubjectTypeWithConsumableItemsView;
 import domain.models.orders.OrderSubjectTypesConsumables;
 import kcollections.CollectionFactory;
-import repository.TypoTableRepository;
+import repository.AbstractTableRepository;
 import domain.repositories.orders.OrderSubjectTypeRepository;
 import domain.services.ServiceUser;
-import domain.services.abstracts.TypoTableService;
+import service.TypoTableService;
 import kcollections.KList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ public class OrderSubjectTypeService extends TypoTableService<OrderSubjectType> 
     OrderSubjectTypesConsumablesService orderSubjectTypesConsumablesService;
 
     @Override
-    protected TypoTableRepository<OrderSubjectType> getRepository() {
+    protected AbstractTableRepository<OrderSubjectType> getRepository() {
         return repository;
     }
 

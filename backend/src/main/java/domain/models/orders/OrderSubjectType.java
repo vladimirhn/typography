@@ -1,6 +1,6 @@
 package domain.models.orders;
 
-import repository.tables.TypoTable;
+import repository.tables.StringIdTable;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
 import kpersistence.mapping.annotations.Label;
@@ -12,7 +12,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "ORDER_SUBJECT_TYPES")
-public class OrderSubjectType extends TypoTable {
+public class OrderSubjectType extends StringIdTable {
 
     @Column(name = "NAME", rus = "вид заказа")
     @Label

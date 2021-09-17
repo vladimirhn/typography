@@ -1,9 +1,9 @@
 package domain.services.purchasing;
 
 import domain.models.purchasing.PurchasingConsumables;
-import repository.TypoTableRepository;
+import repository.AbstractTableRepository;
 import domain.repositories.purchasing.PurchasingConsumablesRepository;
-import domain.services.abstracts.TypoTableService;
+import service.TypoTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ public class PurchasingConsumablesService extends TypoTableService<PurchasingCon
     @Autowired
     PurchasingConsumablesRepository repository;
     @Override
-    protected TypoTableRepository<PurchasingConsumables> getRepository() {
+    protected AbstractTableRepository<PurchasingConsumables> getRepository() {
         return repository;
     }
 

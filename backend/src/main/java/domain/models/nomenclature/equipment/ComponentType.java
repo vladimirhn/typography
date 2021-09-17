@@ -1,13 +1,13 @@
 package domain.models.nomenclature.equipment;
 
-import repository.tables.TypoTable;
+import repository.tables.StringIdTable;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
 import kpersistence.mapping.annotations.Table;
 
 @Entity
 @Table(name = "COMPONENT_TYPES")
-public class ComponentType extends TypoTable {
+public class ComponentType extends StringIdTable {
 
     @Column(name = "TYPE")
     private String type;

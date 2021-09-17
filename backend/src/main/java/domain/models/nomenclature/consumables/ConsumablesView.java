@@ -1,6 +1,6 @@
 package domain.models.nomenclature.consumables;
 
-import repository.tables.TypoView;
+import repository.tables.AbstractView;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
 import kpersistence.mapping.annotations.Table;
@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "ALL_CONSUMABLES_VIEW")
-public class ConsumablesView extends TypoView {
+public class ConsumablesView extends AbstractView {
 
     @Column(name = "TYPE_ID")
     private String typeId;

@@ -1,9 +1,9 @@
 package domain.services.orders;
 
 import domain.models.orders.OrderSubject;
-import repository.TypoTableRepository;
+import repository.AbstractTableRepository;
 import domain.repositories.orders.OrderSubjectRepository;
-import domain.services.abstracts.TypoTableService;
+import service.TypoTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ public class OrderSubjectService extends TypoTableService<OrderSubject> {
     @Autowired
     OrderSubjectRepository repository;
     @Override
-    protected TypoTableRepository<OrderSubject> getRepository() {
+    protected AbstractTableRepository<OrderSubject> getRepository() {
         return repository;
     }
 

@@ -18,16 +18,13 @@ public abstract class TypoTableRepository<T extends TypoTable> extends AbstractR
     }
 
     @Autowired
-    protected RandomId randomId;
-
-    @Autowired
     protected JdbcOperations jdbcOperations;
 
     @Autowired
     protected NamedParameterJdbcOperations namedParameterJdbcOperations;
 
     public String insert(T obj) {
-        String id = randomId.next();
+        String id = RandomId.next();
         if (obj.getId() == null) obj.setId(id);
         obj.setDefaults();
         UnnamedParametersQuery qry = QueryGenerator.generateInsertQuery(obj);
@@ -42,7 +39,7 @@ public abstract class TypoTableRepository<T extends TypoTable> extends AbstractR
         Long amount = jdbcOperations.queryForObject(countQuery.getQuery(), countQuery.getParams(), Long.class);
 
         if (amount == 0L) {
-            String id = randomId.next();
+            String id = RandomId.next();
             obj.setId(id);
             obj.setDefaults();
             UnnamedParametersQuery insertQuery = QueryGenerator.generateInsertQuery(obj);

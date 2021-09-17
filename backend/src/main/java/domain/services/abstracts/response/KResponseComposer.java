@@ -1,7 +1,7 @@
 package domain.services.abstracts.response;
 
-import domain.models.abstracts.MainTable;
-import domain.models.abstracts.TypoTable;
+import kpersistence.repository.tables.MainTable;
+import kpersistence.repository.tables.TypoTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 package domain.repositories.stock;
 
 import domain.models.stock.StockBalance;
-import domain.repositories.abstracts.TypoTableRepository;
+import kpersistence.repository.TypoTableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;

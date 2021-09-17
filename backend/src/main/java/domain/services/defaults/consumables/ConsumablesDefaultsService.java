@@ -6,7 +6,7 @@ import domain.models.nomenclature.consumables.ConsumableItem;
 import domain.models.nomenclature.consumables.ConsumableProperty;
 import domain.models.nomenclature.consumables.ConsumablePropertyValue;
 import domain.models.nomenclature.consumables.ConsumableType;
-import domain.services.application.IdService;
+import kpersistence.RandomId;
 import domain.services.nomenclature.consumables.ConsumableItemsService;
 import domain.services.nomenclature.consumables.ConsumablePropertiesService;
 import domain.services.nomenclature.consumables.ConsumablePropertiesValuesService;
@@ -37,9 +37,6 @@ public class ConsumablesDefaultsService {
     @Autowired
     ConsumablePropertiesValuesService consumablePropertiesValuesService;
 
-    @Autowired
-    IdService idService;
-
     @Value("file:defaults/consumables.json")
     Resource consumablesFile;
     public void setDefaults() throws IOException {
@@ -68,7 +65,7 @@ public class ConsumablesDefaultsService {
                             propertyId.set(existedCP.getId());
                         })
                         .ifNothing(() -> {
-                            propertyId.set(idService.next());
+                            propertyId.set(RandomId.next());
                             consumableProperty.setId(propertyId.get());
                             consumablePropertiesService.insert(consumableProperty);
                         });
@@ -86,7 +83,7 @@ public class ConsumablesDefaultsService {
                             itemId.set(existedCI.getId());
                         })
                         .ifNothing(() -> {
-                            itemId.set(idService.next());
+                            itemId.set(RandomId.next());
                             consumableItem.setTypeId(typeId);
                             consumableItem.setId(itemId.get());
                             consumableItemsService.insert(consumableItem);

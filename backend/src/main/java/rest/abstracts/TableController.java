@@ -1,6 +1,6 @@
 package rest.abstracts;
 
-import domain.models.abstracts.TypoTable;
+import kpersistence.repository.tables.TypoTable;
 import domain.services.abstracts.TypoTableService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

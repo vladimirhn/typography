@@ -1,7 +1,7 @@
 package domain.models.orders;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import domain.models.abstracts.TypoTable;
+import kpersistence.repository.tables.TypoTable;
 import kpersistence.mapping.annotations.*;
 import org.springframework.format.annotation.DateTimeFormat;
 

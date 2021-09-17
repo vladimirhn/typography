@@ -1,7 +1,7 @@
 package domain.services.orders;
 
 import domain.models.orders.OrderSubject;
-import domain.repositories.abstracts.TypoTableRepository;
+import kpersistence.repository.TypoTableRepository;
 import domain.repositories.orders.OrderSubjectRepository;
 import domain.services.abstracts.TypoTableService;
 import org.springframework.beans.factory.annotation.Autowired;

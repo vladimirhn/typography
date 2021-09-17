@@ -1,6 +1,6 @@
 package domain.models.nomenclature.equipment;
 
-import domain.models.abstracts.TypoTable;
+import kpersistence.repository.tables.TypoTable;
 import kcollections.KList;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;

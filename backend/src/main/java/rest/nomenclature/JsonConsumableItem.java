@@ -13,6 +13,13 @@ public class JsonConsumableItem {
 
     Map<String, Map<String, String>> values;
 
+    public JsonConsumableItem() {}
+
+    public JsonConsumableItem(String itemId, String item) {
+        this.itemId = itemId;
+        this.item = item;
+    }
+
     public String getItemId() {
         return itemId;
     }

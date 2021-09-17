@@ -9,6 +9,6 @@
 db.driver=org.postgresql.Driver
 db.url=jdbc:postgresql://37.230.141.81:5432/talpa
 db.schema=public
-db.user=postgres
-db.password=postgres
+db.user=talpa
+db.password=talpa
 

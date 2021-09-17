@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import domain.models.nomenclature.equipment.ComponentItem;
 import domain.models.nomenclature.equipment.EquipmentItem;
 import domain.models.nomenclature.equipment.EquipmentType;
-import domain.services.application.IdService;
+import kpersistence.RandomId;
 import domain.services.nomenclature.equipment.ComponentItemsService;
 import domain.services.nomenclature.equipment.EquipmentItemsService;
 import domain.services.nomenclature.equipment.EquipmentTypesService;
@@ -29,9 +29,6 @@ public class EquipmentDefaultsService {
     EquipmentItemsService equipmentItemsService;
     @Autowired
     ComponentItemsService componentItemsService;
-
-    @Autowired
-    IdService idService;
 
     @Value("file:defaults/equipment.json")
     Resource equipmentFile;

@@ -3,13 +3,13 @@ package domain.services.nomenclature.consumables;
 import domain.models.nomenclature.consumables.ConsumableItem;
 import domain.models.nomenclature.consumables.ConsumablePropertyValue;
 import domain.models.purchasing.PurchasingConsumables;
-import domain.repositories.abstracts.TypoTableRepository;
+import kpersistence.RandomId;
+import kpersistence.repository.TypoTableRepository;
 import domain.repositories.nomenclature.consumables.ConsumableItemsRepository;
 import domain.services.ServiceUser;
 import domain.services.abstracts.TypoTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import rest.nomenclature.JsonConsumableItem;
 import rest.nomenclature.JsonConsumableType;
 
 import java.util.LinkedList;
@@ -34,7 +34,7 @@ public class ConsumableItemsService extends TypoTableService<ConsumableItem> imp
 
         data.getData().forEach(entry -> {
 
-            String newItemId = idService.next();
+            String newItemId = RandomId.next();
             insert(new ConsumableItem(newItemId, typeId, entry.getItem(), entry.getPackageCapacity()));
             addedItemsIds.add(newItemId);
 
@@ -42,7 +42,7 @@ public class ConsumableItemsService extends TypoTableService<ConsumableItem> imp
                 String newValue = newValueMap.values().iterator().next();
 
                 consumablePropertiesValuesService.insert(
-                        new ConsumablePropertyValue(idService.next(), newItemId, propId, newValue));
+                        new ConsumablePropertyValue(RandomId.next(), newItemId, propId, newValue));
             });
         });
 

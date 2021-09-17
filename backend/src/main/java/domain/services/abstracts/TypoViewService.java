@@ -1,12 +1,10 @@
 package domain.services.abstracts;
 
-import domain.models.abstracts.TypoView;
-import domain.repositories.abstracts.TypoViewRepository;
+import kpersistence.repository.tables.TypoView;
+import kpersistence.repository.TypoViewRepository;
 import kcollections.KList;
 import koptional.KOptional;
 
-import java.util.List;
-import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.stream.Stream;
 

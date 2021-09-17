@@ -1,7 +1,7 @@
 package domain.repositories.nomenclature.consumables;
 
 import domain.models.nomenclature.consumables.ConsumableItem;
-import domain.repositories.abstracts.TypoTableRepository;
+import kpersistence.repository.TypoTableRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository

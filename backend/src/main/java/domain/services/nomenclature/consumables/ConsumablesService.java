@@ -1,7 +1,7 @@
 package domain.services.nomenclature.consumables;
 
-import domain.models.nomenclature.consumables.ConsumablesViewLine;
-import domain.repositories.abstracts.TypoViewRepository;
+import domain.models.nomenclature.consumables.ConsumablesView;
+import kpersistence.repository.TypoViewRepository;
 import domain.repositories.nomenclature.consumables.AllConsumablesViewRepository;
 import domain.services.abstracts.TypoViewService;
 import kcollections.CollectionFactory;
@@ -16,28 +16,28 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service("consumablesService")
-public class ConsumablesService extends TypoViewService<ConsumablesViewLine> {
+public class ConsumablesService extends TypoViewService<ConsumablesView> {
 
     @Autowired
     AllConsumablesViewRepository repository;
 
     @Override
-    protected TypoViewRepository<ConsumablesViewLine> getRepository() {
+    protected TypoViewRepository<ConsumablesView> getRepository() {
         return repository;
     }
 
     public List<JsonConsumableType> createConsumableTypesResponse() {
 
-        Map<String, KList<ConsumablesViewLine>> groupByTypeId = selectAll().groupBy(ConsumablesViewLine::getTypeId);
+        Map<String, KList<ConsumablesView>> groupByTypeId = selectAll().groupBy(ConsumablesView::getTypeId);
 
         return createFullFilledResult(groupByTypeId);
     }
 
     public JsonConsumableType createConsumableTypesResponse(String id) {
 
-        Map<String, KList<ConsumablesViewLine>> groupByTypeId =
-                selectByField(ConsumablesViewLine::setTypeId, id)
-                .groupBy(ConsumablesViewLine::getTypeId);
+        Map<String, KList<ConsumablesView>> groupByTypeId =
+                selectByField(ConsumablesView::setTypeId, id)
+                .groupBy(ConsumablesView::getTypeId);
 
         KList<JsonConsumableType> result = createFullFilledResult(groupByTypeId);
 
@@ -46,13 +46,13 @@ public class ConsumablesService extends TypoViewService<ConsumablesViewLine> {
 
     public List<JsonConsumableType> selectTypesWithProps() {
 
-        Map<String, KList<ConsumablesViewLine>> groupByTypeId = selectAll().groupBy(ConsumablesViewLine::getTypeId);
+        Map<String, KList<ConsumablesView>> groupByTypeId = selectAll().groupBy(ConsumablesView::getTypeId);
         return createResultWithProperties(groupByTypeId);
     }
 
-    private KList<JsonConsumableType> createFullFilledResult(Map<String, KList<ConsumablesViewLine>> groupByTypeId) {
+    private KList<JsonConsumableType> createFullFilledResult(Map<String, KList<ConsumablesView>> groupByTypeId) {
 
-        KList<Map.Entry<JsonConsumableType, KList<ConsumablesViewLine>>> entries = groupByTypeIdToEntriesList(groupByTypeId);
+        KList<Map.Entry<JsonConsumableType, KList<ConsumablesView>>> entries = groupByTypeIdToEntriesList(groupByTypeId);
 
         return entries
                 .useEachBy(this::setProperties)
@@ -61,8 +61,8 @@ public class ConsumablesService extends TypoViewService<ConsumablesViewLine> {
                 .sortAsc(JsonConsumableType::getType);
     }
 
-    private KList<JsonConsumableType> createResultWithProperties(Map<String, KList<ConsumablesViewLine>> groupByTypeId) {
-        KList<Map.Entry<JsonConsumableType, KList<ConsumablesViewLine>>> entries = groupByTypeIdToEntriesList(groupByTypeId);
+    private KList<JsonConsumableType> createResultWithProperties(Map<String, KList<ConsumablesView>> groupByTypeId) {
+        KList<Map.Entry<JsonConsumableType, KList<ConsumablesView>>> entries = groupByTypeIdToEntriesList(groupByTypeId);
 
         return entries
                 .useEachBy(this::setProperties)
@@ -70,7 +70,7 @@ public class ConsumablesService extends TypoViewService<ConsumablesViewLine> {
                 .sortAsc(JsonConsumableType::getType);
     }
 
-    private KList<Map.Entry<JsonConsumableType, KList<ConsumablesViewLine>>> groupByTypeIdToEntriesList(Map<String, KList<ConsumablesViewLine>> groupByTypeId) {
+    private KList<Map.Entry<JsonConsumableType, KList<ConsumablesView>>> groupByTypeIdToEntriesList(Map<String, KList<ConsumablesView>> groupByTypeId) {
 
         return CollectionFactory.makeList(
 
@@ -80,27 +80,27 @@ public class ConsumablesService extends TypoViewService<ConsumablesViewLine> {
         );
     }
 
-    private Map.Entry<JsonConsumableType, KList<ConsumablesViewLine>> idToJsonObject(Map.Entry<String, KList<ConsumablesViewLine>> mapEntries) {
+    private Map.Entry<JsonConsumableType, KList<ConsumablesView>> idToJsonObject(Map.Entry<String, KList<ConsumablesView>> mapEntries) {
 
         String typeId = mapEntries.getKey();
-        KList<ConsumablesViewLine> typeLines = mapEntries.getValue();
+        KList<ConsumablesView> typeLines = mapEntries.getValue();
 
         JsonConsumableType typeEntry = new JsonConsumableType(typeId, typeLines.getAny().getTypeName());
 
         return new AbstractMap.SimpleEntry<>(typeEntry, typeLines);
     }
 
-    private void setProperties(Map.Entry<JsonConsumableType, KList<ConsumablesViewLine>> mapEntry) {
+    private void setProperties(Map.Entry<JsonConsumableType, KList<ConsumablesView>> mapEntry) {
 
-        Map<String, KList<ConsumablesViewLine>> groupByPropertyId = mapEntry.getValue().groupByWithNulls(ConsumablesViewLine::getPropertyId);
+        Map<String, KList<ConsumablesView>> groupByPropertyId = mapEntry.getValue().groupByWithNulls(ConsumablesView::getPropertyId);
         groupByPropertyId.forEach((propId, propLines) -> mapEntry.getKey().getProperties().put(propId, propLines.getAny().getPropertyName()));
         MapUtils.sortByValue(mapEntry.getKey().getProperties());
     }
 
-    private void setData(Map.Entry<JsonConsumableType, KList<ConsumablesViewLine>> mapEntry) {
+    private void setData(Map.Entry<JsonConsumableType, KList<ConsumablesView>> mapEntry) {
 
         KList<JsonConsumableItem> data = CollectionFactory.makeLinkedList();
-        Map<String, KList<ConsumablesViewLine>> groupByItemId = mapEntry.getValue().groupByWithNulls(ConsumablesViewLine::getItemId);
+        Map<String, KList<ConsumablesView>> groupByItemId = mapEntry.getValue().groupByWithNulls(ConsumablesView::getItemId);
         groupByItemId.forEach((itemId, itemLines) -> {
             JsonConsumableItem itemEntry = new JsonConsumableItem();
             itemEntry.setItemId(itemId);

@@ -4,10 +4,10 @@ import domain.models.nomenclature.consumables.ConsumableItem;
 import domain.models.nomenclature.consumables.ConsumableProperty;
 import domain.models.nomenclature.consumables.ConsumablePropertyValue;
 import domain.models.nomenclature.consumables.ConsumableType;
-import domain.repositories.abstracts.TypoTableRepository;
+import kpersistence.repository.TypoTableRepository;
 import domain.repositories.nomenclature.consumables.ConsumableTypesRepository;
 import domain.services.abstracts.TypoTableService;
-import domain.services.application.IdService;
+import kpersistence.RandomId;
 import domain.services.defaults.consumables.ConsumablesTypeDefaultJson;
 import kcollections.CollectionFactory;
 import kcollections.KList;
@@ -25,8 +25,6 @@ public class ConsumableTypesService extends TypoTableService<ConsumableType> {
     }
 
     @Autowired
-    IdService idService;
-    @Autowired
     ConsumablePropertiesService consumablePropertiesService;
     @Autowired
     ConsumableItemsService consumableItemsService;
@@ -35,7 +33,7 @@ public class ConsumableTypesService extends TypoTableService<ConsumableType> {
 
     public void addTypeWithProps(ConsumablesTypeDefaultJson data) {
 
-        String typeId = idService.next();
+        String typeId = RandomId.next();
 
         ConsumableType consumableType = new ConsumableType();
         consumableType.setId(typeId);

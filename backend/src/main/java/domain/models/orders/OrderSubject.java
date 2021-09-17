@@ -1,6 +1,6 @@
 package domain.models.orders;
 
-import domain.models.abstracts.TypoTable;
+import kpersistence.repository.tables.TypoTable;
 import kpersistence.mapping.annotations.*;
 
 @Entity

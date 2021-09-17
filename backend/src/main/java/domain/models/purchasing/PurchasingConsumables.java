@@ -2,7 +2,7 @@ package domain.models.purchasing;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import domain.models.abstracts.TypoTable;
+import kpersistence.repository.tables.TypoTable;
 import domain.models.nomenclature.consumables.ConsumableItem;
 import kpersistence.mapping.annotations.*;
 

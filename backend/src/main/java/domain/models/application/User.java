@@ -1,9 +1,8 @@
 package domain.models.application;
 
-import domain.models.abstracts.TypoTable;
+import kpersistence.repository.tables.TypoTable;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
-import kpersistence.mapping.annotations.Id;
 import kpersistence.mapping.annotations.Table;
 
 @Entity

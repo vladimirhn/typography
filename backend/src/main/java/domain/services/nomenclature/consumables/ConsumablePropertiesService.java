@@ -1,7 +1,7 @@
 package domain.services.nomenclature.consumables;
 
 import domain.models.nomenclature.consumables.ConsumableProperty;
-import domain.repositories.abstracts.TypoTableRepository;
+import kpersistence.repository.TypoTableRepository;
 import domain.repositories.nomenclature.consumables.ConsumablePropertiesRepository;
 import domain.services.abstracts.TypoTableService;
 import org.springframework.beans.factory.annotation.Autowired;

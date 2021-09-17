@@ -1,7 +1,7 @@
 package domain.repositories.orders;
 
 import domain.models.orders.OrderSubjectTypeWithConsumableItemsView;
-import kpersistence.repository.TypoViewRepository;
+import repository.TypoViewRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository

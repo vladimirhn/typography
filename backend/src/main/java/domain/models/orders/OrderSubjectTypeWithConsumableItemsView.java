@@ -3,7 +3,7 @@ package domain.models.orders;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
 import kpersistence.mapping.annotations.Table;
-import kpersistence.repository.tables.TypoView;
+import repository.tables.TypoView;
 import rest.nomenclature.JsonConsumableItem;
 
 @Entity

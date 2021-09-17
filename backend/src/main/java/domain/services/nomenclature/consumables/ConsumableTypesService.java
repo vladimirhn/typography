@@ -4,7 +4,7 @@ import domain.models.nomenclature.consumables.ConsumableItem;
 import domain.models.nomenclature.consumables.ConsumableProperty;
 import domain.models.nomenclature.consumables.ConsumablePropertyValue;
 import domain.models.nomenclature.consumables.ConsumableType;
-import kpersistence.repository.TypoTableRepository;
+import repository.TypoTableRepository;
 import domain.repositories.nomenclature.consumables.ConsumableTypesRepository;
 import domain.services.abstracts.TypoTableService;
 import kpersistence.RandomId;

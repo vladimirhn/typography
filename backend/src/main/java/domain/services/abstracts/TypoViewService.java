@@ -1,7 +1,7 @@
 package domain.services.abstracts;
 
-import kpersistence.repository.tables.TypoView;
-import kpersistence.repository.TypoViewRepository;
+import repository.tables.TypoView;
+import repository.TypoViewRepository;
 import kcollections.KList;
 import koptional.KOptional;
 

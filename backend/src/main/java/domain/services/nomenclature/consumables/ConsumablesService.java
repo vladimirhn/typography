@@ -1,7 +1,7 @@
 package domain.services.nomenclature.consumables;
 
 import domain.models.nomenclature.consumables.ConsumablesView;
-import kpersistence.repository.TypoViewRepository;
+import repository.TypoViewRepository;
 import domain.repositories.nomenclature.consumables.AllConsumablesViewRepository;
 import domain.services.abstracts.TypoViewService;
 import kcollections.CollectionFactory;

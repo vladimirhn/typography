@@ -1,7 +1,7 @@
 package domain.services.nomenclature.equipment;
 
 import domain.models.nomenclature.equipment.ComponentItem;
-import kpersistence.repository.TypoTableRepository;
+import repository.TypoTableRepository;
 import domain.repositories.nomenclature.equipment.ComponentItemsRepository;
 import domain.services.abstracts.TypoTableService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package domain.repositories.application;
 
 import domain.models.application.User;
-import kpersistence.repository.TypoTableRepository;
+import repository.TypoTableRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository

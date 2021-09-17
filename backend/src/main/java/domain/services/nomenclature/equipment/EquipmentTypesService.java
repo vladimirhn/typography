@@ -3,7 +3,7 @@ package domain.services.nomenclature.equipment;
 import domain.models.nomenclature.equipment.ComponentItem;
 import domain.models.nomenclature.equipment.EquipmentItem;
 import domain.models.nomenclature.equipment.EquipmentType;
-import kpersistence.repository.TypoTableRepository;
+import repository.TypoTableRepository;
 import domain.repositories.nomenclature.equipment.EquipmentTypesRepository;
 import domain.services.abstracts.TypoTableService;
 import kcollections.KList;

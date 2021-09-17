@@ -1,7 +1,7 @@
 package domain.services.abstracts;
 
-import kpersistence.repository.tables.TypoTable;
-import kpersistence.repository.TypoTableRepository;
+import repository.tables.TypoTable;
+import repository.TypoTableRepository;
 import kcollections.KList;
 import koptional.KOptional;
 

@@ -4,7 +4,7 @@ import domain.models.orders.OrderSubjectType;
 import domain.models.orders.OrderSubjectTypeWithConsumableItemsView;
 import domain.models.orders.OrderSubjectTypesConsumables;
 import kcollections.CollectionFactory;
-import kpersistence.repository.TypoTableRepository;
+import repository.TypoTableRepository;
 import domain.repositories.orders.OrderSubjectTypeRepository;
 import domain.services.ServiceUser;
 import domain.services.abstracts.TypoTableService;

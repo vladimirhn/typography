@@ -1,7 +1,7 @@
 package domain.repositories.nomenclature.consumables;
 
 import domain.models.nomenclature.consumables.ConsumablesView;
-import kpersistence.repository.TypoViewRepository;
+import repository.TypoViewRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository

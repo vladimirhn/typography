@@ -1,7 +1,7 @@
 package domain.models.stock;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import kpersistence.repository.tables.TypoTable;
+import repository.tables.TypoTable;
 import domain.models.nomenclature.consumables.ConsumableItem;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;

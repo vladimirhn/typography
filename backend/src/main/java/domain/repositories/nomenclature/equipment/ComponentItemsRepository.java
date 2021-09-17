@@ -1,7 +1,7 @@
 package domain.repositories.nomenclature.equipment;
 
 import domain.models.nomenclature.equipment.ComponentItem;
-import kpersistence.repository.TypoTableRepository;
+import repository.TypoTableRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository

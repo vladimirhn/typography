@@ -1,7 +1,7 @@
 package domain.services.purchasing;
 
 import domain.models.purchasing.PurchasingConsumables;
-import kpersistence.repository.TypoTableRepository;
+import repository.TypoTableRepository;
 import domain.repositories.purchasing.PurchasingConsumablesRepository;
 import domain.services.abstracts.TypoTableService;
 import org.springframework.beans.factory.annotation.Autowired;

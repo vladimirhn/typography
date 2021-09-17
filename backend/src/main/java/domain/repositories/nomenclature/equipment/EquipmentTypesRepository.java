@@ -1,7 +1,7 @@
 package domain.repositories.nomenclature.equipment;
 
 import domain.models.nomenclature.equipment.EquipmentType;
-import kpersistence.repository.TypoTableRepository;
+import repository.TypoTableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;

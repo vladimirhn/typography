@@ -14,7 +14,7 @@ public class SimpleTableResponse extends KResponse {
 
     Collection<?> data;
     List<String> properties = new LinkedList<>();
-    List<String> rus = new LinkedList<>();
+    List<String> trans = new LinkedList<>();
 
     public SimpleTableResponse(Collection<?> data, Class<?> type, DictionaryDataProvider dict) {
 
@@ -34,7 +34,7 @@ public class SimpleTableResponse extends KResponse {
 
                 if (!columnData.isAncillary()) {
                     properties.add(fieldName);
-                    this.rus.add(rus);
+                    this.trans.add(rus);
                 } else {
                     data.forEach(item -> {
                         try {
@@ -66,11 +66,11 @@ public class SimpleTableResponse extends KResponse {
         this.properties = properties;
     }
 
-    public List<String> getRus() {
-        return rus;
+    public List<String> getTrans() {
+        return trans;
     }
 
-    public void setRus(List<String> rus) {
-        this.rus = rus;
+    public void setTrans(List<String> trans) {
+        this.trans = trans;
     }
 }

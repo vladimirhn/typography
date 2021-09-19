@@ -1,6 +1,6 @@
 package rest.orders;
 
-import domain.services.TypoServiceUser;
+import domain.services.abstracts.TypoServiceUser;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

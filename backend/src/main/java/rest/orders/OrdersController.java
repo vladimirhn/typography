@@ -2,7 +2,7 @@ package rest.orders;
 
 import domain.models.orders.Order;
 import domain.models.orders.OrderSubject;
-import domain.services.TypoServiceUser;
+import domain.services.abstracts.TypoServiceUser;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

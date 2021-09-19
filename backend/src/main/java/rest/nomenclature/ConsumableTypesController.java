@@ -1,7 +1,7 @@
 package rest.nomenclature;
 
 import domain.models.nomenclature.consumables.ConsumableType;
-import domain.services.TypoServiceUser;
+import domain.services.abstracts.TypoServiceUser;
 import service.AbstractTableService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

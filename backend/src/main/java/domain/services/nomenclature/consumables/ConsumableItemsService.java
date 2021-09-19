@@ -6,7 +6,7 @@ import domain.models.purchasing.PurchasingConsumables;
 import kpersistence.RandomId;
 import repository.AbstractTableRepository;
 import domain.repositories.nomenclature.consumables.ConsumableItemsRepository;
-import domain.services.TypoServiceUser;
+import domain.services.abstracts.TypoServiceUser;
 import service.AbstractTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

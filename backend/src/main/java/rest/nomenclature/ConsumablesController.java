@@ -2,7 +2,7 @@ package rest.nomenclature;
 
 import domain.models.nomenclature.consumables.ConsumableItem;
 import domain.models.nomenclature.consumables.ConsumablePropertyValue;
-import domain.services.TypoServiceUser;
+import domain.services.abstracts.TypoServiceUser;
 import domain.services.defaults.consumables.ConsumablesTypeDefaultJson;
 import org.springframework.web.bind.annotation.*;
 

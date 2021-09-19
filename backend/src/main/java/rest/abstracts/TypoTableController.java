@@ -1,6 +1,6 @@
 package rest.abstracts;
 
-import domain.services.TypoServiceUser;
+import domain.services.abstracts.TypoServiceUser;
 import repository.tables.StringIdTable;
 import rest.AbstractTableController;
 import rest.dictionary.DictionaryService;

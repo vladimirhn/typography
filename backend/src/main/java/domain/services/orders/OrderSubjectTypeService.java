@@ -6,7 +6,7 @@ import domain.models.orders.OrderSubjectTypesConsumables;
 import kcollections.CollectionFactory;
 import repository.AbstractTableRepository;
 import domain.repositories.orders.OrderSubjectTypeRepository;
-import domain.services.TypoServiceUser;
+import domain.services.abstracts.TypoServiceUser;
 import service.AbstractTableService;
 import kcollections.KList;
 import org.springframework.beans.factory.annotation.Autowired;

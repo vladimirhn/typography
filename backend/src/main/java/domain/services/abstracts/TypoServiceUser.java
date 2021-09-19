@@ -1,6 +1,5 @@
-package domain.services;
+package domain.services.abstracts;
 
-import application.ContextProvider;
 import application.ServiceUser;
 import domain.services.abstracts.response.TypoDictionaryService;
 import domain.services.defaults.consumables.ConsumablesDefaultsService;

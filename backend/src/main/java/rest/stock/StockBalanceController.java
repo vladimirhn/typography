@@ -1,7 +1,7 @@
 package rest.stock;
 
 import domain.models.stock.StockBalance;
-import domain.services.TypoServiceUser;
+import domain.services.abstracts.TypoServiceUser;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

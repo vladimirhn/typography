@@ -3,7 +3,7 @@ package domain.services.nomenclature.consumables;
 import domain.models.nomenclature.consumables.ConsumablesView;
 import repository.AbstractViewRepository;
 import domain.repositories.nomenclature.consumables.AllConsumablesViewRepository;
-import service.TypoViewService;
+import service.AbstractViewService;
 import kcollections.CollectionFactory;
 import kcollections.KList;
 import kutils.MapUtils;
@@ -16,7 +16,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service("consumablesService")
-public class ConsumablesService extends TypoViewService<ConsumablesView> {
+public class ConsumablesService extends AbstractViewService<ConsumablesView> {
 
     @Autowired
     AllConsumablesViewRepository repository;

@@ -1,18 +1,18 @@
 package rest.orders;
 
 import domain.models.orders.OrderSubject;
-import domain.services.ServiceUser;
-import service.TypoTableService;
+import domain.services.TypoServiceUser;
+import service.AbstractTableService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import rest.abstracts.TableController;
+import rest.abstracts.TypoTableController;
 
 @RestController
 @RequestMapping("/order_subjects")
-public class OrderSubjectsController extends TableController<OrderSubject> implements ServiceUser {
+public class OrderSubjectsController extends TypoTableController<OrderSubject> implements TypoServiceUser {
 
     @Override
-    protected TypoTableService<OrderSubject> getService() {
+    protected AbstractTableService<OrderSubject> getService() {
         return orderSubjectService;
     }
 }

@@ -6,14 +6,14 @@ import domain.models.orders.OrderSubjectTypesConsumables;
 import kcollections.CollectionFactory;
 import repository.AbstractTableRepository;
 import domain.repositories.orders.OrderSubjectTypeRepository;
-import domain.services.ServiceUser;
-import service.TypoTableService;
+import domain.services.TypoServiceUser;
+import service.AbstractTableService;
 import kcollections.KList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service("orderSubjectTypeService")
-public class OrderSubjectTypeService extends TypoTableService<OrderSubjectType> implements ServiceUser {
+public class OrderSubjectTypeService extends AbstractTableService<OrderSubjectType> implements TypoServiceUser {
 
     @Autowired
     OrderSubjectTypeRepository repository;

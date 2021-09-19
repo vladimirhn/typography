@@ -3,22 +3,22 @@ package rest.purchasing;
 import domain.models.nomenclature.consumables.ConsumableItem;
 import domain.models.purchasing.PurchasingConsumables;
 import domain.models.stock.StockBalance;
-import domain.services.ServiceUser;
-import service.TypoTableService;
+import domain.services.TypoServiceUser;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import rest.abstracts.TableController;
+import rest.abstracts.TypoTableController;
+import service.AbstractTableService;
 
 import java.math.BigDecimal;
 
 @RestController
 @RequestMapping("/purchasing_consumables")
-public class PurchasingConsumablesController extends TableController<PurchasingConsumables> implements ServiceUser {
+public class PurchasingConsumablesController extends TypoTableController<PurchasingConsumables> implements TypoServiceUser {
 
     @Override
-    protected TypoTableService<PurchasingConsumables> getService() {
+    protected AbstractTableService<PurchasingConsumables> getService() {
         return purchasingConsumablesService;
     }
 

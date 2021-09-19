@@ -1,13 +1,13 @@
 package domain.services.abstracts.response;
 
 import org.springframework.stereotype.Service;
-import rest.DictionaryDataProvider;
+import rest.dictionary.DictionaryService;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Service("dictionaryService")
-public class TypoDictionaryService implements DictionaryDataProvider {
+public class TypoDictionaryService implements DictionaryService {
 
     Map<String, String> enRus;
 

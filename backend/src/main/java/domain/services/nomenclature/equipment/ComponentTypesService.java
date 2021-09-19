@@ -3,12 +3,12 @@ package domain.services.nomenclature.equipment;
 import domain.models.nomenclature.equipment.ComponentType;
 import repository.AbstractTableRepository;
 import domain.repositories.nomenclature.equipment.ComponentTypesRepository;
-import service.TypoTableService;
+import service.AbstractTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service("componentTypesService")
-public class ComponentTypesService extends TypoTableService<ComponentType> {
+public class ComponentTypesService extends AbstractTableService<ComponentType> {
 
     @Autowired
     ComponentTypesRepository repository;

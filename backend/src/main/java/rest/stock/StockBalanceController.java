@@ -1,25 +1,25 @@
 package rest.stock;
 
 import domain.models.stock.StockBalance;
-import domain.services.ServiceUser;
-import service.TypoTableService;
+import domain.services.TypoServiceUser;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import rest.abstracts.TableController;
-import rest.responses.TableDataResponse;
+import rest.abstracts.TypoTableController;
+import rest.response.TableDataResponse;
+import service.AbstractTableService;
 
 @RestController
 @RequestMapping("/stock_balance")
-public class StockBalanceController extends TableController<StockBalance> implements ServiceUser {
+public class StockBalanceController extends TypoTableController<StockBalance> implements TypoServiceUser {
 
     @Override
-    protected TypoTableService<StockBalance> getService() {
+    protected AbstractTableService<StockBalance> getService() {
         return stockBalanceService;
     }
 
     @GetMapping("/get_all_resp")
     public TableDataResponse<StockBalance> getAllResp() {
-        return new TableDataResponse<>(getService().selectAll());
+        return new TableDataResponse<>(getService().selectAll(), getDictionaryService());
     }
 }

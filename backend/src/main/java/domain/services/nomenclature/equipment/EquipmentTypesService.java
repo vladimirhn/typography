@@ -5,13 +5,13 @@ import domain.models.nomenclature.equipment.EquipmentItem;
 import domain.models.nomenclature.equipment.EquipmentType;
 import repository.AbstractTableRepository;
 import domain.repositories.nomenclature.equipment.EquipmentTypesRepository;
-import service.TypoTableService;
+import service.AbstractTableService;
 import kcollections.KList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service("equipmentTypesService")
-public class EquipmentTypesService extends TypoTableService<EquipmentType> {
+public class EquipmentTypesService extends AbstractTableService<EquipmentType> {
 
     @Autowired
     EquipmentTypesRepository repository;

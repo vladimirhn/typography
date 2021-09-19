@@ -6,8 +6,8 @@ import domain.models.purchasing.PurchasingConsumables;
 import kpersistence.RandomId;
 import repository.AbstractTableRepository;
 import domain.repositories.nomenclature.consumables.ConsumableItemsRepository;
-import domain.services.ServiceUser;
-import service.TypoTableService;
+import domain.services.TypoServiceUser;
+import service.AbstractTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rest.nomenclature.JsonConsumableType;
@@ -16,7 +16,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Service("consumableItemsService")
-public class ConsumableItemsService extends TypoTableService<ConsumableItem> implements ServiceUser {
+public class ConsumableItemsService extends AbstractTableService<ConsumableItem> implements TypoServiceUser {
 
     @Autowired
     ConsumableItemsRepository repository;

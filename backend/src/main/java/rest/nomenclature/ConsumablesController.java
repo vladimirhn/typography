@@ -2,7 +2,7 @@ package rest.nomenclature;
 
 import domain.models.nomenclature.consumables.ConsumableItem;
 import domain.models.nomenclature.consumables.ConsumablePropertyValue;
-import domain.services.ServiceUser;
+import domain.services.TypoServiceUser;
 import domain.services.defaults.consumables.ConsumablesTypeDefaultJson;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/consumables")
-public class ConsumablesController implements ServiceUser {
+public class ConsumablesController implements TypoServiceUser {
 
     @GetMapping("/get_all")
     public List<JsonConsumableType> getAll() {

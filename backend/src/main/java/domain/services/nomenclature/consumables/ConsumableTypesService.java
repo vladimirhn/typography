@@ -6,7 +6,7 @@ import domain.models.nomenclature.consumables.ConsumablePropertyValue;
 import domain.models.nomenclature.consumables.ConsumableType;
 import repository.AbstractTableRepository;
 import domain.repositories.nomenclature.consumables.ConsumableTypesRepository;
-import service.TypoTableService;
+import service.AbstractTableService;
 import kpersistence.RandomId;
 import domain.services.defaults.consumables.ConsumablesTypeDefaultJson;
 import kcollections.CollectionFactory;
@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service("consumableTypesService")
-public class ConsumableTypesService extends TypoTableService<ConsumableType> {
+public class ConsumableTypesService extends AbstractTableService<ConsumableType> {
 
     @Autowired
     ConsumableTypesRepository repository;

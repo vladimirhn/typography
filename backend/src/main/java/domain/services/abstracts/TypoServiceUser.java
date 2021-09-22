@@ -8,10 +8,7 @@ import domain.services.nomenclature.consumables.ConsumablePropertiesValuesServic
 import domain.services.nomenclature.consumables.ConsumableTypesService;
 import domain.services.nomenclature.consumables.ConsumablesService;
 import domain.services.nomenclature.equipment.EquipmentTypesService;
-import domain.services.orders.OrderService;
-import domain.services.orders.OrderSubjectService;
-import domain.services.orders.OrderSubjectTypeService;
-import domain.services.orders.OrderSubjectTypesConsumablesService;
+import domain.services.orders.*;
 import domain.services.purchasing.PurchasingConsumablesService;
 import domain.services.stock.StockBalanceService;
 import domain.services.stock.StockService;
@@ -35,9 +32,11 @@ public interface TypoServiceUser extends ServiceUser {
 
     //O
     OrderService orderService = ServiceUser.getBean(OrderService.class);
+    OrderSubjectConsumablesService orderSubjectConsumablesService = ServiceUser.getBean(OrderSubjectConsumablesService.class);
     OrderSubjectService orderSubjectService = ServiceUser.getBean(OrderSubjectService.class);
     OrderSubjectTypeService orderSubjectTypeService = ServiceUser.getBean(OrderSubjectTypeService.class);
     OrderSubjectTypesConsumablesService orderSubjectTypesConsumablesService = ServiceUser.getBean(OrderSubjectTypesConsumablesService.class);
+    OrderSubjectWithConsumableItemsViewService orderSubjectWithConsumableItemsViewService = ServiceUser.getBean(OrderSubjectWithConsumableItemsViewService.class);
 
     //P
     PurchasingConsumablesService purchasingConsumablesService = ServiceUser.getBean(PurchasingConsumablesService.class);

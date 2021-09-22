@@ -1,16 +1,16 @@
 package domain.models.orders;
 
-import repository.tables.StringIdTable;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
 import kpersistence.mapping.annotations.Table;
+import repository.tables.StringIdTable;
 
 @Entity
-@Table(name = "ORDER_SUBJECT_TYPES_CONSUMABLES")
-public class OrderSubjectTypesConsumables extends StringIdTable {
+@Table(name = "ORDER_SUBJECT_CONSUMABLES")
+public class OrderSubjectConsumables extends StringIdTable {
 
-    @Column(name = "ORDER_SUBJECT_TYPE_ID")
-    String orderSubjectTypeId;
+    @Column(name = "ORDER_SUBJECT_ID")
+    String orderSubjectId;
 
     @Column(name = "CONSUMABLE_ITEM_ID")
     String consumableItemId;
@@ -18,22 +18,22 @@ public class OrderSubjectTypesConsumables extends StringIdTable {
     @Column(name = "IS_PARENT")
     boolean isParent;
 
-    public OrderSubjectTypesConsumables() {}
+    public OrderSubjectConsumables() {}
 
-    public OrderSubjectTypesConsumables(String orderSubjectTypeId, String consumableItemId) {
-        this.orderSubjectTypeId = orderSubjectTypeId;
+    public OrderSubjectConsumables(String orderSubjectId, String consumableItemId) {
+        this.orderSubjectId = orderSubjectId;
         this.consumableItemId = consumableItemId;
     }
 
     @Override
     public void setDefaults() {}
 
-    public String getOrderSubjectTypeId() {
-        return orderSubjectTypeId;
+    public String getOrderSubjectId() {
+        return orderSubjectId;
     }
 
-    public void setOrderSubjectTypeId(String orderSubjectTypeId) {
-        this.orderSubjectTypeId = orderSubjectTypeId;
+    public void setOrderSubjectId(String orderSubjectId) {
+        this.orderSubjectId = orderSubjectId;
     }
 
     public String getConsumableItemId() {

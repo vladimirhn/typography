@@ -33,9 +33,9 @@ public class OrderSubjectTypeService extends AbstractTableService<OrderSubjectTy
         KList<OrderSubjectType> result = CollectionFactory.makeList();
         KList<OrderSubjectTypeWithConsumableItemsView> viewData = orderSubjectTypeWithConsumableItemsViewService.selectAll();
         viewData
-                .groupBy(OrderSubjectTypeWithConsumableItemsView::getOrderSubjectType)
+                .groupBy(OrderSubjectTypeWithConsumableItemsView::extractOrderSubjectType)
                 .forEach((orderSubjectType, relatedSubList) -> {
-                    orderSubjectType.setRelatedJsonConsumableItems(relatedSubList.mapEachBy(OrderSubjectTypeWithConsumableItemsView::getJsonConsumableItem));
+                    orderSubjectType.setRelatedJsonConsumableItems(relatedSubList.mapEachBy(OrderSubjectTypeWithConsumableItemsView::extractJsonConsumableItem));
                     result.add(orderSubjectType);
                 });
 

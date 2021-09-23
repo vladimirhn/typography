@@ -6,6 +6,7 @@ import rest.nomenclature.JsonConsumableItem;
 import rest.response.JsonTableResponse;
 
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "ORDER_SUBJECTS")
@@ -85,5 +86,18 @@ public class OrderSubject extends StringIdTable {
 
     public void setRelatedOwnJsonConsumableItems(List<JsonConsumableItem> relatedOwnJsonConsumableItems) {
         this.relatedOwnJsonConsumableItems = relatedOwnJsonConsumableItems;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OrderSubject that = (OrderSubject) o;
+        return getId().equals(that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
     }
 }

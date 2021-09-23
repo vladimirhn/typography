@@ -18,7 +18,7 @@ public class OrderSubjectTypesController extends TypoTableController<OrderSubjec
 
     @GetMapping("/get_all")
     public TableDataResponse<OrderSubjectType> getAll() {
-        return new TableDataResponse<>(orderSubjectTypeService.getAll(), typoDictionaryService);
+        return getAllTranslatedResponse(orderSubjectTypeService.getAll());
     }
 
     @Override

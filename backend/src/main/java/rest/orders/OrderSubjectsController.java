@@ -1,14 +1,8 @@
 package rest.orders;
 
 import domain.models.orders.OrderSubject;
-import domain.models.orders.OrderSubjectWithConsumableItemsView;
 import domain.services.abstracts.TypoServiceUser;
-import domain.services.orders.OrderSubjectWithConsumableItemsViewService;
-import kcollections.CollectionFactory;
-import kcollections.KList;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import rest.abstracts.TypoTableController;
 import rest.response.TableDataResponse;
 import service.AbstractTableService;
@@ -22,32 +16,26 @@ public class OrderSubjectsController extends TypoTableController<OrderSubject> i
         return orderSubjectService;
     }
 
-    @Autowired
-    OrderSubjectWithConsumableItemsViewService orderSubjectWithConsumableItemsViewService;
+    @GetMapping("/get_all")
+    public TableDataResponse<OrderSubject> getAll() {
+        return getAllTranslatedResponse(orderSubjectService.getAll());
+    }
 
     @Override
-    public TableDataResponse<OrderSubject> getAll() {
+    @PostMapping("/add")
+    public void add(@RequestBody OrderSubject data) {
+        orderSubjectService.add(data);
+    }
 
-        KList<OrderSubject> result = CollectionFactory.makeList();
+    @Override
+    @PostMapping("/update")
+    public void update(@RequestBody OrderSubject data) {
+        orderSubjectService.update(data);
+    }
 
-        orderSubjectWithConsumableItemsViewService.selectAll()
-                .groupBy(OrderSubjectWithConsumableItemsView::extractOrderSubject)
-                .forEach((orderSubject, viewLines) -> {
-
-                    orderSubject.setRelatedParentJsonConsumableItems(
-                            viewLines
-                                    .filterTrue(OrderSubjectWithConsumableItemsView::getParent)
-                                    .mapEachBy(OrderSubjectWithConsumableItemsView::extractJsonConsumableItem)
-                    );
-
-                    orderSubject.setRelatedOwnJsonConsumableItems(
-                            viewLines
-                                    .filterFalse(OrderSubjectWithConsumableItemsView::getParent)
-                                    .mapEachBy(OrderSubjectWithConsumableItemsView::extractJsonConsumableItem)
-                    );
-                    result.add(orderSubject);
-                });
-
-        return getAllTranslatedResponse(result);
+    @Override
+    @GetMapping("/delete/{id}")
+    public void delete(@PathVariable(value = "id") String id) {
+        orderSubjectService.delete(id);
     }
 }

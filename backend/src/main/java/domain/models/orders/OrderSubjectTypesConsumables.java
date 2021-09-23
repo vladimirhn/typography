@@ -16,7 +16,7 @@ public class OrderSubjectTypesConsumables extends StringIdTable {
     String consumableItemId;
 
     @Column(name = "IS_PARENT")
-    boolean isParent;
+    Boolean isParent;
 
     public OrderSubjectTypesConsumables() {}
 
@@ -44,11 +44,11 @@ public class OrderSubjectTypesConsumables extends StringIdTable {
         this.consumableItemId = consumableItemId;
     }
 
-    public boolean isParent() {
+    public Boolean isParent() {
         return isParent;
     }
 
-    public void setParent(boolean parent) {
+    public void setParent(Boolean parent) {
         isParent = parent;
     }
 }

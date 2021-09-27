@@ -39,28 +39,6 @@
         </addColumn>
     </changeSet>
 
-    <changeSet id="orders-add-size-x" author="typography" runOnChange="true">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <columnExists tableName="ORDERS" columnName="SIZE_X"/>
-            </not>
-        </preConditions>
-        <addColumn tableName="ORDERS">
-            <column name="SIZE_X" remarks="Размер по оси x" type="${DECIMAL_11_2}"/>
-        </addColumn>
-    </changeSet>
-
-    <changeSet id="orders-add-size-y" author="typography" runOnChange="true">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <columnExists tableName="ORDERS" columnName="SIZE_Y"/>
-            </not>
-        </preConditions>
-        <addColumn tableName="ORDERS">
-            <column name="SIZE_Y" remarks="Размер по оси y" type="${DECIMAL_11_2}"/>
-        </addColumn>
-    </changeSet>
-
     <changeSet id="orders-add-orders-date" author="typography" runOnChange="true">
         <preConditions onFail="MARK_RAN">
             <not>

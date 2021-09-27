@@ -22,12 +22,6 @@ public class Order extends StringIdTable {
     @Column(name = "AMOUNT")
     Integer amount;
 
-    @Column(name = "SIZE_X")
-    BigDecimal sizeX;
-
-    @Column(name = "SIZE_Y")
-    BigDecimal sizeY;
-
     @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @OrderBy(direction = Direction.DESC)
@@ -75,22 +69,6 @@ public class Order extends StringIdTable {
 
     public void setAmount(Integer amount) {
         this.amount = amount;
-    }
-
-    public BigDecimal getSizeX() {
-        return sizeX;
-    }
-
-    public void setSizeX(BigDecimal sizeX) {
-        this.sizeX = sizeX;
-    }
-
-    public BigDecimal getSizeY() {
-        return sizeY;
-    }
-
-    public void setSizeY(BigDecimal sizeY) {
-        this.sizeY = sizeY;
     }
 
     public LocalDate getOrderDate() {

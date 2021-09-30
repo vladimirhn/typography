@@ -1,10 +1,10 @@
 package domain.models.orders;
 
+import rest.data.EntryTransferData;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
 import kpersistence.mapping.annotations.Table;
 import repository.tables.AbstractView;
-import rest.nomenclature.JsonConsumableItem;
 
 @Entity
 @Table(name = "ORDER_SUBJECT_WITH_CONSUMABLE_ITEMS_VIEW")
@@ -39,8 +39,8 @@ public class OrderSubjectWithConsumableItemsView extends AbstractView {
         return new OrderSubject(orderSubjectId, orderSubjectName, orderSubjectTypeId, orderSubjectTypeName);
     }
 
-    public JsonConsumableItem extractJsonConsumableItem() {
-        return new JsonConsumableItem(consumableItemId, consumableItemItem);
+    public EntryTransferData extractMinimalConsumableItemData() {
+        return new EntryTransferData(consumableItemId, consumableItemItem);
     }
 
     public String getOrderSubjectTypeId() {

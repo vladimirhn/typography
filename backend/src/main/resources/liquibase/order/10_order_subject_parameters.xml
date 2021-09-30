@@ -1,0 +1,42 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd" logicalFilePath="true">
+
+    <changeSet id="order-subject-parameters-create-table" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="ORDER_SUBJECT_PARAMETERS"/>
+            </not>
+        </preConditions>
+        <createTable tableName="ORDER_SUBJECT_PARAMETERS" remarks="Продукты/услуги и их параметры">
+            <column name="ID" type="${ID}" remarks="id">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="order-subject-parameters-add-order-subject-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ORDER_SUBJECT_PARAMETERS" columnName="TYPE"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ORDER_SUBJECT_PARAMETERS">
+            <column name="ORDER_SUBJECT_ID" remarks="Продукт/услуга" type="${ID}"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="order-subject-parameters-add-parameter-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ORDER_SUBJECT_PARAMETERS" columnName="NAME"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ORDER_SUBJECT_PARAMETERS">
+            <column name="PARAMETER_ID" remarks="Параметр" type="${ID}"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

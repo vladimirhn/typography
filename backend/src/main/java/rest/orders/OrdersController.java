@@ -3,11 +3,9 @@ package rest.orders;
 import domain.models.orders.Order;
 import domain.models.orders.OrderSubject;
 import domain.services.abstracts.TypoServiceUser;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import rest.abstracts.TypoTableController;
+import rest.response.TableDataResponse;
 import service.AbstractTableService;
 
 @RestController
@@ -17,6 +15,11 @@ public class OrdersController extends TypoTableController<Order> implements Typo
     @Override
     protected AbstractTableService<Order> getService() {
         return orderService;
+    }
+
+    @GetMapping("/get_all")
+    public TableDataResponse<Order> getAll() {
+        return getAllTranslatedResponse(orderService.getAll());
     }
 
     @Override

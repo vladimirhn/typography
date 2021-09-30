@@ -1,0 +1,53 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd" logicalFilePath="true">
+
+    <changeSet id="orders-consumables-create-table" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="ORDERS_CONSUMABLES"/>
+            </not>
+        </preConditions>
+        <createTable tableName="ORDERS_CONSUMABLES" remarks="Заказы и расходники на них">
+            <column name="ID" type="${ID}" remarks="id">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="orders-consumables-add-order-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ORDERS_CONSUMABLES" columnName="TYPE"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ORDERS_CONSUMABLES">
+            <column name="ORDER_ID" remarks="Заказ" type="${ID}"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="orders-consumables-add-consumable-items-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ORDERS_CONSUMABLES" columnName="NAME"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ORDERS_CONSUMABLES">
+            <column name="CONSUMABLE_ITEM_ID" remarks="Расходник" type="${ID}"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="orders-consumables-add-quantity" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ORDERS_CONSUMABLES" columnName="NAME"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ORDERS_CONSUMABLES">
+            <column name="QUANTITY" remarks="Количество израсходованного расходника" type="${DECIMAL_13_4}"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

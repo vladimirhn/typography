@@ -1,8 +1,8 @@
 package domain.models.orders;
 
+import rest.data.EntryTransferData;
 import repository.tables.StringIdTable;
 import kpersistence.mapping.annotations.*;
-import rest.nomenclature.JsonConsumableItem;
 import rest.response.JsonTableResponse;
 
 import java.util.List;
@@ -24,9 +24,9 @@ public class OrderSubject extends StringIdTable {
     String orderSubjectTypeName;
 
     @JsonTableResponse(addToProperties = false)
-    List<JsonConsumableItem> relatedParentJsonConsumableItems;
+    List<EntryTransferData> relatedParentConsumableItems;
     @JsonTableResponse(addToProperties = false)
-    List<JsonConsumableItem> relatedOwnJsonConsumableItems;
+    List<EntryTransferData> relatedOwnConsumableItems;
 
     public OrderSubject() {}
 
@@ -72,20 +72,20 @@ public class OrderSubject extends StringIdTable {
         this.orderSubjectTypeName = orderSubjectTypeName;
     }
 
-    public List<JsonConsumableItem> getRelatedParentJsonConsumableItems() {
-        return relatedParentJsonConsumableItems;
+    public List<EntryTransferData> getRelatedParentConsumableItems() {
+        return relatedParentConsumableItems;
     }
 
-    public void setRelatedParentJsonConsumableItems(List<JsonConsumableItem> relatedParentJsonConsumableItems) {
-        this.relatedParentJsonConsumableItems = relatedParentJsonConsumableItems;
+    public void setRelatedParentConsumableItems(List<EntryTransferData> relatedParentConsumableItems) {
+        this.relatedParentConsumableItems = relatedParentConsumableItems;
     }
 
-    public List<JsonConsumableItem> getRelatedOwnJsonConsumableItems() {
-        return relatedOwnJsonConsumableItems;
+    public List<EntryTransferData> getRelatedOwnConsumableItems() {
+        return relatedOwnConsumableItems;
     }
 
-    public void setRelatedOwnJsonConsumableItems(List<JsonConsumableItem> relatedOwnJsonConsumableItems) {
-        this.relatedOwnJsonConsumableItems = relatedOwnJsonConsumableItems;
+    public void setRelatedOwnConsumableItems(List<EntryTransferData> relatedOwnConsumableItems) {
+        this.relatedOwnConsumableItems = relatedOwnConsumableItems;
     }
 
     @Override

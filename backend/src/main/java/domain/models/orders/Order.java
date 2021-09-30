@@ -1,12 +1,14 @@
 package domain.models.orders;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import rest.data.EntryTransferData;
 import repository.tables.StringIdTable;
 import kpersistence.mapping.annotations.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "ORDERS")
@@ -42,7 +44,21 @@ public class Order extends StringIdTable {
     @Column(name = "SUPPLIED", rus = "отгружено")
     Boolean supplied;
 
+    List<EntryTransferData> relatedConsumables;
+
     public Order() {}
+
+    public Order(String id, String orderSubjectsId, String orderSubjectName, Integer amount, LocalDate orderDate, LocalDate orderDeadline, String status, Boolean confirmed, Boolean supplied) {
+        setId(id);
+        this.orderSubjectsId = orderSubjectsId;
+        this.orderSubjectName = orderSubjectName;
+        this.amount = amount;
+        this.orderDate = orderDate;
+        this.orderDeadline = orderDeadline;
+        this.status = status;
+        this.confirmed = confirmed;
+        this.supplied = supplied;
+    }
 
     @Override
     public void setDefaults() {}
@@ -109,5 +125,26 @@ public class Order extends StringIdTable {
 
     public void setSupplied(Boolean supplied) {
         this.supplied = supplied;
+    }
+
+    public List<EntryTransferData> getRelatedConsumables() {
+        return relatedConsumables;
+    }
+
+    public void setRelatedConsumables(List<EntryTransferData> relatedConsumables) {
+        this.relatedConsumables = relatedConsumables;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return getId().equals(order.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
     }
 }

@@ -6,7 +6,6 @@ import kcollections.CollectionFactory;
 import kcollections.KList;
 import repository.AbstractTableRepository;
 import domain.repositories.orders.OrderSubjectRepository;
-import rest.response.TableDataResponse;
 import service.AbstractTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,16 +28,16 @@ public class OrderSubjectService extends AbstractTableService<OrderSubject> impl
                 .groupBy(OrderSubjectWithConsumableItemsView::extractOrderSubject)
                 .forEach((orderSubject, viewLines) -> {
 
-                    orderSubject.setRelatedParentJsonConsumableItems(
+                    orderSubject.setRelatedParentConsumableItems(
                             viewLines
                                     .filterTrue(OrderSubjectWithConsumableItemsView::getParent)
-                                    .mapEachBy(OrderSubjectWithConsumableItemsView::extractJsonConsumableItem)
+                                    .mapEachBy(OrderSubjectWithConsumableItemsView::extractMinimalConsumableItemData)
                     );
 
-                    orderSubject.setRelatedOwnJsonConsumableItems(
+                    orderSubject.setRelatedOwnConsumableItems(
                             viewLines
                                     .filterFalse(OrderSubjectWithConsumableItemsView::getParent)
-                                    .mapEachBy(OrderSubjectWithConsumableItemsView::extractJsonConsumableItem)
+                                    .mapEachBy(OrderSubjectWithConsumableItemsView::extractMinimalConsumableItemData)
                     );
                     result.add(orderSubject);
                 });
@@ -48,9 +47,9 @@ public class OrderSubjectService extends AbstractTableService<OrderSubject> impl
 
     public void add(OrderSubject item) {
         String newOrdSubjId = repository.insert(item);
-        if (item.getRelatedOwnJsonConsumableItems() != null) {
-            item.getRelatedOwnJsonConsumableItems().forEach(jsonConsumableItem -> {
-                String consItemId = jsonConsumableItem.getItemId();
+        if (item.getRelatedOwnConsumableItems() != null) {
+            item.getRelatedOwnConsumableItems().forEach(consumableItemData -> {
+                String consItemId = consumableItemData.getId();
                 if (consItemId.startsWith("+")) consItemId = consItemId.substring(1);
                 orderSubjectConsumablesService.insert(new OrderSubjectConsumables(newOrdSubjId, consItemId));
             });
@@ -59,15 +58,15 @@ public class OrderSubjectService extends AbstractTableService<OrderSubject> impl
 
     public void update(OrderSubject item) {
         super.update(item);
-        item.getRelatedOwnJsonConsumableItems().forEach(consumableItem -> {
-            if (consumableItem.getItemId() != null && consumableItem.getItemId().startsWith("-")) {
+        item.getRelatedOwnConsumableItems().forEach(consumableItemData -> {
+            if (consumableItemData.getId() != null && consumableItemData.getId().startsWith("-")) {
                 orderSubjectConsumablesService
-                        .deleteSimilar(new OrderSubjectConsumables(item.getId(), consumableItem.getItemId().substring(1)));
+                        .deleteSimilar(new OrderSubjectConsumables(item.getId(), consumableItemData.getId().substring(1)));
             }
 
-            if (consumableItem.getItemId() != null && consumableItem.getItemId().startsWith("+")) {
+            if (consumableItemData.getId() != null && consumableItemData.getId().startsWith("+")) {
                 orderSubjectConsumablesService
-                        .insert(new OrderSubjectConsumables(item.getId(), consumableItem.getItemId().substring(1)));
+                        .insert(new OrderSubjectConsumables(item.getId(), consumableItemData.getId().substring(1)));
             }
         });
     }

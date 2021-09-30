@@ -31,14 +31,17 @@ public interface TypoServiceUser extends ServiceUser {
     EquipmentTypesService equipmentTypesService = ServiceUser.getBean(EquipmentTypesService.class);
 
     //O
+    OrderConsumableService orderConsumableService = ServiceUser.getBean(OrderConsumableService.class);
     OrderService orderService = ServiceUser.getBean(OrderService.class);
     OrderSubjectConsumablesService orderSubjectConsumablesService = ServiceUser.getBean(OrderSubjectConsumablesService.class);
     OrderSubjectService orderSubjectService = ServiceUser.getBean(OrderSubjectService.class);
     OrderSubjectTypeService orderSubjectTypeService = ServiceUser.getBean(OrderSubjectTypeService.class);
     OrderSubjectTypesConsumablesService orderSubjectTypesConsumablesService = ServiceUser.getBean(OrderSubjectTypesConsumablesService.class);
     OrderSubjectWithConsumableItemsViewService orderSubjectWithConsumableItemsViewService = ServiceUser.getBean(OrderSubjectWithConsumableItemsViewService.class);
+    OrderWithSubjectWithConsumablesViewService orderWithSubjectWithConsumablesViewService = ServiceUser.getBean(OrderWithSubjectWithConsumablesViewService.class);
 
     //P
+    ParameterService parameterService = ServiceUser.getBean(ParameterService.class);
     PurchasingConsumablesService purchasingConsumablesService = ServiceUser.getBean(PurchasingConsumablesService.class);
 
     //S

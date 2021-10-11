@@ -1,10 +1,11 @@
 package domain.models.orders;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import rest.data.EntryTransferData;
-import repository.tables.StringIdTable;
+import kcollections.CollectionFactory;
+import kcollections.KList;
 import kpersistence.mapping.annotations.*;
 import org.springframework.format.annotation.DateTimeFormat;
+import repository.tables.StringIdTable;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -44,7 +45,7 @@ public class Order extends StringIdTable {
     @Column(name = "SUPPLIED", rus = "отгружено")
     Boolean supplied;
 
-    List<EntryTransferData> relatedConsumables;
+    List<OrderConsumable> relatedConsumables;
 
     public Order() {}
 
@@ -127,11 +128,11 @@ public class Order extends StringIdTable {
         this.supplied = supplied;
     }
 
-    public List<EntryTransferData> getRelatedConsumables() {
-        return relatedConsumables;
+    public KList<OrderConsumable> getRelatedConsumables() {
+        return CollectionFactory.makeList(relatedConsumables);
     }
 
-    public void setRelatedConsumables(List<EntryTransferData> relatedConsumables) {
+    public void setRelatedConsumables(List<OrderConsumable> relatedConsumables) {
         this.relatedConsumables = relatedConsumables;
     }
 

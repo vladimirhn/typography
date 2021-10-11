@@ -19,7 +19,8 @@
             oswciv.ORDER_SUBJECT_NAME ORDER_SUBJECT_NAME,
             oswciv.CONSUMABLE_ITEMS_ID CONSUMABLE_ITEM_ID,
             oswciv.CONSUMABLE_ITEMS_ITEM CONSUMABLE_ITEM_ITEM,
-            oc.QUANTITY QUANTITY
+            oc.QUANTITY QUANTITY,
+            oc.id ORDERS_CONSUMABLES_ID
             from ORDERS o
             inner join (ORDER_SUBJECTS os
             left join ORDER_SUBJECT_WITH_CONSUMABLE_ITEMS_VIEW oswciv on os.ID = oswciv.ORDER_SUBJECT_ID)

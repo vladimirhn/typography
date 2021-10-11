@@ -1,7 +1,6 @@
 package domain.models.orders;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import rest.data.EntryTransferData;
 import kpersistence.mapping.annotations.*;
 import repository.tables.AbstractView;
 
@@ -51,12 +50,15 @@ public class OrderWithSubjectWithConsumablesView extends AbstractView {
     @Column(name = "QUANTITY")
     private BigDecimal qty;
 
+    @Column(name = "ORDERS_CONSUMABLES_ID")
+    private String orderConsumableId;
+
     public Order extractOrder() {
         return new Order(orderId, orderSubjectId, orderSubjectName, amount, orderDate, orderDeadline, status, confirmed, supplied);
     }
 
-    public EntryTransferData extractMinimalConsumableItemData() {
-        return new EntryTransferData(consumableItemId, consumableItemItem, qty);
+    public OrderConsumable extractOrderConsumable() {
+        return new OrderConsumable(orderConsumableId, orderId, consumableItemId, consumableItemItem, qty);
     }
 
     public String getOrderId() {
@@ -153,5 +155,13 @@ public class OrderWithSubjectWithConsumablesView extends AbstractView {
 
     public void setQty(BigDecimal qty) {
         this.qty = qty;
+    }
+
+    public String getOrderConsumableId() {
+        return orderConsumableId;
+    }
+
+    public void setOrderConsumableId(String orderConsumableId) {
+        this.orderConsumableId = orderConsumableId;
     }
 }

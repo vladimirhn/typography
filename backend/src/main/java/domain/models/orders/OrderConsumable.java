@@ -1,9 +1,13 @@
 package domain.models.orders;
 
+import domain.models.nomenclature.consumables.ConsumableItem;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
+import kpersistence.mapping.annotations.Foreign;
 import kpersistence.mapping.annotations.Table;
 import repository.tables.StringIdTable;
+
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "ORDERS_CONSUMABLES")
@@ -15,10 +19,25 @@ public class OrderConsumable extends StringIdTable {
     @Column(name = "CONSUMABLE_ITEM_ID")
     String consumableItemId;
 
+    @Foreign(table = ConsumableItem.class, foreignId = "consumableItemId")
+    private String consumableItemName;
+
     @Column(name = "QUANTITY")
-    Double qty;
+    BigDecimal qty;
 
     public OrderConsumable() {}
+
+    public OrderConsumable(String orderId, String consumableItemId, BigDecimal qty) {
+        this.orderId = orderId;
+        this.consumableItemId = consumableItemId;
+        this.qty = qty;
+    }
+
+    public OrderConsumable(String id, String orderId, String consumableItemId, String consumableItemName, BigDecimal qty) {
+        this(orderId, consumableItemId, qty);
+        this.consumableItemName = consumableItemName;
+        setId(id);
+    }
 
     @Override
     public void setDefaults() {}
@@ -39,11 +58,24 @@ public class OrderConsumable extends StringIdTable {
         this.consumableItemId = consumableItemId;
     }
 
-    public Double getQty() {
+    public String getConsumableItemName() {
+        return consumableItemName;
+    }
+
+    public void setConsumableItemName(String consumableItemName) {
+        this.consumableItemName = consumableItemName;
+    }
+
+    public BigDecimal getQty() {
         return qty;
     }
 
-    public void setQty(Double qty) {
+    public void setQty(BigDecimal qty) {
         this.qty = qty;
+    }
+
+    //Util methods
+    public void denullifyQty() {
+        if (qty == null) qty = BigDecimal.ZERO;
     }
 }

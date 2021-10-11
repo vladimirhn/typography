@@ -25,23 +25,26 @@ public class PurchasingConsumablesController extends TypoTableController<Purchas
     @Override
     @PostMapping("/add")
     public void add(@RequestBody PurchasingConsumables data) {
+
+        System.out.println("Begin");
+
         getService().insert(data);
 
         BigDecimal amount = consumableItemsService
                 .findFieldValue(data.getConsumableId(), ConsumableItem::getPackageCapacity)
-                .ifNothingMap(data::getAmount)
                 .ifSomethingMap(capacity -> capacity.multiply(data.getAmount()))
+                .ifNothingMap(data::getAmount)
                 .get();
 
         stockBalanceService
                 .selectByField(StockBalance::setConsumableItemId, data.getConsumableId())
                 .getFirst()
-                .ifNothing(() -> {
-                    stockBalanceService.insert(new StockBalance(data.getConsumableId(), amount));
-                })
                 .ifSomething(entry -> {
                     entry.setAmount(amount.add(entry.getAmount()));
                     stockBalanceService.update(entry);
+                })
+                .ifNothing(() -> {
+                    stockBalanceService.insert(new StockBalance(data.getConsumableId(), amount));
                 });
     }
 }

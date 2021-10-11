@@ -1,6 +1,7 @@
 package domain.services.orders;
 
 import domain.models.orders.Order;
+import domain.models.orders.OrderConsumable;
 import domain.models.orders.OrderWithSubjectWithConsumablesView;
 import domain.repositories.orders.OrderRepository;
 import domain.services.abstracts.TypoServiceUser;
@@ -9,6 +10,7 @@ import kcollections.KList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.AbstractTableRepository;
+import rest.data.EntryTransferData;
 import service.AbstractTableService;
 
 import java.util.List;
@@ -27,17 +29,33 @@ public class OrderService extends AbstractTableService<Order> implements TypoSer
 
         KList<Order> result = CollectionFactory.makeList();
 
-        List<OrderWithSubjectWithConsumablesView> all = orderWithSubjectWithConsumablesViewService
-                .selectAll();
-
         orderWithSubjectWithConsumablesViewService
                 .selectAll()
                 .groupBy(OrderWithSubjectWithConsumablesView::extractOrder)
                 .forEach((order, lines) -> {
-                    order.setRelatedConsumables(lines.mapEachBy(OrderWithSubjectWithConsumablesView::extractMinimalConsumableItemData));
+                    order.setRelatedConsumables(lines.mapEachBy(OrderWithSubjectWithConsumablesView::extractOrderConsumable));
                     result.add(order);
                 });
 
         return result;
+    }
+
+    public void add(Order data) {
+        data.setStatus("CREATED");
+        String newOrderId = orderService.insert(data);
+
+        data.getRelatedConsumables()
+                .useEachBy(OrderConsumable::denullifyQty)
+                .forEach(consumable -> {
+                    orderConsumableService.insert(new OrderConsumable(newOrderId, consumable.getId(), consumable.getQty()));
+                });
+    }
+
+    public void update(Order data) {
+
+        repository.update(data);
+        data.getRelatedConsumables()
+                .useEachBy(OrderConsumable::denullifyQty)
+                .forEach(orderConsumableService::update);
     }
 }

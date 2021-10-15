@@ -1,12 +1,9 @@
 package domain.models.stock;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import kpersistence.mapping.annotations.*;
 import repository.tables.StringIdTable;
 import domain.models.nomenclature.consumables.ConsumableItem;
-import kpersistence.mapping.annotations.Column;
-import kpersistence.mapping.annotations.Entity;
-import kpersistence.mapping.annotations.Foreign;
-import kpersistence.mapping.annotations.Table;
 
 import java.math.BigDecimal;
 
@@ -23,6 +20,7 @@ public class StockBalance extends StringIdTable {
     String consumableItemId;
 
     @Foreign(table = ConsumableItem.class, foreignId = "consumableItemId")
+    @OrderBy(direction = Direction.ASC)
     private String consumableItemName;
 
     @Column(name = "AMOUNT")

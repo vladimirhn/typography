@@ -10,10 +10,7 @@ import kcollections.KList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.AbstractTableRepository;
-import rest.data.EntryTransferData;
 import service.AbstractTableService;
-
-import java.util.List;
 
 @Service("orderService")
 public class OrderService extends AbstractTableService<Order> implements TypoServiceUser {
@@ -29,13 +26,14 @@ public class OrderService extends AbstractTableService<Order> implements TypoSer
 
         KList<Order> result = CollectionFactory.makeList();
 
-        orderWithSubjectWithConsumablesViewService
-                .selectAll()
+        orderWithSubjectWithConsumablesViewService.selectAll()
                 .groupBy(OrderWithSubjectWithConsumablesView::extractOrder)
                 .forEach((order, lines) -> {
                     order.setRelatedConsumables(lines.mapEachBy(OrderWithSubjectWithConsumablesView::extractOrderConsumable));
                     result.add(order);
                 });
+
+        result.sortDesc(Order::getOrderDate);
 
         return result;
     }

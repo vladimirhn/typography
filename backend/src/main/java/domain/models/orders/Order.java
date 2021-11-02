@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import kcollections.CollectionFactory;
 import kcollections.KList;
 import kpersistence.mapping.annotations.*;
-import org.springframework.format.annotation.DateTimeFormat;
 import repository.tables.StringIdTable;
 
 import java.time.LocalDate;
@@ -23,16 +22,14 @@ public class Order extends StringIdTable {
     private String orderSubjectName;
 
     @Column(name = "AMOUNT")
-    Integer amount;
+    Long amount;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "dd.MM.yyyy")
     @OrderBy(direction = Direction.DESC)
     @Column(name = "ORDERS_DATE")
     LocalDate orderDate;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "dd.MM.yyyy")
     @Column(name = "ORDERS_DEADLINE")
     LocalDate orderDeadline;
 
@@ -49,7 +46,7 @@ public class Order extends StringIdTable {
 
     public Order() {}
 
-    public Order(String id, String orderSubjectsId, String orderSubjectName, Integer amount, LocalDate orderDate, LocalDate orderDeadline, String status, Boolean confirmed, Boolean supplied) {
+    public Order(String id, String orderSubjectsId, String orderSubjectName, Long amount, LocalDate orderDate, LocalDate orderDeadline, String status, Boolean confirmed, Boolean supplied) {
         setId(id);
         this.orderSubjectsId = orderSubjectsId;
         this.orderSubjectName = orderSubjectName;
@@ -80,11 +77,11 @@ public class Order extends StringIdTable {
         this.orderSubjectName = orderSubjectName;
     }
 
-    public Integer getAmount() {
+    public Long getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(Long amount) {
         this.amount = amount;
     }
 

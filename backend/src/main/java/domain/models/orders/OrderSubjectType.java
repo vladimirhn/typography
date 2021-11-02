@@ -18,8 +18,6 @@ public class OrderSubjectType extends StringIdTable {
     @Label
     String name;
 
-    List<JsonConsumableItem> relatedJsonConsumableItems;
-
     public OrderSubjectType() {}
 
     public OrderSubjectType(String name) {
@@ -40,14 +38,6 @@ public class OrderSubjectType extends StringIdTable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<JsonConsumableItem> getRelatedJsonConsumableItems() {
-        return relatedJsonConsumableItems;
-    }
-
-    public void setRelatedJsonConsumableItems(List<JsonConsumableItem> relatedJsonConsumableItems) {
-        this.relatedJsonConsumableItems = relatedJsonConsumableItems;
     }
 
     @Override

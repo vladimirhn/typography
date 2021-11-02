@@ -5,6 +5,7 @@ import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
 import kpersistence.mapping.annotations.Table;
 
+@Deprecated
 @Entity
 @Table(name = "ORDER_SUBJECT_TYPES_CONSUMABLES")
 public class OrderSubjectTypesConsumables extends StringIdTable {

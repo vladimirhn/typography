@@ -15,7 +15,7 @@ public class OrderWithSubjectWithConsumablesView extends AbstractView {
     String orderId;
 
     @Column(name = "AMOUNT")
-    Integer amount;
+    Long amount;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     @OrderBy(direction = Direction.DESC)
@@ -69,11 +69,11 @@ public class OrderWithSubjectWithConsumablesView extends AbstractView {
         this.orderId = orderId;
     }
 
-    public Integer getAmount() {
+    public Long getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(Long amount) {
         this.amount = amount;
     }
 

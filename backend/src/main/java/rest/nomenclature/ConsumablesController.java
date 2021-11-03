@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/consumables")
+@RequestMapping("/u/consumables")
 public class ConsumablesController implements TypoServiceUser {
 
     @GetMapping("/get_all")

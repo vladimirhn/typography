@@ -14,7 +14,7 @@ import service.AbstractTableService;
 import java.math.BigDecimal;
 
 @RestController
-@RequestMapping("/purchasing_consumables")
+@RequestMapping("/admin/purchasing_consumables")
 public class PurchasingConsumablesController extends TypoTableController<PurchasingConsumables> implements TypoServiceUser {
 
     @Override

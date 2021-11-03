@@ -17,14 +17,36 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="users-add-name" author="typography" runOnChange="true">
+    <changeSet id="users-add-login" author="typography" runOnChange="true">
         <preConditions onFail="MARK_RAN">
             <not>
-                <columnExists tableName="USERS" columnName="NAME"/>
+                <columnExists tableName="USERS" columnName="LOGIN"/>
             </not>
         </preConditions>
         <addColumn tableName="USERS">
-            <column name="NAME" remarks="Имя пользователя" type="VARCHAR2(50)"/>
+            <column name="LOGIN" remarks="Имя пользователя" type="VARCHAR2(100)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="users-add-role" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="USERS" columnName="ROLE"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="USERS">
+            <column name="ROLE" remarks="Роль" type="VARCHAR2(50)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="users-add-password" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="USERS" columnName="PASSWORD"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="USERS">
+            <column name="PASSWORD" remarks="Пароль" type="VARCHAR2(500)"/>
         </addColumn>
     </changeSet>
 

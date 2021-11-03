@@ -10,16 +10,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan({"application","domain","rest"})
+@ComponentScan({"application", "jwtsecurity", "domain", "rest"})
 public class Typography {
 
     static {
+        System.out.println("Working Directory = " + System.getProperty("user.dir"));
     }
 
     public static void main(String[] args) {
-
-        System.out.println("Working Directory = " + System.getProperty("user.dir"));
-
         SpringApplication.run(Typography.class, args);
     }
 
@@ -28,7 +26,12 @@ public class Typography {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("*");
+                registry.addMapping("/**")
+                        .allowedOrigins("*")
+                        .allowedMethods("GET", "POST")
+                        .allowedHeaders("*")
+                        .exposedHeaders("content-type")
+                        .allowCredentials(true).maxAge(3600);
             }
         };
     }

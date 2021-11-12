@@ -3,13 +3,14 @@ package domain.models.orders;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import kpersistence.mapping.annotations.*;
 import repository.tables.AbstractView;
+import repository.tables.UserIdAbstractView;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "ORDER_WITH_SUBJECT_WITH_CONSUMABLES_VIEW")
-public class OrderWithSubjectWithConsumablesView extends AbstractView {
+public class OrderWithSubjectWithConsumablesView extends UserIdAbstractView {
 
     @Column(name = "ORDER_ID")
     String orderId;

@@ -17,6 +17,18 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="consumable-types-add-user-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="CONSUMABLE_TYPES" columnName="USER_ID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="CONSUMABLE_TYPES">
+            <column name="USER_ID" remarks="id пользователя" type="${ID}"/>
+        </addColumn>
+        <sql>UPDATE CONSUMABLE_TYPES SET user_id = (SELECT id FROM USERS WHERE login = 'talpa')</sql>
+    </changeSet>
+
     <changeSet id="consumable-types-add-type" author="typography" runOnChange="true">
         <preConditions onFail="MARK_RAN">
             <not>

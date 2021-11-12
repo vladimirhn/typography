@@ -10,13 +10,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 import repository.tables.StringIdTable;
 import domain.models.nomenclature.consumables.ConsumableItem;
 import kpersistence.mapping.annotations.*;
+import repository.tables.UserIdStringIdTable;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "PURCHASING_CONSUMABLES")
-public class PurchasingConsumables extends StringIdTable {
+public class PurchasingConsumables extends UserIdStringIdTable {
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "CONSUMABLE_ID")

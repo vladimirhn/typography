@@ -1,17 +1,17 @@
 package domain.repositories.stock;
 
-import domain.models.stock.StockBalance;
-import repository.AbstractTableRepository;
+import domain.models.stock.PurchasedConsumablesBalanceView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.stereotype.Repository;
+import repository.AbstractViewRepository;
 
 @Repository
-public class StockBalanceRepository extends AbstractTableRepository<StockBalance> {
+public class PurchasedConsumablesBalanceViewRepository extends AbstractViewRepository<PurchasedConsumablesBalanceView> {
 
-    public StockBalanceRepository() {
-        super(StockBalance.class);
+    public PurchasedConsumablesBalanceViewRepository() {
+        super(PurchasedConsumablesBalanceView.class);
     }
 
     @Autowired

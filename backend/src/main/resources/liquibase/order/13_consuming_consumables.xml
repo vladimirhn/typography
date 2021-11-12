@@ -1,0 +1,76 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd" logicalFilePath="true">
+
+    <changeSet id="consuming-consumables-create-table" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="CONSUMING_CONSUMABLES"/>
+            </not>
+        </preConditions>
+        <createTable tableName="CONSUMING_CONSUMABLES" remarks="Расходование расходников">
+            <column name="ID" type="${ID}" remarks="id">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="consuming-consumables-add-user-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="CONSUMING_CONSUMABLES" columnName="USER_ID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="CONSUMING_CONSUMABLES">
+            <column name="USER_ID" remarks="id пользователя" type="${ID}"/>
+        </addColumn>
+        <sql>UPDATE CONSUMING_CONSUMABLES SET user_id = (SELECT id FROM USERS WHERE login = 'talpa')</sql>
+    </changeSet>
+
+    <changeSet id="consuming-consumables-add-order-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="CONSUMING_CONSUMABLES" columnName="ORDER_ID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="CONSUMING_CONSUMABLES">
+            <column name="ORDER_ID" remarks="id заказа" type="${ID}"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="consuming-consumables-add-consuming-date" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="CONSUMING_CONSUMABLES" columnName="CONSUMING_DATE"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="CONSUMING_CONSUMABLES">
+            <column name="CONSUMING_DATE" remarks="Дата расходования" type="${TIMESTAMP}"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="consuming-consumables-add-consumable-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="CONSUMING_CONSUMABLES" columnName="CONSUMABLE_ID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="CONSUMING_CONSUMABLES">
+            <column name="CONSUMABLE_ID" remarks="id расходника" type="${ID}"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="consuming-consumables-add-amount" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="CONSUMING_CONSUMABLES" columnName="AMOUNT"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="CONSUMING_CONSUMABLES">
+            <column name="AMOUNT" remarks="Количество" type="${DECIMAL_13_4}"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

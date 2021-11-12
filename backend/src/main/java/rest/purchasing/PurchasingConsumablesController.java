@@ -14,7 +14,7 @@ import service.AbstractTableService;
 import java.math.BigDecimal;
 
 @RestController
-@RequestMapping("/admin/purchasing_consumables")
+@RequestMapping("/u/purchasing_consumables")
 public class PurchasingConsumablesController extends TypoTableController<PurchasingConsumables> implements TypoServiceUser {
 
     @Override
@@ -35,16 +35,5 @@ public class PurchasingConsumablesController extends TypoTableController<Purchas
                 .ifSomethingMap(capacity -> capacity.multiply(data.getAmount()))
                 .ifNothingMap(data::getAmount)
                 .get();
-
-        stockBalanceService
-                .selectByField(StockBalance::setConsumableItemId, data.getConsumableId())
-                .getFirst()
-                .ifSomething(entry -> {
-                    entry.setAmount(amount.add(entry.getAmount()));
-                    stockBalanceService.update(entry);
-                })
-                .ifNothing(() -> {
-                    stockBalanceService.insert(new StockBalance(data.getConsumableId(), amount));
-                });
     }
 }

@@ -24,8 +24,6 @@ public class OrderSubject extends StringIdTable {
     String orderSubjectTypeName;
 
     @JsonTableResponse(addToProperties = false)
-    List<EntryTransferData> relatedParentConsumableItems;
-    @JsonTableResponse(addToProperties = false)
     List<EntryTransferData> relatedOwnConsumableItems;
 
     public OrderSubject() {}
@@ -70,14 +68,6 @@ public class OrderSubject extends StringIdTable {
 
     public void setOrderSubjectTypeName(String orderSubjectTypeName) {
         this.orderSubjectTypeName = orderSubjectTypeName;
-    }
-
-    public List<EntryTransferData> getRelatedParentConsumableItems() {
-        return relatedParentConsumableItems;
-    }
-
-    public void setRelatedParentConsumableItems(List<EntryTransferData> relatedParentConsumableItems) {
-        this.relatedParentConsumableItems = relatedParentConsumableItems;
     }
 
     public List<EntryTransferData> getRelatedOwnConsumableItems() {

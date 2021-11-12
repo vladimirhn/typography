@@ -10,6 +10,8 @@ import domain.services.nomenclature.consumables.ConsumablesService;
 import domain.services.nomenclature.equipment.EquipmentTypesService;
 import domain.services.orders.*;
 import domain.services.purchasing.PurchasingConsumablesService;
+import domain.services.stock.OrderConsumedConsumablesBalanceViewService;
+import domain.services.stock.PurchasedConsumablesBalanceViewService;
 import domain.services.stock.StockBalanceService;
 import domain.services.stock.StockService;
 
@@ -32,16 +34,17 @@ public interface TypoServiceUser extends ServiceUser {
 
     //O
     OrderConsumableService orderConsumableService = ServiceUser.getBean(OrderConsumableService.class);
+    OrderConsumedConsumablesBalanceViewService orderConsumedConsumablesBalanceViewService = ServiceUser.getBean(OrderConsumedConsumablesBalanceViewService.class);
     OrderService orderService = ServiceUser.getBean(OrderService.class);
     OrderSubjectConsumablesService orderSubjectConsumablesService = ServiceUser.getBean(OrderSubjectConsumablesService.class);
     OrderSubjectService orderSubjectService = ServiceUser.getBean(OrderSubjectService.class);
     OrderSubjectTypeService orderSubjectTypeService = ServiceUser.getBean(OrderSubjectTypeService.class);
-    OrderSubjectTypesConsumablesService orderSubjectTypesConsumablesService = ServiceUser.getBean(OrderSubjectTypesConsumablesService.class);
     OrderSubjectWithConsumableItemsViewService orderSubjectWithConsumableItemsViewService = ServiceUser.getBean(OrderSubjectWithConsumableItemsViewService.class);
     OrderWithSubjectWithConsumablesViewService orderWithSubjectWithConsumablesViewService = ServiceUser.getBean(OrderWithSubjectWithConsumablesViewService.class);
 
     //P
     ParameterService parameterService = ServiceUser.getBean(ParameterService.class);
+    PurchasedConsumablesBalanceViewService purchasedConsumablesBalanceViewService = ServiceUser.getBean(PurchasedConsumablesBalanceViewService.class);
     PurchasingConsumablesService purchasingConsumablesService = ServiceUser.getBean(PurchasingConsumablesService.class);
 
     //S

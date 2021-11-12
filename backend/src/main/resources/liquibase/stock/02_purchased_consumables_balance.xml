@@ -1,0 +1,17 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd" logicalFilePath="true">
+
+    <changeSet id="purchased-consumables-balance-view-create-view" author="typography" runOnChange="true">
+        <sql>DROP VIEW IF EXISTS PURCHASED_CONSUMABLES_BALANCE_VIEW</sql>
+        <createView viewName="PURCHASED_CONSUMABLES_BALANCE_VIEW" replaceIfExists="true">
+            select pc.user_id, pc.consumable_id item_id, ci.item, sum(pc.amount)
+            FROM PURCHASING_CONSUMABLES pc left join consumable_items ci on pc.consumable_id = ci.id
+            GROUP BY pc.user_id, pc.consumable_id, ci.item
+            ORDER BY ci.item
+        </createView>
+    </changeSet>
+
+</databaseChangeLog>

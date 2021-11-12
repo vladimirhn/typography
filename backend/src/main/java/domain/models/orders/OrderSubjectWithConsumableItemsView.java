@@ -1,5 +1,6 @@
 package domain.models.orders;
 
+import repository.tables.UserIdAbstractView;
 import rest.data.EntryTransferData;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
@@ -8,7 +9,7 @@ import repository.tables.AbstractView;
 
 @Entity
 @Table(name = "ORDER_SUBJECT_WITH_CONSUMABLE_ITEMS_VIEW")
-public class OrderSubjectWithConsumableItemsView extends AbstractView {
+public class OrderSubjectWithConsumableItemsView extends UserIdAbstractView {
 
     @Column(name = "ORDER_SUBJECT_TYPE_ID")
     String orderSubjectTypeId;
@@ -27,9 +28,6 @@ public class OrderSubjectWithConsumableItemsView extends AbstractView {
 
     @Column(name = "CONSUMABLE_ITEMS_ITEM")
     private String consumableItemItem;
-
-    @Column(name = "IS_PARENT")
-    Boolean isParent;
 
     public OrderSubjectType extractOrderSubjectType() {
         return new OrderSubjectType(orderSubjectTypeId, orderSubjectTypeName);
@@ -89,13 +87,5 @@ public class OrderSubjectWithConsumableItemsView extends AbstractView {
 
     public void setConsumableItemItem(String consumableItemItem) {
         this.consumableItemItem = consumableItemItem;
-    }
-
-    public Boolean getParent() {
-        return isParent;
-    }
-
-    public void setParent(Boolean parent) {
-        isParent = parent;
     }
 }

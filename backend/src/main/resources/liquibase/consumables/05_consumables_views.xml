@@ -7,7 +7,8 @@
     <changeSet id="all-consumables-view-create-view" author="typography" runOnChange="true">
         <sql>DROP VIEW IF EXISTS ALL_CONSUMABLES_VIEW</sql>
         <createView viewName="ALL_CONSUMABLES_VIEW" replaceIfExists="true">
-            SELECT CT.ID         TYPE_ID,
+            SELECT CT.USER_ID    USER_ID,
+            CT.ID                TYPE_ID,
             TYPE                 TYPE_NAME,
             CI.ID                ITEM_ID,
             ITEM                 ITEM_NAME,

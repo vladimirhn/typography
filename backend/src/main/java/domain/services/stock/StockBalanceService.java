@@ -1,20 +1,39 @@
 package domain.services.stock;
 
+import domain.models.stock.OrderConsumedConsumablesBalanceView;
+import domain.models.stock.PurchasedConsumablesBalanceView;
 import domain.models.stock.StockBalance;
-import repository.AbstractTableRepository;
-import domain.repositories.stock.StockBalanceRepository;
-import service.AbstractTableService;
-import org.springframework.beans.factory.annotation.Autowired;
+import domain.services.abstracts.TypoServiceUser;
+import kcollections.KList;
 import org.springframework.stereotype.Service;
 
-@Service("stocBalancekService")
-public class StockBalanceService extends AbstractTableService<StockBalance> {
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
-    @Autowired
-    StockBalanceRepository repository;
-    @Override
-    protected AbstractTableRepository<StockBalance> getRepository() {
-        return repository;
+@Service("stockBalanceService")
+public class StockBalanceService implements TypoServiceUser {
+
+    public Set<StockBalance> getStockBalance() {
+        KList<PurchasedConsumablesBalanceView> purchased = purchasedConsumablesBalanceViewService.selectAll();
+        KList<OrderConsumedConsumablesBalanceView> orderConsumed = orderConsumedConsumablesBalanceViewService.selectAll();
+
+        Map<String, StockBalance> resultMap = new HashMap<>();
+        purchased.forEach(purch -> resultMap.put(purch.getItemId(), purch.toStockBalance()));
+
+        orderConsumed.forEach(ordCons -> {
+            String itemId = ordCons.getItemId();
+
+            if (resultMap.get(itemId) != null) {
+                StockBalance line = resultMap.get(itemId);
+                line.setSum(line.getSum().add(ordCons.getSum()));
+            } else {
+                resultMap.put(ordCons.getItemId(), ordCons.toStockBalance());
+            }
+        });
+
+        return new TreeSet<>(resultMap.values());
     }
 
 }

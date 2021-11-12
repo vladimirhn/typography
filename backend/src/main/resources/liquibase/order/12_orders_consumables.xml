@@ -28,6 +28,18 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="orders-consumables-add-user-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ORDERS_CONSUMABLES" columnName="USER_ID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ORDERS_CONSUMABLES">
+            <column name="USER_ID" remarks="id пользователя" type="${ID}"/>
+        </addColumn>
+        <sql>UPDATE ORDERS_CONSUMABLES SET user_id = (SELECT id FROM USERS WHERE login = 'talpa')</sql>
+    </changeSet>
+
     <changeSet id="orders-consumables-add-consumable-items-id" author="typography" runOnChange="true">
         <preConditions onFail="MARK_RAN">
             <not>

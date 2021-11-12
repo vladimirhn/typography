@@ -17,6 +17,18 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="purchasing-consumables-add-user-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="PURCHASING_CONSUMABLES" columnName="USER_ID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="PURCHASING_CONSUMABLES">
+            <column name="USER_ID" remarks="id пользователя" type="${ID}"/>
+        </addColumn>
+        <sql>UPDATE PURCHASING_CONSUMABLES SET user_id = (SELECT id FROM USERS WHERE login = 'talpa')</sql>
+    </changeSet>
+
     <changeSet id="purchasing-consumables-add-purchasing-date" author="typography" runOnChange="true">
         <preConditions onFail="MARK_RAN">
             <not>

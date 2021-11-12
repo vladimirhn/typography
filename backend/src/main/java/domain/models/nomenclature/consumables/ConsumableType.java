@@ -4,13 +4,14 @@ import repository.tables.StringIdTable;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
 import kpersistence.mapping.annotations.Table;
+import repository.tables.UserIdStringIdTable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "CONSUMABLE_TYPES")
-public class ConsumableType extends StringIdTable {
+public class ConsumableType extends UserIdStringIdTable {
 
     @Column(name = "TYPE")
     private String type;

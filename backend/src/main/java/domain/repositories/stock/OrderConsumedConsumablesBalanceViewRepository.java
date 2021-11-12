@@ -1,18 +1,17 @@
-package domain.repositories.orders;
+package domain.repositories.stock;
 
-import domain.models.orders.OrderSubjectTypesConsumables;
-import repository.AbstractTableRepository;
+import domain.models.stock.OrderConsumedConsumablesBalanceView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.stereotype.Repository;
+import repository.AbstractViewRepository;
 
-@Deprecated
 @Repository
-public class OrderSubjectTypesConsumablesRepository extends AbstractTableRepository<OrderSubjectTypesConsumables> {
+public class OrderConsumedConsumablesBalanceViewRepository extends AbstractViewRepository<OrderConsumedConsumablesBalanceView> {
 
-    public OrderSubjectTypesConsumablesRepository() {
-        super(OrderSubjectTypesConsumables.class);
+    public OrderConsumedConsumablesBalanceViewRepository() {
+        super(OrderConsumedConsumablesBalanceView.class);
     }
 
     @Autowired

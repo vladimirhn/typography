@@ -1,72 +1,68 @@
 package domain.models.stock;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import kpersistence.mapping.annotations.*;
-import repository.tables.StringIdTable;
-import domain.models.nomenclature.consumables.ConsumableItem;
+import kpersistence.mapping.annotations.Column;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
-@Entity
-@Table(name = "STOCK_BALANCE")
-public class StockBalance extends StringIdTable {
+public class StockBalance implements Comparable<StockBalance> {
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @Column(name = "STOCK_ID")
-    String stockId;
+    String itemId;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @Column(name = "CONSUMABLE_ITEM_ID")
-    String consumableItemId;
+    @Column(name = "", rus = "расходник")
+    String item;
 
-    @Foreign(table = ConsumableItem.class, foreignId = "consumableItemId")
-    @OrderBy(direction = Direction.ASC)
-    private String consumableItemName;
+    @Column(name = "", rus = "остаток")
+    BigDecimal sum;
 
-    @Column(name = "AMOUNT")
-    BigDecimal amount;
+    public StockBalance() {
+    }
 
-    public StockBalance() {}
+    public StockBalance(String itemId, String item, BigDecimal sum) {
+        this.itemId = itemId;
+        this.item = item;
+        this.sum = sum;
+    }
 
-    public StockBalance(String consumableItemId, BigDecimal amount) {
-        this.consumableItemId = consumableItemId;
-        this.amount = amount;
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    public String getItem() {
+        return item;
+    }
+
+    public void setItem(String item) {
+        this.item = item;
+    }
+
+    public BigDecimal getSum() {
+        return sum;
+    }
+
+    public void setSum(BigDecimal sum) {
+        this.sum = sum;
     }
 
     @Override
-    public void setDefaults() {
-        stockId = "-1";
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StockBalance that = (StockBalance) o;
+        return itemId.equals(that.itemId);
     }
 
-    public String getStockId() {
-        return stockId;
+    @Override
+    public int hashCode() {
+        return Objects.hash(itemId);
     }
 
-    public void setStockId(String stockId) {
-        this.stockId = stockId;
-    }
-
-    public String getConsumableItemId() {
-        return consumableItemId;
-    }
-
-    public void setConsumableItemId(String consumableItemId) {
-        this.consumableItemId = consumableItemId;
-    }
-
-    public String getConsumableItemName() {
-        return consumableItemName;
-    }
-
-    public void setConsumableItemName(String consumableItemName) {
-        this.consumableItemName = consumableItemName;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
+    @Override
+    public int compareTo(StockBalance o) {
+        return this.item.compareTo(o.item);
     }
 }

@@ -6,12 +6,13 @@ import kpersistence.mapping.annotations.Entity;
 import kpersistence.mapping.annotations.Foreign;
 import kpersistence.mapping.annotations.Table;
 import repository.tables.StringIdTable;
+import repository.tables.UserIdStringIdTable;
 
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "ORDERS_CONSUMABLES")
-public class OrderConsumable extends StringIdTable {
+public class OrderConsumable extends UserIdStringIdTable {
 
     @Column(name = "ORDER_ID")
     String orderId;
@@ -30,7 +31,9 @@ public class OrderConsumable extends StringIdTable {
     public OrderConsumable(String orderId, String consumableItemId, BigDecimal qty) {
         this.orderId = orderId;
         this.consumableItemId = consumableItemId;
-        this.qty = qty;
+        if (qty != null) {
+            this.qty = qty.negate();
+        }
     }
 
     public OrderConsumable(String id, String orderId, String consumableItemId, String consumableItemName, BigDecimal qty) {
@@ -77,5 +80,11 @@ public class OrderConsumable extends StringIdTable {
     //Util methods
     public void denullifyQty() {
         if (qty == null) qty = BigDecimal.ZERO;
+    }
+
+    public void negateQty() {
+        if (qty != null && qty.compareTo(BigDecimal.ZERO) > 0) {
+            qty = qty.negate();
+        }
     }
 }

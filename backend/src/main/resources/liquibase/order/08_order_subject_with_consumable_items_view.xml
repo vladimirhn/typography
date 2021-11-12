@@ -7,30 +7,17 @@
     <changeSet id="order-subject-with-consumable-items-view-create-view" author="typography" runOnChange="true">
         <sql>DROP VIEW IF EXISTS ORDER_SUBJECT_WITH_CONSUMABLE_ITEMS_VIEW</sql>
         <createView viewName="ORDER_SUBJECT_WITH_CONSUMABLE_ITEMS_VIEW" replaceIfExists="true">
-            select ost.ID  ORDER_SUBJECT_TYPE_ID,
-            ost.NAME ORDER_SUBJECT_TYPE_NAME,
-            os.ID   ORDER_SUBJECT_ID,
-            os.NAME ORDER_SUBJECT_NAME,
-            ci.ID   CONSUMABLE_ITEMS_ID,
-            ci.ITEM CONSUMABLE_ITEMS_ITEM,
-            osc.IS_PARENT IS_PARENT
+            select ost.ID       ORDER_SUBJECT_TYPE_ID,
+            ost.NAME     ORDER_SUBJECT_TYPE_NAME,
+            os.ID        ORDER_SUBJECT_ID,
+            os.NAME      ORDER_SUBJECT_NAME,
+            ci.ID        CONSUMABLE_ITEMS_ID,
+            ci.ITEM      CONSUMABLE_ITEMS_ITEM,
+            ost.USER_ID  USER_ID
             from ORDER_SUBJECTS os
             inner join ORDER_SUBJECT_TYPES ost on ost.ID = os.ORDER_SUBJECT_TYPE_ID
             left join ORDER_SUBJECT_CONSUMABLES osc on os.id = osc.ORDER_SUBJECT_ID
             left join CONSUMABLE_ITEMS ci on ci.id = osc.CONSUMABLE_ITEM_ID
-            where ci.id IS NOT NULL
-            union
-            select ost.ID  ORDER_SUBJECT_TYPE_ID,
-            ost.NAME ORDER_SUBJECT_TYPE_NAME,
-            os.ID   ORDER_SUBJECT_ID,
-            os.NAME ORDER_SUBJECT_NAME,
-            ci.ID   CONSUMABLE_ITEMS_ID,
-            ci.ITEM CONSUMABLE_ITEMS_ITEM,
-            ostc.IS_PARENT IS_PARENT
-            from ORDER_SUBJECTS os
-            inner join ORDER_SUBJECT_TYPES ost on ost.ID = os.ORDER_SUBJECT_TYPE_ID
-            left join ORDER_SUBJECT_TYPES_CONSUMABLES ostc on ost.ID = ostc.ORDER_SUBJECT_TYPE_ID
-            left join CONSUMABLE_ITEMS ci on ci.ID = ostc.CONSUMABLE_ITEM_ID
             where ci.id IS NOT NULL
 
         </createView>

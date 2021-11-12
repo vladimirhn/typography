@@ -28,16 +28,8 @@ public class OrderSubjectService extends AbstractTableService<OrderSubject> impl
                 .groupBy(OrderSubjectWithConsumableItemsView::extractOrderSubject)
                 .forEach((orderSubject, viewLines) -> {
 
-                    orderSubject.setRelatedParentConsumableItems(
-                            viewLines
-                                    .filterTrue(OrderSubjectWithConsumableItemsView::getParent)
-                                    .mapEachBy(OrderSubjectWithConsumableItemsView::extractMinimalConsumableItemData)
-                    );
-
                     orderSubject.setRelatedOwnConsumableItems(
-                            viewLines
-                                    .filterFalse(OrderSubjectWithConsumableItemsView::getParent)
-                                    .mapEachBy(OrderSubjectWithConsumableItemsView::extractMinimalConsumableItemData)
+                            viewLines.mapEachBy(OrderSubjectWithConsumableItemsView::extractMinimalConsumableItemData)
                     );
                     result.add(orderSubject);
                 });

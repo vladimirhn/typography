@@ -19,6 +19,7 @@
             oswciv.ORDER_SUBJECT_NAME ORDER_SUBJECT_NAME,
             oswciv.CONSUMABLE_ITEMS_ID CONSUMABLE_ITEM_ID,
             oswciv.CONSUMABLE_ITEMS_ITEM CONSUMABLE_ITEM_ITEM,
+            oswciv.USER_ID USER_ID,
             oc.QUANTITY QUANTITY,
             oc.id ORDERS_CONSUMABLES_ID
             from ORDERS o

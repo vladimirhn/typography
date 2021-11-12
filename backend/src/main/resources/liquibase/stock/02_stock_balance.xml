@@ -17,7 +17,19 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="stock-balance-add-stock-d" author="typography" runOnChange="true">
+    <changeSet id="stock-balance-add-user-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="STOCK_BALANCE" columnName="USER_ID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="STOCK_BALANCE">
+            <column name="USER_ID" remarks="id пользователя" type="${ID}"/>
+        </addColumn>
+        <sql>UPDATE STOCK_BALANCE SET user_id = (SELECT id FROM USERS WHERE login = 'talpa')</sql>
+    </changeSet>
+
+    <changeSet id="stock-balance-add-stock-id" author="typography" runOnChange="true">
         <preConditions onFail="MARK_RAN">
             <not>
                 <columnExists tableName="STOCK_BALANCE" columnName="STOCK_ID"/>

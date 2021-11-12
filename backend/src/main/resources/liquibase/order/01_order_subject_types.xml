@@ -17,6 +17,18 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="order-subject-types-add-user-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ORDER_SUBJECT_TYPES" columnName="USER_ID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ORDER_SUBJECT_TYPES">
+            <column name="USER_ID" remarks="id пользователя" type="${ID}"/>
+        </addColumn>
+        <sql>UPDATE ORDER_SUBJECT_TYPES SET user_id = (SELECT id FROM USERS WHERE login = 'talpa')</sql>
+    </changeSet>
+
     <changeSet id="order-subject-types-add-name" author="typography" runOnChange="true">
         <preConditions onFail="MARK_RAN">
             <not>

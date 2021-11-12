@@ -1,18 +1,16 @@
 package domain.models.orders;
 
-import repository.tables.StringIdTable;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
 import kpersistence.mapping.annotations.Label;
 import kpersistence.mapping.annotations.Table;
-import rest.nomenclature.JsonConsumableItem;
+import repository.tables.UserIdStringIdTable;
 
-import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "ORDER_SUBJECT_TYPES")
-public class OrderSubjectType extends StringIdTable {
+public class OrderSubjectType extends UserIdStringIdTable {
 
     @Column(name = "NAME", rus = "вид заказа")
     @Label

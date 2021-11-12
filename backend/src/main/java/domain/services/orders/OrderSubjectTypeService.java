@@ -14,9 +14,6 @@ public class OrderSubjectTypeService extends AbstractTableService<OrderSubjectTy
     @Autowired
     OrderSubjectTypeRepository repository;
 
-    @Autowired
-    OrderSubjectTypeWithConsumableItemsViewService orderSubjectTypeWithConsumableItemsViewService;
-
     @Override
     protected AbstractTableRepository<OrderSubjectType> getRepository() {
         return repository;

@@ -31,9 +31,7 @@ public class OrderConsumable extends UserIdStringIdTable {
     public OrderConsumable(String orderId, String consumableItemId, BigDecimal qty) {
         this.orderId = orderId;
         this.consumableItemId = consumableItemId;
-        if (qty != null) {
-            this.qty = qty.negate();
-        }
+        this.qty = qty;
     }
 
     public OrderConsumable(String id, String orderId, String consumableItemId, String consumableItemName, BigDecimal qty) {
@@ -80,11 +78,5 @@ public class OrderConsumable extends UserIdStringIdTable {
     //Util methods
     public void denullifyQty() {
         if (qty == null) qty = BigDecimal.ZERO;
-    }
-
-    public void negateQty() {
-        if (qty != null && qty.compareTo(BigDecimal.ZERO) > 0) {
-            qty = qty.negate();
-        }
     }
 }

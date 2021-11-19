@@ -22,7 +22,7 @@ public class PurchasedConsumablesBalanceView extends UserIdAbstractView {
     BigDecimal sum;
 
     public StockBalance toStockBalance() {
-        return new StockBalance(itemId, item, sum);
+        return new StockBalance(itemId, item, getSum());
     }
 
     public String getItemId() {
@@ -42,7 +42,7 @@ public class PurchasedConsumablesBalanceView extends UserIdAbstractView {
     }
 
     public BigDecimal getSum() {
-        return sum;
+        return sum == null ? BigDecimal.ZERO : sum;
     }
 
     public void setSum(BigDecimal sum) {

@@ -44,7 +44,6 @@ public class OrderService extends AbstractTableService<Order> implements TypoSer
 
         data.getRelatedConsumables()
                 .useEachBy(OrderConsumable::denullifyQty)
-                .useEachBy(OrderConsumable::negateQty)
                 .forEach(consumable -> {
                     orderConsumableService.insert(new OrderConsumable(newOrderId, consumable.getId(), consumable.getQty()));
                 });
@@ -55,7 +54,6 @@ public class OrderService extends AbstractTableService<Order> implements TypoSer
         repository.update(data);
         data.getRelatedConsumables()
                 .useEachBy(OrderConsumable::denullifyQty)
-                .useEachBy(OrderConsumable::negateQty)
                 .forEach(orderConsumableService::update);
     }
 

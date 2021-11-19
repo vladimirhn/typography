@@ -27,9 +27,11 @@ public class StockBalanceService implements TypoServiceUser {
 
             if (resultMap.get(itemId) != null) {
                 StockBalance line = resultMap.get(itemId);
-                line.setSum(line.getSum().add(ordCons.getSum()));
+                line.setSum(line.getSum().subtract(ordCons.getSum()));
             } else {
-                resultMap.put(ordCons.getItemId(), ordCons.toStockBalance());
+                StockBalance line = ordCons.toStockBalance();
+                line.setSum(line.getSum().negate());
+                resultMap.put(ordCons.getItemId(), line);
             }
         });
 

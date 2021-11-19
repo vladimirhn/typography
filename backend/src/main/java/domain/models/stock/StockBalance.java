@@ -41,7 +41,8 @@ public class StockBalance implements Comparable<StockBalance> {
     }
 
     public BigDecimal getSum() {
-        return sum;
+
+        return sum == null ? BigDecimal.ZERO : sum;
     }
 
     public void setSum(BigDecimal sum) {

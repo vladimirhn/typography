@@ -1,0 +1,65 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd" logicalFilePath="true">
+
+    <changeSet id="legal-entities-create-table" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="LEGAL_ENTITIES"/>
+            </not>
+        </preConditions>
+        <createTable tableName="LEGAL_ENTITIES" remarks="Юридические лица">
+            <column name="ID" type="${ID}" remarks="id">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="legal-entities-add-user-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="LEGAL_ENTITIES" columnName="USER_ID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="LEGAL_ENTITIES">
+            <column name="USER_ID" remarks="id пользователя" type="${ID}"/>
+        </addColumn>
+        <sql>UPDATE LEGAL_ENTITIES SET user_id = (SELECT id FROM USERS WHERE login = 'talpa') WHERE user_id IS NULL</sql>
+    </changeSet>
+
+    <changeSet id="legal-entities-add-name" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="LEGAL_ENTITIES" columnName="NAME"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="LEGAL_ENTITIES">
+            <column name="NAME" remarks="Наименование юридического лица" type="${STRING_300}"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="legal-entities-add-phone" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="LEGAL_ENTITIES" columnName="PHONE"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="LEGAL_ENTITIES">
+            <column name="PHONE" remarks="Телефон(ы) юридического лица" type="${STRING_300}"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="legal-entities-add-address" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="LEGAL_ENTITIES" columnName="ADDRESS"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="LEGAL_ENTITIES">
+            <column name="ADDRESS" remarks="Адрес юр. лица" type="${STRING_1000}"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

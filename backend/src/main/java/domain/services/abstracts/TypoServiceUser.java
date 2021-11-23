@@ -2,6 +2,7 @@ package domain.services.abstracts;
 
 import application.ServiceUser;
 import domain.services.abstracts.response.TypoDictionaryService;
+import domain.services.counterparties.LegalEntitiesService;
 import domain.services.defaults.consumables.ConsumablesDefaultsService;
 import domain.services.nomenclature.consumables.ConsumableItemsService;
 import domain.services.nomenclature.consumables.ConsumablePropertiesValuesService;
@@ -27,7 +28,8 @@ public interface TypoServiceUser extends ServiceUser {
     //D
     TypoDictionaryService typoDictionaryService = ServiceUser.getBean(TypoDictionaryService.class);
 
-    //I
+    //L
+    LegalEntitiesService legalEntitiesService = ServiceUser.getBean(LegalEntitiesService.class);
 
     //E
     EquipmentTypesService equipmentTypesService = ServiceUser.getBean(EquipmentTypesService.class);

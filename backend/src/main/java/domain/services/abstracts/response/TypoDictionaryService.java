@@ -32,6 +32,7 @@ public class TypoDictionaryService implements DictionaryService {
         enRus.put("amount", "количество");
         enRus.put("name", "наименование");
         enRus.put("price", "цена");
+        enRus.put("legalentityname", "юр. лицо");
 
     }
 }

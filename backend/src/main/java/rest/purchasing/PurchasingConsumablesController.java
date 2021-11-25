@@ -2,7 +2,6 @@ package rest.purchasing;
 
 import domain.models.nomenclature.consumables.ConsumableItem;
 import domain.models.purchasing.PurchasingConsumables;
-import domain.models.stock.StockBalance;
 import domain.services.abstracts.TypoServiceUser;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

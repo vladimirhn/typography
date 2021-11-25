@@ -2,12 +2,7 @@ package domain.models.purchasing;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
-import org.springframework.format.annotation.DateTimeFormat;
-import repository.tables.StringIdTable;
+import domain.models.counterparties.LegalEntity;
 import domain.models.nomenclature.consumables.ConsumableItem;
 import kpersistence.mapping.annotations.*;
 import repository.tables.UserIdStringIdTable;
@@ -37,12 +32,34 @@ public class PurchasingConsumables extends UserIdStringIdTable {
     @JsonFormat(pattern = "dd.MM.yyyy")
     private LocalDateTime purchasingDate;
 
+    @Column(name = "LEGAL_ENTITY_ID")
+    private String legalEntityId;
+
+    @Foreign(table = LegalEntity.class, foreignId = "legalEntityId")
+    private String legalEntityName;
+
     public PurchasingConsumables() {}
 
     @Override
     public void setDefaults() {
         if (purchasingDate == null)
             purchasingDate = LocalDateTime.now();
+    }
+
+    public String getLegalEntityId() {
+        return legalEntityId;
+    }
+
+    public void setLegalEntityId(String legalEntityId) {
+        this.legalEntityId = legalEntityId;
+    }
+
+    public String getLegalEntityName() {
+        return legalEntityName;
+    }
+
+    public void setLegalEntityName(String legalEntityName) {
+        this.legalEntityName = legalEntityName;
     }
 
     public String getConsumableId() {
@@ -61,20 +78,20 @@ public class PurchasingConsumables extends UserIdStringIdTable {
         this.consumableName = consumableName;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
     public BigDecimal getPrice() {
         return price;
     }
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 
     public LocalDateTime getPurchasingDate() {

@@ -2,6 +2,7 @@ package domain.models.counterparties;
 
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
+import kpersistence.mapping.annotations.Label;
 import kpersistence.mapping.annotations.Table;
 import repository.tables.UserIdStringIdTable;
 
@@ -9,6 +10,7 @@ import repository.tables.UserIdStringIdTable;
 @Table(name = "LEGAL_ENTITIES")
 public class LegalEntity extends UserIdStringIdTable {
 
+    @Label
     @Column(name = "NAME")
     String name;
 

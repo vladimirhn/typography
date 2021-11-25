@@ -26,7 +26,18 @@
         <addColumn tableName="PURCHASING_CONSUMABLES">
             <column name="USER_ID" remarks="id пользователя" type="${ID}"/>
         </addColumn>
-        <sql>UPDATE PURCHASING_CONSUMABLES SET user_id = (SELECT id FROM USERS WHERE login = 'talpa')</sql>
+        <sql>UPDATE PURCHASING_CONSUMABLES SET user_id = (SELECT id FROM USERS WHERE login = 'talpa') WHERE user_id IS NULL</sql>
+    </changeSet>
+
+    <changeSet id="purchasing-consumables-add-legal-entity-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="PURCHASING_CONSUMABLES" columnName="LEGAL_ENTITY_ID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="PURCHASING_CONSUMABLES">
+            <column name="LEGAL_ENTITY_ID" remarks="id контрагента" type="${ID}"/>
+        </addColumn>
     </changeSet>
 
     <changeSet id="purchasing-consumables-add-purchasing-date" author="typography" runOnChange="true">

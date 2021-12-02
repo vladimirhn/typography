@@ -62,6 +62,17 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="purchasing-consumables-add-capacity" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="PURCHASING_CONSUMABLES" columnName="CAPACITY"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="PURCHASING_CONSUMABLES">
+            <column name="CAPACITY" remarks="Штук в пачке" type="${INTEGER}"/>
+        </addColumn>
+    </changeSet>
+
     <changeSet id="purchasing-consumables-add-amount" author="typography" runOnChange="true">
         <preConditions onFail="MARK_RAN">
             <not>

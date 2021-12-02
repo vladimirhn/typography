@@ -3,6 +3,7 @@ package rest.purchasing;
 import domain.models.nomenclature.consumables.ConsumableItem;
 import domain.models.purchasing.PurchasingConsumables;
 import domain.services.abstracts.TypoServiceUser;
+import koptional.KOptional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,14 +26,18 @@ public class PurchasingConsumablesController extends TypoTableController<Purchas
     @PostMapping("/add")
     public void add(@RequestBody PurchasingConsumables data) {
 
-        System.out.println("Begin");
+        KOptional<BigDecimal> maybeCapacity = consumableItemsService
+                .findFieldValue(data.getConsumableId(), ConsumableItem::getPackageCapacity);
 
-        getService().insert(data);
-
-        BigDecimal amount = consumableItemsService
-                .findFieldValue(data.getConsumableId(), ConsumableItem::getPackageCapacity)
+        BigDecimal amount = maybeCapacity
                 .ifSomethingMap(capacity -> capacity.multiply(data.getAmount()))
                 .ifNothingMap(data::getAmount)
                 .get();
+        data.setAmount(amount);
+
+        BigDecimal capacity = maybeCapacity.orElse(BigDecimal.ONE);
+        data.setCapacity(capacity);
+
+        getService().insert(data);
     }
 }

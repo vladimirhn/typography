@@ -33,6 +33,10 @@ public class ConsumableTypesService extends AbstractTableService<ConsumableType>
 
     public void addTypeWithProps(ConsumablesTypeDefaultJson data) {
 
+        if (data.getProperties().isEmpty()) {
+            setDefaultProperty(data);
+        }
+
         String typeId = RandomId.next();
 
         ConsumableType consumableType = new ConsumableType();
@@ -44,6 +48,10 @@ public class ConsumableTypesService extends AbstractTableService<ConsumableType>
 
         insert(consumableType);
         consumableType.getProperties().forEach(consumablePropertiesService::insert);
+    }
+
+    private void setDefaultProperty(ConsumablesTypeDefaultJson data) {
+        data.getProperties().add("уточнение");
     }
 
     public void cascadeDelete(String id) {

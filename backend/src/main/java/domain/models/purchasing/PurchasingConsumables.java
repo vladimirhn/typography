@@ -21,6 +21,9 @@ public class PurchasingConsumables extends UserIdStringIdTable {
     @Foreign(table = ConsumableItem.class, foreignId = "consumableId")
     private String consumableName;
 
+    @Column(name = "CAPACITY")
+    private BigDecimal capacityId; //TODO: Удалить id! Нужно временно фронту
+
     @Column(name = "PRICE")
     private BigDecimal price;
 
@@ -76,6 +79,14 @@ public class PurchasingConsumables extends UserIdStringIdTable {
 
     public void setConsumableName(String consumableName) {
         this.consumableName = consumableName;
+    }
+
+    public BigDecimal getCapacity() {
+        return capacityId;
+    }
+
+    public void setCapacity(BigDecimal capacity) {
+        this.capacityId = capacity;
     }
 
     public BigDecimal getPrice() {

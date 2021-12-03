@@ -15,6 +15,12 @@ public class OrderWithSubjectWithConsumablesView extends UserIdAbstractView {
     @Column(name = "ORDER_ID")
     String orderId;
 
+    @Column(name = "LEGAL_ENTITY_ID")
+    private String legalEntityId;
+
+    @Column(name = "LEGAL_ENTITY_NAME")
+    private String legalEntityName;
+
     @Column(name = "AMOUNT")
     Long amount;
 
@@ -55,7 +61,7 @@ public class OrderWithSubjectWithConsumablesView extends UserIdAbstractView {
     private String orderConsumableId;
 
     public Order extractOrder() {
-        return new Order(orderId, orderSubjectId, orderSubjectName, amount, orderDate, orderDeadline, status, confirmed, supplied);
+        return new Order(orderId, orderSubjectId, orderSubjectName, legalEntityId, legalEntityName, amount, orderDate, orderDeadline, status, confirmed, supplied);
     }
 
     public OrderConsumable extractOrderConsumable() {
@@ -68,6 +74,22 @@ public class OrderWithSubjectWithConsumablesView extends UserIdAbstractView {
 
     public void setOrderId(String orderId) {
         this.orderId = orderId;
+    }
+
+    public String getLegalEntityId() {
+        return legalEntityId;
+    }
+
+    public void setLegalEntityId(String legalEntityId) {
+        this.legalEntityId = legalEntityId;
+    }
+
+    public String getLegalEntityName() {
+        return legalEntityName;
+    }
+
+    public void setLegalEntityName(String legalEntityName) {
+        this.legalEntityName = legalEntityName;
     }
 
     public Long getAmount() {

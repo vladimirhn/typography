@@ -1,6 +1,7 @@
 package domain.models.orders;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import domain.models.counterparties.LegalEntity;
 import kcollections.CollectionFactory;
 import kcollections.KList;
 import kpersistence.mapping.annotations.*;
@@ -18,38 +19,48 @@ public class Order extends StringIdTable {
     @Column(name = "ORDER_SUBJECTS_ID")
     String orderSubjectsId;
 
-    @Foreign(table = OrderSubject.class, foreignId = "orderSubjectsId")
+//Используем вьюху
+//    @Foreign(table = OrderSubject.class, foreignId = "orderSubjectsId")
     private String orderSubjectName;
 
+    @Column(name = "LEGAL_ENTITY_ID")
+    private String legalEntityId;
+
+//Используем вьюху
+//    @Foreign(table = LegalEntity.class, foreignId = "legalEntityId")
+    private String legalEntityName;
+
     @Column(name = "AMOUNT")
-    Long amount;
+    private Long amount;
 
     @JsonFormat(pattern = "dd.MM.yyyy")
     @OrderBy(direction = Direction.DESC)
     @Column(name = "ORDERS_DATE")
-    LocalDate orderDate;
+    private LocalDate orderDate;
 
     @JsonFormat(pattern = "dd.MM.yyyy")
     @Column(name = "ORDERS_DEADLINE")
-    LocalDate orderDeadline;
+    private LocalDate orderDeadline;
 
     @Column(name = "STATUS")
-    String status;
+    private String status;
 
     @Column(name = "CONFIRMED", rus = "согласовано")
-    Boolean confirmed;
+    private Boolean confirmed;
 
     @Column(name = "SUPPLIED", rus = "отгружено")
-    Boolean supplied;
+    private Boolean supplied;
 
-    List<OrderConsumable> relatedConsumables;
+    private List<OrderConsumable> relatedConsumables;
 
     public Order() {}
 
-    public Order(String id, String orderSubjectsId, String orderSubjectName, Long amount, LocalDate orderDate, LocalDate orderDeadline, String status, Boolean confirmed, Boolean supplied) {
-        setId(id);
+    public Order(String orderId, String orderSubjectsId, String orderSubjectName, String legalEntityId, String legalEntityName, Long amount, LocalDate orderDate, LocalDate orderDeadline, String status, Boolean confirmed, Boolean supplied) {
+        this.setId(orderId);
         this.orderSubjectsId = orderSubjectsId;
         this.orderSubjectName = orderSubjectName;
+        this.legalEntityId = legalEntityId;
+        this.legalEntityName = legalEntityName;
         this.amount = amount;
         this.orderDate = orderDate;
         this.orderDeadline = orderDeadline;
@@ -75,6 +86,22 @@ public class Order extends StringIdTable {
 
     public void setOrderSubjectName(String orderSubjectName) {
         this.orderSubjectName = orderSubjectName;
+    }
+
+    public String getLegalEntityId() {
+        return legalEntityId;
+    }
+
+    public void setLegalEntityId(String legalEntityId) {
+        this.legalEntityId = legalEntityId;
+    }
+
+    public String getLegalEntityName() {
+        return legalEntityName;
+    }
+
+    public void setLegalEntityName(String legalEntityName) {
+        this.legalEntityName = legalEntityName;
     }
 
     public Long getAmount() {

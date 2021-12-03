@@ -2,6 +2,7 @@ package rest.orders;
 
 import domain.models.orders.Order;
 import domain.services.abstracts.TypoServiceUser;
+import kcollections.KList;
 import org.springframework.web.bind.annotation.*;
 import rest.Routing;
 import rest.abstracts.TypoTableController;
@@ -19,7 +20,8 @@ public class OrdersController extends TypoTableController<Order> implements Typo
 
     @GetMapping("/get_all")
     public TableDataResponse<Order> getAll() {
-        return getAllTranslatedResponse(orderService.getAll());
+        KList<Order> result = orderService.getAll();
+        return getAllTranslatedResponse(result);
     }
 
     @Override

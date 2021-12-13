@@ -50,4 +50,16 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="consumable-items-add-deleted" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="CONSUMABLE_ITEMS" columnName="DELETED"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="CONSUMABLE_ITEMS">
+            <column name="DELETED" remarks="Мягкое удаление" type="BOOLEAN" defaultValueBoolean="false"/>
+        </addColumn>
+        <sql>update consumable_items set deleted = false where deleted is null</sql>
+    </changeSet>
+
 </databaseChangeLog>

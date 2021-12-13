@@ -1,5 +1,6 @@
 package domain.models.nomenclature.consumables;
 
+import kpersistence.types.SoftDelete;
 import repository.tables.StringIdTable;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "CONSUMABLE_ITEMS")
-public class ConsumableItem extends StringIdTable {
+public class ConsumableItem extends StringIdTable implements SoftDelete {
 
     @Column(name = "TYPE_ID")
     private String typeId;
@@ -23,6 +24,9 @@ public class ConsumableItem extends StringIdTable {
 
     @Column(name = "PACKAGE_CAPACITY")
     private BigDecimal packageCapacity;
+
+    @Column(name = "DELETED")
+    private Boolean deleted;
 
     private List<ConsumablePropertyValue> propValues = new ArrayList<>();
 
@@ -73,6 +77,16 @@ public class ConsumableItem extends StringIdTable {
 
     public void setPackageCapacity(BigDecimal packageCapacity) {
         this.packageCapacity = packageCapacity;
+    }
+
+    @Override
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    @Override
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     public List<ConsumablePropertyValue> getPropValues() {

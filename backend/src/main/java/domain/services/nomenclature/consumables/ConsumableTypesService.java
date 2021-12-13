@@ -51,15 +51,15 @@ public class ConsumableTypesService extends AbstractTableService<ConsumableType>
         if (id == null || id.equals("")) id = "0";
 
         KList<ConsumableItem> items = consumableItemsService.selectByField(ConsumableItem::setTypeId, id);
-        KList<ConsumableProperty> properties = consumablePropertiesService.selectByField(ConsumableProperty::setTypeId, id);
-        KList<ConsumablePropertyValue> propValues = CollectionFactory.makeArrayList();
-        properties.forEach(prop -> {
-            propValues.addAll(consumablePropertiesValuesService.selectByField(ConsumablePropertyValue::setPropertyId, prop.getId()));
-        });
+//        KList<ConsumableProperty> properties = consumablePropertiesService.selectByField(ConsumableProperty::setTypeId, id);
+//        KList<ConsumablePropertyValue> propValues = CollectionFactory.makeArrayList();
+//        properties.forEach(prop -> {
+//            propValues.addAll(consumablePropertiesValuesService.selectByField(ConsumablePropertyValue::setPropertyId, prop.getId()));
+//        });
 
-        delete(id);
-        items.mapEachBy(ConsumableItem::getId).useEachBy(consumableItemsService::delete);
-        properties.mapEachBy(ConsumableProperty::getId).useEachBy(consumablePropertiesService::delete);
-        propValues.mapEachBy(ConsumablePropertyValue::getId).useEachBy(consumablePropertiesValuesService::delete);
+        softDelete(id);
+        items.mapEachBy(ConsumableItem::getId).useEachBy(consumableItemsService::softDelete);
+//        properties.mapEachBy(ConsumableProperty::getId).useEachBy(consumablePropertiesService::delete);
+//        propValues.mapEachBy(ConsumablePropertyValue::getId).useEachBy(consumablePropertiesValuesService::delete);
     }
 }

@@ -64,6 +64,8 @@ public class StockBalance implements Comparable<StockBalance> {
 
     @Override
     public int compareTo(StockBalance o) {
+        if (this.item == null) this.item = ""; //TODO: temporary NPE patch
+        if (o.item == null) o.item = "";       //TODO: temporary NPE patch
         return this.item.compareTo(o.item);
     }
 }

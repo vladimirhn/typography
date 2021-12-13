@@ -40,4 +40,16 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="consumable-types-add-deleted" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="CONSUMABLE_TYPES" columnName="DELETED"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="CONSUMABLE_TYPES">
+            <column name="DELETED" remarks="Мягкое удаление" type="BOOLEAN" defaultValueBoolean="false"/>
+        </addColumn>
+        <sql>update CONSUMABLE_TYPES set deleted = false where deleted is null</sql>
+    </changeSet>
+
 </databaseChangeLog>

@@ -50,8 +50,8 @@ public class ConsumableItemsService extends AbstractTableService<ConsumableItem>
     }
 
     public void cascadeDelete(String id) {
-        consumablePropertiesValuesService.deleteByField(ConsumablePropertyValue::setItemId, id);
-        purchasingConsumablesService.deleteByField(PurchasingConsumables::setConsumableId, id);
-        delete(id);
+//        consumablePropertiesValuesService.deleteByField(ConsumablePropertyValue::setItemId, id);
+//        purchasingConsumablesService.deleteByField(PurchasingConsumables::setConsumableId, id);
+        softDelete(id);
     }
 }

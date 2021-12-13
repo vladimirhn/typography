@@ -1,6 +1,6 @@
 package domain.models.nomenclature.consumables;
 
-import repository.tables.StringIdTable;
+import kpersistence.types.SoftDelete;
 import kpersistence.mapping.annotations.Column;
 import kpersistence.mapping.annotations.Entity;
 import kpersistence.mapping.annotations.Table;
@@ -11,10 +11,13 @@ import java.util.List;
 
 @Entity
 @Table(name = "CONSUMABLE_TYPES")
-public class ConsumableType extends UserIdStringIdTable {
+public class ConsumableType extends UserIdStringIdTable implements SoftDelete {
 
     @Column(name = "TYPE")
     private String type;
+
+    @Column(name = "DELETED")
+    private Boolean deleted;
 
     private List<ConsumableProperty> properties = new ArrayList<>();
 
@@ -35,6 +38,16 @@ public class ConsumableType extends UserIdStringIdTable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    @Override
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     public List<ConsumableProperty> getProperties() {

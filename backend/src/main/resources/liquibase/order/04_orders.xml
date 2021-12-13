@@ -17,6 +17,17 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="orders-add-legal-entity-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ORDERS" columnName="LEGAL_ENTITY_ID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ORDERS">
+            <column name="LEGAL_ENTITY_ID" remarks="id контрагента" type="${ID}"/>
+        </addColumn>
+    </changeSet>
+
     <changeSet id="orders-add-order-subjects-id" author="typography" runOnChange="true">
         <preConditions onFail="MARK_RAN">
             <not>

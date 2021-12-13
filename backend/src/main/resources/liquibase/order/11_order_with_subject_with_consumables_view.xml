@@ -9,6 +9,8 @@
         <createView viewName="ORDER_WITH_SUBJECT_WITH_CONSUMABLES_VIEW" replaceIfExists="true">
             select
             o.ID ORDER_ID,
+            le.ID LEGAL_ENTITY_ID,
+            le.NAME LEGAL_ENTITY_NAME,
             o.AMOUNT AMOUNT,
             o.ORDERS_DATE ORDER_DATE,
             o.ORDERS_DEADLINE ORDER_DEADLINE,
@@ -26,6 +28,7 @@
             inner join (ORDER_SUBJECTS os
             left join ORDER_SUBJECT_WITH_CONSUMABLE_ITEMS_VIEW oswciv on os.ID = oswciv.ORDER_SUBJECT_ID)
             on o.ORDER_SUBJECTS_ID = os.ID
+            left join LEGAL_ENTITIES le on o.legal_entity_id = le.id
             left join ORDERS_CONSUMABLES oc on o.id = oc.order_id and oswciv.consumable_items_id = oc.consumable_item_id
 
         </createView>

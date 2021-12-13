@@ -4,11 +4,9 @@ import domain.models.nomenclature.consumables.ConsumableItem;
 import domain.models.purchasing.PurchasingConsumables;
 import domain.services.abstracts.TypoServiceUser;
 import koptional.KOptional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import rest.abstracts.TypoTableController;
+import rest.response.TableDataResponse;
 import service.AbstractTableService;
 
 import java.math.BigDecimal;
@@ -20,6 +18,16 @@ public class PurchasingConsumablesController extends TypoTableController<Purchas
     @Override
     protected AbstractTableService<PurchasingConsumables> getService() {
         return purchasingConsumablesService;
+    }
+
+    @Override
+    @GetMapping("/get_all")
+    public TableDataResponse<PurchasingConsumables> getAll() {
+//        QueryProperties<PurchasingConsumables> test = QueryProperties.createDefault(PurchasingConsumables.class);
+//        SqlPredicate filter = new SqlPredicate("CONSUMABLE_ID", SqlOperator.EQUALS, "fmdqVKI8OQhV");
+//        test.setFilters(CollectionFactory.makeList(filter));
+        TableDataResponse<PurchasingConsumables> result = getAllTranslatedResponse(getService().select());
+        return result;
     }
 
     @Override

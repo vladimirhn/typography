@@ -22,7 +22,7 @@ public class PurchasingConsumables extends UserIdStringIdTable {
     private String consumableName;
 
     @Column(name = "CAPACITY")
-    private BigDecimal capacityId; //TODO: Удалить id! Нужно временно фронту
+    private BigDecimal capacity;
 
     @Column(name = "PRICE")
     private BigDecimal price;
@@ -34,7 +34,9 @@ public class PurchasingConsumables extends UserIdStringIdTable {
     @OrderBy(direction = Direction.DESC)
     @JsonFormat(pattern = "dd.MM.yyyy")
     private LocalDateTime purchasingDate;
+    private static String purchasingDate() {return "purchasingDate";}
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "LEGAL_ENTITY_ID")
     private String legalEntityId;
 
@@ -82,11 +84,11 @@ public class PurchasingConsumables extends UserIdStringIdTable {
     }
 
     public BigDecimal getCapacity() {
-        return capacityId;
+        return capacity;
     }
 
     public void setCapacity(BigDecimal capacity) {
-        this.capacityId = capacity;
+        this.capacity = capacity;
     }
 
     public BigDecimal getPrice() {

@@ -3,17 +3,21 @@ package rest.purchasing;
 import domain.models.nomenclature.consumables.ConsumableItem;
 import domain.models.purchasing.PurchasingConsumables;
 import domain.services.abstracts.TypoServiceUser;
+import kcollections.CollectionFactory;
 import koptional.KOptional;
+import kpersistence.kfilters.SqlOperator;
+import kpersistence.query.QueryProperties;
+import kpersistence.query.SqlPredicate;
 import org.springframework.web.bind.annotation.*;
 import rest.abstracts.TypoTableController;
-import rest.response.TableDataResponse;
+import rest.response.tables.TableDataResponse;
 import service.AbstractTableService;
 
 import java.math.BigDecimal;
 
 @RestController
 @RequestMapping("/u/purchasing_consumables")
-public class PurchasingConsumablesController extends TypoTableController<PurchasingConsumables> implements TypoServiceUser {
+public class PurchasingConsumablesController extends TypoTableController<PurchasingConsumables, PurchasingConsumables.Filter> implements TypoServiceUser {
 
     @Override
     protected AbstractTableService<PurchasingConsumables> getService() {

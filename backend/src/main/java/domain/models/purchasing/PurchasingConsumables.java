@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import domain.models.counterparties.LegalEntity;
 import domain.models.nomenclature.consumables.ConsumableItem;
 import kpersistence.mapping.annotations.*;
+import kpersistence.query.KFilter;
 import repository.tables.UserIdStringIdTable;
 
 import java.math.BigDecimal;
@@ -34,7 +35,6 @@ public class PurchasingConsumables extends UserIdStringIdTable {
     @OrderBy(direction = Direction.DESC)
     @JsonFormat(pattern = "dd.MM.yyyy")
     private LocalDateTime purchasingDate;
-    private static String purchasingDate() {return "purchasingDate";}
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "LEGAL_ENTITY_ID")
@@ -42,6 +42,11 @@ public class PurchasingConsumables extends UserIdStringIdTable {
 
     @Foreign(table = LegalEntity.class, foreignId = "legalEntityId")
     private String legalEntityName;
+
+    public static class Filter extends KFilter {
+        private String consumableId;
+        public void setConsumableId(String consumableId) {this.consumableId = consumableId;}
+    }
 
     public PurchasingConsumables() {}
 

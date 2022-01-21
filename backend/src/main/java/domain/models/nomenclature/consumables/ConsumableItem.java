@@ -1,11 +1,8 @@
 package domain.models.nomenclature.consumables;
 
+import kpersistence.mapping.annotations.*;
 import kpersistence.types.SoftDelete;
 import repository.tables.StringIdTable;
-import kpersistence.mapping.annotations.Column;
-import kpersistence.mapping.annotations.Entity;
-import kpersistence.mapping.annotations.Label;
-import kpersistence.mapping.annotations.Table;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -16,6 +13,7 @@ import java.util.List;
 public class ConsumableItem extends StringIdTable implements SoftDelete {
 
     @Column(name = "TYPE_ID")
+    @ParentId(table = ConsumableType.class)
     private String typeId;
 
     @Column(name = "ITEM")

@@ -3,15 +3,16 @@ package rest.orders;
 import domain.models.orders.Order;
 import domain.services.abstracts.TypoServiceUser;
 import kcollections.KList;
+import kpersistence.query.KFilter;
 import org.springframework.web.bind.annotation.*;
-import rest.Routing;
+import rest.EndPoint;
 import rest.abstracts.TypoTableController;
-import rest.response.TableDataResponse;
+import rest.response.tables.TableDataResponse;
 import service.AbstractTableService;
 
 @RestController
-@RequestMapping(Routing.UsersPath + "/orders")
-public class OrdersController extends TypoTableController<Order> implements TypoServiceUser {
+@RequestMapping(EndPoint.USERS_PATH + "/orders")
+public class OrdersController extends TypoTableController<Order, KFilter> implements TypoServiceUser {
 
     @Override
     protected AbstractTableService<Order> getService() {

@@ -5,13 +5,13 @@ import domain.models.nomenclature.consumables.ConsumablePropertyValue;
 import domain.services.abstracts.TypoServiceUser;
 import domain.services.defaults.consumables.ConsumablesTypeDefaultJson;
 import org.springframework.web.bind.annotation.*;
-import rest.Routing;
+import rest.EndPoint;
 
 import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping(Routing.UsersPath + "/consumables")
+@RequestMapping(EndPoint.CONSUMABLES)
 public class ConsumablesController implements TypoServiceUser {
 
     @GetMapping("/get_all")

@@ -17,6 +17,7 @@ public class PurchasingConsumables extends UserIdStringIdTable {
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "CONSUMABLE_ID")
+    @Destination(ConsumableItem.class)
     private String consumableId;
 
     @Foreign(table = ConsumableItem.class, foreignId = "consumableId")

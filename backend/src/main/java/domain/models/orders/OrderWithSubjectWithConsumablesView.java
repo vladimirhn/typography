@@ -42,6 +42,9 @@ public class OrderWithSubjectWithConsumablesView extends UserIdAbstractView {
     @Column(name = "SUPPLIED", rus = "отгружено")
     Boolean supplied;
 
+    @Column(name = "MONEY_RECEIVED")
+    private BigDecimal moneyReceived;
+
     @Column(name = "ORDER_SUBJECT_ID")
     private String orderSubjectId;
 
@@ -61,7 +64,7 @@ public class OrderWithSubjectWithConsumablesView extends UserIdAbstractView {
     private String orderConsumableId;
 
     public Order extractOrder() {
-        return new Order(orderId, orderSubjectId, orderSubjectName, legalEntityId, legalEntityName, amount, orderDate, orderDeadline, status, confirmed, supplied);
+        return new Order(orderId, orderSubjectId, orderSubjectName, legalEntityId, legalEntityName, amount, orderDate, orderDeadline, status, confirmed, supplied, moneyReceived);
     }
 
     public OrderConsumable extractOrderConsumable() {
@@ -138,6 +141,14 @@ public class OrderWithSubjectWithConsumablesView extends UserIdAbstractView {
 
     public void setSupplied(Boolean supplied) {
         this.supplied = supplied;
+    }
+
+    public BigDecimal getMoneyReceived() {
+        return moneyReceived;
+    }
+
+    public void setMoneyReceived(BigDecimal moneyReceived) {
+        this.moneyReceived = moneyReceived;
     }
 
     public String getOrderSubjectId() {

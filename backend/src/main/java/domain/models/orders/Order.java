@@ -7,6 +7,7 @@ import kcollections.KList;
 import kpersistence.mapping.annotations.*;
 import repository.tables.StringIdTable;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -51,11 +52,16 @@ public class Order extends StringIdTable {
     @Column(name = "SUPPLIED", rus = "отгружено")
     private Boolean supplied;
 
+    @Column(name = "MONEY_RECEIVED")
+    private BigDecimal moneyReceived;
+
     private List<OrderConsumable> relatedConsumables;
 
     public Order() {}
 
-    public Order(String orderId, String orderSubjectsId, String orderSubjectName, String legalEntityId, String legalEntityName, Long amount, LocalDate orderDate, LocalDate orderDeadline, String status, Boolean confirmed, Boolean supplied) {
+    public Order(String orderId, String orderSubjectsId, String orderSubjectName, String legalEntityId,
+                 String legalEntityName, Long amount, LocalDate orderDate, LocalDate orderDeadline,
+                 String status, Boolean confirmed, Boolean supplied, BigDecimal moneyReceived) {
         this.setId(orderId);
         this.orderSubjectsId = orderSubjectsId;
         this.orderSubjectName = orderSubjectName;
@@ -67,6 +73,7 @@ public class Order extends StringIdTable {
         this.status = status;
         this.confirmed = confirmed;
         this.supplied = supplied;
+        this.moneyReceived = moneyReceived;
     }
 
     @Override
@@ -158,6 +165,14 @@ public class Order extends StringIdTable {
 
     public void setRelatedConsumables(List<OrderConsumable> relatedConsumables) {
         this.relatedConsumables = relatedConsumables;
+    }
+
+    public BigDecimal getMoneyReceived() {
+        return moneyReceived != null ? moneyReceived : BigDecimal.ZERO;
+    }
+
+    public void setMoneyReceived(BigDecimal moneyReceived) {
+        this.moneyReceived = moneyReceived;
     }
 
     @Override

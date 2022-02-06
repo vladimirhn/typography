@@ -105,4 +105,15 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="orders-add-money-received" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ORDERS" columnName="MONEY_RECEIVED"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ORDERS">
+            <column name="MONEY_RECEIVED" remarks="Получено средств от заказчика" type="${DECIMAL_11_2}"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

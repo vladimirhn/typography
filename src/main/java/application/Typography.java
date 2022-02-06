@@ -1,19 +1,21 @@
 package application;
 
-import kcollections.CollectionFactory;
-import kcollections.KList;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.util.Arrays;
+import javax.sql.DataSource;
 
 @Configuration
 @EnableAutoConfiguration
+@EnableJdbcRepositories
 @ComponentScan({"application", "jwtsecurity", "domain", "rest"})
 public class Typography {
 
@@ -23,62 +25,22 @@ public class Typography {
 
     public static void main(String[] args) {
         SpringApplication.run(Typography.class, args);
+    }
 
-        class Test {
-            String name;
-            Integer amount;
-            String color;
+    @Autowired
+    AppProperties appProperties;
 
-            public Test(String name, Integer amount, String color) {
-                this.name = name;
-                this.amount = amount;
-                this.color = color;
-            }
+    @Bean
+    public DataSource getDataSource() {
 
-            public String getName() {
-                return name;
-            }
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName(appProperties.getDbDriver());
+        dataSource.setUrl(appProperties.getDbUrl());
+        dataSource.setSchema(appProperties.getDbSchema());
+        dataSource.setUsername(appProperties.getDbUser());
+        dataSource.setPassword(appProperties.getDbPassword());
 
-            public void setName(String name) {
-                this.name = name;
-            }
-
-            public Integer getAmount() {
-                return amount;
-            }
-
-            public void setAmount(Integer amount) {
-                this.amount = amount;
-            }
-
-            public String getColor() {
-                return color;
-            }
-
-            public void setColor(String color) {
-                this.color = color;
-            }
-
-            @Override
-            public String toString() {
-                return "Test{" +
-                        "name='" + name + '\'' +
-                        ", amount=" + amount +
-                        ", color='" + color + '\'' +
-                        '}';
-            }
-        }
-
-        KList<Test> test = CollectionFactory.makeList(
-                new Test("one", 1, "blue"),
-                new Test("one", 2, "blue"),
-                new Test("two", 3, "red"),
-                new Test("two", 3, "blue"),
-                new Test("three", 5, "blue"),
-                new Test("three", 6, "blue")
-        );
-
-        System.out.println(test.distinct(Test::getName, Test::getAmount, Test::getColor));
+        return dataSource;
     }
 
     @Bean

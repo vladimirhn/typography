@@ -4,6 +4,7 @@ import application.ServiceUser;
 import domain.services.abstracts.response.TypoDictionaryService;
 import domain.services.counterparties.LegalEntitiesService;
 import domain.services.defaults.consumables.ConsumablesDefaultsService;
+import domain.services.enterprises.EnterprisesService;
 import domain.services.nomenclature.consumables.ConsumableItemsService;
 import domain.services.nomenclature.consumables.ConsumablePropertiesValuesService;
 import domain.services.nomenclature.consumables.ConsumableTypesService;
@@ -33,6 +34,7 @@ public interface TypoServiceUser extends ServiceUser {
 
     //E
     EquipmentTypesService equipmentTypesService = ServiceUser.getBean(EquipmentTypesService.class);
+    EnterprisesService enterprisesService = ServiceUser.getBean(EnterprisesService.class);
 
     //O
     OrderConsumableService orderConsumableService = ServiceUser.getBean(OrderConsumableService.class);

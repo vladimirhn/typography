@@ -1,0 +1,78 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd" logicalFilePath="true">
+
+    <changeSet id="enterprises-create-table" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="ENTERPRISES"/>
+            </not>
+        </preConditions>
+        <createTable tableName="ENTERPRISES" remarks="Список предприятий">
+            <column name="ID" type="${ID}" remarks="id">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="enterprises-add-user-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ENTERPRISES" columnName="USER_ID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ENTERPRISES">
+            <column name="USER_ID" remarks="id пользователя" type="${ID}"/>
+        </addColumn>
+        <sql>UPDATE LEGAL_ENTITIES SET user_id = (SELECT id FROM USERS WHERE login = 'talpa') WHERE user_id IS NULL</sql>
+    </changeSet>
+
+    <changeSet id="enterprises-add-user-idx" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists indexName="USER_IDX" tableName="ENTERPRISES"/>
+            </not>
+        </preConditions>
+        <createIndex indexName="USER_IDX" tableName="ENTERPRISES">
+            <column name="USER_ID"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="enterprises-add-user-fk" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="USER_FK" foreignKeyTableName="ENTERPRISES"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint constraintName="USER_FK"
+                                 baseTableName="ENTERPRISES" baseColumnNames="USER_ID"
+                                 referencedTableName="USERS" referencedColumnNames="ID"/>
+    </changeSet>
+
+    <changeSet id="enterprises-add-name" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ENTERPRISES" columnName="NAME"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ENTERPRISES">
+            <column name="NAME" remarks="Название предприятия" type="VARCHAR2(255)"
+                    defaultValue="Моя компания"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="enterprises-add-main-account-balance" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ENTERPRISES" columnName="MAIN_ACCOUNT_BALANCE"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ENTERPRISES">
+            <column name="MAIN_ACCOUNT_BALANCE" remarks="Баланс основного счёта" type="${DECIMAL_11_2}"
+                    defaultValueNumeric="0.00"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

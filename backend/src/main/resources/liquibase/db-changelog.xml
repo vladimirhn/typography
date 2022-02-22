@@ -66,5 +66,6 @@
     <includeAll path="stock" relativeToChangelogFile="true" errorIfMissingOrEmpty="false"/>
     <includeAll path="order" relativeToChangelogFile="true" errorIfMissingOrEmpty="false"/>
     <includeAll path="counterparties" relativeToChangelogFile="true" errorIfMissingOrEmpty="false"/>
+    <includeAll path="enterprises" relativeToChangelogFile="true" errorIfMissingOrEmpty="false"/>
 
 </databaseChangeLog>

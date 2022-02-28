@@ -1,0 +1,98 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd" logicalFilePath="true">
+
+    <changeSet id="money-movements-create-table" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="MONEY_MOVEMENTS"/>
+            </not>
+        </preConditions>
+        <createTable tableName="MONEY_MOVEMENTS" remarks="Движение денежных средств">
+            <column name="ID" type="${ID}" remarks="id">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="money-movements-add-user-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="MONEY_MOVEMENTS" columnName="USER_ID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="MONEY_MOVEMENTS">
+            <column name="USER_ID" remarks="id пользователя" type="${ID}"/>
+        </addColumn>
+        <sql>UPDATE LEGAL_ENTITIES SET user_id = (SELECT id FROM USERS WHERE login = 'talpa') WHERE user_id IS NULL</sql>
+    </changeSet>
+
+    <changeSet id="money-movements-add-user-idx" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists indexName="MONEY_MOVEMENTS_USER_IDX" tableName="MONEY_MOVEMENTS"/>
+            </not>
+        </preConditions>
+        <createIndex indexName="MONEY_MOVEMENTS_USER_IDX" tableName="MONEY_MOVEMENTS">
+            <column name="USER_ID"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="money-movements-add-user-fk" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="USER_FK" foreignKeyTableName="MONEY_MOVEMENTS"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint constraintName="USER_FK"
+                                 baseTableName="MONEY_MOVEMENTS" baseColumnNames="USER_ID"
+                                 referencedTableName="USERS" referencedColumnNames="ID"/>
+    </changeSet>
+
+    <changeSet id="money-movements-add-type" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="MONEY_MOVEMENTS" columnName="TYPE"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="MONEY_MOVEMENTS">
+            <column name="TYPE" remarks="Тип" type="${INTEGER}" defaultValueNumeric="0"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="money-movements-add-type-idx" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists indexName="MONEY_MOVEMENTS_TYPE_IDX" tableName="MONEY_MOVEMENTS"/>
+            </not>
+        </preConditions>
+        <createIndex indexName="MONEY_MOVEMENTS_TYPE_IDX" tableName="MONEY_MOVEMENTS">
+            <column name="TYPE"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="money-movements-add-amount" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="MONEY_MOVEMENTS" columnName="AMOUNT"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="MONEY_MOVEMENTS">
+            <column name="AMOUNT" remarks="Сумма" type="${DECIMAL_11_2}" defaultValueNumeric="0"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="money-movements-add-movement-date" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="MONEY_MOVEMENTS" columnName="MOVEMENT_DATE"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="MONEY_MOVEMENTS">
+            <column name="MOVEMENT_DATE" remarks="Дата движения ДС" type="${TIMESTAMP}"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

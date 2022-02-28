@@ -26,8 +26,8 @@ public class OrdersController extends TypoTableController<Order, KFilter> implem
     }
 
     @Override
-    @PostMapping("/add")
-    public void add(@RequestBody Order data) {
+    @PostMapping("/insert")
+    public void insert(@RequestBody Order data) {
         orderService.add(data);
     }
 

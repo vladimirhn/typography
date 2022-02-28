@@ -19,6 +19,12 @@ public class Enterprise extends UserIdStringIdTable {
     @Column(name = "MAIN_ACCOUNT_BALANCE")
     BigDecimal mainAccountBalance;
 
+    @Column(name = "DEPOSIT")
+    BigDecimal deposit;
+
+    @Column(name = "WITHDRAW")
+    BigDecimal withdraw;
+
     public Enterprise() {}
 
     @Override
@@ -38,5 +44,21 @@ public class Enterprise extends UserIdStringIdTable {
 
     public void setMainAccountBalance(BigDecimal mainAccountBalance) {
         this.mainAccountBalance = mainAccountBalance;
+    }
+
+    public BigDecimal getDeposit() {
+        return deposit;
+    }
+
+    public void setDeposit(BigDecimal deposit) {
+        this.deposit = deposit;
+    }
+
+    public BigDecimal getWithdraw() {
+        return withdraw;
+    }
+
+    public void setWithdraw(BigDecimal withdraw) {
+        this.withdraw = withdraw;
     }
 }

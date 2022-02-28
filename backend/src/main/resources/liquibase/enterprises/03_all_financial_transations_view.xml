@@ -1,0 +1,44 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd" logicalFilePath="true">
+
+    <changeSet id="all-financial_transactions-view-create-view" author="typography" runOnChange="true">
+        <sql>DROP VIEW IF EXISTS ALL_FINANCIAL_TRANSACTIONS_VIEW</sql>
+        <createView viewName="ALL_FINANCIAL_TRANSACTIONS_VIEW" replaceIfExists="true">
+            SELECT mm.movement_date TRANSACTION_DATE,
+                   mm.amount        MONEY_AMOUNT,
+                   'ручная проводка'          TRANSACTION_TYPE,
+                   ''               SUMMARY,
+                   NULL             ITEMS_AMOUNT,
+                   mm.user_id       USER_ID
+            FROM money_movements mm
+
+            union
+
+            SELECT o.order_date,
+                   o.money_received,
+                   'продажа',
+                   o.order_subject_name,
+                   o.amount,
+                   o.user_id
+            FROM order_with_subject_with_consumables_view o
+
+            union
+
+            SELECT pc.purchasing_date,
+                   -(pc.amount * pc.price),
+                   'закупка',
+                   ci.item,
+                   pc.amount,
+                   pc.user_id
+            FROM purchasing_consumables pc left join consumable_items ci on pc.consumable_id = ci.id
+
+
+        </createView>
+    </changeSet>
+
+
+
+</databaseChangeLog>

@@ -32,10 +32,10 @@
     <changeSet id="enterprises-add-user-idx" author="typography" runOnChange="true">
         <preConditions onFail="MARK_RAN">
             <not>
-                <indexExists indexName="USER_IDX" tableName="ENTERPRISES"/>
+                <indexExists indexName="ENTERPRISES_USER_IDX" tableName="ENTERPRISES"/>
             </not>
         </preConditions>
-        <createIndex indexName="USER_IDX" tableName="ENTERPRISES">
+        <createIndex indexName="ENTERPRISES_USER_IDX" tableName="ENTERPRISES">
             <column name="USER_ID"/>
         </createIndex>
     </changeSet>
@@ -71,6 +71,30 @@
         </preConditions>
         <addColumn tableName="ENTERPRISES">
             <column name="MAIN_ACCOUNT_BALANCE" remarks="Баланс основного счёта" type="${DECIMAL_11_2}"
+                    defaultValueNumeric="0.00"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="enterprises-add-deposit" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ENTERPRISES" columnName="DEPOSIT"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ENTERPRISES">
+            <column name="DEPOSIT" remarks="Пополнения основного счёта" type="${DECIMAL_11_2}"
+                    defaultValueNumeric="0.00"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="enterprises-add-withdraw" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ENTERPRISES" columnName="WITHDRAW"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ENTERPRISES">
+            <column name="WITHDRAW" remarks="Списание с основного счёта" type="${DECIMAL_11_2}"
                     defaultValueNumeric="0.00"/>
         </addColumn>
     </changeSet>

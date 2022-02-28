@@ -23,8 +23,8 @@ public class OrderSubjectsController extends TypoTableController<OrderSubject, K
     }
 
     @Override
-    @PostMapping("/add")
-    public void add(@RequestBody OrderSubject data) {
+    @PostMapping("/insert")
+    public void insert(@RequestBody OrderSubject data) {
         orderSubjectService.add(data);
     }
 

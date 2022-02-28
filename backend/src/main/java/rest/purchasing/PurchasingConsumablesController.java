@@ -35,8 +35,8 @@ public class PurchasingConsumablesController extends TypoTableController<Purchas
     }
 
     @Override
-    @PostMapping("/add")
-    public void add(@RequestBody PurchasingConsumables data) {
+    @PostMapping("/insert")
+    public void insert(@RequestBody PurchasingConsumables data) {
 
         KOptional<BigDecimal> maybeCapacity = consumableItemsService
                 .findFieldValue(data.getConsumableId(), ConsumableItem::getPackageCapacity);

@@ -4,7 +4,9 @@ import application.ServiceUser;
 import domain.services.abstracts.response.TypoDictionaryService;
 import domain.services.counterparties.LegalEntitiesService;
 import domain.services.defaults.consumables.ConsumablesDefaultsService;
+import domain.services.enterprises.FinancialTransactionsViewService;
 import domain.services.enterprises.EnterprisesService;
+import domain.services.enterprises.MoneyMovenetsService;
 import domain.services.nomenclature.consumables.ConsumableItemsService;
 import domain.services.nomenclature.consumables.ConsumablePropertiesValuesService;
 import domain.services.nomenclature.consumables.ConsumableTypesService;
@@ -18,6 +20,9 @@ import domain.services.stock.StockBalanceService;
 import domain.services.stock.StockService;
 
 public interface TypoServiceUser extends ServiceUser {
+
+    //A
+    FinancialTransactionsViewService financialTransactionsViewService = ServiceUser.getBean(FinancialTransactionsViewService.class);
 
     //C
     ConsumablePropertiesValuesService consumablePropertiesValuesService = ServiceUser.getBean(ConsumablePropertiesValuesService.class);
@@ -35,6 +40,9 @@ public interface TypoServiceUser extends ServiceUser {
     //E
     EquipmentTypesService equipmentTypesService = ServiceUser.getBean(EquipmentTypesService.class);
     EnterprisesService enterprisesService = ServiceUser.getBean(EnterprisesService.class);
+
+    //M
+    MoneyMovenetsService moneyMovenetsService = ServiceUser.getBean(MoneyMovenetsService.class);
 
     //O
     OrderConsumableService orderConsumableService = ServiceUser.getBean(OrderConsumableService.class);

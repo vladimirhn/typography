@@ -55,12 +55,15 @@ public class Order extends StringIdTable {
     @Column(name = "MONEY_RECEIVED")
     private BigDecimal moneyReceived;
 
+    @Column(name = "COMMENT")
+    private String comment;
+
     private List<OrderConsumable> relatedConsumables;
 
     public Order() {}
 
     public Order(String orderId, String orderSubjectsId, String orderSubjectName, String legalEntityId,
-                 String legalEntityName, Long amount, LocalDate orderDate, LocalDate orderDeadline,
+                 String legalEntityName, Long amount, String comment, LocalDate orderDate, LocalDate orderDeadline,
                  String status, Boolean confirmed, Boolean supplied, BigDecimal moneyReceived) {
         this.setId(orderId);
         this.orderSubjectsId = orderSubjectsId;
@@ -68,6 +71,7 @@ public class Order extends StringIdTable {
         this.legalEntityId = legalEntityId;
         this.legalEntityName = legalEntityName;
         this.amount = amount;
+        this.comment = comment;
         this.orderDate = orderDate;
         this.orderDeadline = orderDeadline;
         this.status = status;
@@ -173,6 +177,14 @@ public class Order extends StringIdTable {
 
     public void setMoneyReceived(BigDecimal moneyReceived) {
         this.moneyReceived = moneyReceived;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     @Override

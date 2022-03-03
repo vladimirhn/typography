@@ -8,29 +8,30 @@
         <sql>DROP VIEW IF EXISTS ORDER_WITH_SUBJECT_WITH_CONSUMABLES_VIEW</sql>
         <createView viewName="ORDER_WITH_SUBJECT_WITH_CONSUMABLES_VIEW" replaceIfExists="true">
             select
-            o.ID ORDER_ID,
-            le.ID LEGAL_ENTITY_ID,
-            le.NAME LEGAL_ENTITY_NAME,
-            o.AMOUNT AMOUNT,
-            o.ORDERS_DATE ORDER_DATE,
-            o.ORDERS_DEADLINE ORDER_DEADLINE,
-            o.STATUS STATUS,
-            o.CONFIRMED CONFIRMED,
-            o.SUPPLIED SUPPLIED,
-            o.MONEY_RECEIVED MONEY_RECEIVED,
-            oswciv.ORDER_SUBJECT_ID ORDER_SUBJECT_ID,
-            oswciv.ORDER_SUBJECT_NAME ORDER_SUBJECT_NAME,
-            oswciv.CONSUMABLE_ITEMS_ID CONSUMABLE_ITEM_ID,
-            oswciv.CONSUMABLE_ITEMS_ITEM CONSUMABLE_ITEM_ITEM,
-            oswciv.USER_ID USER_ID,
-            oc.QUANTITY QUANTITY,
-            oc.id ORDERS_CONSUMABLES_ID
+                o.ID ORDER_ID,
+                le.ID LEGAL_ENTITY_ID,
+                le.NAME LEGAL_ENTITY_NAME,
+                o.AMOUNT AMOUNT,
+                o.ORDERS_DATE ORDER_DATE,
+                o.ORDERS_DEADLINE ORDER_DEADLINE,
+                o.STATUS STATUS,
+                o.CONFIRMED CONFIRMED,
+                o.SUPPLIED SUPPLIED,
+                o.MONEY_RECEIVED MONEY_RECEIVED,
+                o.comment,
+                oswciv.ORDER_SUBJECT_ID ORDER_SUBJECT_ID,
+                oswciv.ORDER_SUBJECT_NAME ORDER_SUBJECT_NAME,
+                oswciv.CONSUMABLE_ITEMS_ID CONSUMABLE_ITEM_ID,
+                oswciv.CONSUMABLE_ITEMS_ITEM CONSUMABLE_ITEM_ITEM,
+                oswciv.USER_ID USER_ID,
+                oc.QUANTITY QUANTITY,
+                oc.id ORDERS_CONSUMABLES_ID
             from ORDERS o
-            inner join (ORDER_SUBJECTS os
-            left join ORDER_SUBJECT_WITH_CONSUMABLE_ITEMS_VIEW oswciv on os.ID = oswciv.ORDER_SUBJECT_ID)
-            on o.ORDER_SUBJECTS_ID = os.ID
-            left join LEGAL_ENTITIES le on o.legal_entity_id = le.id
-            left join ORDERS_CONSUMABLES oc on o.id = oc.order_id and oswciv.consumable_items_id = oc.consumable_item_id
+                     inner join (ORDER_SUBJECTS os
+                left join ORDER_SUBJECT_WITH_CONSUMABLE_ITEMS_VIEW oswciv on os.ID = oswciv.ORDER_SUBJECT_ID)
+                                on o.ORDER_SUBJECTS_ID = os.ID
+                     left join LEGAL_ENTITIES le on o.legal_entity_id = le.id
+                     left join ORDERS_CONSUMABLES oc on o.id = oc.order_id and oswciv.consumable_items_id = oc.consumable_item_id
 
         </createView>
     </changeSet>

@@ -9,7 +9,7 @@
         <createView viewName="ALL_FINANCIAL_TRANSACTIONS_VIEW" replaceIfExists="true">
             SELECT mm.movement_date TRANSACTION_DATE,
                    mm.amount        MONEY_AMOUNT,
-                   'ручная проводка'          TRANSACTION_TYPE,
+                   'вручную'          TRANSACTION_TYPE,
                    ''               SUMMARY,
                    NULL             ITEMS_AMOUNT,
                    mm.user_id       USER_ID

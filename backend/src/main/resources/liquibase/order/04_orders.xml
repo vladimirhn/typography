@@ -116,4 +116,15 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="orders-add-comment" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ORDERS" columnName="COMMENT"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ORDERS">
+            <column name="COMMENT" remarks="Получено средств от заказчика" type="VARCHAR2(2000)"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

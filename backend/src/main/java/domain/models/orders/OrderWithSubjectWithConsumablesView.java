@@ -24,6 +24,9 @@ public class OrderWithSubjectWithConsumablesView extends UserIdAbstractView {
     @Column(name = "AMOUNT")
     Long amount;
 
+    @Column(name = "COMMENT")
+    String comment;
+
     @JsonFormat(pattern = "yyyy-MM-dd")
     @OrderBy(direction = Direction.DESC)
     @Column(name = "ORDER_DATE")
@@ -64,7 +67,7 @@ public class OrderWithSubjectWithConsumablesView extends UserIdAbstractView {
     private String orderConsumableId;
 
     public Order extractOrder() {
-        return new Order(orderId, orderSubjectId, orderSubjectName, legalEntityId, legalEntityName, amount, orderDate, orderDeadline, status, confirmed, supplied, moneyReceived);
+        return new Order(orderId, orderSubjectId, orderSubjectName, legalEntityId, legalEntityName, amount, comment, orderDate, orderDeadline, status, confirmed, supplied, moneyReceived);
     }
 
     public OrderConsumable extractOrderConsumable() {
@@ -101,6 +104,14 @@ public class OrderWithSubjectWithConsumablesView extends UserIdAbstractView {
 
     public void setAmount(Long amount) {
         this.amount = amount;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public LocalDate getOrderDate() {

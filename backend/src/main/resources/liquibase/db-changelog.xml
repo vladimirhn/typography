@@ -63,9 +63,11 @@
     <includeAll path="consumables" relativeToChangelogFile="true" errorIfMissingOrEmpty="false"/>
     <includeAll path="equipment" relativeToChangelogFile="true" errorIfMissingOrEmpty="false"/>
     <includeAll path="purchasing" relativeToChangelogFile="true" errorIfMissingOrEmpty="false"/>
-    <includeAll path="stock" relativeToChangelogFile="true" errorIfMissingOrEmpty="false"/>
-    <includeAll path="order" relativeToChangelogFile="true" errorIfMissingOrEmpty="false"/>
     <includeAll path="counterparties" relativeToChangelogFile="true" errorIfMissingOrEmpty="false"/>
+    <includeAll path="order" relativeToChangelogFile="true" errorIfMissingOrEmpty="false"/>
     <includeAll path="enterprises" relativeToChangelogFile="true" errorIfMissingOrEmpty="false"/>
+    <includeAll path="stock" relativeToChangelogFile="true" errorIfMissingOrEmpty="false"/>
+
+    <includeAll path="views" relativeToChangelogFile="true" errorIfMissingOrEmpty="false"/>
 
 </databaseChangeLog>

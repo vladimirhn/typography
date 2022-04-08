@@ -26,7 +26,8 @@ import java.util.Arrays;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] AUTH_ENDPOINTS = {"/register", "/auth"};
-    private static final String[] USERS_ENDPOINTS = {"/u/*"};
+    private static final String[] ADMIN_ENDPOINTS = {"/admin/**"};
+    private static final String[] USERS_ENDPOINTS = {"/u/**"};
 
     @Autowired
     private JwtFilter jwtFilter;
@@ -40,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/admin/*").hasRole("ADMIN")
+                .antMatchers(ADMIN_ENDPOINTS).hasRole("ADMIN")
                 .antMatchers(USERS_ENDPOINTS).hasRole("USER")
                 .antMatchers(AUTH_ENDPOINTS).permitAll()
                 .and()

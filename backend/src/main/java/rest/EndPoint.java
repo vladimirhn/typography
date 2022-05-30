@@ -11,6 +11,8 @@ public interface EndPoint {
     String ENTERPRISES = EndPoint.USERS_PATH + "/enterprises";
     String MONEY_MOVEMENTS = EndPoint.USERS_PATH + "/money_movements";
 
+    String ORDER_SUBJECTS = EndPoint.USERS_PATH + "/order_subjects";
+
 
     String FINANCIAL_TRANSACTIONS = EndPoint.USERS_PATH + "/financial_transactions";
 }

@@ -1,11 +1,11 @@
 package domain.models.nomenclature.consumables;
 
-import kpersistence.mapping.annotations.Label;
-import kpersistence.types.SoftDelete;
-import kpersistence.mapping.annotations.Column;
-import kpersistence.mapping.annotations.Entity;
-import kpersistence.mapping.annotations.Table;
-import repository.tables.UserIdStringIdTable;
+import kpersistence.v1.mapping.annotations.Label;
+import kpersistence.v1.types.SoftDelete;
+import kpersistence.v2.annotations.Column;
+import kpersistence.v1.mapping.annotations.Entity;
+import kpersistence.v2.annotations.Table;
+import kpersistence.v2.tables.UserIdStringIdTable;
 
 import java.util.ArrayList;
 import java.util.List;

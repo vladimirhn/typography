@@ -2,11 +2,11 @@ package rest.orders;
 
 import domain.models.orders.OrderSubjectConsumables;
 import domain.services.abstracts.TypoServiceUser;
-import kpersistence.query.KFilter;
+import kpersistence.v1.query.KFilter;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import rest.abstracts.TypoTableController;
-import service.AbstractTableService;
+import service.v1.AbstractTableService;
 
 @RestController
 @RequestMapping("/order_subject_consumables")

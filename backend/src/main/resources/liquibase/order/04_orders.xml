@@ -17,6 +17,18 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="order-add-user-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ORDERS" columnName="USER_ID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ORDERS">
+            <column name="USER_ID" remarks="id пользователя" type="${ID}"/>
+        </addColumn>
+        <sql>UPDATE ORDERS SET user_id = (SELECT id FROM USERS WHERE login = 'talpa')</sql>
+    </changeSet>
+
     <changeSet id="orders-add-legal-entity-id" author="typography" runOnChange="true">
         <preConditions onFail="MARK_RAN">
             <not>

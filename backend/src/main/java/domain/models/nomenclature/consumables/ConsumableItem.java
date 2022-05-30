@@ -1,8 +1,10 @@
 package domain.models.nomenclature.consumables;
 
-import kpersistence.mapping.annotations.*;
-import kpersistence.types.SoftDelete;
-import repository.tables.StringIdTable;
+import kpersistence.v1.mapping.annotations.*;
+import kpersistence.v1.types.SoftDelete;
+import kpersistence.v2.annotations.Column;
+import kpersistence.v2.annotations.Table;
+import kpersistence.v2.tables.StringIdTable;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

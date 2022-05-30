@@ -3,12 +3,14 @@ package rest.orders;
 import domain.models.orders.Order;
 import domain.services.abstracts.TypoServiceUser;
 import kcollections.KList;
-import kpersistence.query.KFilter;
+import kpersistence.v1.query.KFilter;
 import org.springframework.web.bind.annotation.*;
 import rest.EndPoint;
 import rest.abstracts.TypoTableController;
-import rest.response.tables.TableDataResponse;
-import service.AbstractTableService;
+import rest.v2.response.tables.TableDataResponse;
+import service.v1.AbstractTableService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(EndPoint.USERS_PATH + "/orders")
@@ -29,6 +31,14 @@ public class OrdersController extends TypoTableController<Order, KFilter> implem
     @PostMapping("/insert")
     public void insert(@RequestBody Order data) {
         orderService.add(data);
+    }
+
+
+    @PostMapping("/insert_all")
+    public void insertAll(@RequestBody List<Order> data) {
+        for (Order datum : data) {
+            orderService.add(datum);
+        }
     }
 
     @Override

@@ -1,11 +1,10 @@
 package domain.models.orders;
 
-import repository.tables.UserIdAbstractView;
-import rest.data.EntryTransferData;
-import kpersistence.mapping.annotations.Column;
-import kpersistence.mapping.annotations.Entity;
-import kpersistence.mapping.annotations.Table;
-import repository.tables.AbstractView;
+import repository.v1.tables.UserIdAbstractView;
+import rest.v1.data.EntryTransferData;
+import kpersistence.v2.annotations.Column;
+import kpersistence.v1.mapping.annotations.Entity;
+import kpersistence.v2.annotations.Table;
 
 @Entity
 @Table(name = "ORDER_SUBJECT_WITH_CONSUMABLE_ITEMS_VIEW")

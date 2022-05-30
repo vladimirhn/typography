@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.stereotype.Repository;
-import repository.AbstractViewRepository;
+import repository.v1.AbstractViewRepository;
 
 @Repository
 public class FinancialTransactionsViewRepository extends AbstractViewRepository<FinancialTransaction> {

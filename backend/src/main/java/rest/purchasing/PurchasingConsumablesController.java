@@ -3,15 +3,11 @@ package rest.purchasing;
 import domain.models.nomenclature.consumables.ConsumableItem;
 import domain.models.purchasing.PurchasingConsumables;
 import domain.services.abstracts.TypoServiceUser;
-import kcollections.CollectionFactory;
 import koptional.KOptional;
-import kpersistence.kfilters.SqlOperator;
-import kpersistence.query.QueryProperties;
-import kpersistence.query.SqlPredicate;
 import org.springframework.web.bind.annotation.*;
 import rest.abstracts.TypoTableController;
-import rest.response.tables.TableDataResponse;
-import service.AbstractTableService;
+import rest.v2.response.tables.TableDataResponse;
+import service.v1.AbstractTableService;
 
 import java.math.BigDecimal;
 
@@ -41,11 +37,11 @@ public class PurchasingConsumablesController extends TypoTableController<Purchas
         KOptional<BigDecimal> maybeCapacity = consumableItemsService
                 .findFieldValue(data.getConsumableId(), ConsumableItem::getPackageCapacity);
 
-        BigDecimal amount = maybeCapacity
-                .ifSomethingMap(capacity -> capacity.multiply(data.getAmount()))
-                .ifNothingMap(data::getAmount)
-                .get();
-        data.setAmount(amount);
+//        BigDecimal amount = maybeCapacity
+//                .ifSomethingMap(capacity -> capacity.multiply(data.getAmount()))
+//                .ifNothingMap(data::getAmount)
+//                .get();
+//        data.setAmount(amount);
 
         BigDecimal capacity = maybeCapacity.orElse(BigDecimal.ONE);
         data.setCapacity(capacity);

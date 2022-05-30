@@ -1,7 +1,6 @@
 package domain.services.abstracts;
 
 import application.ServiceUser;
-import domain.services.abstracts.response.TypoDictionaryService;
 import domain.services.counterparties.LegalEntitiesService;
 import domain.services.defaults.consumables.ConsumablesDefaultsService;
 import domain.services.enterprises.FinancialTransactionsViewService;
@@ -32,7 +31,6 @@ public interface TypoServiceUser extends ServiceUser {
     ConsumableTypesService consumableTypesService = ServiceUser.getBean(ConsumableTypesService.class);
 
     //D
-    TypoDictionaryService typoDictionaryService = ServiceUser.getBean(TypoDictionaryService.class);
 
     //L
     LegalEntitiesService legalEntitiesService = ServiceUser.getBean(LegalEntitiesService.class);

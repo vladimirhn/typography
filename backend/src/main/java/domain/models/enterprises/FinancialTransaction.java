@@ -1,8 +1,10 @@
 package domain.models.enterprises;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import kpersistence.mapping.annotations.*;
-import repository.tables.UserIdAbstractView;
+import kpersistence.v1.mapping.annotations.*;
+import kpersistence.v2.annotations.Column;
+import kpersistence.v2.annotations.Table;
+import repository.v1.tables.UserIdAbstractView;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

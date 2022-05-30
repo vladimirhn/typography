@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.stereotype.Repository;
-import repository.AbstractTableRepository;
+import repository.v1.AbstractTableRepository;
 
 @Repository
 public class LegalEntitiesRepository extends AbstractTableRepository<LegalEntity> {

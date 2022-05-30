@@ -1,7 +1,7 @@
 package domain.repositories.nomenclature.equipment;
 
 import domain.models.nomenclature.equipment.EquipmentItem;
-import repository.AbstractTableRepository;
+import repository.v1.AbstractTableRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository

@@ -1,10 +1,10 @@
 package domain.models.orders;
 
-import kpersistence.mapping.annotations.Column;
-import kpersistence.mapping.annotations.Entity;
-import kpersistence.mapping.annotations.Label;
-import kpersistence.mapping.annotations.Table;
-import repository.tables.UserIdStringIdTable;
+import kpersistence.v2.annotations.Column;
+import kpersistence.v1.mapping.annotations.Entity;
+import kpersistence.v1.mapping.annotations.Label;
+import kpersistence.v2.annotations.Table;
+import kpersistence.v2.tables.UserIdStringIdTable;
 
 import java.util.Objects;
 
@@ -12,7 +12,7 @@ import java.util.Objects;
 @Table(name = "ORDER_SUBJECT_TYPES")
 public class OrderSubjectType extends UserIdStringIdTable {
 
-    @Column(name = "NAME", rus = "вид заказа")
+    @Column(name = "NAME")
     @Label
     String name;
 

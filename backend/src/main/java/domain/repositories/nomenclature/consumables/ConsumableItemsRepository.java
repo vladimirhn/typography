@@ -1,7 +1,7 @@
 package domain.repositories.nomenclature.consumables;
 
 import domain.models.nomenclature.consumables.ConsumableItem;
-import repository.AbstractTableRepository;
+import repository.v1.AbstractTableRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository

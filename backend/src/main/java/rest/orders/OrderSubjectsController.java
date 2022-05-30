@@ -2,14 +2,15 @@ package rest.orders;
 
 import domain.models.orders.OrderSubject;
 import domain.services.abstracts.TypoServiceUser;
-import kpersistence.query.KFilter;
+import kpersistence.v1.query.KFilter;
 import org.springframework.web.bind.annotation.*;
+import rest.EndPoint;
 import rest.abstracts.TypoTableController;
-import rest.response.tables.TableDataResponse;
-import service.AbstractTableService;
+import rest.v2.response.tables.TableDataResponse;
+import service.v1.AbstractTableService;
 
 @RestController
-@RequestMapping("/order_subjects")
+@RequestMapping(EndPoint.ORDER_SUBJECTS)
 public class OrderSubjectsController extends TypoTableController<OrderSubject, KFilter> implements TypoServiceUser {
 
     @Override

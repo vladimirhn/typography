@@ -1,9 +1,10 @@
 package domain.models.orders;
 
-import rest.data.EntryTransferData;
-import repository.tables.StringIdTable;
-import kpersistence.mapping.annotations.*;
-import rest.response.JsonTableResponse;
+import kpersistence.v2.annotations.Column;
+import kpersistence.v2.annotations.Table;
+import rest.v1.data.EntryTransferData;
+import kpersistence.v2.tables.StringIdTable;
+import kpersistence.v1.mapping.annotations.*;
 
 import java.util.List;
 import java.util.Objects;
@@ -12,7 +13,7 @@ import java.util.Objects;
 @Table(name = "ORDER_SUBJECTS")
 public class OrderSubject extends StringIdTable {
 
-    @Column(name = "NAME", rus = "продукция")
+    @Column(name = "NAME")
     @Label
     @OrderBy(direction = Direction.ASC)
     String name;
@@ -23,7 +24,6 @@ public class OrderSubject extends StringIdTable {
     @Foreign(table = OrderSubjectType.class, foreignId = "orderSubjectTypeId")
     String orderSubjectTypeName;
 
-    @JsonTableResponse(addToProperties = false)
     List<EntryTransferData> relatedOwnConsumableItems;
 
     public OrderSubject() {}

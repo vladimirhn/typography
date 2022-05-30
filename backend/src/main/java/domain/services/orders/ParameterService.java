@@ -4,8 +4,8 @@ import domain.models.orders.Parameter;
 import domain.repositories.orders.ParameterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.AbstractTableRepository;
-import service.AbstractTableService;
+import repository.v1.AbstractTableRepository;
+import service.v1.AbstractTableService;
 
 @Service("parameterService")
 public class ParameterService extends AbstractTableService<Parameter> {

@@ -1,9 +1,9 @@
 package domain.models.nomenclature.equipment;
 
-import repository.tables.StringIdTable;
-import kpersistence.mapping.annotations.Column;
-import kpersistence.mapping.annotations.Entity;
-import kpersistence.mapping.annotations.Table;
+import kpersistence.v2.tables.StringIdTable;
+import kpersistence.v2.annotations.Column;
+import kpersistence.v1.mapping.annotations.Entity;
+import kpersistence.v2.annotations.Table;
 
 @Entity
 @Table(name = "COMPONENT_TYPES")

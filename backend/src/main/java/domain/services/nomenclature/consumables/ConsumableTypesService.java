@@ -2,12 +2,11 @@ package domain.services.nomenclature.consumables;
 
 import domain.models.nomenclature.consumables.ConsumableItem;
 import domain.models.nomenclature.consumables.ConsumableProperty;
-import domain.models.nomenclature.consumables.ConsumablePropertyValue;
 import domain.models.nomenclature.consumables.ConsumableType;
-import repository.AbstractTableRepository;
+import repository.v1.AbstractTableRepository;
 import domain.repositories.nomenclature.consumables.ConsumableTypesRepository;
-import service.AbstractTableService;
-import kpersistence.RandomId;
+import service.v1.AbstractTableService;
+import kpersistence.v2.RandomId;
 import domain.services.defaults.consumables.ConsumablesTypeDefaultJson;
 import kcollections.CollectionFactory;
 import kcollections.KList;

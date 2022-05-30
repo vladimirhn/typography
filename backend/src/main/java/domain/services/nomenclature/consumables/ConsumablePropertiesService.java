@@ -1,9 +1,9 @@
 package domain.services.nomenclature.consumables;
 
 import domain.models.nomenclature.consumables.ConsumableProperty;
-import repository.AbstractTableRepository;
+import repository.v1.AbstractTableRepository;
 import domain.repositories.nomenclature.consumables.ConsumablePropertiesRepository;
-import service.AbstractTableService;
+import service.v1.AbstractTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

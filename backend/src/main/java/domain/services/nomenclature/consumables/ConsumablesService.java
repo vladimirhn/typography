@@ -1,9 +1,9 @@
 package domain.services.nomenclature.consumables;
 
 import domain.models.nomenclature.consumables.ConsumablesView;
-import repository.AbstractViewRepository;
+import repository.v1.AbstractViewRepository;
 import domain.repositories.nomenclature.consumables.AllConsumablesViewRepository;
-import service.AbstractViewService;
+import service.v1.AbstractViewService;
 import kcollections.CollectionFactory;
 import kcollections.KList;
 import kutils.MapUtils;

@@ -1,5 +1,6 @@
 package application;
 
+import kpersistence.v2.modelsMaster.ModelsMaster;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -41,6 +42,11 @@ public class Typography {
         dataSource.setPassword(appProperties.getDbPassword());
 
         return dataSource;
+    }
+
+    @Bean
+    public ModelsMaster getModelsMaster() {
+        return new ModelsMaster("domain.models");
     }
 
     @Bean

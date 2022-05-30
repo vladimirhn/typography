@@ -1,7 +1,7 @@
 package domain.repositories.nomenclature.consumables;
 
 import domain.models.nomenclature.consumables.ConsumablesView;
-import repository.AbstractViewRepository;
+import repository.v1.AbstractViewRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository

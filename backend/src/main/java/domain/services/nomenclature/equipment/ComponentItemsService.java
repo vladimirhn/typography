@@ -1,9 +1,9 @@
 package domain.services.nomenclature.equipment;
 
 import domain.models.nomenclature.equipment.ComponentItem;
-import repository.AbstractTableRepository;
+import repository.v1.AbstractTableRepository;
 import domain.repositories.nomenclature.equipment.ComponentItemsRepository;
-import service.AbstractTableService;
+import service.v1.AbstractTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

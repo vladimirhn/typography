@@ -2,12 +2,11 @@ package domain.services.nomenclature.consumables;
 
 import domain.models.nomenclature.consumables.ConsumableItem;
 import domain.models.nomenclature.consumables.ConsumablePropertyValue;
-import domain.models.purchasing.PurchasingConsumables;
-import kpersistence.RandomId;
-import repository.AbstractTableRepository;
+import kpersistence.v2.RandomId;
+import repository.v1.AbstractTableRepository;
 import domain.repositories.nomenclature.consumables.ConsumableItemsRepository;
 import domain.services.abstracts.TypoServiceUser;
-import service.AbstractTableService;
+import service.v1.AbstractTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rest.nomenclature.JsonConsumableType;

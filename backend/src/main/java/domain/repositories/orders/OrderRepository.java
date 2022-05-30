@@ -1,7 +1,7 @@
 package domain.repositories.orders;
 
 import domain.models.orders.Order;
-import repository.AbstractTableRepository;
+import repository.v1.AbstractTableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;

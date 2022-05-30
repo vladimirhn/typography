@@ -1,6 +1,6 @@
 package domain.models.stock;
 
-import kpersistence.mapping.annotations.Column;
+import kpersistence.v2.annotations.Column;
 
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -9,10 +9,10 @@ public class StockBalance implements Comparable<StockBalance> {
 
     String itemId;
 
-    @Column(name = "", rus = "расходник")
+    @Column(name = "")
     String item;
 
-    @Column(name = "", rus = "остаток")
+    @Column(name = "")
     BigDecimal sum;
 
     public StockBalance() {

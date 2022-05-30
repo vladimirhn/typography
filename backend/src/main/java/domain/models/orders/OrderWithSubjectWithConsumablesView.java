@@ -1,9 +1,10 @@
 package domain.models.orders;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import kpersistence.mapping.annotations.*;
-import repository.tables.AbstractView;
-import repository.tables.UserIdAbstractView;
+import kpersistence.v1.mapping.annotations.*;
+import kpersistence.v2.annotations.Column;
+import kpersistence.v2.annotations.Table;
+import repository.v1.tables.UserIdAbstractView;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -39,10 +40,10 @@ public class OrderWithSubjectWithConsumablesView extends UserIdAbstractView {
     @Column(name = "STATUS")
     String status;
 
-    @Column(name = "CONFIRMED", rus = "согласовано")
+    @Column(name = "CONFIRMED")
     Boolean confirmed;
 
-    @Column(name = "SUPPLIED", rus = "отгружено")
+    @Column(name = "SUPPLIED")
     Boolean supplied;
 
     @Column(name = "MONEY_RECEIVED")

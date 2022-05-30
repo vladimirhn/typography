@@ -1,40 +1,33 @@
 package domain.models.orders;
 
-import kcollections.CollectionFactory;
-import kcollections.KList;
-import kpersistence.v1.mapping.annotations.*;
+import domain.models.abstracts.TypographyTable;
+import domain.models.counterparties.LegalEntity;
 import kpersistence.v2.annotations.Column;
+import kpersistence.v2.annotations.Foreign2;
 import kpersistence.v2.annotations.Table;
-import kpersistence.v2.tables.StringIdTable;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 
-@Entity
 @Table(name = "ORDERS")
-public class Order extends StringIdTable {
+public class Order2 extends TypographyTable {
 
-
-    @Column(name = "ORDER_SUBJECTS_ID")
+    @Column(name = "ORDER_SUBJECTS_ID", foreign = OrderSubject.class)
     String orderSubjectsId;
 
-//Используем вьюху
-//    @Foreign(table = OrderSubject.class, foreignId = "orderSubjectsId")
-    private String orderSubjectName;
+    @Foreign2
+    private OrderSubject orderSubject;
 
-    @Column(name = "LEGAL_ENTITY_ID")
+    @Column(name = "LEGAL_ENTITY_ID", foreign = LegalEntity.class)
     private String legalEntityId;
 
-//Используем вьюху
-//    @Foreign(table = LegalEntity.class, foreignId = "legalEntityId")
-    private String legalEntityName;
+    @Foreign2
+    private LegalEntity legalEntity;
 
     @Column(name = "AMOUNT")
     private Long amount;
 
-    @OrderBy(direction = Direction.DESC)
     @Column(name = "ORDERS_DATE")
     private LocalDate orderDate;
 
@@ -58,16 +51,14 @@ public class Order extends StringIdTable {
 
     private List<OrderConsumable> relatedConsumables;
 
-    public Order() {}
+    public Order2() {}
 
-    public Order(String orderId, String orderSubjectsId, String orderSubjectName, String legalEntityId,
-                 String legalEntityName, Long amount, String comment, LocalDate orderDate, LocalDate orderDeadline,
+    public Order2(String orderId, String orderSubjectsId, String legalEntityId,
+                 Long amount, String comment, LocalDate orderDate, LocalDate orderDeadline,
                  String status, Boolean confirmed, Boolean supplied, BigDecimal moneyReceived) {
         this.setId(orderId);
         this.orderSubjectsId = orderSubjectsId;
-        this.orderSubjectName = orderSubjectName;
         this.legalEntityId = legalEntityId;
-        this.legalEntityName = legalEntityName;
         this.amount = amount;
         this.comment = comment;
         this.orderDate = orderDate;
@@ -89,12 +80,12 @@ public class Order extends StringIdTable {
         this.orderSubjectsId = orderSubjectsId;
     }
 
-    public String getOrderSubjectName() {
-        return orderSubjectName;
+    public OrderSubject getOrderSubject() {
+        return orderSubject;
     }
 
-    public void setOrderSubjectName(String orderSubjectName) {
-        this.orderSubjectName = orderSubjectName;
+    public void setOrderSubject(OrderSubject orderSubject) {
+        this.orderSubject = orderSubject;
     }
 
     public String getLegalEntityId() {
@@ -105,12 +96,12 @@ public class Order extends StringIdTable {
         this.legalEntityId = legalEntityId;
     }
 
-    public String getLegalEntityName() {
-        return legalEntityName;
+    public LegalEntity getLegalEntity() {
+        return legalEntity;
     }
 
-    public void setLegalEntityName(String legalEntityName) {
-        this.legalEntityName = legalEntityName;
+    public void setLegalEntity(LegalEntity legalEntity) {
+        this.legalEntity = legalEntity;
     }
 
     public Long getAmount() {
@@ -161,16 +152,8 @@ public class Order extends StringIdTable {
         this.supplied = supplied;
     }
 
-    public KList<OrderConsumable> getRelatedConsumables() {
-        return CollectionFactory.makeList(relatedConsumables);
-    }
-
-    public void setRelatedConsumables(List<OrderConsumable> relatedConsumables) {
-        this.relatedConsumables = relatedConsumables;
-    }
-
     public BigDecimal getMoneyReceived() {
-        return moneyReceived != null ? moneyReceived : BigDecimal.ZERO;
+        return moneyReceived;
     }
 
     public void setMoneyReceived(BigDecimal moneyReceived) {
@@ -185,16 +168,11 @@ public class Order extends StringIdTable {
         this.comment = comment;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Order order = (Order) o;
-        return getId().equals(order.getId());
+    public List<OrderConsumable> getRelatedConsumables() {
+        return relatedConsumables;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId());
+    public void setRelatedConsumables(List<OrderConsumable> relatedConsumables) {
+        this.relatedConsumables = relatedConsumables;
     }
 }

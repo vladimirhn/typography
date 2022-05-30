@@ -1,12 +1,11 @@
 package domain.models.orders;
 
 import domain.models.nomenclature.consumables.ConsumableItem;
-import kpersistence.mapping.annotations.Column;
-import kpersistence.mapping.annotations.Entity;
-import kpersistence.mapping.annotations.Foreign;
-import kpersistence.mapping.annotations.Table;
-import repository.tables.StringIdTable;
-import repository.tables.UserIdStringIdTable;
+import kpersistence.v2.annotations.Column;
+import kpersistence.v1.mapping.annotations.Entity;
+import kpersistence.v1.mapping.annotations.Foreign;
+import kpersistence.v2.annotations.Table;
+import kpersistence.v2.tables.UserIdStringIdTable;
 
 import java.math.BigDecimal;
 

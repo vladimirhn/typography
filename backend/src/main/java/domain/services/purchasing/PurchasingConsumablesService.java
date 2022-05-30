@@ -1,9 +1,9 @@
 package domain.services.purchasing;
 
 import domain.models.purchasing.PurchasingConsumables;
-import repository.AbstractTableRepository;
+import repository.v1.AbstractTableRepository;
 import domain.repositories.purchasing.PurchasingConsumablesRepository;
-import service.AbstractTableService;
+import service.v1.AbstractTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

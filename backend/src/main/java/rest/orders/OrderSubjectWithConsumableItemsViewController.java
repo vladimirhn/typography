@@ -5,7 +5,7 @@ import domain.services.abstracts.TypoServiceUser;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import rest.abstracts.TypoViewController;
-import service.AbstractViewService;
+import service.v1.AbstractViewService;
 
 @RestController
 @RequestMapping("/order_subject_with_consumable_items_view")

@@ -1,9 +1,9 @@
 package domain.models.nomenclature.consumables;
 
-import kpersistence.mapping.annotations.Column;
-import kpersistence.mapping.annotations.Entity;
-import kpersistence.mapping.annotations.Table;
-import repository.tables.UserIdAbstractView;
+import kpersistence.v2.annotations.Column;
+import kpersistence.v1.mapping.annotations.Entity;
+import kpersistence.v2.annotations.Table;
+import repository.v1.tables.UserIdAbstractView;
 
 import java.math.BigDecimal;
 

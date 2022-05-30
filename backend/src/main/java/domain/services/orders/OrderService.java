@@ -9,8 +9,8 @@ import kcollections.CollectionFactory;
 import kcollections.KList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.AbstractTableRepository;
-import service.AbstractTableService;
+import repository.v1.AbstractTableRepository;
+import service.v1.AbstractTableService;
 
 @Service("orderService")
 public class OrderService extends AbstractTableService<Order> implements TypoServiceUser {
@@ -29,7 +29,11 @@ public class OrderService extends AbstractTableService<Order> implements TypoSer
         orderWithSubjectWithConsumablesViewService.selectAll()
                 .groupBy(OrderWithSubjectWithConsumablesView::extractOrder)
                 .forEach((order, lines) -> {
-                    order.setRelatedConsumables(lines.mapEachBy(OrderWithSubjectWithConsumablesView::extractOrderConsumable));
+                    order.setRelatedConsumables(
+                            lines
+                                    .mapEachBy(OrderWithSubjectWithConsumablesView::extractOrderConsumable)
+                                    .filterNonNulls(OrderConsumable::getId)
+                    );
                     result.add(order);
                 });
 

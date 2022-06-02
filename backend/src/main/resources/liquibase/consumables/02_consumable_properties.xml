@@ -28,6 +28,40 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="consumable-properties-add-user-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="CONSUMABLE_PROPERTIES" columnName="USER_ID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="CONSUMABLE_PROPERTIES">
+            <column name="USER_ID" remarks="id пользователя" type="${ID}"/>
+        </addColumn>
+        <sql>UPDATE CONSUMABLE_PROPERTIES SET user_id = (SELECT id FROM USERS WHERE login = 'talpa')</sql>
+    </changeSet>
+
+    <changeSet id="consumable-properties-add-user-id-fk1" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyTableName="CONSUMABLE_PROPERTIES" foreignKeyName="CONSUMABLE_PROPERTIES_FK1"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint constraintName="CONSUMABLE_PROPERTIES_FK1"
+                                 baseTableName="CONSUMABLE_PROPERTIES" baseColumnNames="USER_ID"
+                                 referencedTableName="USERS" referencedColumnNames="ID"/>
+    </changeSet>
+
+    <changeSet id="consumable-properties-add-user-id-fx1" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists tableName="CONSUMABLE_PROPERTIES" indexName="CONSUMABLE_PROPERTIES_FX1"/>
+            </not>
+        </preConditions>
+        <createIndex tableName="CONSUMABLE_PROPERTIES" indexName="CONSUMABLE_PROPERTIES_FX1" unique="false">
+            <column name="USER_ID"/>
+        </createIndex>
+    </changeSet>
+
     <changeSet id="consumable-properties-add-property-name" author="typography" runOnChange="true">
         <preConditions onFail="MARK_RAN">
             <not>

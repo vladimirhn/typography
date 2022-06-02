@@ -1,10 +1,12 @@
 package domain.models.nomenclature.consumables;
 
-import kpersistence.v1.mapping.annotations.*;
+import domain.models.abstracts.TypographyTable;
+import kpersistence.v1.mapping.annotations.Entity;
+import kpersistence.v1.mapping.annotations.Label;
+import kpersistence.v1.mapping.annotations.ParentId;
 import kpersistence.v1.types.SoftDelete;
 import kpersistence.v2.annotations.Column;
 import kpersistence.v2.annotations.Table;
-import kpersistence.v2.tables.StringIdTable;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -12,7 +14,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "CONSUMABLE_ITEMS")
-public class ConsumableItem extends StringIdTable implements SoftDelete {
+public class ConsumableItem extends TypographyTable implements SoftDelete {
 
     @Column(name = "TYPE_ID")
     @ParentId(table = ConsumableType.class)

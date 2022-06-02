@@ -2,14 +2,13 @@ package domain.models.nomenclature.consumables;
 
 import domain.models.abstracts.TypographyTable;
 import kpersistence.v1.mapping.annotations.Entity;
-import kpersistence.v1.mapping.annotations.Label;
+import kpersistence.v2.annotations.Label;
 import kpersistence.v1.mapping.annotations.ParentId;
 import kpersistence.v1.types.SoftDelete;
 import kpersistence.v2.annotations.Column;
 import kpersistence.v2.annotations.Table;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Entity
 @Table(name = "CONSUMABLE_ITEMS")

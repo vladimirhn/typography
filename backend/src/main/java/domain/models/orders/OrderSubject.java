@@ -3,6 +3,7 @@ package domain.models.orders;
 import domain.models.abstracts.TypographyTable;
 import kpersistence.v1.mapping.annotations.*;
 import kpersistence.v2.annotations.Column;
+import kpersistence.v2.annotations.Label;
 import kpersistence.v2.annotations.Table;
 import rest.v1.data.EntryTransferData;
 

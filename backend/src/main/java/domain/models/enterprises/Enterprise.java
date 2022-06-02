@@ -2,7 +2,7 @@ package domain.models.enterprises;
 
 import domain.models.abstracts.TypographyTable;
 import kpersistence.v1.mapping.annotations.Entity;
-import kpersistence.v1.mapping.annotations.Label;
+import kpersistence.v2.annotations.Label;
 import kpersistence.v2.annotations.Column;
 import kpersistence.v2.annotations.Table;
 

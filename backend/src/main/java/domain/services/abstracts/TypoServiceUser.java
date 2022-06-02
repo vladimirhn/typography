@@ -45,12 +45,10 @@ public interface TypoServiceUser extends ServiceUser {
     //O
     OrderConsumableService orderConsumableService = ServiceUser.getBean(OrderConsumableService.class);
     OrderConsumedConsumablesBalanceViewService orderConsumedConsumablesBalanceViewService = ServiceUser.getBean(OrderConsumedConsumablesBalanceViewService.class);
-    OrderService orderService = ServiceUser.getBean(OrderService.class);
     OrderSubjectConsumablesService orderSubjectConsumablesService = ServiceUser.getBean(OrderSubjectConsumablesService.class);
     OrderSubjectService orderSubjectService = ServiceUser.getBean(OrderSubjectService.class);
     OrderSubjectTypeService orderSubjectTypeService = ServiceUser.getBean(OrderSubjectTypeService.class);
     OrderSubjectWithConsumableItemsViewService orderSubjectWithConsumableItemsViewService = ServiceUser.getBean(OrderSubjectWithConsumableItemsViewService.class);
-    OrderWithSubjectWithConsumablesViewService orderWithSubjectWithConsumablesViewService = ServiceUser.getBean(OrderWithSubjectWithConsumablesViewService.class);
 
     //P
     ParameterService parameterService = ServiceUser.getBean(ParameterService.class);

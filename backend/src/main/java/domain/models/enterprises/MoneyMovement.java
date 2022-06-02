@@ -1,17 +1,19 @@
 package domain.models.enterprises;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import kpersistence.v1.mapping.annotations.*;
+import domain.models.abstracts.TypographyTable;
+import kpersistence.v1.mapping.annotations.Direction;
+import kpersistence.v1.mapping.annotations.Entity;
+import kpersistence.v1.mapping.annotations.OrderBy;
 import kpersistence.v2.annotations.Column;
 import kpersistence.v2.annotations.Table;
-import kpersistence.v2.tables.UserIdStringIdTable;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "MONEY_MOVEMENTS")
-public class MoneyMovement extends UserIdStringIdTable {
+public class MoneyMovement extends TypographyTable {
 
     @Column(name = "TYPE")
     BigDecimal type;

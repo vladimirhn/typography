@@ -1,14 +1,14 @@
 package domain.models.counterparties;
 
-import kpersistence.v2.annotations.Column;
+import domain.models.abstracts.TypographyTable;
 import kpersistence.v1.mapping.annotations.Entity;
 import kpersistence.v1.mapping.annotations.Label;
+import kpersistence.v2.annotations.Column;
 import kpersistence.v2.annotations.Table;
-import kpersistence.v2.tables.UserIdStringIdTable;
 
 @Entity
 @Table(name = "LEGAL_ENTITIES")
-public class LegalEntity extends UserIdStringIdTable {
+public class LegalEntity extends TypographyTable {
 
     @Label
     @Column(name = "NAME")

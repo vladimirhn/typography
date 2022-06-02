@@ -1,17 +1,17 @@
 package domain.models.orders;
 
+import domain.models.abstracts.TypographyTable;
 import domain.models.nomenclature.consumables.ConsumableItem;
-import kpersistence.v2.annotations.Column;
 import kpersistence.v1.mapping.annotations.Entity;
 import kpersistence.v1.mapping.annotations.Foreign;
+import kpersistence.v2.annotations.Column;
 import kpersistence.v2.annotations.Table;
-import kpersistence.v2.tables.UserIdStringIdTable;
 
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "ORDERS_CONSUMABLES")
-public class OrderConsumable extends UserIdStringIdTable {
+public class OrderConsumable extends TypographyTable {
 
     @Column(name = "ORDER_ID")
     String orderId;

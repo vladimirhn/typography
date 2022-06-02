@@ -28,4 +28,38 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="equipment-types-add-user-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="EQUIPMENT_TYPES" columnName="USER_ID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="EQUIPMENT_TYPES">
+            <column name="USER_ID" remarks="id пользователя" type="${ID}"/>
+        </addColumn>
+        <sql>UPDATE EQUIPMENT_TYPES SET user_id = (SELECT id FROM USERS WHERE login = 'talpa')</sql>
+    </changeSet>
+
+    <changeSet id="equipment-types-add-user-id-fk1" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyTableName="EQUIPMENT_TYPES" foreignKeyName="EQUIPMENT_TYPES_FK1"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint constraintName="EQUIPMENT_TYPES_FK1"
+                                 baseTableName="EQUIPMENT_TYPES" baseColumnNames="USER_ID"
+                                 referencedTableName="USERS" referencedColumnNames="ID"/>
+    </changeSet>
+
+    <changeSet id="equipment-types-add-user-id-fx1" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists tableName="EQUIPMENT_TYPES" indexName="EQUIPMENT_TYPES_FX1"/>
+            </not>
+        </preConditions>
+        <createIndex tableName="EQUIPMENT_TYPES" indexName="EQUIPMENT_TYPES_FX1" unique="false">
+            <column name="USER_ID"/>
+        </createIndex>
+    </changeSet>
+
 </databaseChangeLog>

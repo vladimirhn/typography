@@ -1,16 +1,16 @@
 package domain.models.orders;
 
-import kpersistence.v2.annotations.Column;
+import domain.models.abstracts.TypographyTable;
 import kpersistence.v1.mapping.annotations.Entity;
 import kpersistence.v1.mapping.annotations.Label;
+import kpersistence.v2.annotations.Column;
 import kpersistence.v2.annotations.Table;
-import kpersistence.v2.tables.UserIdStringIdTable;
 
 import java.util.Objects;
 
 @Entity
 @Table(name = "ORDER_SUBJECT_TYPES")
-public class OrderSubjectType extends UserIdStringIdTable {
+public class OrderSubjectType extends TypographyTable {
 
     @Column(name = "NAME")
     @Label

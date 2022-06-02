@@ -1,16 +1,16 @@
 package domain.models.enterprises;
 
-import kpersistence.v2.annotations.Column;
+import domain.models.abstracts.TypographyTable;
 import kpersistence.v1.mapping.annotations.Entity;
 import kpersistence.v1.mapping.annotations.Label;
+import kpersistence.v2.annotations.Column;
 import kpersistence.v2.annotations.Table;
-import kpersistence.v2.tables.UserIdStringIdTable;
 
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "ENTERPRISES")
-public class Enterprise extends UserIdStringIdTable {
+public class Enterprise extends TypographyTable {
 
     @Label
     @Column(name = "NAME")

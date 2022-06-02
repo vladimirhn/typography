@@ -17,6 +17,40 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="parameters-add-user-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="PARAMETERS" columnName="USER_ID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="PARAMETERS">
+            <column name="USER_ID" remarks="id пользователя" type="${ID}"/>
+        </addColumn>
+        <sql>UPDATE PARAMETERS SET user_id = (SELECT id FROM USERS WHERE login = 'talpa')</sql>
+    </changeSet>
+
+    <changeSet id="parameters-add-user-id-fk1" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyTableName="PARAMETERS" foreignKeyName="PARAMETERS_FK1"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint constraintName="PARAMETERS_FK1"
+                                 baseTableName="PARAMETERS" baseColumnNames="USER_ID"
+                                 referencedTableName="USERS" referencedColumnNames="ID"/>
+    </changeSet>
+
+    <changeSet id="parameters-add-user-id-fx1" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists tableName="PARAMETERS" indexName="PARAMETERS_FX1"/>
+            </not>
+        </preConditions>
+        <createIndex tableName="PARAMETERS" indexName="PARAMETERS_FX1" unique="false">
+            <column name="USER_ID"/>
+        </createIndex>
+    </changeSet>
+
     <changeSet id="parameters-add-name" author="typography" runOnChange="true">
         <preConditions onFail="MARK_RAN">
             <not>

@@ -2,20 +2,20 @@ package domain.models.purchasing;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import domain.models.abstracts.TypographyTable;
 import domain.models.counterparties.LegalEntity;
 import domain.models.nomenclature.consumables.ConsumableItem;
 import kpersistence.v1.mapping.annotations.*;
 import kpersistence.v1.query.KFilter;
 import kpersistence.v2.annotations.Column;
 import kpersistence.v2.annotations.Table;
-import kpersistence.v2.tables.UserIdStringIdTable;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "PURCHASING_CONSUMABLES")
-public class PurchasingConsumables extends UserIdStringIdTable {
+public class PurchasingConsumables extends TypographyTable {
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "CONSUMABLE_ID")

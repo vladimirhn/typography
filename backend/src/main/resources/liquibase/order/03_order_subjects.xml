@@ -17,15 +17,49 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="order-subjects-add-type" author="typography" runOnChange="true">
+    <changeSet id="order-subjects-add-type-id" author="typography" runOnChange="true">
         <preConditions onFail="MARK_RAN">
             <not>
-                <columnExists tableName="ORDER_SUBJECTS" columnName="TYPE"/>
+                <columnExists tableName="ORDER_SUBJECTS" columnName="ORDER_SUBJECT_TYPE_ID"/>
             </not>
         </preConditions>
         <addColumn tableName="ORDER_SUBJECTS">
             <column name="ORDER_SUBJECT_TYPE_ID" remarks="Вид продукта/услуги" type="${ID}"/>
         </addColumn>
+    </changeSet>
+
+    <changeSet id="order-subjects-add-user-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="ORDER_SUBJECTS" columnName="USER_ID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="ORDER_SUBJECTS">
+            <column name="USER_ID" remarks="id пользователя" type="${ID}"/>
+        </addColumn>
+        <sql>UPDATE ORDER_SUBJECTS SET user_id = (SELECT id FROM USERS WHERE login = 'talpa')</sql>
+    </changeSet>
+
+    <changeSet id="order-subjects-add-user-id-fk1" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyTableName="ORDER_SUBJECTS" foreignKeyName="ORDER_SUBJECTS_FK1"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint constraintName="ORDER_SUBJECTS_FK1"
+                                 baseTableName="ORDER_SUBJECTS" baseColumnNames="USER_ID"
+                                 referencedTableName="USERS" referencedColumnNames="ID"/>
+    </changeSet>
+
+    <changeSet id="order-subjects-add-user-id-fx1" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists tableName="ORDER_SUBJECTS" indexName="ORDER_SUBJECTS_FX1"/>
+            </not>
+        </preConditions>
+        <createIndex tableName="ORDER_SUBJECTS" indexName="ORDER_SUBJECTS_FX1" unique="false">
+            <column name="USER_ID"/>
+        </createIndex>
     </changeSet>
 
     <changeSet id="order-subjects-add-name" author="typography" runOnChange="true">

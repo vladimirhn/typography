@@ -29,6 +29,28 @@
         <sql>UPDATE STOCK_BALANCE SET user_id = (SELECT id FROM USERS WHERE login = 'talpa')</sql>
     </changeSet>
 
+    <changeSet id="stock-balance-add-user-id-fk1" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyTableName="STOCK_BALANCE" foreignKeyName="STOCK_BALANCE_FK1"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint constraintName="STOCK_BALANCE_FK1"
+                                 baseTableName="STOCK_BALANCE" baseColumnNames="USER_ID"
+                                 referencedTableName="USERS" referencedColumnNames="ID"/>
+    </changeSet>
+
+    <changeSet id="stock-balance-add-user-id-fx1" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists tableName="STOCK_BALANCE" indexName="STOCK_BALANCE_FX1"/>
+            </not>
+        </preConditions>
+        <createIndex tableName="STOCK_BALANCE" indexName="STOCK_BALANCE_FX1" unique="false">
+            <column name="USER_ID"/>
+        </createIndex>
+    </changeSet>
+
     <changeSet id="stock-balance-add-stock-id" author="typography" runOnChange="true">
         <preConditions onFail="MARK_RAN">
             <not>

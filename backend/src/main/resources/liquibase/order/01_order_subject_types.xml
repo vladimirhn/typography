@@ -29,6 +29,28 @@
         <sql>UPDATE ORDER_SUBJECT_TYPES SET user_id = (SELECT id FROM USERS WHERE login = 'talpa')</sql>
     </changeSet>
 
+    <changeSet id="order-subject-types-add-user-id-fk1" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyTableName="ORDER_SUBJECT_TYPES" foreignKeyName="ORDER_SUBJECT_TYPES_FK1"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint constraintName="ORDER_SUBJECT_TYPES_FK1"
+                                 baseTableName="ORDER_SUBJECT_TYPES" baseColumnNames="USER_ID"
+                                 referencedTableName="USERS" referencedColumnNames="ID"/>
+    </changeSet>
+
+    <changeSet id="order-subject-types-add-user-id-fx1" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists tableName="ORDER_SUBJECT_TYPES" indexName="ORDER_SUBJECT_TYPES_FX1"/>
+            </not>
+        </preConditions>
+        <createIndex tableName="ORDER_SUBJECT_TYPES" indexName="ORDER_SUBJECT_TYPES_FX1" unique="false">
+            <column name="USER_ID"/>
+        </createIndex>
+    </changeSet>
+
     <changeSet id="order-subject-types-add-name" author="typography" runOnChange="true">
         <preConditions onFail="MARK_RAN">
             <not>

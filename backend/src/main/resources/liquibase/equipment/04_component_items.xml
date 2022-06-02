@@ -39,6 +39,40 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="component-items-add-user-id" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="COMPONENT_ITEMS" columnName="USER_ID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="COMPONENT_ITEMS">
+            <column name="USER_ID" remarks="id пользователя" type="${ID}"/>
+        </addColumn>
+        <sql>UPDATE COMPONENT_ITEMS SET user_id = (SELECT id FROM USERS WHERE login = 'talpa')</sql>
+    </changeSet>
+
+    <changeSet id="component-items-add-user-id-fk1" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyTableName="COMPONENT_ITEMS" foreignKeyName="COMPONENT_ITEMS_FK1"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint constraintName="COMPONENT_ITEMS_FK1"
+                                 baseTableName="COMPONENT_ITEMS" baseColumnNames="USER_ID"
+                                 referencedTableName="USERS" referencedColumnNames="ID"/>
+    </changeSet>
+
+    <changeSet id="component-items-add-user-id-fx1" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists tableName="COMPONENT_ITEMS" indexName="COMPONENT_ITEMS_FX1"/>
+            </not>
+        </preConditions>
+        <createIndex tableName="COMPONENT_ITEMS" indexName="COMPONENT_ITEMS_FX1" unique="false">
+            <column name="USER_ID"/>
+        </createIndex>
+    </changeSet>
+
     <changeSet id="component-items-add-item" author="typography" runOnChange="true">
         <preConditions onFail="MARK_RAN">
             <not>

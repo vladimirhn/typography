@@ -1,13 +1,13 @@
 package domain.models.orders;
 
-import kpersistence.v2.annotations.Column;
+import domain.models.abstracts.TypographyTable;
 import kpersistence.v1.mapping.annotations.Entity;
+import kpersistence.v2.annotations.Column;
 import kpersistence.v2.annotations.Table;
-import kpersistence.v2.tables.StringIdTable;
 
 @Entity
 @Table(name = "ORDER_SUBJECT_CONSUMABLES")
-public class OrderSubjectConsumables extends StringIdTable {
+public class OrderSubjectConsumables extends TypographyTable {
 
     @Column(name = "ORDER_SUBJECT_ID")
     String orderSubjectId;

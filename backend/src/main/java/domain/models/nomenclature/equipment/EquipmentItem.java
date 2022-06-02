@@ -1,13 +1,13 @@
 package domain.models.nomenclature.equipment;
 
-import kpersistence.v2.tables.StringIdTable;
-import kpersistence.v2.annotations.Column;
+import domain.models.abstracts.TypographyTable;
 import kpersistence.v1.mapping.annotations.Entity;
+import kpersistence.v2.annotations.Column;
 import kpersistence.v2.annotations.Table;
 
 @Entity
 @Table(name = "EQUIPMENT_ITEMS")
-public class EquipmentItem extends StringIdTable {
+public class EquipmentItem extends TypographyTable {
 
     @Column(name = "TYPE_ID")
     private String typeId;

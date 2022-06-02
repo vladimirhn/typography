@@ -1,18 +1,18 @@
 package domain.models.nomenclature.consumables;
 
+import domain.models.abstracts.TypographyTable;
+import kpersistence.v1.mapping.annotations.Entity;
 import kpersistence.v1.mapping.annotations.Label;
 import kpersistence.v1.types.SoftDelete;
 import kpersistence.v2.annotations.Column;
-import kpersistence.v1.mapping.annotations.Entity;
 import kpersistence.v2.annotations.Table;
-import kpersistence.v2.tables.UserIdStringIdTable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "CONSUMABLE_TYPES")
-public class ConsumableType extends UserIdStringIdTable implements SoftDelete {
+public class ConsumableType extends TypographyTable implements SoftDelete {
 
     @Column(name = "TYPE")
     @Label

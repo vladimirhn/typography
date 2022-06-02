@@ -14,7 +14,7 @@ import java.util.List;
 public class Order2 extends TypographyTable {
 
     @Column(name = "ORDER_SUBJECTS_ID", foreign = OrderSubject.class)
-    String orderSubjectsId;
+    String orderSubjectId;
 
     @Foreign2
     private OrderSubject orderSubject;
@@ -53,31 +53,15 @@ public class Order2 extends TypographyTable {
 
     public Order2() {}
 
-    public Order2(String orderId, String orderSubjectsId, String legalEntityId,
-                 Long amount, String comment, LocalDate orderDate, LocalDate orderDeadline,
-                 String status, Boolean confirmed, Boolean supplied, BigDecimal moneyReceived) {
-        this.setId(orderId);
-        this.orderSubjectsId = orderSubjectsId;
-        this.legalEntityId = legalEntityId;
-        this.amount = amount;
-        this.comment = comment;
-        this.orderDate = orderDate;
-        this.orderDeadline = orderDeadline;
-        this.status = status;
-        this.confirmed = confirmed;
-        this.supplied = supplied;
-        this.moneyReceived = moneyReceived;
-    }
-
     @Override
     public void setDefaults() {}
 
-    public String getOrderSubjectsId() {
-        return orderSubjectsId;
+    public String getOrderSubjectId() {
+        return orderSubjectId;
     }
 
-    public void setOrderSubjectsId(String orderSubjectsId) {
-        this.orderSubjectsId = orderSubjectsId;
+    public void setOrderSubjectId(String orderSubjectId) {
+        this.orderSubjectId = orderSubjectId;
     }
 
     public OrderSubject getOrderSubject() {

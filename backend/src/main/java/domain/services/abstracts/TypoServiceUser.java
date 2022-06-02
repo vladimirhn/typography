@@ -6,10 +6,7 @@ import domain.services.defaults.consumables.ConsumablesDefaultsService;
 import domain.services.enterprises.FinancialTransactionsViewService;
 import domain.services.enterprises.EnterprisesService;
 import domain.services.enterprises.MoneyMovenetsService;
-import domain.services.nomenclature.consumables.ConsumableItemsService;
-import domain.services.nomenclature.consumables.ConsumablePropertiesValuesService;
-import domain.services.nomenclature.consumables.ConsumableTypesService;
-import domain.services.nomenclature.consumables.ConsumablesService;
+import domain.services.nomenclature.consumables.*;
 import domain.services.nomenclature.equipment.EquipmentTypesService;
 import domain.services.orders.*;
 import domain.services.purchasing.PurchasingConsumablesService;
@@ -28,6 +25,7 @@ public interface TypoServiceUser extends ServiceUser {
     ConsumablesDefaultsService defaultsService = ServiceUser.getBean(ConsumablesDefaultsService.class);
     ConsumablesService consumablesService = ServiceUser.getBean(ConsumablesService.class);
     ConsumableItemsService consumableItemsService = ServiceUser.getBean(ConsumableItemsService.class);
+    ConsumableItems2Service consumableItems2Service = ServiceUser.getBean(ConsumableItems2Service.class);
     ConsumableTypesService consumableTypesService = ServiceUser.getBean(ConsumableTypesService.class);
 
     //D

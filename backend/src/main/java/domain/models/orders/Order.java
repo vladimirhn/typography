@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Table(name = "ORDERS")
-public class Order2 extends TypographyTable {
+public class Order extends TypographyTable {
 
     @Column(name = "ORDER_SUBJECTS_ID", foreign = OrderSubject.class)
     String orderSubjectId;
@@ -51,7 +51,7 @@ public class Order2 extends TypographyTable {
 
     private List<OrderConsumable> relatedConsumables;
 
-    public Order2() {}
+    public Order() {}
 
     @Override
     public void setDefaults() {}

@@ -1,9 +1,9 @@
 package domain.services.orders;
 
-import domain.models.orders.Order2;
+import domain.models.orders.Order;
 import org.springframework.stereotype.Service;
 import service.v2.AbstractStringIdTableService;
 
 @Service
-public class Orders2Service extends AbstractStringIdTableService<Order2> {
+public class OrdersService extends AbstractStringIdTableService<Order> {
 }

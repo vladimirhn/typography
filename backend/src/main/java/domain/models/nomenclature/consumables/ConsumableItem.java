@@ -9,7 +9,6 @@ import kpersistence.v2.annotations.Column;
 import kpersistence.v2.annotations.Table;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,8 +28,6 @@ public class ConsumableItem extends TypographyTable implements SoftDelete {
 
     @Column(name = "DELETED")
     private Boolean deleted;
-
-    private List<ConsumablePropertyValue> propValues = new ArrayList<>();
 
     public ConsumableItem() {}
 
@@ -89,13 +86,5 @@ public class ConsumableItem extends TypographyTable implements SoftDelete {
     @Override
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
-    }
-
-    public List<ConsumablePropertyValue> getPropValues() {
-        return propValues;
-    }
-
-    public void setPropValues(List<ConsumablePropertyValue> propValues) {
-        this.propValues = propValues;
     }
 }

@@ -1,14 +1,14 @@
 package domain.services.orders;
 
-import domain.models.orders.*;
-import domain.services.abstracts.TypoServiceUser;
-import kcollections.CollectionFactory;
-import kcollections.KList;
-import repository.v1.AbstractTableRepository;
+import domain.models.orders.OrderSubject;
+import domain.models.orders.OrderSubjectConsumables;
 import domain.repositories.orders.OrderSubjectRepository;
-import service.v1.AbstractTableService;
+import domain.services.abstracts.TypoServiceUser;
+import kcollections.KList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import repository.v1.AbstractTableRepository;
+import service.v1.AbstractTableService;
 
 @Service("orderSubjectService")
 public class OrderSubjectService extends AbstractTableService<OrderSubject> implements TypoServiceUser {
@@ -21,20 +21,7 @@ public class OrderSubjectService extends AbstractTableService<OrderSubject> impl
     }
 
     public KList<OrderSubject> getAll() {
-
-        KList<OrderSubject> result = CollectionFactory.makeList();
-
-        orderSubjectWithConsumableItemsViewService.selectAll()
-                .groupBy(OrderSubjectWithConsumableItemsView::extractOrderSubject)
-                .forEach((orderSubject, viewLines) -> {
-
-                    orderSubject.setRelatedOwnConsumableItems(
-                            viewLines.mapEachBy(OrderSubjectWithConsumableItemsView::extractMinimalConsumableItemData)
-                    );
-                    result.add(orderSubject);
-                });
-
-        return result;
+        return super.selectAll();
     }
 
     public void add(OrderSubject item) {
@@ -50,17 +37,6 @@ public class OrderSubjectService extends AbstractTableService<OrderSubject> impl
 
     public void update(OrderSubject item) {
         super.update(item);
-        item.getRelatedOwnConsumableItems().forEach(consumableItemData -> {
-            if (consumableItemData.getId() != null && consumableItemData.getId().startsWith("-")) {
-                orderSubjectConsumablesService
-                        .deleteSimilar(new OrderSubjectConsumables(item.getId(), consumableItemData.getId().substring(1)));
-            }
-
-            if (consumableItemData.getId() != null && consumableItemData.getId().startsWith("+")) {
-                orderSubjectConsumablesService
-                        .insert(new OrderSubjectConsumables(item.getId(), consumableItemData.getId().substring(1)));
-            }
-        });
     }
 
     public void delete(String id) {

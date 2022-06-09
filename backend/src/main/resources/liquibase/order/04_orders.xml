@@ -73,6 +73,28 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="order-add-order-subjects-id-fk" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyTableName="ORDERS" foreignKeyName="ORDERS_ORDER_SUBJECT_FK"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint constraintName="ORDERS_ORDER_SUBJECT_FK"
+                                 baseTableName="ORDERS" baseColumnNames="ORDER_SUBJECTS_ID"
+                                 referencedTableName="ORDER_SUBJECTS" referencedColumnNames="ID"/>
+    </changeSet>
+
+    <changeSet id="order-add-order-subjects-id-fx" author="typography" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists tableName="ORDERS" indexName="ORDERS_ORDER_SUBJECT_FX"/>
+            </not>
+        </preConditions>
+        <createIndex tableName="ORDERS" indexName="ORDERS_ORDER_SUBJECT_FX" unique="false">
+            <column name="ORDER_SUBJECTS_ID"/>
+        </createIndex>
+    </changeSet>
+
     <changeSet id="orders-add-amount" author="typography" runOnChange="true">
         <preConditions onFail="MARK_RAN">
             <not>

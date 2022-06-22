@@ -5,6 +5,7 @@ import domain.models.nomenclature.consumables.ConsumableItem;
 import kpersistence.v1.mapping.annotations.Entity;
 import kpersistence.v1.mapping.annotations.Foreign;
 import kpersistence.v2.annotations.Column;
+import kpersistence.v2.annotations.Foreign2;
 import kpersistence.v2.annotations.Table;
 
 import java.math.BigDecimal;
@@ -16,28 +17,16 @@ public class OrderConsumable extends TypographyTable {
     @Column(name = "ORDER_ID")
     String orderId;
 
-    @Column(name = "CONSUMABLE_ITEM_ID")
+    @Column(name = "CONSUMABLE_ITEM_ID", foreign = ConsumableItem.class)
     String consumableItemId;
 
-    @Foreign(table = ConsumableItem.class, foreignId = "consumableItemId")
-    private String consumableItemName;
+    @Foreign2
+    ConsumableItem consumableItem;
 
     @Column(name = "QUANTITY")
     BigDecimal qty;
 
     public OrderConsumable() {}
-
-    public OrderConsumable(String orderId, String consumableItemId, BigDecimal qty) {
-        this.orderId = orderId;
-        this.consumableItemId = consumableItemId;
-        this.qty = qty;
-    }
-
-    public OrderConsumable(String id, String orderId, String consumableItemId, String consumableItemName, BigDecimal qty) {
-        this(orderId, consumableItemId, qty);
-        this.consumableItemName = consumableItemName;
-        setId(id);
-    }
 
     @Override
     public void setDefaults() {}
@@ -58,12 +47,12 @@ public class OrderConsumable extends TypographyTable {
         this.consumableItemId = consumableItemId;
     }
 
-    public String getConsumableItemName() {
-        return consumableItemName;
+    public ConsumableItem getConsumableItem() {
+        return consumableItem;
     }
 
-    public void setConsumableItemName(String consumableItemName) {
-        this.consumableItemName = consumableItemName;
+    public void setConsumableItem(ConsumableItem consumableItem) {
+        this.consumableItem = consumableItem;
     }
 
     public BigDecimal getQty() {

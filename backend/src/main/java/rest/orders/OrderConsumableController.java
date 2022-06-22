@@ -2,18 +2,13 @@ package rest.orders;
 
 import domain.models.orders.OrderConsumable;
 import domain.services.abstracts.TypoServiceUser;
-import kpersistence.v1.query.KFilter;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import rest.abstracts.TypoTableController;
-import service.v1.AbstractTableService;
+import rest.EndPoint;
+import rest.v2.controllers.AbstractStringIdTableController;
 
 @RestController
-@RequestMapping("/order_consumable")
-public class OrderConsumableController extends TypoTableController<OrderConsumable, KFilter> implements TypoServiceUser {
+@RequestMapping(EndPoint.USERS_PATH + "/order_consumable")
+public class OrderConsumableController extends AbstractStringIdTableController<OrderConsumable> implements TypoServiceUser {
 
-    @Override
-    protected AbstractTableService<OrderConsumable> getService() {
-        return orderConsumableService;
-    }
 }

@@ -18,10 +18,10 @@ public class StockBalance implements Comparable<StockBalance> {
     public StockBalance() {
     }
 
-    public StockBalance(String itemId, String item, BigDecimal sum) {
+    public StockBalance(String itemId, String item, BigDecimal sum, BigDecimal packageCapacity) {
         this.itemId = itemId;
         this.item = item;
-        this.sum = sum;
+        this.sum = sum.multiply(packageCapacity);
     }
 
     public String getItemId() {

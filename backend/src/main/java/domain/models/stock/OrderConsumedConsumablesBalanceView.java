@@ -22,7 +22,7 @@ public class OrderConsumedConsumablesBalanceView extends UserIdAbstractView {
     BigDecimal sum;
 
     public StockBalance toStockBalance() {
-        return new StockBalance(itemId, item, getSum());
+        return new StockBalance(itemId, item, getSum(), BigDecimal.ONE);
     }
 
     public String getItemId() {

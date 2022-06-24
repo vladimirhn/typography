@@ -21,8 +21,11 @@ public class PurchasedConsumablesBalanceView extends UserIdAbstractView {
     @Column(name = "SUM")
     BigDecimal sum;
 
+    @Column(name = "PACKAGE_CAPACITY")
+    BigDecimal packageCapacity;
+
     public StockBalance toStockBalance() {
-        return new StockBalance(itemId, item, getSum());
+        return new StockBalance(itemId, item, getSum(), packageCapacity);
     }
 
     public String getItemId() {
@@ -49,5 +52,11 @@ public class PurchasedConsumablesBalanceView extends UserIdAbstractView {
         this.sum = sum;
     }
 
+    public BigDecimal getPackageCapacity() {
+        return packageCapacity;
+    }
 
+    public void setPackageCapacity(BigDecimal packageCapacity) {
+        this.packageCapacity = packageCapacity;
+    }
 }

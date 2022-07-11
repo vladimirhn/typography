@@ -1,16 +1,14 @@
 package domain.models.nomenclature.consumables;
 
 import rest.v2.models.JsonNonNullUserIdStringIdTable;
-import kpersistence.v1.mapping.annotations.Entity;
 import kpersistence.v2.annotations.Label;
-import kpersistence.v1.types.SoftDelete;
+import kpersistence.v2.types.SoftDelete;
 import kpersistence.v2.annotations.Column;
 import kpersistence.v2.annotations.Table;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
 @Table(name = "CONSUMABLE_TYPES")
 public class ConsumableType extends JsonNonNullUserIdStringIdTable implements SoftDelete {
 
@@ -23,7 +21,7 @@ public class ConsumableType extends JsonNonNullUserIdStringIdTable implements So
 
     private List<ConsumableProperty> properties = new ArrayList<>();
 
-    private List<ConsumableItem> consumableItems = new ArrayList<>();
+    private List<ConsumableItem> items = new ArrayList<>();
 
     public ConsumableType() {}
 
@@ -60,11 +58,11 @@ public class ConsumableType extends JsonNonNullUserIdStringIdTable implements So
         this.properties = properties;
     }
 
-    public List<ConsumableItem> getConsumableItems() {
-        return consumableItems;
+    public List<ConsumableItem> getItems() {
+        return items;
     }
 
-    public void setConsumableItems(List<ConsumableItem> consumableItems) {
-        this.consumableItems = consumableItems;
+    public void setItems(List<ConsumableItem> items) {
+        this.items = items;
     }
 }

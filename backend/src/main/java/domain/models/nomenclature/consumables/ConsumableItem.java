@@ -5,7 +5,7 @@ import kpersistence.v1.mapping.annotations.Entity;
 import kpersistence.v2.annotations.Foreign2;
 import kpersistence.v2.annotations.Label;
 import kpersistence.v1.mapping.annotations.ParentId;
-import kpersistence.v1.types.SoftDelete;
+import kpersistence.v2.types.SoftDelete;
 import kpersistence.v2.annotations.Column;
 import kpersistence.v2.annotations.Table;
 

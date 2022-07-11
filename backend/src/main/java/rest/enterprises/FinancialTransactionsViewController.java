@@ -5,15 +5,9 @@ import domain.services.abstracts.TypoServiceUser;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import rest.EndPoint;
-import rest.abstracts.TypoViewController;
-import service.v1.AbstractViewService;
+import rest.v2.controllers.AbstractViewController;
 
 @RestController
 @RequestMapping(EndPoint.FINANCIAL_TRANSACTIONS)
-public class FinancialTransactionsViewController extends TypoViewController<FinancialTransaction> implements TypoServiceUser {
-
-    @Override
-    protected AbstractViewService<FinancialTransaction> getService() {
-        return financialTransactionsViewService;
-    }
+public class FinancialTransactionsViewController extends AbstractViewController<FinancialTransaction> implements TypoServiceUser {
 }

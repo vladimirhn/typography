@@ -1,9 +1,8 @@
 package domain.models.orders;
 
-import domain.models.abstracts.TypographyTable;
+import rest.v2.models.JsonNonNullUserIdStringIdTable;
 import domain.models.nomenclature.consumables.ConsumableItem;
 import kpersistence.v1.mapping.annotations.Entity;
-import kpersistence.v1.mapping.annotations.Foreign;
 import kpersistence.v2.annotations.Column;
 import kpersistence.v2.annotations.Foreign2;
 import kpersistence.v2.annotations.Table;
@@ -12,7 +11,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "ORDERS_CONSUMABLES")
-public class OrderConsumable extends TypographyTable {
+public class OrderConsumable extends JsonNonNullUserIdStringIdTable {
 
     @Column(name = "ORDER_ID")
     String orderId;

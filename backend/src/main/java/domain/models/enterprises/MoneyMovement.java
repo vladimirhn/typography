@@ -1,7 +1,7 @@
 package domain.models.enterprises;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import domain.models.abstracts.TypographyTable;
+import rest.v2.models.JsonNonNullUserIdStringIdTable;
 import kpersistence.v1.mapping.annotations.Direction;
 import kpersistence.v1.mapping.annotations.Entity;
 import kpersistence.v1.mapping.annotations.OrderBy;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "MONEY_MOVEMENTS")
-public class MoneyMovement extends TypographyTable {
+public class MoneyMovement extends JsonNonNullUserIdStringIdTable {
 
     @Column(name = "TYPE")
     BigDecimal type;

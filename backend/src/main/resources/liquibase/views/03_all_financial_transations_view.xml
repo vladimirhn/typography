@@ -9,7 +9,7 @@
         <createView viewName="ALL_FINANCIAL_TRANSACTIONS_VIEW" replaceIfExists="true">
             SELECT mm.movement_date TRANSACTION_DATE,
                    mm.amount        MONEY_AMOUNT,
-                   'вручную'          TRANSACTION_TYPE,
+                   'MANUAL'          TRANSACTION_TYPE,
                    ''               SUMMARY,
                    NULL             ITEMS_AMOUNT,
                    mm.user_id       USER_ID
@@ -19,7 +19,7 @@
 
             SELECT o.order_date,
                    o.money_received,
-                   'продажа',
+                   'SELLING',
                    o.order_subject_name,
                    o.amount,
                    o.user_id
@@ -29,7 +29,7 @@
 
             SELECT pc.purchasing_date,
                    -(pc.amount * pc.price),
-                   'закупка',
+                   'BUYING',
                    ci.item,
                    pc.amount,
                    pc.user_id

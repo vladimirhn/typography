@@ -1,6 +1,6 @@
 package domain.models.orders;
 
-import domain.models.abstracts.TypographyTable;
+import rest.v2.models.JsonNonNullUserIdStringIdTable;
 import domain.models.counterparties.LegalEntity;
 import kpersistence.v2.annotations.Column;
 import kpersistence.v2.annotations.Foreign2;
@@ -11,9 +11,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Table(name = "ORDERS")
-public class Order extends TypographyTable {
+public class Order extends JsonNonNullUserIdStringIdTable {
 
-    @Column(name = "ORDER_SUBJECTS_ID", foreign = OrderSubject.class)
+    @Column(name = "ORDER_SUBJECTS_ID", foreign = OrderSubject.class, nonNull = true)
     String orderSubjectId;
 
     @Foreign2

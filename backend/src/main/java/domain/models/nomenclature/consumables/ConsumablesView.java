@@ -1,15 +1,15 @@
 package domain.models.nomenclature.consumables;
 
-import kpersistence.v2.annotations.Column;
 import kpersistence.v1.mapping.annotations.Entity;
+import kpersistence.v2.annotations.Column;
 import kpersistence.v2.annotations.Table;
-import repository.v1.tables.UserIdAbstractView;
+import kpersistence.v2.tables.UserIdView;
 
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "ALL_CONSUMABLES_VIEW")
-public class ConsumablesView extends UserIdAbstractView {
+public class ConsumablesView extends UserIdView {
 
     @Column(name = "TYPE_ID")
     private String typeId;

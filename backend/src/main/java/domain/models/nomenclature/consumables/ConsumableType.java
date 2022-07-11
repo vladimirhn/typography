@@ -1,6 +1,6 @@
 package domain.models.nomenclature.consumables;
 
-import domain.models.abstracts.TypographyTable;
+import rest.v2.models.JsonNonNullUserIdStringIdTable;
 import kpersistence.v1.mapping.annotations.Entity;
 import kpersistence.v2.annotations.Label;
 import kpersistence.v1.types.SoftDelete;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "CONSUMABLE_TYPES")
-public class ConsumableType extends TypographyTable implements SoftDelete {
+public class ConsumableType extends JsonNonNullUserIdStringIdTable implements SoftDelete {
 
     @Column(name = "TYPE")
     @Label

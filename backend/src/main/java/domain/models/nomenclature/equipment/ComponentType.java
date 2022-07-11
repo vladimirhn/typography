@@ -1,13 +1,13 @@
 package domain.models.nomenclature.equipment;
 
-import domain.models.abstracts.TypographyTable;
+import rest.v2.models.JsonNonNullUserIdStringIdTable;
 import kpersistence.v1.mapping.annotations.Entity;
 import kpersistence.v2.annotations.Column;
 import kpersistence.v2.annotations.Table;
 
 @Entity
 @Table(name = "COMPONENT_TYPES")
-public class ComponentType extends TypographyTable {
+public class ComponentType extends JsonNonNullUserIdStringIdTable {
 
     @Column(name = "TYPE")
     private String type;

@@ -11,6 +11,7 @@ import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import rest.v2.schema.ModelsEndpointsSchema;
 
 import javax.sql.DataSource;
 
@@ -55,7 +56,7 @@ public class Typography {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:3000")
+                        .allowedOrigins("http://localhost:3000", "http://localhost:3001")
                         .allowedMethods("GET", "POST")
                         .allowedHeaders("*")
                         .exposedHeaders("content-type")

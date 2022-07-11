@@ -1,6 +1,6 @@
 package domain.models.orders;
 
-import domain.models.abstracts.TypographyTable;
+import rest.v2.models.JsonNonNullUserIdStringIdTable;
 import kpersistence.v1.mapping.annotations.*;
 import kpersistence.v2.annotations.Column;
 import kpersistence.v2.annotations.Label;
@@ -12,7 +12,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "ORDER_SUBJECTS")
-public class OrderSubject extends TypographyTable {
+public class OrderSubject extends JsonNonNullUserIdStringIdTable {
 
     @Column(name = "NAME")
     @Label

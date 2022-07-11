@@ -1,6 +1,6 @@
 package domain.models.enterprises;
 
-import domain.models.abstracts.TypographyTable;
+import rest.v2.models.JsonNonNullUserIdStringIdTable;
 import kpersistence.v1.mapping.annotations.Entity;
 import kpersistence.v2.annotations.Label;
 import kpersistence.v2.annotations.Column;
@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "ENTERPRISES")
-public class Enterprise extends TypographyTable {
+public class Enterprise extends JsonNonNullUserIdStringIdTable {
 
     @Label
     @Column(name = "NAME")

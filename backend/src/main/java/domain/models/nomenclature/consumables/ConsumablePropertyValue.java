@@ -1,13 +1,13 @@
 package domain.models.nomenclature.consumables;
 
-import domain.models.abstracts.TypographyTable;
+import rest.v2.models.JsonNonNullUserIdStringIdTable;
 import kpersistence.v1.mapping.annotations.Entity;
 import kpersistence.v2.annotations.Column;
 import kpersistence.v2.annotations.Table;
 
 @Entity
 @Table(name = "CONSUMABLE_PROPERTIES_VALUES")
-public class ConsumablePropertyValue extends TypographyTable {
+public class ConsumablePropertyValue extends JsonNonNullUserIdStringIdTable {
 
     @Column(name = "ITEM_ID")
     private String itemId;

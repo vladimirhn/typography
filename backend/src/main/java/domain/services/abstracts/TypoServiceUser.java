@@ -21,6 +21,7 @@ public interface TypoServiceUser extends ServiceUser {
     FinancialTransactionsViewService financialTransactionsViewService = ServiceUser.getBean(FinancialTransactionsViewService.class);
 
     //C
+    ConsumablePropertiesService consumablePropertiesService = ServiceUser.getBean(ConsumablePropertiesService.class);
     ConsumablePropertiesValuesService consumablePropertiesValuesService = ServiceUser.getBean(ConsumablePropertiesValuesService.class);
     ConsumablesDefaultsService defaultsService = ServiceUser.getBean(ConsumablesDefaultsService.class);
     ConsumablesService consumablesService = ServiceUser.getBean(ConsumablesService.class);

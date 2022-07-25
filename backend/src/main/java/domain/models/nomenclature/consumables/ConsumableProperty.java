@@ -8,6 +8,12 @@ import kpersistence.v2.annotations.Table;
 @Table(name = "CONSUMABLE_PROPERTIES")
 public class ConsumableProperty extends JsonNonNullUserIdStringIdTable {
 
+    public static ConsumableProperty defaultProperty() {
+        ConsumableProperty dp = new ConsumableProperty();
+        dp.propertyName = "комментарий";
+        return dp;
+    }
+
     @Column(name = "TYPE_ID", foreign = ConsumableType.class)
     private String typeId;
 

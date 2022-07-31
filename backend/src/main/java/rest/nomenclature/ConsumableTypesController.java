@@ -39,6 +39,8 @@ public class ConsumableTypesController extends AbstractStringIdTableController<C
             if (property.getTypeId() == null) {
                 property.setTypeId(typeId);
                 consumablePropertiesService.insert(property);
+            } else if (property.getId().startsWith("-")) {
+                consumablePropertiesService.delete(property.getId().substring(1));
             } else {
                 consumablePropertiesService.update(property);
             }

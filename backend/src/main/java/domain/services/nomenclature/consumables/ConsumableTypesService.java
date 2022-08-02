@@ -50,7 +50,7 @@ public class ConsumableTypesService extends AbstractTableService<ConsumableType>
     }
 
     private void setDefaultProperty(ConsumablesTypeDefaultJson data) {
-        data.getProperties().add("уточнение");
+        data.getProperties().add("описание");
     }
 
     public void cascadeDelete(String id) {

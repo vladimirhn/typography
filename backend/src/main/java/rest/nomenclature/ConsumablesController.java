@@ -1,71 +1,89 @@
 package rest.nomenclature;
 
-import domain.models.nomenclature.consumables.ConsumableItem;
-import domain.models.nomenclature.consumables.ConsumablePropertyValue;
+import domain.models.nomenclature.consumables.ConsumablesView;
 import domain.services.abstracts.TypoServiceUser;
-import domain.services.defaults.consumables.ConsumablesTypeDefaultJson;
-import org.springframework.web.bind.annotation.*;
+import kcollections.CollectionFactory;
+import kcollections.KList;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import rest.EndPoint;
+import rest.v2.controllers.AbstractViewController;
+import rest.v2.response.tables.TableDataResponse;
 
-import java.io.IOException;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Predicate;
 
 @RestController
+@Transactional
 @RequestMapping(EndPoint.CONSUMABLES)
-public class ConsumablesController implements TypoServiceUser {
+public class ConsumablesController extends AbstractViewController<ConsumablesView> implements TypoServiceUser {
 
-    @GetMapping("/get_all")
-    public List<JsonConsumableType> getAll() {
-        return consumablesService.createConsumableTypesResponse();
+    @PostMapping("/get_filtered")
+    public TableDataResponse<ConsumablesView> selectFiltered(@RequestBody ConsumablesView data) {
+
+        KList<ConsumablesView> result = foldView(service().selectFiltered(data));
+        TableDataResponse<ConsumablesView> response = new TableDataResponse<>(result);
+        return response;
     }
 
-    @GetMapping("/get_type_cascade/{id}")
-    public JsonConsumableType getAll(@PathVariable(value = "id") String id) {
-        return consumablesService.createConsumableTypesResponse(id);
-    }
+    private KList<ConsumablesView> foldView(KList<ConsumablesView> selection) {
 
-    @GetMapping("/get_types_with_props")
-    public List<JsonConsumableType> getTypesWithProps() {
-        return consumablesService.selectTypesWithProps();
-    }
+        KList<ConsumablesView> result = CollectionFactory.makeArrayList();
 
-    @GetMapping("/set_defaults")
-    public void setDefaults() throws IOException {
-        defaultsService.setDefaults();
-    }
+        selection.forEach(line -> {
 
-    @PostMapping("/add_type_with_props")
-    public void addTypeWithProps(@RequestBody ConsumablesTypeDefaultJson data) {
-        consumableTypesService.addTypeWithProps(data);
-    }
+            Map<String, String> propertyIds;
 
-    @PostMapping("/add_item")
-    public List<String> addItem(@RequestBody JsonConsumableType data) {
-        return consumableItemsService.add(data);
-    }
+            Predicate<ConsumablesView> sameType = entry -> Objects.equals(entry.getTypeId(), line.getTypeId());
+            Predicate<ConsumablesView> sameItem = entry -> Objects.equals(entry.getItemId(), line.getItemId());
 
-    @GetMapping("/delete_type/{id}")
-    public void delete_type(@PathVariable(value = "id") String id) {
-        consumableTypesService.cascadeDelete(id);
-    }
+            ConsumablesView type;
+            ConsumablesView item;
+            ConsumablesView property = line.toProperty();
 
-    @GetMapping("/delete_item/{id}")
-    public void delete_item(@PathVariable(value = "id") String id) {
-        consumableItemsService.cascadeDelete(id);
-    }
+            if (result.stream().noneMatch(sameType)) {
+                type = line.toType();
+                item = line.toItem();
+                propertyIds = new HashMap<>();
 
-    @PostMapping("/update_item")
-    public void updateItem(@RequestBody JsonConsumableItem data) {
+                item.setProperties(CollectionFactory.makeArrayList());
+                item.getProperties().add(property);
 
-        consumableItemsService.update(new ConsumableItem(data.getItemId(), null, data.getItem(), data.getPackageCapacity()));
+                type.setItems(CollectionFactory.makeArrayList());
+                type.getItems().add(item);
 
-        data.getValues().entrySet().forEach(entry -> {
-            entry.getValue().entrySet().forEach(subEntry -> {
-                consumablePropertiesValuesService.update(new ConsumablePropertyValue(
-                        subEntry.getKey(), null, null, subEntry.getValue()
-                ));
-            });
+                result.add(type);
+
+            } else if (result.stream().flatMap(res -> res.getItems().stream()).noneMatch(sameItem)) {
+                type = result.filter(sameType).getAny();
+                item = line.toItem();
+                propertyIds = type.getPropertyIds();
+
+                item.setProperties(CollectionFactory.makeArrayList());
+                item.getProperties().add(property);
+
+                type.getItems().add(item);
+
+            } else {
+                type = result.filter(sameType).getAny();
+                item = type.getItems().filter(sameItem).getAny();
+                propertyIds = type.getPropertyIds();
+
+                item.getProperties().add(property);
+            }
+
+            if (propertyIds.keySet().stream().noneMatch(entry -> Objects.equals(entry, property.getPropertyId()))) {
+                propertyIds.put(property.getPropertyId(), property.getPropertyName());
+                type.setPropertyIds(propertyIds);
+            }
+
         });
 
+        return result;
     }
 }

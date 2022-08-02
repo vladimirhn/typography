@@ -1,6 +1,7 @@
 package rest.nomenclature;
 
 import domain.models.nomenclature.consumables.ConsumableProperty;
+import domain.models.nomenclature.consumables.ConsumablePropertyValue;
 import domain.models.nomenclature.consumables.ConsumableType;
 import domain.services.abstracts.TypoServiceUser;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,7 +41,9 @@ public class ConsumableTypesController extends AbstractStringIdTableController<C
                 property.setTypeId(typeId);
                 consumablePropertiesService.insert(property);
             } else if (property.getId().startsWith("-")) {
-                consumablePropertiesService.delete(property.getId().substring(1));
+                String propertyId = property.getId().substring(1);
+                consumablePropertiesService.delete(propertyId);
+                consumablePropertiesValuesService.deleteByField(ConsumablePropertyValue::setPropertyId, propertyId);
             } else {
                 consumablePropertiesService.update(property);
             }

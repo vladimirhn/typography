@@ -7,21 +7,21 @@
     <changeSet id="all-consumables-view-create-view" author="typography" runOnChange="true">
         <sql>DROP VIEW IF EXISTS ALL_CONSUMABLES_VIEW</sql>
         <createView viewName="ALL_CONSUMABLES_VIEW" replaceIfExists="true">
-            SELECT CT.USER_ID    USER_ID,
-            CT.ID                TYPE_ID,
-            TYPE                 TYPE_NAME,
-            CI.ID                ITEM_ID,
-            ITEM                 ITEM_NAME,
-            CI.PACKAGE_CAPACITY  PACKAGE_CAPACITY,
-            CP.ID                PROPERTY_ID,
-            PROPERTY_NAME        PROPERTY_NAME,
-            CPV.ID               VALUE_ID,
-            CPV.PROPERTY_VALUE   VALUE_VALUE
+            SELECT CT.USER_ID           USER_ID,
+                   CT.ID                TYPE_ID,
+                   TYPE                 TYPE_NAME,
+                   CI.ID                ITEM_ID,
+                   ITEM                 ITEM_NAME,
+                   CI.PACKAGE_CAPACITY  PACKAGE_CAPACITY,
+                   CP.ID                PROPERTY_ID,
+                   PROPERTY_NAME        PROPERTY_NAME,
+                   CPV.ID               VALUE_ID,
+                   CPV.PROPERTY_VALUE   VALUE_VALUE
             FROM CONSUMABLE_TYPES CT
-            LEFT JOIN (select * from CONSUMABLE_ITEMS where CONSUMABLE_ITEMS.DELETED != true) CI on CT.ID = CI.TYPE_ID
-            LEFT JOIN CONSUMABLE_PROPERTIES CP on CT.ID = CP.TYPE_ID
-            LEFT JOIN CONSUMABLE_PROPERTIES_VALUES CPV on CP.ID = CPV.PROPERTY_ID and CPV.ITEM_ID = CI.ID
-            WHERE CT.DELETED = FALSE
+                     LEFT JOIN (select * from CONSUMABLE_ITEMS where CONSUMABLE_ITEMS.DELETED != true) CI on CT.ID = CI.TYPE_ID
+                     LEFT JOIN CONSUMABLE_PROPERTIES CP on CT.ID = CP.TYPE_ID
+                     LEFT JOIN CONSUMABLE_PROPERTIES_VALUES CPV on CP.ID = CPV.PROPERTY_ID and CPV.ITEM_ID = CI.ID
+            WHERE CT.DELETED = FALSE --AND ITEM_ID is not NULL
             ORDER BY CT.TYPE, CI.ITEM, CPV.PROPERTY_VALUE
 
         </createView>

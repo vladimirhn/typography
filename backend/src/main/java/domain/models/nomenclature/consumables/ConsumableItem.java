@@ -1,7 +1,6 @@
 package domain.models.nomenclature.consumables;
 
 import rest.v2.models.JsonNonNullUserIdStringIdTable;
-import kpersistence.v1.mapping.annotations.Entity;
 import kpersistence.v2.annotations.Foreign2;
 import kpersistence.v2.annotations.Label;
 import kpersistence.v1.mapping.annotations.ParentId;
@@ -11,7 +10,6 @@ import kpersistence.v2.annotations.Table;
 
 import java.math.BigDecimal;
 
-@Entity
 @Table(name = "CONSUMABLE_ITEMS")
 public class ConsumableItem extends JsonNonNullUserIdStringIdTable implements SoftDelete {
 

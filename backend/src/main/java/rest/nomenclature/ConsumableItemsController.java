@@ -8,5 +8,5 @@ import rest.v2.controllers.AbstractStringIdTableController;
 
 @RestController
 @RequestMapping(EndPoint.CONSUMABLE_ITEMS)
-public class ConsumablesItemsController extends AbstractStringIdTableController<ConsumableItem> {
+public class ConsumableItemsController extends AbstractStringIdTableController<ConsumableItem> {
 }

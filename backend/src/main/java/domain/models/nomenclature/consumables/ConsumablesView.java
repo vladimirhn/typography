@@ -1,15 +1,16 @@
 package domain.models.nomenclature.consumables;
 
-import kpersistence.v1.mapping.annotations.Entity;
+import kcollections.KList;
 import kpersistence.v2.annotations.Column;
 import kpersistence.v2.annotations.Table;
-import kpersistence.v2.tables.UserIdView;
+import rest.v2.models.JsonNonNullUserIdView;
 
 import java.math.BigDecimal;
+import java.util.Map;
 
-@Entity
+
 @Table(name = "ALL_CONSUMABLES_VIEW")
-public class ConsumablesView extends UserIdView {
+public class ConsumablesView extends JsonNonNullUserIdView {
 
     @Column(name = "TYPE_ID")
     private String typeId;
@@ -37,6 +38,33 @@ public class ConsumablesView extends UserIdView {
 
     @Column(name = "VALUE_VALUE")
     private String valueValue;
+
+    private KList<ConsumablesView> items;
+    private KList<ConsumablesView> properties;
+    private Map<String, String> propertyIds;
+
+    public ConsumablesView toType() {
+        ConsumablesView typeView = new ConsumablesView();
+        typeView.setTypeId(typeId);
+        typeView.setTypeName(typeName);
+        return typeView;
+    }
+
+    public ConsumablesView toItem() {
+        ConsumablesView itemView = new ConsumablesView();
+        itemView.setItemId(itemId);
+        itemView.setItemName(itemName);
+        return itemView;
+    }
+
+    public ConsumablesView toProperty() {
+        ConsumablesView propView = new ConsumablesView();
+        propView.setPropertyId(propertyId);
+        propView.setPropertyName(propertyName);
+        propView.setValueId(valueId);
+        propView.setValueValue(valueValue);
+        return propView;
+    }
 
     public String getTypeId() {
         return typeId;
@@ -108,5 +136,29 @@ public class ConsumablesView extends UserIdView {
 
     public void setValueValue(String valueValue) {
         this.valueValue = valueValue;
+    }
+
+    public KList<ConsumablesView> getItems() {
+        return items;
+    }
+
+    public void setItems(KList<ConsumablesView> items) {
+        this.items = items;
+    }
+
+    public KList<ConsumablesView> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(KList<ConsumablesView> properties) {
+        this.properties = properties;
+    }
+
+    public Map<String, String> getPropertyIds() {
+        return propertyIds;
+    }
+
+    public void setPropertyIds(Map<String, String> propertyIds) {
+        this.propertyIds = propertyIds;
     }
 }

@@ -21,7 +21,7 @@ public class ConsumableTypesController extends AbstractStringIdTableController<C
     @PostMapping("/insert")
     public void insert(@RequestBody ConsumableType data) {
         String typeId = service().insert(data);
-        data.getProperties().add(ConsumableProperty.defaultProperty());
+//        data.getProperties().add(ConsumableProperty.defaultProperty());
         data.getProperties().forEach((ConsumableProperty property) -> {
             property.setTypeId(typeId);
             consumablePropertiesService.insert(property);

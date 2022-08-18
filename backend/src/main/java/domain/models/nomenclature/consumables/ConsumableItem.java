@@ -1,5 +1,7 @@
 package domain.models.nomenclature.consumables;
 
+import kcollections.CollectionFactory;
+import kcollections.KList;
 import rest.v2.models.JsonNonNullUserIdStringIdTable;
 import kpersistence.v2.annotations.Foreign2;
 import kpersistence.v2.annotations.Label;
@@ -9,6 +11,7 @@ import kpersistence.v2.annotations.Column;
 import kpersistence.v2.annotations.Table;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Table(name = "CONSUMABLE_ITEMS")
 public class ConsumableItem extends JsonNonNullUserIdStringIdTable implements SoftDelete {
@@ -29,6 +32,8 @@ public class ConsumableItem extends JsonNonNullUserIdStringIdTable implements So
 
     @Column(name = "DELETED")
     private Boolean deleted;
+
+    private List<ConsumablePropertyValue> propertyValues;
 
     public ConsumableItem() {}
 
@@ -85,6 +90,14 @@ public class ConsumableItem extends JsonNonNullUserIdStringIdTable implements So
 
     public void setPackageCapacity(BigDecimal packageCapacity) {
         this.packageCapacity = packageCapacity;
+    }
+
+    public KList<ConsumablePropertyValue> getPropertyValues() {
+        return CollectionFactory.makeList(propertyValues);
+    }
+
+    public void setPropertyValues(List<ConsumablePropertyValue> propertyValues) {
+        this.propertyValues = propertyValues;
     }
 
     @Override

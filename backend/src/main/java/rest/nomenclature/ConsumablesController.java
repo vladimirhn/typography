@@ -55,7 +55,7 @@ public class ConsumablesController extends AbstractViewController<ConsumablesVie
                 item.getProperties().add(property);
 
                 type.setItems(CollectionFactory.makeArrayList());
-                type.getItems().add(item);
+                if (item.getItemId() != null) type.getItems().add(item);
 
                 result.add(type);
 
@@ -67,7 +67,7 @@ public class ConsumablesController extends AbstractViewController<ConsumablesVie
                 item.setProperties(CollectionFactory.makeArrayList());
                 item.getProperties().add(property);
 
-                type.getItems().add(item);
+                if (item.getItemId() != null) type.getItems().add(item);
 
             } else {
                 type = result.filter(sameType).getAny();

@@ -77,7 +77,8 @@ public class ConsumablesController extends AbstractViewController<ConsumablesVie
                 item.getProperties().add(property);
             }
 
-            if (propertyIds.keySet().stream().noneMatch(entry -> Objects.equals(entry, property.getPropertyId()))) {
+            if (propertyIds.keySet().stream().noneMatch(entry -> Objects.equals(entry, property.getPropertyId()))
+                && property.getPropertyId() != null) {
                 propertyIds.put(property.getPropertyId(), property.getPropertyName());
                 type.setPropertyIds(propertyIds);
             }

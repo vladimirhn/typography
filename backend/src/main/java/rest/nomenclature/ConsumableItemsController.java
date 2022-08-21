@@ -22,4 +22,12 @@ public class ConsumableItemsController extends AbstractStringIdTableController<C
                 .setValue(ConsumablePropertyValue::setItemId, itemId)
                 .forEach(consumablePropertiesValuesService::insert);
     }
+
+    @Override
+    @PostMapping("/update")
+    public void update(@RequestBody ConsumableItem data) {
+        data.setDeleted(false);//TODO: Разобраться с мягким удалением
+        service().update(data);
+        data.getPropertyValues().forEach(consumablePropertiesValuesService::update);
+    }
 }

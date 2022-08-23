@@ -28,6 +28,11 @@ public class ConsumableItemsController extends AbstractStringIdTableController<C
     public void update(@RequestBody ConsumableItem data) {
         data.setDeleted(false);//TODO: Разобраться с мягким удалением
         service().update(data);
-        data.getPropertyValues().forEach(consumablePropertiesValuesService::update);
+        data.getPropertyValues()
+                .filterNonNulls(ConsumablePropertyValue::getId)
+                .forEach(consumablePropertiesValuesService::update);
+        data.getPropertyValues()
+                .filterNulls(ConsumablePropertyValue::getId)
+                .forEach(consumablePropertiesValuesService::insert);
     }
 }

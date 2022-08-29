@@ -54,6 +54,7 @@ public class ConsumablesView extends JsonNonNullUserIdView {
         ConsumablesView itemView = new ConsumablesView();
         itemView.setItemId(itemId);
         itemView.setItemName(itemName);
+        itemView.setPackageCapacity(packageCapacity);
         return itemView;
     }
 

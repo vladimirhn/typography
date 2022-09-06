@@ -1,14 +1,13 @@
 package rest.nomenclature;
 
+import domain.models.nomenclature.consumables.ConsumableItem;
 import domain.models.nomenclature.consumables.ConsumableProperty;
 import domain.models.nomenclature.consumables.ConsumablePropertyValue;
 import domain.models.nomenclature.consumables.ConsumableType;
 import domain.services.abstracts.TypoServiceUser;
+import kcollections.CollectionFactory;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import rest.EndPoint;
 import rest.v2.controllers.AbstractStringIdTableController;
 
@@ -21,11 +20,23 @@ public class ConsumableTypesController extends AbstractStringIdTableController<C
     @PostMapping("/insert")
     public void insert(@RequestBody ConsumableType data) {
         String typeId = service().insert(data);
-//        data.getProperties().add(ConsumableProperty.defaultProperty());
         data.getProperties().forEach((ConsumableProperty property) -> {
             property.setTypeId(typeId);
             consumablePropertiesService.insert(property);
         });
+    }
+
+    @Override
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable(value = "id") String id) {
+        ConsumableItem example = new ConsumableItem();
+        example.setTypeId(id);
+
+        consumableItems2Service.selectFiltered(example)
+                .mapEachBy(ConsumableItem::getId)
+                .forEach(consumableItems2Service::delete);
+
+        return super.delete(id);
     }
 
     @Override

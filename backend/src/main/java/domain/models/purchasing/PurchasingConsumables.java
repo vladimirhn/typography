@@ -1,29 +1,24 @@
 package domain.models.purchasing;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import rest.v2.models.JsonNonNullUserIdStringIdTable;
 import domain.models.counterparties.LegalEntity;
 import domain.models.nomenclature.consumables.ConsumableItem;
-import kpersistence.v1.mapping.annotations.*;
-import kpersistence.v1.query.KFilter;
 import kpersistence.v2.annotations.Column;
+import kpersistence.v2.annotations.Foreign2;
 import kpersistence.v2.annotations.Table;
+import rest.v2.models.JsonNonNullUserIdStringIdTable;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
-@Entity
 @Table(name = "PURCHASING_CONSUMABLES")
 public class PurchasingConsumables extends JsonNonNullUserIdStringIdTable {
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @Column(name = "CONSUMABLE_ID")
-    @Destination(ConsumableItem.class)
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Column(name = "CONSUMABLE_ID", foreign = ConsumableItem.class, nonNull = true)
     private String consumableId;
 
-    @Foreign(table = ConsumableItem.class, foreignId = "consumableId")
-    private String consumableName;
+    @Foreign2
+    private ConsumableItem consumableItem;
 
     @Column(name = "CAPACITY")
     private BigDecimal capacity;
@@ -35,44 +30,21 @@ public class PurchasingConsumables extends JsonNonNullUserIdStringIdTable {
     private BigDecimal amount;
 
     @Column(name = "PURCHASING_DATE")
-    @OrderBy(direction = Direction.DESC)
-    @JsonFormat(pattern = "dd.MM.yyyy")
-    private LocalDateTime purchasingDate;
+    private LocalDate purchasingDate;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @Column(name = "LEGAL_ENTITY_ID")
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Column(name = "LEGAL_ENTITY_ID", foreign = LegalEntity.class, nonNull = true)
     private String legalEntityId;
 
-    @Foreign(table = LegalEntity.class, foreignId = "legalEntityId")
-    private String legalEntityName;
-
-    public static class Filter extends KFilter {
-        private String consumableId;
-        public void setConsumableId(String consumableId) {this.consumableId = consumableId;}
-    }
+    @Foreign2
+    private LegalEntity legalEntity;
 
     public PurchasingConsumables() {}
 
     @Override
     public void setDefaults() {
         if (purchasingDate == null)
-            purchasingDate = LocalDateTime.now();
-    }
-
-    public String getLegalEntityId() {
-        return legalEntityId;
-    }
-
-    public void setLegalEntityId(String legalEntityId) {
-        this.legalEntityId = legalEntityId;
-    }
-
-    public String getLegalEntityName() {
-        return legalEntityName;
-    }
-
-    public void setLegalEntityName(String legalEntityName) {
-        this.legalEntityName = legalEntityName;
+            purchasingDate = LocalDate.now();
     }
 
     public String getConsumableId() {
@@ -83,12 +55,12 @@ public class PurchasingConsumables extends JsonNonNullUserIdStringIdTable {
         this.consumableId = consumableId;
     }
 
-    public String getConsumableName() {
-        return consumableName;
+    public ConsumableItem getConsumableItem() {
+        return consumableItem;
     }
 
-    public void setConsumableName(String consumableName) {
-        this.consumableName = consumableName;
+    public void setConsumableItem(ConsumableItem consumableItem) {
+        this.consumableItem = consumableItem;
     }
 
     public BigDecimal getCapacity() {
@@ -115,11 +87,27 @@ public class PurchasingConsumables extends JsonNonNullUserIdStringIdTable {
         this.amount = amount;
     }
 
-    public LocalDateTime getPurchasingDate() {
+    public LocalDate getPurchasingDate() {
         return purchasingDate;
     }
 
-    public void setPurchasingDate(LocalDateTime purchasingDate) {
+    public void setPurchasingDate(LocalDate purchasingDate) {
         this.purchasingDate = purchasingDate;
+    }
+
+    public String getLegalEntityId() {
+        return legalEntityId;
+    }
+
+    public void setLegalEntityId(String legalEntityId) {
+        this.legalEntityId = legalEntityId;
+    }
+
+    public LegalEntity getLegalEntity() {
+        return legalEntity;
+    }
+
+    public void setLegalEntity(LegalEntity legalEntity) {
+        this.legalEntity = legalEntity;
     }
 }

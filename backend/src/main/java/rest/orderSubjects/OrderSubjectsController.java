@@ -1,4 +1,4 @@
-package rest.orders;
+package rest.orderSubjects;
 
 import domain.models.orders.OrderSubject;
 import domain.services.abstracts.TypoServiceUser;
@@ -6,22 +6,18 @@ import kpersistence.v1.query.KFilter;
 import org.springframework.web.bind.annotation.*;
 import rest.EndPoint;
 import rest.abstracts.TypoTableController;
+import rest.v2.controllers.AbstractStringIdTableController;
 import rest.v2.response.tables.TableDataResponse;
 import service.v1.AbstractTableService;
 
 @RestController
 @RequestMapping(EndPoint.ORDER_SUBJECTS)
-public class OrderSubjectsController extends TypoTableController<OrderSubject, KFilter> implements TypoServiceUser {
+public class OrderSubjectsController extends AbstractStringIdTableController<OrderSubject> implements TypoServiceUser {
 
-    @Override
-    protected AbstractTableService<OrderSubject> getService() {
-        return orderSubjectService;
-    }
-
-    @GetMapping("/get_all")
-    public TableDataResponse<OrderSubject> getAll() {
-        return getAllTranslatedResponse(orderSubjectService.getAll());
-    }
+//    @GetMapping("/get_all")
+//    public TableDataResponse<OrderSubject> getAll() {
+//        return orderSubjectService.getAll();
+//    }
 
     @Override
     @PostMapping("/insert")
@@ -35,9 +31,9 @@ public class OrderSubjectsController extends TypoTableController<OrderSubject, K
         orderSubjectService.update(data);
     }
 
-    @Override
-    @GetMapping("/delete/{id}")
-    public void delete(@PathVariable(value = "id") String id) {
-        orderSubjectService.delete(id);
-    }
+//    @Override
+//    @GetMapping("/delete/{id}")
+//    public void delete(@PathVariable(value = "id") String id) {
+//        orderSubjectService.delete(id);
+//    }
 }

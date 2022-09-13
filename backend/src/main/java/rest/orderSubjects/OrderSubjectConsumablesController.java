@@ -1,4 +1,4 @@
-package rest.orders;
+package rest.orderSubjects;
 
 import domain.models.orders.OrderSubjectConsumables;
 import domain.services.abstracts.TypoServiceUser;

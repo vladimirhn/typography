@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-@Service("stockBalanceService")
+@Service()
 public class StockBalanceService implements TypoServiceUser {
 
     public Set<StockBalance> getStockBalance() {

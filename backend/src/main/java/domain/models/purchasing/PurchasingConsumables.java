@@ -13,7 +13,6 @@ import java.time.LocalDate;
 @Table(name = "PURCHASING_CONSUMABLES")
 public class PurchasingConsumables extends JsonNonNullUserIdStringIdTable {
 
-//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "CONSUMABLE_ID", foreign = ConsumableItem.class, nonNull = true)
     private String consumableId;
 
@@ -32,7 +31,6 @@ public class PurchasingConsumables extends JsonNonNullUserIdStringIdTable {
     @Column(name = "PURCHASING_DATE")
     private LocalDate purchasingDate;
 
-//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "LEGAL_ENTITY_ID", foreign = LegalEntity.class, nonNull = true)
     private String legalEntityId;
 

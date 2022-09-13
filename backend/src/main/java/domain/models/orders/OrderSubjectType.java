@@ -1,19 +1,17 @@
 package domain.models.orders;
 
-import rest.v2.models.JsonNonNullUserIdStringIdTable;
-import kpersistence.v1.mapping.annotations.Entity;
-import kpersistence.v2.annotations.Label;
 import kpersistence.v2.annotations.Column;
+import kpersistence.v2.annotations.Label;
 import kpersistence.v2.annotations.Table;
+import rest.v2.models.JsonNonNullUserIdStringIdTable;
 
 import java.util.Objects;
 
-@Entity
 @Table(name = "ORDER_SUBJECT_TYPES")
 public class OrderSubjectType extends JsonNonNullUserIdStringIdTable {
 
-    @Column(name = "NAME")
     @Label
+    @Column(name = "NAME")
     String name;
 
     public OrderSubjectType() {}

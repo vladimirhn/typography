@@ -1,29 +1,30 @@
 package domain.models.orders;
 
-import rest.v2.models.JsonNonNullUserIdStringIdTable;
-import kpersistence.v1.mapping.annotations.*;
+import kpersistence.v1.mapping.annotations.Direction;
+import kpersistence.v1.mapping.annotations.OrderBy;
 import kpersistence.v2.annotations.Column;
+import kpersistence.v2.annotations.Foreign2;
 import kpersistence.v2.annotations.Label;
 import kpersistence.v2.annotations.Table;
 import rest.v1.data.EntryTransferData;
+import rest.v2.models.JsonNonNullUserIdStringIdTable;
 
 import java.util.List;
 import java.util.Objects;
 
-@Entity
 @Table(name = "ORDER_SUBJECTS")
 public class OrderSubject extends JsonNonNullUserIdStringIdTable {
 
-    @Column(name = "NAME")
     @Label
+    @Column(name = "NAME")
     @OrderBy(direction = Direction.ASC)
     String name;
 
-    @Column(name = "ORDER_SUBJECT_TYPE_ID")
-    String orderSubjectTypeId;
+    @Column(name = "ORDER_SUBJECT_TYPE_ID", foreign = OrderSubjectType.class, nonNull = true)
+    private String orderSubjectTypeId;
 
-    @Foreign(table = OrderSubjectType.class, foreignId = "orderSubjectTypeId")
-    String orderSubjectTypeName;
+    @Foreign2
+    private OrderSubjectType orderSubjectType;
 
     List<EntryTransferData> relatedOwnConsumableItems;
 
@@ -36,12 +37,6 @@ public class OrderSubject extends JsonNonNullUserIdStringIdTable {
     public OrderSubject(String id, String name) {
         this(name);
         setId(id);
-    }
-
-    public OrderSubject(String id, String name, String orderSubjectTypeId, String orderSubjectTypeName) {
-        this(id, name);
-        this.orderSubjectTypeId = orderSubjectTypeId;
-        this.orderSubjectTypeName = orderSubjectTypeName;
     }
 
     @Override
@@ -63,12 +58,12 @@ public class OrderSubject extends JsonNonNullUserIdStringIdTable {
         this.orderSubjectTypeId = orderSubjectTypeId;
     }
 
-    public String getOrderSubjectTypeName() {
-        return orderSubjectTypeName;
+    public OrderSubjectType getOrderSubjectType() {
+        return orderSubjectType;
     }
 
-    public void setOrderSubjectTypeName(String orderSubjectTypeName) {
-        this.orderSubjectTypeName = orderSubjectTypeName;
+    public void setOrderSubjectType(OrderSubjectType orderSubjectType) {
+        this.orderSubjectType = orderSubjectType;
     }
 
     public List<EntryTransferData> getRelatedOwnConsumableItems() {

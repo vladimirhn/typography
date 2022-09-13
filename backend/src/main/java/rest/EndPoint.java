@@ -14,6 +14,7 @@ public interface EndPoint {
     String MONEY_MOVEMENTS = EndPoint.USERS_PATH + "/money_movements";
 
     String ORDER_SUBJECTS = EndPoint.USERS_PATH + "/order_subjects";
+    String ORDER_SUBJECTS_TYPES = EndPoint.USERS_PATH + "/order_subjects_types";
 
 
     String FINANCIAL_TRANSACTIONS = EndPoint.USERS_PATH + "/financial_transactions";

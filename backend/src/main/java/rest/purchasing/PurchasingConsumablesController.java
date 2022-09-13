@@ -15,7 +15,7 @@ public class PurchasingConsumablesController extends AbstractStringIdTableContro
     @PostMapping("/insert")
     public void insert(@RequestBody PurchasingConsumables data) {
 
-
+        //TODO:defaults
         service().insert(data);
     }
 }

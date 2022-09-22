@@ -1,5 +1,7 @@
 package domain.models.orders;
 
+import kpersistence.v2.annotations.Direction;
+import kpersistence.v2.annotations.OrderBy;
 import rest.v2.models.JsonNonNullUserIdStringIdTable;
 import domain.models.counterparties.LegalEntity;
 import kpersistence.v2.annotations.Column;
@@ -29,9 +31,11 @@ public class Order extends JsonNonNullUserIdStringIdTable {
     private Long amount;
 
     @Column(name = "ORDERS_DATE")
+    @OrderBy(direction = Direction.DESC, priority = 1)
     private LocalDate orderDate;
 
     @Column(name = "ORDERS_DEADLINE")
+    @OrderBy(direction = Direction.ASC, priority = 2)
     private LocalDate orderDeadline;
 
     @Column(name = "STATUS")

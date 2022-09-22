@@ -1,15 +1,13 @@
 package domain.models.orders;
 
-import rest.v2.models.JsonNonNullUserIdStringIdTable;
 import domain.models.nomenclature.consumables.ConsumableItem;
-import kpersistence.v1.mapping.annotations.Entity;
 import kpersistence.v2.annotations.Column;
 import kpersistence.v2.annotations.Foreign2;
 import kpersistence.v2.annotations.Table;
+import rest.v2.models.JsonNonNullUserIdStringIdTable;
 
 import java.math.BigDecimal;
 
-@Entity
 @Table(name = "ORDERS_CONSUMABLES")
 public class OrderConsumable extends JsonNonNullUserIdStringIdTable {
 

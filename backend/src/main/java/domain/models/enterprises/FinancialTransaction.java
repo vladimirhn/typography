@@ -1,9 +1,9 @@
 package domain.models.enterprises;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import kpersistence.v1.mapping.annotations.Direction;
+import kpersistence.v2.annotations.Direction;
 import kpersistence.v1.mapping.annotations.Entity;
-import kpersistence.v1.mapping.annotations.OrderBy;
+import kpersistence.v2.annotations.OrderBy;
 import kpersistence.v2.annotations.Column;
 import kpersistence.v2.annotations.Table;
 import rest.v2.models.JsonNonNullUserIdView;

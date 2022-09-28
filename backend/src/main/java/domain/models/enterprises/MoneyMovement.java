@@ -1,7 +1,7 @@
 package domain.models.enterprises;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import rest.v2.models.JsonNonNullUserIdStringIdTable;
+import rest.models.JsonNonNullUserIdStringIdTable;
 import kpersistence.annotations.Direction;
 import kpersistence.annotations.OrderBy;
 import kpersistence.annotations.Column;

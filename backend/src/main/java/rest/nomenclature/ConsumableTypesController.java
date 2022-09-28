@@ -5,11 +5,10 @@ import domain.models.nomenclature.consumables.ConsumableProperty;
 import domain.models.nomenclature.consumables.ConsumablePropertyValue;
 import domain.models.nomenclature.consumables.ConsumableType;
 import domain.services.abstracts.TypoServiceUser;
-import kcollections.CollectionFactory;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import rest.EndPoint;
-import rest.v2.controllers.AbstractStringIdTableController;
+import rest.controllers.AbstractStringIdTableController;
 
 @Transactional
 @RestController

@@ -5,7 +5,7 @@ import domain.models.nomenclature.consumables.ConsumableItem;
 import kpersistence.annotations.Column;
 import kpersistence.annotations.Foreign;
 import kpersistence.annotations.Table;
-import rest.v2.models.JsonNonNullUserIdStringIdTable;
+import rest.models.JsonNonNullUserIdStringIdTable;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

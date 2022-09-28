@@ -1,8 +1,7 @@
 package domain.models.orders;
 
-import kpersistence.v2.annotations.*;
-import rest.v2.models.JsonNonNullUserIdStringIdTable;
 import kpersistence.annotations.*;
+import rest.models.JsonNonNullUserIdStringIdTable;
 
 import java.util.Objects;
 

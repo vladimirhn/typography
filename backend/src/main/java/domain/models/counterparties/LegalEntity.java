@@ -3,7 +3,7 @@ package domain.models.counterparties;
 import kpersistence.annotations.Column;
 import kpersistence.annotations.Label;
 import kpersistence.annotations.Table;
-import rest.v2.models.JsonNonNullUserIdStringIdTable;
+import rest.models.JsonNonNullUserIdStringIdTable;
 
 @Table(name = "LEGAL_ENTITIES")
 public class LegalEntity extends JsonNonNullUserIdStringIdTable {

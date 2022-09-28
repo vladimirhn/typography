@@ -2,7 +2,7 @@ package domain.models.nomenclature.equipment;
 
 import kpersistence.annotations.Column;
 import kpersistence.annotations.Table;
-import rest.v2.models.JsonNonNullUserIdStringIdTable;
+import rest.models.JsonNonNullUserIdStringIdTable;
 
 @Table(name = "COMPONENT_ITEMS")
 public class ComponentItem extends JsonNonNullUserIdStringIdTable {

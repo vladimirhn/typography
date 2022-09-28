@@ -1,7 +1,7 @@
 package domain.models.nomenclature.consumables;
 
 import kpersistence.annotations.Foreign;
-import rest.v2.models.JsonNonNullUserIdStringIdTable;
+import rest.models.JsonNonNullUserIdStringIdTable;
 import kpersistence.annotations.Column;
 import kpersistence.annotations.Table;
 

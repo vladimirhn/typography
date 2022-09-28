@@ -5,7 +5,7 @@ import domain.services.abstracts.TypoServiceUser;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import rest.EndPoint;
-import rest.v2.controllers.AbstractViewController;
+import rest.controllers.AbstractViewController;
 
 @RestController
 @RequestMapping(EndPoint.FINANCIAL_TRANSACTIONS)

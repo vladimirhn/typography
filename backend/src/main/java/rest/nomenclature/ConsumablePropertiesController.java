@@ -4,7 +4,7 @@ import domain.models.nomenclature.consumables.ConsumableProperty;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import rest.EndPoint;
-import rest.v2.controllers.AbstractStringIdTableController;
+import rest.controllers.AbstractStringIdTableController;
 
 @RestController
 @RequestMapping(EndPoint.CONSUMABLE_PROPERTIES)

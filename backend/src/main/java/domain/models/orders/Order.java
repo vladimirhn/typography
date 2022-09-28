@@ -2,7 +2,7 @@ package domain.models.orders;
 
 import kpersistence.annotations.Direction;
 import kpersistence.annotations.OrderBy;
-import rest.v2.models.JsonNonNullUserIdStringIdTable;
+import rest.models.JsonNonNullUserIdStringIdTable;
 import domain.models.counterparties.LegalEntity;
 import kpersistence.annotations.Column;
 import kpersistence.annotations.Foreign;

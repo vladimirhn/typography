@@ -7,7 +7,7 @@ import kpersistence.annotations.Foreign;
 import kpersistence.annotations.Label;
 import kpersistence.annotations.Table;
 import kpersistence.types.SoftDelete;
-import rest.v2.models.JsonNonNullUserIdStringIdTable;
+import rest.models.JsonNonNullUserIdStringIdTable;
 
 import java.math.BigDecimal;
 import java.util.List;

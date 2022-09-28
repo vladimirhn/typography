@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import rest.EndPoint;
-import rest.v2.controllers.AbstractViewController;
-import rest.v2.response.tables.TableDataResponse;
+import rest.controllers.AbstractViewController;
+import rest.response.tables.TableDataResponse;
 
 import java.util.HashMap;
 import java.util.Map;

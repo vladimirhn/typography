@@ -3,7 +3,7 @@ package domain.models.nomenclature.consumables;
 import kcollections.KList;
 import kpersistence.annotations.Column;
 import kpersistence.annotations.Table;
-import rest.v2.models.JsonNonNullUserIdView;
+import rest.models.JsonNonNullUserIdView;
 
 import java.math.BigDecimal;
 import java.util.Map;

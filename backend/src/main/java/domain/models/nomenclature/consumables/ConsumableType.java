@@ -1,6 +1,6 @@
 package domain.models.nomenclature.consumables;
 
-import rest.v2.models.JsonNonNullUserIdStringIdTable;
+import rest.models.JsonNonNullUserIdStringIdTable;
 import kpersistence.annotations.Label;
 import kpersistence.types.SoftDelete;
 import kpersistence.annotations.Column;

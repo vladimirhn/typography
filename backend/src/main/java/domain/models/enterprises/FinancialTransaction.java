@@ -5,7 +5,7 @@ import kpersistence.annotations.Column;
 import kpersistence.annotations.Direction;
 import kpersistence.annotations.OrderBy;
 import kpersistence.annotations.Table;
-import rest.v2.models.JsonNonNullUserIdView;
+import rest.models.JsonNonNullUserIdView;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

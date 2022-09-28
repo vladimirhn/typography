@@ -4,7 +4,7 @@ import kpersistence.modelsMaster.ModelsMaster;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import repository.v2.schema.SpringTableDescription;
+import repository.schema.SpringTableDescription;
 import rest.EndPoint;
 
 import java.util.List;

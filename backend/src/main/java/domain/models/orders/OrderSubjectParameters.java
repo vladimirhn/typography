@@ -2,7 +2,7 @@ package domain.models.orders;
 
 import kpersistence.annotations.Column;
 import kpersistence.annotations.Table;
-import rest.v2.models.JsonNonNullUserIdStringIdTable;
+import rest.models.JsonNonNullUserIdStringIdTable;
 
 @Table(name = "ORDER_SUBJECT_PARAMETERS")
 public class OrderSubjectParameters extends JsonNonNullUserIdStringIdTable {

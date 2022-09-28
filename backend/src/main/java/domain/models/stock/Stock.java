@@ -2,7 +2,7 @@ package domain.models.stock;
 
 import kpersistence.annotations.Column;
 import kpersistence.annotations.Table;
-import rest.v2.models.JsonNonNullUserIdStringIdTable;
+import rest.models.JsonNonNullUserIdStringIdTable;
 
 @Table(name = "STOCKS")
 public class Stock extends JsonNonNullUserIdStringIdTable {

@@ -2,7 +2,7 @@ package domain.models.nomenclature.consumables;
 
 import kpersistence.annotations.Column;
 import kpersistence.annotations.Table;
-import rest.v2.models.JsonNonNullUserIdStringIdTable;
+import rest.models.JsonNonNullUserIdStringIdTable;
 
 @Table(name = "CONSUMABLE_PROPERTIES_VALUES")
 public class ConsumablePropertyValue extends JsonNonNullUserIdStringIdTable {

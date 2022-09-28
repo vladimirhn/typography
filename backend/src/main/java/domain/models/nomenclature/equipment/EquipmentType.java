@@ -3,7 +3,7 @@ package domain.models.nomenclature.equipment;
 import kcollections.KList;
 import kpersistence.annotations.Column;
 import kpersistence.annotations.Table;
-import rest.v2.models.JsonNonNullUserIdStringIdTable;
+import rest.models.JsonNonNullUserIdStringIdTable;
 
 @Table(name = "EQUIPMENT_TYPES")
 public class EquipmentType extends JsonNonNullUserIdStringIdTable {

@@ -1,10 +1,10 @@
 package domain.models.nomenclature.consumables;
 
 import rest.v2.models.JsonNonNullUserIdStringIdTable;
-import kpersistence.v2.annotations.Label;
-import kpersistence.v2.types.SoftDelete;
-import kpersistence.v2.annotations.Column;
-import kpersistence.v2.annotations.Table;
+import kpersistence.annotations.Label;
+import kpersistence.types.SoftDelete;
+import kpersistence.annotations.Column;
+import kpersistence.annotations.Table;
 
 import java.util.ArrayList;
 import java.util.List;

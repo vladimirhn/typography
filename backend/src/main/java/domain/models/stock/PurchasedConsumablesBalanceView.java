@@ -1,8 +1,8 @@
 package domain.models.stock;
 
-import kpersistence.v2.annotations.Column;
-import kpersistence.v2.annotations.Table;
-import kpersistence.v2.tables.UserIdView;
+import kpersistence.annotations.Column;
+import kpersistence.annotations.Table;
+import kpersistence.tables.UserIdView;
 
 import java.math.BigDecimal;
 

@@ -1,9 +1,9 @@
 package domain.models.nomenclature.consumables;
 
-import kpersistence.v2.annotations.Foreign2;
+import kpersistence.annotations.Foreign;
 import rest.v2.models.JsonNonNullUserIdStringIdTable;
-import kpersistence.v2.annotations.Column;
-import kpersistence.v2.annotations.Table;
+import kpersistence.annotations.Column;
+import kpersistence.annotations.Table;
 
 @Table(name = "CONSUMABLE_PROPERTIES")
 public class ConsumableProperty extends JsonNonNullUserIdStringIdTable {
@@ -17,7 +17,7 @@ public class ConsumableProperty extends JsonNonNullUserIdStringIdTable {
     @Column(name = "TYPE_ID", foreign = ConsumableType.class)
     private String typeId;
 
-    @Foreign2
+    @Foreign
     private ConsumableType consumableType;
 
     @Column(name = "PROPERTY_NAME")

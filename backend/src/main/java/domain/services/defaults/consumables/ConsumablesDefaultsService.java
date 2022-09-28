@@ -6,7 +6,7 @@
 //import domain.models.nomenclature.consumables.ConsumableProperty;
 //import domain.models.nomenclature.consumables.ConsumablePropertyValue;
 //import domain.models.nomenclature.consumables.ConsumableType;
-//import kpersistence.v2.RandomId;
+//import tmp.RandomId;
 //import domain.services.nomenclature.consumables.ConsumableItemsService;
 //import domain.services.nomenclature.consumables.ConsumablePropertiesService;
 //import domain.services.nomenclature.consumables.ConsumablePropertiesValuesService;

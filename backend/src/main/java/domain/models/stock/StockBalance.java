@@ -1,6 +1,6 @@
 package domain.models.stock;
 
-import kpersistence.v2.annotations.Column;
+import kpersistence.annotations.Column;
 
 import java.math.BigDecimal;
 import java.util.Objects;

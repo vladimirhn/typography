@@ -1,8 +1,8 @@
 package domain.models.counterparties;
 
-import kpersistence.v2.annotations.Column;
-import kpersistence.v2.annotations.Label;
-import kpersistence.v2.annotations.Table;
+import kpersistence.annotations.Column;
+import kpersistence.annotations.Label;
+import kpersistence.annotations.Table;
 import rest.v2.models.JsonNonNullUserIdStringIdTable;
 
 @Table(name = "LEGAL_ENTITIES")

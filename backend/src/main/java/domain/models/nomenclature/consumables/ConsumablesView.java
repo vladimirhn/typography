@@ -1,8 +1,8 @@
 package domain.models.nomenclature.consumables;
 
 import kcollections.KList;
-import kpersistence.v2.annotations.Column;
-import kpersistence.v2.annotations.Table;
+import kpersistence.annotations.Column;
+import kpersistence.annotations.Table;
 import rest.v2.models.JsonNonNullUserIdView;
 
 import java.math.BigDecimal;

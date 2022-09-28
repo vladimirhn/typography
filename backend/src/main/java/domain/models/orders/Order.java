@@ -1,12 +1,12 @@
 package domain.models.orders;
 
-import kpersistence.v2.annotations.Direction;
-import kpersistence.v2.annotations.OrderBy;
+import kpersistence.annotations.Direction;
+import kpersistence.annotations.OrderBy;
 import rest.v2.models.JsonNonNullUserIdStringIdTable;
 import domain.models.counterparties.LegalEntity;
-import kpersistence.v2.annotations.Column;
-import kpersistence.v2.annotations.Foreign2;
-import kpersistence.v2.annotations.Table;
+import kpersistence.annotations.Column;
+import kpersistence.annotations.Foreign;
+import kpersistence.annotations.Table;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -18,13 +18,13 @@ public class Order extends JsonNonNullUserIdStringIdTable {
     @Column(name = "ORDER_SUBJECTS_ID", foreign = OrderSubject.class, nonNull = true)
     String orderSubjectId;
 
-    @Foreign2
+    @Foreign
     private OrderSubject orderSubject;
 
     @Column(name = "LEGAL_ENTITY_ID", foreign = LegalEntity.class)
     private String legalEntityId;
 
-    @Foreign2
+    @Foreign
     private LegalEntity legalEntity;
 
     @Column(name = "AMOUNT")

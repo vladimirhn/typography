@@ -1,8 +1,8 @@
 package domain.models.orders;
 
-import kpersistence.v2.annotations.Column;
-import kpersistence.v2.annotations.Table;
-import kpersistence.v2.tables.StringIdTable;
+import kpersistence.annotations.Column;
+import kpersistence.annotations.Table;
+import kpersistence.tables.StringIdTable;
 
 @Table(name = "PARAMETERS")
 public class Parameter extends StringIdTable {

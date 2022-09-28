@@ -1,7 +1,7 @@
 package application;
 
 import jwtsecurity.user.User;
-import kpersistence.v2.modelsMaster.ModelsMaster;
+import kpersistence.modelsMaster.ModelsMaster;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -12,7 +12,6 @@ import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import rest.v2.schema.ModelsEndpointsSchema;
 
 import javax.sql.DataSource;
 

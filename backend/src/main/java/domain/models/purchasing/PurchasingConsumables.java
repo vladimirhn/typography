@@ -2,9 +2,9 @@ package domain.models.purchasing;
 
 import domain.models.counterparties.LegalEntity;
 import domain.models.nomenclature.consumables.ConsumableItem;
-import kpersistence.v2.annotations.Column;
-import kpersistence.v2.annotations.Foreign2;
-import kpersistence.v2.annotations.Table;
+import kpersistence.annotations.Column;
+import kpersistence.annotations.Foreign;
+import kpersistence.annotations.Table;
 import rest.v2.models.JsonNonNullUserIdStringIdTable;
 
 import java.math.BigDecimal;
@@ -16,7 +16,7 @@ public class PurchasingConsumables extends JsonNonNullUserIdStringIdTable {
     @Column(name = "CONSUMABLE_ID", foreign = ConsumableItem.class, nonNull = true)
     private String consumableId;
 
-    @Foreign2
+    @Foreign
     private ConsumableItem consumableItem;
 
     @Column(name = "CAPACITY")
@@ -34,7 +34,7 @@ public class PurchasingConsumables extends JsonNonNullUserIdStringIdTable {
     @Column(name = "LEGAL_ENTITY_ID", foreign = LegalEntity.class, nonNull = true)
     private String legalEntityId;
 
-    @Foreign2
+    @Foreign
     private LegalEntity legalEntity;
 
     public PurchasingConsumables() {}

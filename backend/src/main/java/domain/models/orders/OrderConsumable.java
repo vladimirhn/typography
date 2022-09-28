@@ -1,9 +1,9 @@
 package domain.models.orders;
 
 import domain.models.nomenclature.consumables.ConsumableItem;
-import kpersistence.v2.annotations.Column;
-import kpersistence.v2.annotations.Foreign2;
-import kpersistence.v2.annotations.Table;
+import kpersistence.annotations.Column;
+import kpersistence.annotations.Foreign;
+import kpersistence.annotations.Table;
 import rest.v2.models.JsonNonNullUserIdStringIdTable;
 
 import java.math.BigDecimal;
@@ -17,7 +17,7 @@ public class OrderConsumable extends JsonNonNullUserIdStringIdTable {
     @Column(name = "CONSUMABLE_ITEM_ID", foreign = ConsumableItem.class)
     String consumableItemId;
 
-    @Foreign2
+    @Foreign
     ConsumableItem consumableItem;
 
     @Column(name = "QUANTITY")

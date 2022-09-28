@@ -2,6 +2,7 @@ package domain.models.orders;
 
 import kpersistence.v2.annotations.*;
 import rest.v2.models.JsonNonNullUserIdStringIdTable;
+import kpersistence.annotations.*;
 
 import java.util.Objects;
 
@@ -16,7 +17,7 @@ public class OrderSubject extends JsonNonNullUserIdStringIdTable {
     @Column(name = "ORDER_SUBJECT_TYPE_ID", foreign = OrderSubjectType.class, nonNull = true)
     private String orderSubjectTypeId;
 
-    @Foreign2
+    @Foreign
     private OrderSubjectType orderSubjectType;
 
     public OrderSubject() {}

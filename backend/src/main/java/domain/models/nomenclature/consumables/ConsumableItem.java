@@ -2,13 +2,12 @@ package domain.models.nomenclature.consumables;
 
 import kcollections.CollectionFactory;
 import kcollections.KList;
+import kpersistence.annotations.Column;
+import kpersistence.annotations.Foreign;
+import kpersistence.annotations.Label;
+import kpersistence.annotations.Table;
+import kpersistence.types.SoftDelete;
 import rest.v2.models.JsonNonNullUserIdStringIdTable;
-import kpersistence.v2.annotations.Foreign2;
-import kpersistence.v2.annotations.Label;
-import kpersistence.v1.mapping.annotations.ParentId;
-import kpersistence.v2.types.SoftDelete;
-import kpersistence.v2.annotations.Column;
-import kpersistence.v2.annotations.Table;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -17,10 +16,9 @@ import java.util.List;
 public class ConsumableItem extends JsonNonNullUserIdStringIdTable implements SoftDelete {
 
     @Column(name = "TYPE_ID", foreign = ConsumableType.class)
-    @ParentId(table = ConsumableType.class) //to delete
     private String typeId;
 
-    @Foreign2
+    @Foreign
     private ConsumableType type;
 
     @Column(name = "ITEM")

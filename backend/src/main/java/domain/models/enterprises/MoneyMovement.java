@@ -2,10 +2,10 @@ package domain.models.enterprises;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import rest.v2.models.JsonNonNullUserIdStringIdTable;
-import kpersistence.v2.annotations.Direction;
-import kpersistence.v2.annotations.OrderBy;
-import kpersistence.v2.annotations.Column;
-import kpersistence.v2.annotations.Table;
+import kpersistence.annotations.Direction;
+import kpersistence.annotations.OrderBy;
+import kpersistence.annotations.Column;
+import kpersistence.annotations.Table;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

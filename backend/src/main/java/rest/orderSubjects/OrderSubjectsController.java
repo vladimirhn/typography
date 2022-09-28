@@ -2,13 +2,12 @@ package rest.orderSubjects;
 
 import domain.models.orders.OrderSubject;
 import domain.services.abstracts.TypoServiceUser;
-import kpersistence.v1.query.KFilter;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import rest.EndPoint;
-import rest.abstracts.TypoTableController;
 import rest.v2.controllers.AbstractStringIdTableController;
-import rest.v2.response.tables.TableDataResponse;
-import service.v1.AbstractTableService;
 
 @RestController
 @RequestMapping(EndPoint.ORDER_SUBJECTS)
@@ -19,17 +18,17 @@ public class OrderSubjectsController extends AbstractStringIdTableController<Ord
 //        return orderSubjectService.getAll();
 //    }
 
-    @Override
-    @PostMapping("/insert")
-    public void insert(@RequestBody OrderSubject data) {
-        orderSubjectService.add(data);
-    }
-
-    @Override
-    @PostMapping("/update")
-    public void update(@RequestBody OrderSubject data) {
-        orderSubjectService.update(data);
-    }
+//    @Override
+//    @PostMapping("/insert")
+//    public void insert(@RequestBody OrderSubject data) {
+//        orderSubjectService.add(data);
+//    }
+//
+//    @Override
+//    @PostMapping("/update")
+//    public void update(@RequestBody OrderSubject data) {
+//        orderSubjectService.update(data);
+//    }
 
 //    @Override
 //    @GetMapping("/delete/{id}")

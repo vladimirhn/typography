@@ -1,5 +1,6 @@
 package application;
 
+import jwtsecurity.user.User;
 import kpersistence.v2.modelsMaster.ModelsMaster;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -47,7 +48,9 @@ public class Typography {
 
     @Bean
     public ModelsMaster getModelsMaster() {
-        return new ModelsMaster("domain.models");
+        ModelsMaster mm = new ModelsMaster("domain.models");
+        mm.addClass(User.class);
+        return mm;
     }
 
     @Bean

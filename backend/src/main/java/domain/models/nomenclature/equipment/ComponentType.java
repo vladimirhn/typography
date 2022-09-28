@@ -1,11 +1,9 @@
 package domain.models.nomenclature.equipment;
 
-import rest.v2.models.JsonNonNullUserIdStringIdTable;
-import kpersistence.v1.mapping.annotations.Entity;
 import kpersistence.v2.annotations.Column;
 import kpersistence.v2.annotations.Table;
+import rest.v2.models.JsonNonNullUserIdStringIdTable;
 
-@Entity
 @Table(name = "COMPONENT_TYPES")
 public class ComponentType extends JsonNonNullUserIdStringIdTable {
 

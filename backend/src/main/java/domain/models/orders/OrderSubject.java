@@ -1,15 +1,8 @@
 package domain.models.orders;
 
-import kpersistence.v2.annotations.Direction;
-import kpersistence.v2.annotations.OrderBy;
-import kpersistence.v2.annotations.Column;
-import kpersistence.v2.annotations.Foreign2;
-import kpersistence.v2.annotations.Label;
-import kpersistence.v2.annotations.Table;
-import rest.v1.data.EntryTransferData;
+import kpersistence.v2.annotations.*;
 import rest.v2.models.JsonNonNullUserIdStringIdTable;
 
-import java.util.List;
 import java.util.Objects;
 
 @Table(name = "ORDER_SUBJECTS")
@@ -25,8 +18,6 @@ public class OrderSubject extends JsonNonNullUserIdStringIdTable {
 
     @Foreign2
     private OrderSubjectType orderSubjectType;
-
-    List<EntryTransferData> relatedOwnConsumableItems;
 
     public OrderSubject() {}
 
@@ -66,13 +57,6 @@ public class OrderSubject extends JsonNonNullUserIdStringIdTable {
         this.orderSubjectType = orderSubjectType;
     }
 
-    public List<EntryTransferData> getRelatedOwnConsumableItems() {
-        return relatedOwnConsumableItems;
-    }
-
-    public void setRelatedOwnConsumableItems(List<EntryTransferData> relatedOwnConsumableItems) {
-        this.relatedOwnConsumableItems = relatedOwnConsumableItems;
-    }
 
     @Override
     public boolean equals(Object o) {

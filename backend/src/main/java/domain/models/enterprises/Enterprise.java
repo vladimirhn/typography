@@ -1,14 +1,12 @@
 package domain.models.enterprises;
 
-import rest.v2.models.JsonNonNullUserIdStringIdTable;
-import kpersistence.v1.mapping.annotations.Entity;
-import kpersistence.v2.annotations.Label;
 import kpersistence.v2.annotations.Column;
+import kpersistence.v2.annotations.Label;
 import kpersistence.v2.annotations.Table;
+import rest.v2.models.JsonNonNullUserIdStringIdTable;
 
 import java.math.BigDecimal;
 
-@Entity
 @Table(name = "ENTERPRISES")
 public class Enterprise extends JsonNonNullUserIdStringIdTable {
 

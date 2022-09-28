@@ -3,7 +3,6 @@ package domain.models.enterprises;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import rest.v2.models.JsonNonNullUserIdStringIdTable;
 import kpersistence.v2.annotations.Direction;
-import kpersistence.v1.mapping.annotations.Entity;
 import kpersistence.v2.annotations.OrderBy;
 import kpersistence.v2.annotations.Column;
 import kpersistence.v2.annotations.Table;
@@ -11,7 +10,6 @@ import kpersistence.v2.annotations.Table;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Entity
 @Table(name = "MONEY_MOVEMENTS")
 public class MoneyMovement extends JsonNonNullUserIdStringIdTable {
 

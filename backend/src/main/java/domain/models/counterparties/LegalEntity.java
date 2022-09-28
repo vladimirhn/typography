@@ -1,12 +1,10 @@
 package domain.models.counterparties;
 
-import rest.v2.models.JsonNonNullUserIdStringIdTable;
-import kpersistence.v1.mapping.annotations.Entity;
-import kpersistence.v2.annotations.Label;
 import kpersistence.v2.annotations.Column;
+import kpersistence.v2.annotations.Label;
 import kpersistence.v2.annotations.Table;
+import rest.v2.models.JsonNonNullUserIdStringIdTable;
 
-@Entity
 @Table(name = "LEGAL_ENTITIES")
 public class LegalEntity extends JsonNonNullUserIdStringIdTable {
 

@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import repository.v2.AbstractStringIdTableRepository;
 
 @Repository
-public class OrdersRepository/* extends AbstractStringIdTableRepository<Order> */{
+public class OrdersRepository {
 }

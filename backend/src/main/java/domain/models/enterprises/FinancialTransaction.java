@@ -1,17 +1,15 @@
 package domain.models.enterprises;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import kpersistence.v2.annotations.Direction;
-import kpersistence.v1.mapping.annotations.Entity;
-import kpersistence.v2.annotations.OrderBy;
 import kpersistence.v2.annotations.Column;
+import kpersistence.v2.annotations.Direction;
+import kpersistence.v2.annotations.OrderBy;
 import kpersistence.v2.annotations.Table;
 import rest.v2.models.JsonNonNullUserIdView;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Entity
 @Table(name = "ALL_FINANCIAL_TRANSACTIONS_VIEW")
 public class FinancialTransaction extends JsonNonNullUserIdView {
 

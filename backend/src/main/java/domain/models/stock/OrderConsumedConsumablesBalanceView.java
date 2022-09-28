@@ -1,14 +1,11 @@
 package domain.models.stock;
 
 import kpersistence.v2.annotations.Column;
-import kpersistence.v1.mapping.annotations.Entity;
 import kpersistence.v2.annotations.Table;
 import kpersistence.v2.tables.UserIdView;
-import repository.v1.tables.UserIdAbstractView;
 
 import java.math.BigDecimal;
 
-@Entity
 @Table(name = "ORDER_CONSUMED_CONSUMABLES_BALANCE_VIEW")
 public class OrderConsumedConsumablesBalanceView extends UserIdView {
 

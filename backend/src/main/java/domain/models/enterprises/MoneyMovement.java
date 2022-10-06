@@ -1,11 +1,8 @@
 package domain.models.enterprises;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import kpersistence.annotations.*;
 import rest.models.JsonNonNullUserIdStringIdTable;
-import kpersistence.annotations.Direction;
-import kpersistence.annotations.OrderBy;
-import kpersistence.annotations.Column;
-import kpersistence.annotations.Table;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -21,7 +18,8 @@ public class MoneyMovement extends JsonNonNullUserIdStringIdTable {
 
     @Column(name = "MOVEMENT_DATE")
     @OrderBy(direction = Direction.DESC)
-    @JsonFormat(pattern = "dd.MM.yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @InsertDefault(dateTime = "now")
     private LocalDateTime movementDate;
 
     public MoneyMovement() {}

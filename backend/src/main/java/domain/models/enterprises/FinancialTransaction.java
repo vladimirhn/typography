@@ -15,7 +15,7 @@ public class FinancialTransaction extends JsonNonNullUserIdView {
 
     @Column(name = "TRANSACTION_DATE")
     @OrderBy(direction = Direction.DESC)
-    @JsonFormat(pattern = "dd.MM.yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     LocalDateTime transactionDate;
 
     @Column(name = "MONEY_AMOUNT")
